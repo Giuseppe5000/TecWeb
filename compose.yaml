@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  php-httpd:
+    image: php:8.1-apache
+    container_name: httpd-php
+    ports:
+      - 8080:80
+    volumes:
+      - "./DocumentRoot:/var/www/html"
+    depends_on:
+      - mariadb
+
+  mariadb:
+    image: mariadb:10.6.7
+    container_name: mariadb
+    ports:
+      - 3306:3306
+    volumes:
+      - "~/.cache/TecWeb/mariadb-data:/var/lib/mysql"
+    environment:
+      TZ: "Europe/Rome"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+      MYSQL_ROOT_PASSWORD: "passwd"
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'passwd'
+      MYSQL_DATABASE: 'db'
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    ports:
+      - 8081:80
+    depends_on:
+      - mariadb
+    environment:
+      PMA_HOST: mariadb
