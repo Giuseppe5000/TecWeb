@@ -65,7 +65,7 @@ Esistono 3 tipologie di utenti:
     \item recensione (\underline{\textit{utente}, \textit{opera}}, voto)
     \item acquisto (\underline{\textit{utente}, \textit{opera}}, prezzo, data)
     \item appartenenza (\underline{\textit{categoria}, \textit{opera}})
-    \item \textbf{commento} (\underline{timestamp, \textit{utente}}, testo, opera, \textit{risposto*})
+    \item \textbf{commento} (\underline{timestamp, \textit{utente}}, testo, opera, \textit{utenterisp*}, \textit{timerisp*})
 \end{itemize}
 Il simbolo * indica che l'attributo può essere nullo.
 
@@ -81,7 +81,7 @@ Il simbolo * indica che l'attributo può essere nullo.
     \item appartenenza.categoria → categoria.nome
     \item appartenenza.opera → opera.id
     \item commento.utente → utente.username
-    \item commento.risposto → commento.(timestamp, utente)
+    \item commento.(timerisp, utenterisp) → commento.(timestamp, utente)
 \end{itemize}
 
 \end{document}
