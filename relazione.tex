@@ -58,14 +58,14 @@ Esistono 3 tipologie di utenti:
 
 \subsection{Descrizione schema relazionale}
 \begin{itemize}
-    \item \textbf{utente} (\underline{username}, password, email, admin*)
+    \item \textbf{utente} (\underline{username}, password, email, isadmin)
     \item \textbf{categoria} (\underline{nome}, descrizione)
     \item \textbf{iscrizione} (\underline{\textit{utente}, \textit{categoria}})
-    \item \textbf{opera} (\underline{id}, path, nome, descrizione, prezzo, \textit{utente*})
-    \item recensione (\underline{\textit{utente}, \textit{opera}}, voto)
-    \item acquisto (\underline{\textit{utente}, \textit{opera}}, prezzo, data)
-    \item appartenenza (\underline{\textit{categoria}, \textit{opera}})
-    \item \textbf{commento} (\underline{timestamp, \textit{utente}}, testo, opera, \textit{utenterisp*}, \textit{timerisp*})
+    \item \textbf{opera} (\underline{id}, path, nome, descrizione, prezzo, \textit{possessore*})
+    \item \textbf{recensione} (\underline{\textit{utente}, \textit{opera}}, voto)
+    \item \textbf{acquisto} (\underline{\textit{utente}, \textit{opera}}, prezzo, data)
+    \item \textbf{appartenenza} (\underline{\textit{categoria}, \textit{opera}})
+    \item \textbf{commento} (\underline{timestamp, \textit{utente}}, testo, \textit{opera}, \textit{utenterisp*}, \textit{timerisp*})
 \end{itemize}
 Il simbolo * indica che l'attributo può essere nullo.
 
@@ -73,7 +73,7 @@ Il simbolo * indica che l'attributo può essere nullo.
 \begin{itemize}
     \item iscrizione.utente → utente.username
     \item iscrizione.categoria → categoria.nome
-    \item opera.utente → utente.username
+    \item opera.possessore → utente.username
     \item recensione.utente → utente.username
     \item recensione.opera → opera.id
     \item acquisto.utente → utente.username
@@ -81,6 +81,7 @@ Il simbolo * indica che l'attributo può essere nullo.
     \item appartenenza.categoria → categoria.nome
     \item appartenenza.opera → opera.id
     \item commento.utente → utente.username
+    \item commento.opera → opera.id
     \item commento.(timerisp, utenterisp) → commento.(timestamp, utente)
 \end{itemize}
 
