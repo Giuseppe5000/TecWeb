@@ -1,0 +1,91 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{geometry}
+\geometry{a4paper,left=20mm,right=20mm,top=20mm}
+
+\title{Progetto di Tecnologie Web}
+\author{
+    \textbf{2076430}\\ Gusella Manuel \and
+    \textbf{2075541}\\ Marcon Giulia \and
+    \textbf{2082849}\\ Perozzo Andrea \and
+    \textbf{2075515}\\ Tutino Giuseppe
+}
+\date{A.A. 2024/25}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Introduzione}
+\subsection{Abstract}
+*Nome progetto* è un marketplace digitale che contiene delle opere uniche sotto forma di NFT pubblicate direttamente dall'associazione.
+Un Non-fungible token (NFT) rappresenta l'atto di proprietà e certificato di autenticità di un bene unico, in questo caso un'opera digitale. \\
+Tutti i visitatori hanno la possibilità di visionare le opere e creare il proprio account digitale.\\
+Gli utenti registrati possono comprare le opere, se non già possedute da qualcun'altro, attraverso una valuta digitale chiamata Ethereum (ETH). Eventualmente l'utente può decidere di vendere le opere che possiede ad altri utenti.\\
+Inoltre gli utenti registrati possono recensire le opere dando un voto da \textbf{1 a 5 stelle} e inserendo opzionalmente anche un commento al riguardo.\\
+
+
+\subsection{Analisi}
+\subsubsection{Utenti}
+Esistono 3 tipologie di utenti:
+\begin{itemize}
+    \item Utente non registrato, che può eseguire le seguenti azioni:
+    \begin{itemize}
+        \item Visualizzare il sito con le relative opere
+        \item Registrare un proprio account
+        \item Autenticarsi
+        \item Ricerca delle opere
+        \item Visualizzare i dettagli di un'opera con le relative recensioni
+    \end{itemize}
+    \item Utente registrato, che può eseguire le seguenti azioni:
+    \begin{itemize}
+        \item Comprare le opere
+        \item Recensire le opere
+        \item Visualizzare le opere che possiede
+        \item Vendere le opere che possiede
+    \end{itemize}
+    \item Amministratore, che può eseguire le seguenti azioni:
+    \begin{itemize}
+        \item Gestire gli utenti
+        \item Aggiungere opere
+        \item Visualizzare le vendite
+    \end{itemize}
+\end{itemize}
+
+\section{Progettazione logica del database}
+
+\subsection{Descrizione schema relazionale}
+\begin{itemize}
+    \item \textbf{utente} (\underline{username}, password, email, isAdmin)
+    \item \textbf{categoria} (\underline{nome}, descrizione)
+    \item \textbf{iscrizione} (\underline{\textit{utente}, \textit{categoria}})
+    \item \textbf{opera} (\underline{id}, path, nome, descrizione, prezzo, \textit{possessore})
+    \item \textbf{recensione} (\underline{\textit{utente}, \textit{opera}}, voto)
+    \item \textbf{acquisto} (\underline{\textit{utente}, \textit{opera}}, prezzo, data)
+    \item \textbf{appartenenza} (\underline{\textit{categoria}, \textit{opera}})
+    \item \textbf{commento} (\underline{timestamp, \textit{utente}}, testo, \textit{opera}, \textit{utenterisp*}, \textit{timerisp*})
+\end{itemize}
+Il simbolo * indica che l'attributo può essere nullo.
+
+\subsection{Vincoli di integrità referenziale }
+\begin{itemize}
+    \item iscrizione.utente → utente.username
+    \item iscrizione.categoria → categoria.nome
+    \item opera.possessore → utente.username
+    \item recensione.utente → utente.username
+    \item recensione.opera → opera.id
+    \item acquisto.utente → utente.username
+    \item acquisto.opera → opera.id
+    \item appartenenza.categoria → categoria.nome
+    \item appartenenza.opera → opera.id
+    \item commento.utente → utente.username
+    \item commento.opera → opera.id
+    \item commento.(timerisp, utenterisp) → commento.(timestamp, utente)
+\end{itemize}
+
+\end{document}
+
+%  dove l'arte del futuro incontra la tecnologia blockchain.
+% "Gamma", "ArtChain", "Artoken", "Magma" come nome del sito
