@@ -5,7 +5,7 @@
 }
 
 :root {
-    --bgcolor: black;
+    --bgcolor: rgba(0, 0, 0, 0.650);
     --bgcolor-help: pink;
     --txtcolor: #FFF;
     --breadcolor: ;
@@ -15,7 +15,7 @@
     --visitedcolor: pink;
 }
 
-html, body {
+html {
     color: var(--txtcolor);
     background-color: var(--bgcolor);
 }
@@ -144,6 +144,7 @@ SEZIONE MAIN
 */
 main{
     text-align: center;
+    background-color: #191919
 }
 main h1 {
     margin-top: 1em;
@@ -164,8 +165,10 @@ main p{
     display: flex;
     flex-flow: row wrap;
     margin-top: 2em;
-    justify-content: space-between;
+    justify-content: space-around;
     row-gap: 1.5em;
+    margin-left: 2em;
+    margin-right: 2em;
 }
 
 .card {
@@ -181,4 +184,8 @@ main p{
     text-align: center;
 }
 
+form {
+    margin-left: 2em;
+    margin-right: 2em;
+}
 
