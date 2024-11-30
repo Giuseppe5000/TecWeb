@@ -1,16 +1,18 @@
 * {
     padding: 0em;
     margin: 0em;
+    line-height: 1.5em;
 }
 
 :root {
-    --bgcolor: #e56456;
+    --bgcolor: black;
+    --bgcolor-help: pink;
     --txtcolor: #FFF;
-    --breadcolor: #8fb2c7;
+    --breadcolor: ;
     --contenttxtcolor: #000;
-    --contentbgcolor: #d33131;
-    --linkcolor: #f9c070;
-    --visitedcolor: #635375;
+    --contentbgcolor: ;
+    --linkcolor: #FFF;
+    --visitedcolor: pink;
 }
 
 html, body {
@@ -40,20 +42,57 @@ SEZIONE HEADER
 ==============
 */
 header {
+    width: 100%;
+    align-items: center;
+    text-align: center;
     margin-top: 1em;
     margin-bottom: 1em;
 }
 
-header ul{
-    list-style: none;
-}
-
-header li {
-    display: inline;
-}
-
 header h1 {
-    display: inline;
+    padding: 1em;
+}
+
+.header-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align:center;
+}
+/*
+============
+SEZIONE MENU
+============
+*/
+.menu-list{
+    display: flex;
+    list-style:none;
+}
+
+.menu-item{
+    padding:1em;
+}
+
+/*
+======================
+AIUTI ALLA NAVIGAZIONE
+======================
+*/
+.navigationHelp{
+    margin: 1em;
+    position: absolute;
+    text-indent: -999em;
+    background-color: var(--bgcolor-help);
+}
+
+.listHelp a{
+    color: var(--contenttxtcolor);
+}
+
+.navigationHelp:focus{
+    position: static;
+    text-indent:0;
+    padding: 0.5em;
 }
 
 /*
@@ -62,21 +101,63 @@ SEZIONE BREADCRUMB
 ==================
 */
 #breadcrumb {
+    padding: 0.5em;
+    align-items: center;
+    text-align: center;
     background-color: var(--breadcolor);
     color: var(--txtcolor);
 }
 
+/*
+=================
+SEZIONE SLIDESHOW
+=================
+*/
+.wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    margin-left: 0.5em;
+    margin-right:0.5em;
+}
+
+.wrapper p{
+    font-size: 3em;
+    font-weight: bold;
+    display: contents;
+    text-align: center;
+}
+
+.slideshow{
+    display: flex;
+    column-gap: 1em;
+    overflow-x: hidden;
+    margin-left: 0.5em;
+    margin-right:0.5em;
+}
 
 /*
 ============
 SEZIONE MAIN
 ============
 */
-
+main{
+    text-align: center;
+}
 main h1 {
     margin-top: 1em;
-    margin-bottom: 2em;
-    text-align: center;
+    margin-bottom: 1em;
+}
+
+main h2{
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+}
+
+main p{
+    text-align: justify;
+    padding: 1em;
 }
 
 #cards {
@@ -99,3 +180,5 @@ main h1 {
     justify-content: center;
     text-align: center;
 }
+
+
