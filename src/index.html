@@ -11,28 +11,26 @@
 
     <!-- Scegliere un font adatto -->
 
-    <link rel="stylesheet" href="stile.css" media="screen">
+    <link rel="stylesheet" href="style.css" media="screen">
     <link rel="stylesheet" href="print.css" media="print">
+    <link rel="stylesheet" href="mini.css" media="screen and (max-width:768px)">
 </head>
 <body>
-
     <header>
     <nav aria-label="aiuti alla navigazione" class="listHelp">
-      <ul>
-	<li><a href="#content" class="navigationHelp">Vai al contenuto</a></li>
-      </ul>
+      <a href="#content" class="navigationHelp">Vai al contenuto</a>
      </nav>
+    <nav class="header-content">
 	<h1>NOME_PROGETTO</h1> <!-- Sostituire con l'immagine -->
 	
-	<nav id="menu-nav" class="menu">
-	    <ul class="menu-list">
-		<li class="menu-item" lang="en">Home</li>
-		<li class="menu-item"><a href="nft.html"><abbr lang="en" title="Non-fungible token">NFT</abbr></a></li>
-		<li class="menu-item"><a href="chi-siamo.html">Chi siamo</a></li>
-		<li class="menu-item"><a href="registrati.html"> Registrati</a></li>
-		<li class="menu-item"><a href="accedi.html"> Accedi</a></li>
-	    </ul>
-	</nav>
+	<ul class="menu-list">
+	    <li class="menu-item" lang="en">Home</li>
+	    <li class="menu-item"><a href="nft.html"><abbr lang="en" title="Non-fungible token">NFT</abbr></a></li>
+	    <li class="menu-item"><a href="chi-siamo.html">Chi siamo</a></li>
+	    <li class="menu-item"><a href="registrati.html"> Registrati</a></li>
+	    <li class="menu-item"><a href="accedi.html"> Accedi</a></li>
+	</ul>
+    </nav>
     </header>
 
     <nav id="breadcrumb">
@@ -40,7 +38,40 @@
     </nav>
     <main id="content">
       <h1><span lang="en">Home</span></h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non accumsan dui. Nullam ligula mauris, ullamcorper sit amet rhoncus et, convallis id ligula. Etiam fringilla pharetra turpis in ornare. Proin scelerisque dolor ut nisi dapibus eleifend. Nam libero nulla, vulputate ut convallis sed, ornare sed dolor. Vestibulum hendrerit leo vitae semper tempus. Maecenas est magna, rutrum a leo in, interdum sollicitudin neque. Duis ut nisl et est dignissim pellentesque. Pellentesque quis tincidunt ipsum. Donec pharetra metus sit amet lectus laoreet blandit. Maecenas posuere faucibus enim at maximus. Nulla facilisi. Maecenas vel congue ipsum. Morbi egestas non est in aliquam. Vestibulum nec posuere est, quis blandit sapien. </p>
       <h2>Ultime uscite</h2>
+      <div class="wrapper">
+	<!-- Bottone sx -->
+	<p><</p>
+	<div class="slideshow">
+                <div class="card">
+                    <a href="nft.html?nft=TITOLO"><h3>TITOLO</h3></a>
+                    <figure>
+                        <img src="assets/ntf.jpg" width="200">
+                        <figcaption>Descrizione dell'opera</figcaption>
+                    </figure>
+                </div>
+                <div class="card">
+                    <a href="nft.html?nft=TITOLO"><h3>TITOLO</h3></a>
+                    <figure>
+                        <img src="assets/ntf.jpg" width="200">
+                        <figcaption>Descrizione dell'opera</figcaption>
+                    </figure>
+                </div>
+                <div class="card">
+                    <a href="nft.html?nft=TITOLO"><h3>TITOLO</h3></a>
+                    <figure>
+                        <img src="assets/ntf.jpg" width="200">
+                        <figcaption>Descrizione dell'opera</figcaption>
+                    </figure>
+                </div>
+	  
+	</div>
+	<!-- Bottone dx -->
+	<p>></p>
+
+      </div>
+      
       <h2>Top 3 <abbr lang="en" title="Non-fungible token">NFT</abbr></h2>
       <h2>Categorie più acquistate</h2>
     </main>
