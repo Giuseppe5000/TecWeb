@@ -1,8 +1,4 @@
-* {
-    padding: 0em;
-    margin: 0em;
-    line-height: 1.5em;
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
     --bgcolor: rgba(0, 0, 0, 0.650);
@@ -10,9 +6,16 @@
     --txtcolor: #FFF;
     --breadcolor: ;
     --contenttxtcolor: #000;
-    --contentbgcolor: ;
+    --contentbgcolor: #191919;
     --linkcolor: #FFF;
     --visitedcolor: pink;
+}
+
+* {
+    font-family: "Montserrat", serif;
+    padding: 0em;
+    margin: 0em;
+    line-height: 1.5em;
 }
 
 html {
@@ -72,7 +75,13 @@ SEZIONE MENU
 }
 
 .menu-item{
-    padding:1em;
+    padding: 2em 1em;
+    
+}
+
+.current-page{
+    color: var(--bgcolor);
+    background-color: var(--txtcolor);
 }
 
 /*
@@ -82,6 +91,7 @@ AIUTI ALLA NAVIGAZIONE
 */
 .navigationHelp{
     margin: 1em;
+    
     position: absolute;
     text-indent: -999em;
     background-color: var(--bgcolor-help);
@@ -95,6 +105,7 @@ AIUTI ALLA NAVIGAZIONE
     position: static;
     text-indent:0;
     padding: 0.5em;
+    margin: 0.5em;
 }
 
 /*
@@ -121,8 +132,9 @@ SEZIONE SLIDESHOW
     justify-content: space-between;
     align-items: center;
     overflow: hidden;
-    margin-left: 0.5em;
-    margin-right:0.5em;
+    margin-top: 0.5em;
+    margin-left: 1em;
+    margin-right:1em;
 }
 
 .wrapper p{
@@ -135,9 +147,23 @@ SEZIONE SLIDESHOW
 .slideshow{
     display: flex;
     column-gap: 1em;
-    overflow-x: hidden;
+    transition: 0.5s all ease-out;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
     margin-left: 0.5em;
     margin-right:0.5em;
+}
+
+.prev,.next{
+    background-color: var(--contentbgcolor);
+    color: var(--txtcolor);
+    font-size: 3em;
+    font-weight: bold;
+    display: contents;
+    text-align: center;
+    border: none;
+    cursor: pointer;
 }
 
 /*
@@ -147,10 +173,10 @@ SEZIONE MAIN
 */
 main{
     text-align: center;
-    background-color: #191919;
+    background-color: var(--contentbgcolor);
 }
 main h1 {
-    margin-top: 1em;
+    margin-top: 0.5em;
     margin-bottom: 1em;
 }
 
@@ -190,4 +216,21 @@ main p{
 form {
     margin-left: 2em;
     margin-right: 2em;
+}
+
+#regist-form fieldset, #accesso-form fieldset {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 1em; 
+    padding: 1em;
+}
+
+#regist-form label, #accesso-form label {
+    flex: 1 1 40%; 
+    min-width: 150px; 
+}
+
+#regist-form input, #accesso-form input {
+    flex: 1 1 55%; 
+    min-width: 150px; 
 }
