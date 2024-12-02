@@ -17,6 +17,9 @@
 </head>
 <body>
     <header>
+      <!-- Script js -->
+      <script src="slideshow.js"></script>
+
     <nav aria-label="aiuti alla navigazione" class="listHelp">
       <a href="#content" class="navigationHelp">Vai al contenuto</a>
      </nav>
@@ -24,7 +27,7 @@
 	<h1>NOME_PROGETTO</h1> <!-- Sostituire con l'immagine -->
 	
 	<ul class="menu-list">
-	    <li class="menu-item" lang="en">Home</li>
+	    <li class="menu-item current-page" lang="en">Home</li>
 	    <li class="menu-item"><a href="nft.html"><abbr lang="en" title="Non-fungible token">NFT</abbr></a></li>
 	    <li class="menu-item"><a href="chi-siamo.html">Chi siamo</a></li>
 	    <li class="menu-item"><a href="registrati.html"> Registrati</a></li>
@@ -38,11 +41,17 @@
     </nav>
     <main id="content">
       <h1><span lang="en">Home</span></h1>
+	<nav aria-label="aiuti alla navigazione" class="listHelp">
+	    <a href="#ultimeUscite" class="navigationHelp">Vai alle Ultime Uscite</a>
+	</nav>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non accumsan dui. Nullam ligula mauris, ullamcorper sit amet rhoncus et, convallis id ligula. Etiam fringilla pharetra turpis in ornare. Proin scelerisque dolor ut nisi dapibus eleifend. Nam libero nulla, vulputate ut convallis sed, ornare sed dolor. Vestibulum hendrerit leo vitae semper tempus. Maecenas est magna, rutrum a leo in, interdum sollicitudin neque. Duis ut nisl et est dignissim pellentesque. Pellentesque quis tincidunt ipsum. Donec pharetra metus sit amet lectus laoreet blandit. Maecenas posuere faucibus enim at maximus. Nulla facilisi. Maecenas vel congue ipsum. Morbi egestas non est in aliquam. Vestibulum nec posuere est, quis blandit sapien. </p>
-      <h2>Ultime uscite</h2>
+      <h2 id="ultimeUscite">Ultime uscite</h2>
+    <nav aria-label="aiuti alla navigazione" class="listHelp">
+      <a href="#top3" class="navigationHelp">Vai alla Top 3</a>
+     </nav>
       <div class="wrapper">
 	<!-- Bottone sx -->
-	<p><</p>
+	<button class="prev" onclick="slider()">&#10094;</button>
 	<div class="slideshow">
                 <div class="card">
                     <a href="nft.html?nft=TITOLO"><h3>TITOLO</h3></a>
@@ -68,12 +77,15 @@
 	  
 	</div>
 	<!-- Bottone dx -->
-	<p>></p>
+	<button class="next" onclick="slider()">&#10095;</button>
 
       </div>
       
-      <h2>Top 3 <abbr lang="en" title="Non-fungible token">NFT</abbr></h2>
-      <h2>Categorie più acquistate</h2>
+      <h2 id="top3">Top 3 <abbr lang="en" title="Non-fungible token">NFT</abbr></h2>
+    <nav aria-label="aiuti alla navigazione" class="listHelp">
+      <a href="#categorie" class="navigationHelp">Vai alle Categorie più acquistate</a>
+     </nav>
+      <h2 id="categorie">Categorie più acquistate</h2>
     </main>
 
     <footer>
