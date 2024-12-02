@@ -8,7 +8,8 @@ CREATE TABLE utente (
        username VARCHAR(30) PRIMARY KEY,
        password VARCHAR(30) NOT NULL,
        email VARCHAR(30) NOT NULL,
-       isAdmin BOOLEAN
+       isAdmin BOOLEAN,
+       saldo FLOAT NOT NULL
 );
 
 CREATE TABLE categoria (
@@ -82,26 +83,26 @@ CREATE TABLE commento (
 
 -- Inserimento Utenti
 INSERT INTO utente VALUES
-('efraine0', 'zV1<Y~TY,qOA', 'mbolf0@nyu.edu', false),
-('njobke1', 'zQ3<)fRz)xn+LG''', 'vchristofides1@dmoz.org', true),
-('delegood2', 'bN1)5s%nQoXnK+M', 'gelliker2@addtoany.com', true),
-('achaundy3', 'qY4\L9M.WTd20', 'mbeelby3@blogspot.com', false),
-('jhadlington4', 'wX4`0a@#\)>G~/', 'glabusch4@twitter.com', true),
-('nferreli5', 'zR1/=7xvtq@sE$gc', 'tbaudains5@nature.com', true),
-('dnarey6', 'oK7#}ZFi49x/', 'sscheu6@forbes.com', false),
-('sroft7', 'iY1/OJjo.FRF`%', 'xcurrer7@psu.edu', false),
-('hmilkins8', 'sN5{3AnWEVlK_W', 'xgiorgio8@wordpress.org', false),
-('akelleher9', 'jY2(PN$P&O0/RI', 'ldunton9@wisc.edu', true),
-('bburgisa', 'lJ9''ukEWnbo~0E', 'mhatza@amazon.co.uk', false),
-('tpantlingb', 'bX5<>38lMG', 'kbullanb@npr.org', false),
-('mabbesc', 'iJ5%qwB@Je', 'bgogginsc@miibeian.gov.cn', false),
-('wduffetd', 'sG7}5I/94F', 'asineyd@timesonline.co.uk', false),
-('kjurriese', 'fY5?yBcud', 'ybiddlese@amazon.co.uk', false),
-('cmccourtf', 'pM3$QD7)SkSVtGk.', 'cjaggarf@japanpost.jp', false),
-('wgavang', 'zW8*h%q8~h`ZK+''', 'tstofflerg@cdbaby.com', true),
-('ypatilloh', 'nI3!{9fa5', 'swhifeh@1688.com', false),
-('ceshelbyi', 'hG1.JUXw', 'fesmeadi@webeden.co.uk', false),
-('icharplingj', 'jK1_~Bv,l7', 'kslotj@woothemes.com', true);
+('efraine0', 'zV1<Y~TY,qOA', 'mbolf0@nyu.edu', false, 29150.9234),
+('njobke1', 'zQ3<)fRz)xn+LG''', 'vchristofides1@dmoz.org', true, 41646.07),
+('delegood2', 'bN1)5s%nQoXnK+M', 'gelliker2@addtoany.com', true, 12057.922),
+('achaundy3', 'qY4\L9M.WTd20', 'mbeelby3@blogspot.com', false, 10920.82),
+('jhadlington4', 'wX4`0a@#\)>G~/', 'glabusch4@twitter.com', true, 10920.2),
+('nferreli5', 'zR1/=7xvtq@sE$gc', 'tbaudains5@nature.com', true, 10920.287),
+('dnarey6', 'oK7#}ZFi49x/', 'sscheu6@forbes.com', false, 16202.159),
+('sroft7', 'iY1/OJjo.FRF`%', 'xcurrer7@psu.edu', false, 24334.64),
+('hmilkins8', 'sN5{3AnWEVlK_W', 'xgiorgio8@wordpress.org', false, 48217.72),
+('akelleher9', 'jY2(PN$P&O0/RI', 'ldunton9@wisc.edu', true, 31190.06),
+('bburgisa', 'lJ9''ukEWnbo~0E', 'mhatza@amazon.co.uk', false, 44867.72),
+('tpantlingb', 'bX5<>38lMG', 'kbullanb@npr.org', false, 5098.99),
+('mabbesc', 'iJ5%qwB@Je', 'bgogginsc@miibeian.gov.cn', false, 41014.19),
+('wduffetd', 'sG7}5I/94F', 'asineyd@timesonline.co.uk', false, 42775.6545),
+('kjurriese', 'fY5?yBcud', 'ybiddlese@amazon.co.uk', false, 45413.57),
+('cmccourtf', 'pM3$QD7)SkSVtGk.', 'cjaggarf@japanpost.jp', false, 34542.552),
+('wgavang', 'zW8*h%q8~h`ZK+''', 'tstofflerg@cdbaby.com', true, 1384.637),
+('ypatilloh', 'nI3!{9fa5', 'swhifeh@1688.com', false, 3680.248),
+('ceshelbyi', 'hG1.JUXw', 'fesmeadi@webeden.co.uk', false, 39282.34),
+('icharplingj', 'jK1_~Bv,l7', 'kslotj@woothemes.com', true, 32110.748);
 
 -- Inserimento Categorie
 INSERT INTO categoria VALUES
