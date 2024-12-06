@@ -17,5 +17,14 @@ SEZIONE MAIN
 ============
 */
 main{
-    margin-top: 15em;
+    margin-top: 17em;
+}
+
+/*
+==========
+PAGINA NFT
+==========
+*/
+#searchBar {
+    margin-top: 17em;
 }
