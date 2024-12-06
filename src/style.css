@@ -9,6 +9,9 @@
     --contentbgcolor: #191919;
     --linkcolor: #FFF;
     --visitedcolor: pink;
+    --footerbgcolor: pink;
+    --footercolor: black;
+
 }
 
 * {
@@ -228,6 +231,18 @@ form {
 #regist-form input, #accesso-form input {
     flex: 1 1 55%;
     min-width: 150px;
+}
+
+/*
+==============
+SEZIONE FOOTER
+==============
+*/
+
+footer {
+    text-align: center;
+    background-color: var(--footerbgcolor);
+    color: var(--footercolor);
 }
 
 /*
