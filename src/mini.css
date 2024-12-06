@@ -12,11 +12,10 @@ SEZIONE HEADER
 
 
 /*
-==================
-SEZIONE BREADCRUMB
-==================
+============
+SEZIONE MAIN
+============
 */
-#breadcrumb {
-    margin-top: 10em;
+main{
+    margin-top: 15em;
 }
-
