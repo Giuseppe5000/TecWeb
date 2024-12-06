@@ -260,3 +260,21 @@ div+main {
     margin-top: 0;
 }
 
+
+/*
+==============
+PAGINA ACCESSO
+==============
+*/
+
+#accesso-form {
+    margin-left: 30%;
+    margin-right: 30%;
+    padding-bottom: 5em;
+    text-align: left;
+}
+#accesso-form input[type="submit"] {
+    margin-top: 1em;
+    margin-left: 30%;
+    margin-right: 30%;
+}
