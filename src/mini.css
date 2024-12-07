@@ -10,6 +10,19 @@ SEZIONE HEADER
     flex-direction: column;
 }
 
+.menu-item{
+    font-size: 0.75em;
+    padding: 0.6em 1em;
+}
+
+.menu-item, .menu-item a{
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item .material-symbols-outlined {
+    display: inline;
+}
 
 /*
 ============
@@ -17,7 +30,7 @@ SEZIONE MAIN
 ============
 */
 main{
-    margin-top: 17em;
+    margin-top: 10.8em;
 }
 
 /*
@@ -26,5 +39,6 @@ PAGINA NFT
 ==========
 */
 #searchBar {
-    margin-top: 17em;
+    margin-top: 11em;
 }
+
