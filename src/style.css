@@ -76,7 +76,7 @@ header {
 }
 
 header h1 {
-    padding: 1em;
+    padding: 0.5em 1em;
 }
 
 .header-content{
@@ -96,14 +96,18 @@ SEZIONE MENU
 }
 
 .menu-item{
-    padding: 2em 1em;
+    padding: 1.5em 1em;
     
 }
-
-.current-page{
-    color: var(--bgcolor);
-    background-color: var(--txtcolor);
+.menu-item .material-symbols-outlined {
+    display: none;
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48;
 }
+
 
 /*
 ======================
@@ -194,7 +198,7 @@ SEZIONE MAIN
 main{
     text-align: center;
     background-color: var(--contentbgcolor);
-    margin-top: 10em;
+    margin-top: 7em;
 }
 main h1 {
     margin-top: 0.5em;
