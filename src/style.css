@@ -220,17 +220,17 @@ form {
 
 #regist-form fieldset, #accesso-form fieldset {
     display: flex;
-    flex-wrap: wrap; 
-    gap: 1em; 
+    flex-wrap: wrap;
+    gap: 1em;
     padding: 1em;
 }
 
 #regist-form label, #accesso-form label {
-    flex: 1 1 40%; 
-    min-width: 150px; 
+    flex: 1 1 40%;
+    min-width: 150px;
 }
 
 #regist-form input, #accesso-form input {
-    flex: 1 1 55%; 
-    min-width: 150px; 
+    flex: 1 1 55%;
+    min-width: 150px;
 }
