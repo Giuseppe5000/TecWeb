@@ -8,8 +8,8 @@ CREATE TABLE utente (
        username VARCHAR(30) PRIMARY KEY,
        password VARCHAR(30) NOT NULL,
        email VARCHAR(30) NOT NULL,
-       isAdmin BOOLEAN,
-       saldo FLOAT NOT NULL
+       isAdmin BOOLEAN NOT NULL,
+       saldo DECIMAL(10,5) NOT NULL
 );
 
 CREATE TABLE categoria (
@@ -83,60 +83,79 @@ CREATE TABLE commento (
 
 -- Inserimento Utenti
 INSERT INTO utente VALUES
-('efraine0', 'zV1<Y~TY,qOA', 'mbolf0@nyu.edu', false, 29150.9234),
-('njobke1', 'zQ3<)fRz)xn+LG''', 'vchristofides1@dmoz.org', true, 41646.07),
-('delegood2', 'bN1)5s%nQoXnK+M', 'gelliker2@addtoany.com', true, 12057.922),
-('achaundy3', 'qY4\L9M.WTd20', 'mbeelby3@blogspot.com', false, 10920.82),
-('jhadlington4', 'wX4`0a@#\)>G~/', 'glabusch4@twitter.com', true, 10920.2),
-('nferreli5', 'zR1/=7xvtq@sE$gc', 'tbaudains5@nature.com', true, 10920.287),
-('dnarey6', 'oK7#}ZFi49x/', 'sscheu6@forbes.com', false, 16202.159),
-('sroft7', 'iY1/OJjo.FRF`%', 'xcurrer7@psu.edu', false, 24334.64),
-('hmilkins8', 'sN5{3AnWEVlK_W', 'xgiorgio8@wordpress.org', false, 48217.72),
-('akelleher9', 'jY2(PN$P&O0/RI', 'ldunton9@wisc.edu', true, 31190.06),
-('bburgisa', 'lJ9''ukEWnbo~0E', 'mhatza@amazon.co.uk', false, 44867.72),
-('tpantlingb', 'bX5<>38lMG', 'kbullanb@npr.org', false, 5098.99),
-('mabbesc', 'iJ5%qwB@Je', 'bgogginsc@miibeian.gov.cn', false, 41014.19),
-('wduffetd', 'sG7}5I/94F', 'asineyd@timesonline.co.uk', false, 42775.6545),
-('kjurriese', 'fY5?yBcud', 'ybiddlese@amazon.co.uk', false, 45413.57),
-('cmccourtf', 'pM3$QD7)SkSVtGk.', 'cjaggarf@japanpost.jp', false, 34542.552),
-('wgavang', 'zW8*h%q8~h`ZK+''', 'tstofflerg@cdbaby.com', true, 1384.637),
-('ypatilloh', 'nI3!{9fa5', 'swhifeh@1688.com', false, 3680.248),
-('ceshelbyi', 'hG1.JUXw', 'fesmeadi@webeden.co.uk', false, 39282.34),
-('icharplingj', 'jK1_~Bv,l7', 'kslotj@woothemes.com', true, 32110.748);
+('admin', 'admin', 'amdin@studenti.unipd.it', true, 9.92341),
+('user', 'user', 'user@studenti.unipd.it', false, 8.07022);
 
 -- Inserimento Categorie
 INSERT INTO categoria VALUES
-('CAT1', 'DESC'),
-('CAT2', 'DESC'),
-('CAT3', 'DESC'),
-('CAT4', 'DESC'),
-('CAT5', 'DESC');
+('Abstract', 'DESC'),
+('Animals', 'DESC'),
+('Pixel Art', 'DESC'),
+('Black&White', 'DESC'),
+('Photo', 'DESC');
 
 -- Inserimento Iscrizioni
 INSERT INTO iscrizione VALUES
-('icharplingj', 'CAT1'),
-('ceshelbyi', 'CAT2'),
-('ceshelbyi', 'CAT4'),
-('wgavang', 'CAT3');
+('admin', 'Pixel Art'),
+('user', 'Abstract'),
+('user', 'Animals'),
+('user', 'Photo');
 
 -- Inserimento Opere
 INSERT INTO opera VALUES
-(1, './assets/opera1', 'Nome', 'DESC', 30.4, NULL);
+(1, './assets/nft1', 'Nome', 'DESC', 30.4, NULL),
+(2, './assets/nft2', 'Nome', 'DESC', 30.4, NULL),
+(3, './assets/nft3', 'Nome', 'DESC', 30.4, NULL),
+(4, './assets/nft4', 'Nome', 'DESC', 30.4, NULL),
+(5, './assets/nft5', 'Nome', 'DESC', 30.4, NULL),
+(6, './assets/nft6', 'Nome', 'DESC', 30.4, NULL),
+(7, './assets/nft7', 'Nome', 'DESC', 30.4, NULL),
+(8, './assets/nft8', 'Nome', 'DESC', 30.4, NULL),
+(9, './assets/nft9', 'Nome', 'DESC', 30.4, NULL),
+(10, './assets/nft10', 'Nome', 'DESC', 30.4, NULL),
+(11, './assets/nft11', 'Nome', 'DESC', 30.4, NULL),
+(12, './assets/nft12', 'Nome', 'DESC', 30.4, NULL),
+(13, './assets/nft13', 'Nome', 'DESC', 30.4, NULL),
+(14, './assets/nft14', 'Nome', 'DESC', 30.4, NULL),
+(15, './assets/nft15', 'Nome', 'DESC', 30.4, NULL),
+(16, './assets/nft16', 'Nome', 'DESC', 30.4, NULL),
+(17, './assets/nft17', 'Nome', 'DESC', 30.4, NULL);
 
 -- Inserimento Recensioni
 INSERT INTO recensione VALUES
-('wgavang', 1, 1),
-('icharplingj', 1, 4);
+('admin', 1, 1);
 
 -- Inserimento Acquisti
 INSERT INTO acquisto VALUES
-('icharplingj', 1, 50.10, '2024-03-22 12:50:05');
+('admin', 1, 50.10, '2024-03-22 12:50:05');
 
 -- Inserimento Appartenenze
 INSERT INTO appartenenza VALUES
-('CAT1', 1),
-('CAT2', 1);
+('Abstract', 1),
+('Abstract', 2),
+('Abstract', 3),
+('Abstract', 4),
+('Abstract', 5),
+('Abstract', 6),
+('Pixel Art', 6),
+('Abstract', 7),
+('Pixel Art', 7),
+('Animals', 8),
+('Animals', 9),
+('Animals', 10),
+('Animals', 11),
+('Animals', 12),
+('Animals', 13),
+('Pixel Art', 13),
+('Animals', 14),
+('Pixel Art', 14),
+('Animals', 15),
+('Pixel Art', 15),
+('Animals', 16),
+('Pixel Art', 16),
+('Animals', 17),
+('Pixel Art', 17);
 
 -- Inserimento Commenti
 INSERT INTO commento VALUES
-('2024-03-22 12:50:05', 'icharplingj', 'Bello', 1, NULL, NULL);
+('2024-03-22 12:50:05', 'user', 'Bello', 1, NULL, NULL);
