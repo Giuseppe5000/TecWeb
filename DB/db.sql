@@ -8,7 +8,8 @@ CREATE TABLE utente (
        username VARCHAR(30) PRIMARY KEY,
        password VARCHAR(30) NOT NULL,
        email VARCHAR(30) NOT NULL,
-       isAdmin BOOLEAN
+       isAdmin BOOLEAN NOT NULL,
+       saldo DECIMAL(10,5) NOT NULL
 );
 
 CREATE TABLE categoria (
@@ -82,60 +83,79 @@ CREATE TABLE commento (
 
 -- Inserimento Utenti
 INSERT INTO utente VALUES
-('efraine0', 'zV1<Y~TY,qOA', 'mbolf0@nyu.edu', false),
-('njobke1', 'zQ3<)fRz)xn+LG''', 'vchristofides1@dmoz.org', true),
-('delegood2', 'bN1)5s%nQoXnK+M', 'gelliker2@addtoany.com', true),
-('achaundy3', 'qY4\L9M.WTd20', 'mbeelby3@blogspot.com', false),
-('jhadlington4', 'wX4`0a@#\)>G~/', 'glabusch4@twitter.com', true),
-('nferreli5', 'zR1/=7xvtq@sE$gc', 'tbaudains5@nature.com', true),
-('dnarey6', 'oK7#}ZFi49x/', 'sscheu6@forbes.com', false),
-('sroft7', 'iY1/OJjo.FRF`%', 'xcurrer7@psu.edu', false),
-('hmilkins8', 'sN5{3AnWEVlK_W', 'xgiorgio8@wordpress.org', false),
-('akelleher9', 'jY2(PN$P&O0/RI', 'ldunton9@wisc.edu', true),
-('bburgisa', 'lJ9''ukEWnbo~0E', 'mhatza@amazon.co.uk', false),
-('tpantlingb', 'bX5<>38lMG', 'kbullanb@npr.org', false),
-('mabbesc', 'iJ5%qwB@Je', 'bgogginsc@miibeian.gov.cn', false),
-('wduffetd', 'sG7}5I/94F', 'asineyd@timesonline.co.uk', false),
-('kjurriese', 'fY5?yBcud', 'ybiddlese@amazon.co.uk', false),
-('cmccourtf', 'pM3$QD7)SkSVtGk.', 'cjaggarf@japanpost.jp', false),
-('wgavang', 'zW8*h%q8~h`ZK+''', 'tstofflerg@cdbaby.com', true),
-('ypatilloh', 'nI3!{9fa5', 'swhifeh@1688.com', false),
-('ceshelbyi', 'hG1.JUXw', 'fesmeadi@webeden.co.uk', false),
-('icharplingj', 'jK1_~Bv,l7', 'kslotj@woothemes.com', true);
+('admin', 'admin', 'amdin@studenti.unipd.it', true, 9.92341),
+('user', 'user', 'user@studenti.unipd.it', false, 8.07022);
 
 -- Inserimento Categorie
 INSERT INTO categoria VALUES
-('CAT1', 'DESC'),
-('CAT2', 'DESC'),
-('CAT3', 'DESC'),
-('CAT4', 'DESC'),
-('CAT5', 'DESC');
+('Abstract', 'DESC'),
+('Animals', 'DESC'),
+('Pixel Art', 'DESC'),
+('Black&White', 'DESC'),
+('Photo', 'DESC');
 
 -- Inserimento Iscrizioni
 INSERT INTO iscrizione VALUES
-('icharplingj', 'CAT1'),
-('ceshelbyi', 'CAT2'),
-('ceshelbyi', 'CAT4'),
-('wgavang', 'CAT3');
+('admin', 'Pixel Art'),
+('user', 'Abstract'),
+('user', 'Animals'),
+('user', 'Photo');
 
 -- Inserimento Opere
 INSERT INTO opera VALUES
-(1, './assets/opera1', 'Nome', 'DESC', 30.4, NULL);
+(1, './assets/nft1', 'Nome', 'DESC', 30.4, NULL),
+(2, './assets/nft2', 'Nome', 'DESC', 30.4, NULL),
+(3, './assets/nft3', 'Nome', 'DESC', 30.4, NULL),
+(4, './assets/nft4', 'Nome', 'DESC', 30.4, NULL),
+(5, './assets/nft5', 'Nome', 'DESC', 30.4, NULL),
+(6, './assets/nft6', 'Nome', 'DESC', 30.4, NULL),
+(7, './assets/nft7', 'Nome', 'DESC', 30.4, NULL),
+(8, './assets/nft8', 'Nome', 'DESC', 30.4, NULL),
+(9, './assets/nft9', 'Nome', 'DESC', 30.4, NULL),
+(10, './assets/nft10', 'Nome', 'DESC', 30.4, NULL),
+(11, './assets/nft11', 'Nome', 'DESC', 30.4, NULL),
+(12, './assets/nft12', 'Nome', 'DESC', 30.4, NULL),
+(13, './assets/nft13', 'Nome', 'DESC', 30.4, NULL),
+(14, './assets/nft14', 'Nome', 'DESC', 30.4, NULL),
+(15, './assets/nft15', 'Nome', 'DESC', 30.4, NULL),
+(16, './assets/nft16', 'Nome', 'DESC', 30.4, NULL),
+(17, './assets/nft17', 'Nome', 'DESC', 30.4, NULL);
 
 -- Inserimento Recensioni
 INSERT INTO recensione VALUES
-('wgavang', 1, 1),
-('icharplingj', 1, 4);
+('admin', 1, 1);
 
 -- Inserimento Acquisti
 INSERT INTO acquisto VALUES
-('icharplingj', 1, 50.10, '2024-03-22 12:50:05');
+('admin', 1, 50.10, '2024-03-22 12:50:05');
 
 -- Inserimento Appartenenze
 INSERT INTO appartenenza VALUES
-('CAT1', 1),
-('CAT2', 1);
+('Abstract', 1),
+('Abstract', 2),
+('Abstract', 3),
+('Abstract', 4),
+('Abstract', 5),
+('Abstract', 6),
+('Pixel Art', 6),
+('Abstract', 7),
+('Pixel Art', 7),
+('Animals', 8),
+('Animals', 9),
+('Animals', 10),
+('Animals', 11),
+('Animals', 12),
+('Animals', 13),
+('Pixel Art', 13),
+('Animals', 14),
+('Pixel Art', 14),
+('Animals', 15),
+('Pixel Art', 15),
+('Animals', 16),
+('Pixel Art', 16),
+('Animals', 17),
+('Pixel Art', 17);
 
 -- Inserimento Commenti
 INSERT INTO commento VALUES
-('2024-03-22 12:50:05', 'icharplingj', 'Bello', 1, NULL, NULL);
+('2024-03-22 12:50:05', 'user', 'Bello', 1, NULL, NULL);
