@@ -20,10 +20,30 @@ SEZIONE HEADER
     flex-direction: column;
 }
 
-.menu-item .material-symbols-outlined {
-    display: inline;
+#home-bg{
+    background: url("./assets/home_icon.svg") top center no-repeat;
+    padding-top: 2em; 
 }
 
+#nft-bg{
+    background: url("./assets/nft_icon.svg") top center no-repeat;
+    padding-top: 2em; 
+}
+
+#aboutUs-bg{
+    background: url("./assets/aboutUs_icon.svg") top center no-repeat;
+    padding-top: 2em; 
+}
+
+#register-bg{
+    background: url("./assets/register_icon.svg") top center no-repeat;
+    padding-top: 2em; 
+}
+
+#login-bg{
+    background: url("./assets/login_icon.svg") top center no-repeat;
+    padding-top: 2em; 
+}
 /*
 ============
 SEZIONE MAIN
