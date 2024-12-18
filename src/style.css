@@ -2,15 +2,16 @@
 
 :root {
     --bgcolor: #785D9B;
-    --bgcolor-help: pink;
-    --txtcolor: #FFFFE8;
-    --breadcolor: #BB87FF;
-    --contenttxtcolor: #000;
-    --contentbgcolor: #0D1321;
-    --linkcolor: #FFD8D8;
-    --visitedcolor: #A454FF;
-    --footerbgcolor: #Fc8eac;
-    --footercolor: #0D1321;
+    --bgcolor-help: #ffbdcf;
+    --txtcolor: #FFFEF4;
+    --breadcolor: #8CA0D7;
+    --contenttxtcolor: #000408;
+    --contentbgcolor: #000408;    ;
+    --linkcolor: #FFFEF4;
+    --visitedcolor: #C0469D;
+    --footerbgcolor: #8CA0D7;
+    --footercolor: #000408;
+    --logocolor: #Fc8eac;
 }
 
 /*  colori precedenti
@@ -24,6 +25,17 @@
     --visitedcolor: pink;
     --footerbgcolor: pink;
     --footercolor: black;
+
+    --bgcolor: #785D9B;
+    --bgcolor-help: pink;
+    --txtcolor: #FFFFE8;
+    --breadcolor: #BB87FF;
+    --contenttxtcolor: #000;
+    --contentbgcolor: #0D1321;
+    --linkcolor: #FFD8D8;
+    --visitedcolor: #A454FF;
+    --footerbgcolor: #Fc8eac;
+    --footercolor: #0D1321;
 */
 
 * {
@@ -37,7 +49,6 @@ html {
     color: var(--txtcolor);
     background-color: var(--bgcolor);
 }
-
 
 body {
     font-size: 100%;
@@ -55,9 +66,9 @@ a:visited {
 }
 
 .button {
-    background-color: white;
+    background-color: var(--txtcolor);
     border: none;
-    color: black;
+    color: var(--contentbgcolor);
     padding: 16px 32px;
     text-align: center;
     text-decoration: none;
@@ -69,7 +80,7 @@ a:visited {
 }
 
 .button:hover {
-  background-color: pink;
+  background-color: var(--bgcolor-help);
 }
 
 /*
@@ -84,11 +95,11 @@ header {
     text-align: center;
     top: 0;
     position: fixed;
-    background-color: black;
+    background-color: var(--contentbgcolor);
 }
 
 header h1 {
-    padding: 0.5em 4em;
+    padding: 1em 5em;
     margin-left: 1em;
     background-image: url(./assets/logo.png);
     background-size: contain;
@@ -255,23 +266,6 @@ form {
     margin-right: 2em;
 }
 
-#regist-form fieldset, #accesso-form fieldset {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1em;
-    padding: 1em;
-}
-
-#regist-form label, #accesso-form label {
-    flex: 1 1 40%;
-    min-width: 150px;
-}
-
-#regist-form input, #accesso-form input {
-    flex: 1 1 55%;
-    min-width: 150px;
-}
-
 /*
 ==============
 SEZIONE FOOTER
@@ -300,40 +294,21 @@ div+main {
 }
 
 /*
-==============
-PAGINA ACCESSO
-==============
+===========================
+PAGINA REGISTRATI E ACCEDI
+===========================
 */
-
-#accesso-form {
-    margin-left: 30%;
-    margin-right: 30%;
-    padding-bottom: 5em;
-    text-align: left;
-}
-
-#accesso-form input[type="submit"] {
+#accesso-form input[type="submit"], #regist-form input[type="submit"] {
     margin-top: 1em;
-    margin-left: 30%;
-    margin-right: 30%;
+    margin-left: 25%;
+    margin-right: 25%;
+    min-width: 120px;
 }
 
-/*
-=================
-PAGINA REGISTRATI
-=================
-*/
-#regist-form {
-    margin-left: 30%;
-    margin-right: 30%;
-    padding-bottom: 5em;
-    text-align: left;
-}
-
-#regist-form input[type="submit"] {
-    margin-top: 1em;
-    margin-left: 30%;
-    margin-right: 30%;
+#accesso-form, #regist-form {
+    display: flex;
+    flex-direction: column;
+    padding: 4em 12em 6em;    
 }
 
 #regist-form fieldset:first-child {

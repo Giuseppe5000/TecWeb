@@ -42,3 +42,12 @@ PAGINA NFT
     margin-top: 11em;
 }
 
+/*
+===========================
+PAGINA REGISTRATI E ACCEDI
+===========================
+*/
+#accesso-form input[type="submit"], #regist-form input[type="submit"] {
+    margin: 1.5em;
+}
+
