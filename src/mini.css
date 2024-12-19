@@ -14,6 +14,10 @@ header h1 {
     flex-direction: column;
 }
 
+.menu-list{
+    margin: 0;
+}
+
 .menu-item{
     font-size: 0.75em;
     padding: 0.5em 1em;
@@ -22,10 +26,6 @@ header h1 {
 .menu-item, .menu-item a{
     display: flex;
     flex-direction: column;
-}
-#currentLink {
-    padding-top: 2.5em; 
-    padding-bottom: 0.5em;
 }
 
 #home-bg{
@@ -58,7 +58,7 @@ SEZIONE MAIN
 ============
 */
 main{
-    margin-top: 10.8em;
+    padding-top: 11em;
 }
 
 /*
