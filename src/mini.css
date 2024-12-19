@@ -6,18 +6,26 @@ SEZIONE HEADER
 ==============
 */
 
+header h1 {
+    margin-left: 0em;
+}
+
 .header-content{
     flex-direction: column;
 }
 
 .menu-item{
     font-size: 0.75em;
-    padding: 0.6em 1em;
+    padding: 0.5em 1em;
 }
 
 .menu-item, .menu-item a{
     display: flex;
     flex-direction: column;
+}
+#currentLink {
+    padding-top: 2.5em; 
+    padding-bottom: 0.5em;
 }
 
 #home-bg{
@@ -68,6 +76,9 @@ PAGINA REGISTRATI E ACCEDI
 ===========================
 */
 #accesso-form input[type="submit"], #regist-form input[type="submit"] {
-    margin: 1.5em;
+    margin: 2em;
 }
 
+#accesso-form, #regist-form {
+    padding: 2em;    
+}
