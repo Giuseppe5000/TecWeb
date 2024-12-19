@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <title lang="en">TITLE</title>
+    <meta name="description"
+          content="DESCRIPTION">
+    <meta name="keywords" content="KEYWORDS">
+    <meta name="author" content="NOME_PROGETTO">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="style.css" media="screen">
+    <link rel="stylesheet" href="print.css" media="print">
+    <link rel="stylesheet" href="mini.css" media="screen and (max-width:768px)">
+
+  </head>
+  <body>
+
+    <header>
+      <nav aria-label="aiuti alla navigazione" class="listHelp">
+        <a href="#content" class="navigationHelp">Vai al contenuto</a>
+      </nav>
+      <nav class="header-content">
+	<h1>NOME_PROGETTO</h1> <!-- Sostituire con l'immagine -->
+	
+	<ul class="menu-list">
+            <li class="menu-item" lang="en"><a id="home-bg" href="index.html">Home</a></li>
+	    <li class="menu-item"><abbr id="nft-bg" lang="en" title="Non-fungible token">NFT</abbr></li>
+	    <li class="menu-item"><a id="aboutUs-bg" href="chi-siamo.html">Chi siamo</a></li>
+	    <li class="menu-item"><a id="register-bg" href="registrati.html">Registrati</a></li>
+	    <li class="menu-item"><a id="login-bg" href="accedi.html">Accedi</a></li>
+	</ul>
+      </nav>
+
+      <nav id="breadcrumb">
+        <p>Ti trovi in: <abbr lang="en" title="Non-fungible token">NFT</abbr></p>
+      </nav>
+    </header>
+
+
+    <div> <!-- Potrebbe essere un aside? o magari va messo in main? -->
+      <div id="searchBar"> <!-- Potrei omettere il div e assegnare l'id al form? -->
+        <form action="">
+          <fieldset>
+            <legend>Filtra NFT</legend> <!-- In legend e label NFT va sempre dentro abbr? --> <!-- Va sempre tutto messo dentro fieldset -->
+            <label for="nft">Nome NFT:</label>
+            <input name="nft" id="nft"/>
+            <input type="submit" value="Cerca!"/>
+          </fieldset>
+        </form>
+      </div>
+
+      <div id="filtri">
+        <form action="">
+          <fieldset>
+            <legend>Prezzo</legend>
+            <label for="prezzoMin">Prezzo minimo:</label>
+            <input type="number" id="prezzoMin" name="prezzoMin" min="0"/>
+            <label for="prezzoMax">Prezzo massimo:</label>
+            <input type="number" id="prezzoMax" name="prezzoMax" min="0"/>
+          </fieldset>
+
+          <fieldset>
+            <legend>Ordinamento</legend>
+            <select name="ordina" id="ordina">
+              <optgroup label="Prezzo">
+                <option value="prezzoCrescente">Prezzo crescente</option>
+                <option value="prezzoDecrescente">Prezzo decrescente</option>
+              </optgroup>
+
+              <optgroup label="Nome">
+                <option value="nomeA-Z">Nome A-Z</option>
+                <option value="nomeZ-A">Nome Z-A</option>
+              </optgroup>
+            </select>
+          </fieldset>
+
+          <fieldset>
+            <legend>Categorie</legend>
+            <label for="abstract">Abstract: </label>
+            <input type="checkbox" id="abstract" name="abstract"/>
+            <label for="animals">Animals: </label>
+            <input type="checkbox" id="animals" name="animals"/>
+            <label for="pixelArt">PixelArt: </label>
+            <input type="checkbox" id="pixelArt" name="pixelArt"/>
+            <label for="blackAndWhite">Blakc&White: </label>
+            <input type="checkbox" id="blackAndWhite" name="blackAndWhite"/>
+            <label for="photo">Photo: </label>
+            <input type="checkbox" id="photo" name="photo"/>
+          </fieldset>
+          <input type="submit" value="Filtra">
+        </form>
+      </div>
+    </div>
+
+
+    <main id="content">
+      <h1>Lista degli NFT</h1>
+
+      <div id="cards">
+
+        <div class="card">
+          <a href="nft.html?nft=TITOLO"><h2>TITOLO</h2></a>
+          <img src="assets/nft1.png" width="200" height="200">
+        </div>
+
+        <div class="card">
+          <a href="nft.html?nft=TITOLO"><h2>TITOLO</h2></a>
+          <img src="assets/nft2.png" width="200" height="200">
+        </div>
+
+        <div class="card">
+          <a href="nft.html?nft=TITOLO"><h2>TITOLO</h2></a>
+          <img src="assets/nft3.png" width="200" height="200">
+        </div>
+
+        <div class="card">
+          <a href="nft.html?nft=TITOLO"><h2>TITOLO</h2></a>
+          <img src="assets/nft17.png" width="200" height="200">
+        </div>
+
+        <div class="card">
+          <a href="nft.html?nft=TITOLO"><h2>TITOLO</h2></a>
+          <img src="assets/nft15.png" width="200" height="200">
+        </div>
+
+        <div class="card">
+          <a href="nft.html?nft=TITOLO"><h2>TITOLO</h2></a>
+          <img src="assets/nft6.png" width="200" height="200">
+        </div>
+
+      </div>
+    </main>
+
+    <footer>
+        <p>Copyright © 2024 NOME_PROGETTO. All rights reserved.</p>
+    </footer>
+  </body>
+
+</html>

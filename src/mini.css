@@ -1,0 +1,73 @@
+/*CSS PER MOBILE*/
+
+/*
+==============
+SEZIONE HEADER
+==============
+*/
+
+.header-content{
+    flex-direction: column;
+}
+
+.menu-item{
+    font-size: 0.75em;
+    padding: 0.6em 1em;
+}
+
+.menu-item, .menu-item a{
+    display: flex;
+    flex-direction: column;
+}
+
+#home-bg{
+    background: url("./assets/home_icon.svg") top center no-repeat;
+    padding-top: 2em; 
+}
+
+#nft-bg{
+    background: url("./assets/nft_icon.svg") top center no-repeat;
+    padding-top: 2em; 
+}
+
+#aboutUs-bg{
+    background: url("./assets/aboutUs_icon.svg") top center no-repeat;
+    padding-top: 2em; 
+}
+
+#register-bg{
+    background: url("./assets/register_icon.svg") top center no-repeat;
+    padding-top: 2em; 
+}
+
+#login-bg{
+    background: url("./assets/login_icon.svg") top center no-repeat;
+    padding-top: 2em; 
+}
+/*
+============
+SEZIONE MAIN
+============
+*/
+main{
+    margin-top: 10.8em;
+}
+
+/*
+==========
+PAGINA NFT
+==========
+*/
+#searchBar {
+    margin-top: 11em;
+}
+
+/*
+===========================
+PAGINA REGISTRATI E ACCEDI
+===========================
+*/
+#accesso-form input[type="submit"], #regist-form input[type="submit"] {
+    margin: 1.5em;
+}
+

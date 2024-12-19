@@ -2,8 +2,10 @@ version: '3.8'
 
 services:
   php-httpd:
-    image: php:8.1-apache
     container_name: httpd-php
+    build:
+      context: .
+      dockerfile: php-apache.dockerfile
     ports:
       - 8080:80
     volumes:

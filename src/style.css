@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --bgcolor: #785D9B;
+    --bgcolor-help: #ffbdcf;
+    --txtcolor: #FFFEF4;
+    --breadcolor: #8CA0D7;
+    --contenttxtcolor: #000408;
+    --contentbgcolor: #000408;    ;
+    --linkcolor: #FFFEF4;
+    --visitedcolor: #C0469D;
+    --footerbgcolor: #8CA0D7;
+    --footercolor: #000408;
+    --logocolor: #Fc8eac;
+}
+
+/*  colori precedenti
+    --bgcolor: rgba(0, 0, 0, 0.650);
+    --bgcolor-help: pink;
+    --txtcolor: #FFF;
+    --breadcolor: gray;
+    --contenttxtcolor: #000;
+    --contentbgcolor: #191919;
+    --linkcolor: #FFF;
+    --visitedcolor: pink;
+    --footerbgcolor: pink;
+    --footercolor: black;
+
+    --bgcolor: #785D9B;
+    --bgcolor-help: pink;
+    --txtcolor: #FFFFE8;
+    --breadcolor: #BB87FF;
+    --contenttxtcolor: #000;
+    --contentbgcolor: #0D1321;
+    --linkcolor: #FFD8D8;
+    --visitedcolor: #A454FF;
+    --footerbgcolor: #Fc8eac;
+    --footercolor: #0D1321;
+*/
+
+* {
+    font-family: "Montserrat", serif;
+    padding: 0em;
+    margin: 0em;
+    line-height: 1.5em;
+}
+
+html {
+    color: var(--txtcolor);
+    background-color: var(--bgcolor);
+}
+
+body {
+    font-size: 100%;
+    line-height: 1.5em;
+    max-width: 1024px;
+    margin: auto;
+}
+
+a:link {
+    color: var(--linkcolor);
+}
+
+a:visited {
+    color: var(--visitedcolor);
+}
+
+.button {
+    background-color: var(--txtcolor);
+    border: none;
+    color: var(--contentbgcolor);
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--bgcolor-help);
+}
+
+/*
+==============
+SEZIONE HEADER
+==============
+*/
+header {
+    width: 100%;
+    max-width: 1024px;
+    align-items: center;
+    text-align: center;
+    top: 0;
+    position: fixed;
+    background-color: var(--contentbgcolor);
+}
+
+header h1 {
+    padding: 1em 5em;
+    margin-left: 1em;
+    background-image: url(./assets/logo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-indent: -9999px;
+}
+
+.header-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align:center;
+}
+/*
+============
+SEZIONE MENU
+============
+*/
+.menu-list{
+    display: flex;
+    list-style:none;
+}
+
+.menu-item{
+    padding: 1.5em 1em;
+}
+
+/*
+======================
+AIUTI ALLA NAVIGAZIONE
+======================
+*/
+.navigationHelp{
+    margin: 1em;
+    
+    position: absolute;
+    text-indent: -999em;
+    background-color: var(--bgcolor-help);
+}
+
+.listHelp a{
+    color: var(--contenttxtcolor);
+}
+
+.navigationHelp:focus{
+    position: static;
+    text-indent:0;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+
+/*
+==================
+SEZIONE BREADCRUMB
+==================
+*/
+#breadcrumb {
+    padding: 0.5em;
+    align-items: center;
+    text-align: center;
+    background-color: var(--breadcolor);
+    color: var(--contentbgcolor);
+}
+
+/*
+=================
+SEZIONE SLIDESHOW
+=================
+*/
+.wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 0.5em;
+    margin-left: 1em;
+    margin-right:1em;
+}
+
+.wrapper p{
+    font-size: 3em;
+    font-weight: bold;
+    display: contents;
+    text-align: center;
+}
+
+.slideshow{
+    display: flex;
+    column-gap: 1em;
+    transition: 0.5s all ease-out;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    margin-left: 0.5em;
+    margin-right:0.5em;
+}
+
+.prev,.next{
+    background-color: var(--contentbgcolor);
+    color: var(--txtcolor);
+    font-size: 3em;
+    font-weight: bold;
+    display: contents;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
+
+/*
+============
+SEZIONE MAIN
+============
+*/
+main{
+    text-align: center;
+    background-color: var(--contentbgcolor);
+    margin-top: 7em;
+}
+main h1 {
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+}
+
+main h2{
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+}
+
+main p{
+    text-align: justify;
+    padding: 1em;
+}
+
+#cards {
+    display: flex;
+    flex-flow: row wrap;
+    margin-top: 2em;
+    justify-content: space-around;
+    row-gap: 1.5em;
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+.card {
+    background-color: var(--contentbgcolor);
+}
+
+.card h2 {
+    text-align: center;
+}
+
+form {
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+/*
+==============
+SEZIONE FOOTER
+==============
+*/
+
+footer {
+    text-align: center;
+    background-color: var(--footerbgcolor);
+    color: var(--footercolor);
+}
+
+/*
+==========
+PAGINA NFT
+==========
+*/
+#searchBar {
+    justify-content: center;
+    text-align: center;
+    margin-top: 10em;
+}
+
+div+main {
+    margin-top: 0;
+}
+
+/*
+===========================
+PAGINA REGISTRATI E ACCEDI
+===========================
+*/
+#accesso-form input[type="submit"], #regist-form input[type="submit"] {
+    margin-top: 1em;
+    margin-left: 25%;
+    margin-right: 25%;
+    min-width: 120px;
+}
+
+#accesso-form, #regist-form {
+    display: flex;
+    flex-direction: column;
+    padding: 4em 12em 6em;    
+}
+
+#regist-form fieldset:first-child {
+    margin-bottom: 2em;
+}
+
+#regist-form fieldset, #accesso-form fieldset {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    padding: 1em;
+}
+
+#regist-form label, #accesso-form label {
+    flex: 1 1 40%;
+    min-width: 150px;
+}
+
+#regist-form input, #accesso-form input {
+    flex: 1 1 55%;
+    min-width: 150px;
+}
