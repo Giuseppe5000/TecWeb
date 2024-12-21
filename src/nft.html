@@ -20,6 +20,7 @@
   </head>
   
   <body>
+
     <header>
       <nav aria-label="aiuti alla navigazione" class="listHelp">
         <a href="#content" class="navigationHelp">Vai al contenuto</a>
@@ -51,15 +52,16 @@
           <fieldset>
             <legend>Filtra <abbr lang="en" title="Non-fungible token">NFT</abbr></legend>
             <label for="nft">Titolo:</label>
-            <input name="nft" id="nft"/>
+              <input name="nft" id="nft"/>
+              <button id="show-filters"></button>
 
-            <label for="prezzoMin">Prezzo minimo:</label>
-            <input type="number" id="prezzoMin" name="prezzoMin" min="0"/>
-            <label for="prezzoMax">Prezzo massimo:</label>
-            <input type="number" id="prezzoMax" name="prezzoMax" min="0"/>
+            <label class="filtro-aggiuntivo" for="prezzoMin">Prezzo minimo:</label>
+            <input class="filtro-aggiuntivo" type="number" id="prezzoMin" name="prezzoMin" min="0"/>
+            <label class="filtro-aggiuntivo" for="prezzoMax">Prezzo massimo:</label>
+            <input class="filtro-aggiuntivo" type="number" id="prezzoMax" name="prezzoMax" min="0"/>
 
-            <label for="orfin">Ordinamento:</label>
-            <select name="ordina" id="ordina">
+            <label class="filtro-aggiuntivo" for="orfin">Ordinamento:</label>
+            <select id="ordina" class="filtro-aggiuntivo" name="ordina" >
               <optgroup label="Prezzo">
                 <option value="prezzoCrescente">Prezzo crescente</option>
                 <option value="prezzoDecrescente">Prezzo decrescente</option>
@@ -71,34 +73,33 @@
               </optgroup>
             </select>
 
-            <fieldset id="categorie">
-            <legend>Categorie</legend>
+            <fieldset id="categorie" class="filtro-aggiuntivo" >
+              <legend>Categorie</legend>
 
-            <div>
-            <input type="checkbox" id="abstract" name="abstract"/>
-            <label for="abstract">Abstract</label>
-            </div>
+              <div>
+                <input type="checkbox" id="abstract" name="abstract"/>
+                <label for="abstract">Abstract</label>
+              </div>
 
-            <div>
-            <input type="checkbox" id="animals" name="animals"/>
-            <label for="animals">Animals</label>
-            </div>
+              <div>
+                <input type="checkbox" id="animals" name="animals"/>
+                <label for="animals">Animals</label>
+              </div>
 
-            <div>
-            <input type="checkbox" id="pixelArt" name="pixelArt"/>
-            <label for="pixelArt">PixelArt</label>
-            </div>
+              <div>
+                <input type="checkbox" id="pixelArt" name="pixelArt"/>
+                <label for="pixelArt">PixelArt</label>
+              </div>
 
-            <div>
-            <input type="checkbox" id="blackAndWhite" name="blackAndWhite"/>
-            <label for="blackAndWhite">Blakc&White</label>
-            </div>
+              <div>
+                <input type="checkbox" id="blackAndWhite" name="blackAndWhite"/>
+                <label for="blackAndWhite">Blakc&White</label>
+              </div>
 
-            <div>
-            <input type="checkbox" id="photo" name="photo"/>
-            <label for="photo">Photo</label>
-            </div>
-
+              <div>
+                <input type="checkbox" id="photo" name="photo"/>
+                <label for="photo">Photo</label>
+              </div>
             </fieldset>
 
             <input class="button" type="submit" value="Cerca">
@@ -111,63 +112,63 @@
       <div id="cards">
 
         <div class="card">
-	<a href="nft.html?nft=TITOLO">
-	  <div class="head-card">
-	    <h2>TITOLO</h2>
-	    [prezzo]
-	  </div>
-          <img src="assets/nft1.png" width="200" height="200">
-	</a>
+	  <a href="nft.html?nft=TITOLO">
+	    <div class="head-card">
+	      <h2>TITOLO</h2>
+	      [prezzo]
+	    </div>
+            <img src="assets/nft1.png" width="200" height="200">
+	  </a>
         </div>
 
         <div class="card">
-	<a href="nft.html?nft=TITOLO">
-	  <div class="head-card">
-	    <h2>TITOLO</h2>
-	    [prezzo]
-	  </div>
-          <img src="assets/nft2.png" width="200" height="200">
-	</a>
+	  <a href="nft.html?nft=TITOLO">
+	    <div class="head-card">
+	      <h2>TITOLO</h2>
+	      [prezzo]
+	    </div>
+            <img src="assets/nft2.png" width="200" height="200">
+	  </a>
         </div>
 
         <div class="card">
-	<a href="nft.html?nft=TITOLO">
-	  <div class="head-card">
-	    <h2>TITOLO</h2>
-	    [prezzo]
-	  </div>
-          <img src="assets/nft3.png" width="200" height="200">
-	</a>
+	  <a href="nft.html?nft=TITOLO">
+	    <div class="head-card">
+	      <h2>TITOLO</h2>
+	      [prezzo]
+	    </div>
+            <img src="assets/nft3.png" width="200" height="200">
+	  </a>
         </div>
 
         <div class="card">
-	<a href="nft.html?nft=TITOLO">
-	  <div class="head-card">
-	    <h2>TITOLO</h2>
-	    [prezzo]
-	  </div>
-          <img src="assets/nft17.png" width="200" height="200">
-	</a>
+	  <a href="nft.html?nft=TITOLO">
+	    <div class="head-card">
+	      <h2>TITOLO</h2>
+	      [prezzo]
+	    </div>
+            <img src="assets/nft17.png" width="200" height="200">
+	  </a>
         </div>
 
         <div class="card">
-	<a href="nft.html?nft=TITOLO">
-	  <div class="head-card">
-	    <h2>TITOLO</h2>
-	    [prezzo]
-	  </div>
-          <img src="assets/nft15.png" width="200" height="200">
-	</a>
+	  <a href="nft.html?nft=TITOLO">
+	    <div class="head-card">
+	      <h2>TITOLO</h2>
+	      [prezzo]
+	    </div>
+            <img src="assets/nft15.png" width="200" height="200">
+	  </a>
         </div>
 
         <div class="card">
-	<a href="nft.html?nft=TITOLO">
-	  <div class="head-card">
-	    <h2>TITOLO</h2>
-	    [prezzo]
-	  </div>
-          <img src="assets/nft6.png" width="200" height="200">
-	</a>
+	  <a href="nft.html?nft=TITOLO">
+	    <div class="head-card">
+	      <h2>TITOLO</h2>
+	      [prezzo]
+	    </div>
+            <img src="assets/nft6.png" width="200" height="200">
+	  </a>
         </div>
 
       </div>
@@ -178,4 +179,5 @@
     </footer>
   </body>
 
+  <script src="script.js"></script>
 </html>

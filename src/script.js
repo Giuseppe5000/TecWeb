@@ -1,3 +1,13 @@
+const filterButton = document.getElementById("show-filters");
+const filtriAggiuntivi = Array.from(document.getElementsByClassName("filtro-aggiuntivo"));
+
+filterButton.onclick = () => {
+    filtriAggiuntivi.forEach((element) => {
+        element.classList.toggle("filtro-aggiuntivo");
+    })
+    return false;
+}
+
 function slider(){
     const prev = document.querySelector(".prev");
     const next = document.querySelector(".next");
