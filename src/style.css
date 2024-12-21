@@ -254,6 +254,12 @@ main p{
     background-color: var(--contentbgcolor);
 }
 
+.head-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .card h2 {
     text-align: center;
 }
