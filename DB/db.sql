@@ -32,19 +32,9 @@ CREATE TABLE opera (
       nome VARCHAR(30) NOT NULL,
       descrizione VARCHAR(150) NOT NULL,
       prezzo DECIMAL(10,2) NOT NULL,
-      possessore VARCHAR(30),
+      possessore VARCHAR(30) NOT NULL DEFAULT 'admin',
 
-      FOREIGN KEY (possessore) REFERENCES utente(username) ON DELETE SET NULL
-);
-
-CREATE TABLE recensione (
-       utente VARCHAR(30),
-       opera INT UNSIGNED,
-       voto TINYINT UNSIGNED NOT NULL CHECK (voto>0 AND voto<=5),
-
-       PRIMARY KEY (utente, opera),
-       FOREIGN KEY (utente) REFERENCES utente(username) ON DELETE CASCADE,
-       FOREIGN KEY (opera) REFERENCES opera(id) ON DELETE CASCADE
+      FOREIGN KEY (possessore) REFERENCES utente(username) ON DELETE SET DEFAULT
 );
 
 CREATE TABLE acquisto (
@@ -67,18 +57,16 @@ CREATE TABLE appartenenza (
        FOREIGN KEY (opera) REFERENCES opera(id) ON DELETE CASCADE
 );
 
-CREATE TABLE commento (
+CREATE TABLE recensione (
        timestamp TIMESTAMP,
        utente VARCHAR(30),
-       testo VARCHAR(200) NOT NULL,
+       commento VARCHAR(200),
        opera INT UNSIGNED NOT NULL,
-       timerisp TIMESTAMP,
-       utenterisp VARCHAR(30),
+       voto TINYINT UNSIGNED NOT NULL CHECK (voto>0 AND voto<=5),
 
        PRIMARY KEY (timestamp, utente),
        FOREIGN KEY (utente) REFERENCES utente(username) ON DELETE CASCADE,
-       FOREIGN KEY (opera) REFERENCES opera(id) ON DELETE CASCADE,
-       FOREIGN KEY (timerisp, utenterisp) REFERENCES commento(timestamp, utente) ON DELETE CASCADE
+       FOREIGN KEY (opera) REFERENCES opera(id) ON DELETE CASCADE
 );
 
 -- Inserimento Utenti
@@ -102,28 +90,24 @@ INSERT INTO iscrizione VALUES
 ('user', 'Photo');
 
 -- Inserimento Opere
-INSERT INTO opera VALUES
-(1, './assets/nft1', 'Nome', 'DESC', 30.4, NULL),
-(2, './assets/nft2', 'Nome', 'DESC', 30.4, NULL),
-(3, './assets/nft3', 'Nome', 'DESC', 30.4, NULL),
-(4, './assets/nft4', 'Nome', 'DESC', 30.4, NULL),
-(5, './assets/nft5', 'Nome', 'DESC', 30.4, NULL),
-(6, './assets/nft6', 'Nome', 'DESC', 30.4, NULL),
-(7, './assets/nft7', 'Nome', 'DESC', 30.4, NULL),
-(8, './assets/nft8', 'Nome', 'DESC', 30.4, NULL),
-(9, './assets/nft9', 'Nome', 'DESC', 30.4, NULL),
-(10, './assets/nft10', 'Nome', 'DESC', 30.4, NULL),
-(11, './assets/nft11', 'Nome', 'DESC', 30.4, NULL),
-(12, './assets/nft12', 'Nome', 'DESC', 30.4, NULL),
-(13, './assets/nft13', 'Nome', 'DESC', 30.4, NULL),
-(14, './assets/nft14', 'Nome', 'DESC', 30.4, NULL),
-(15, './assets/nft15', 'Nome', 'DESC', 30.4, NULL),
-(16, './assets/nft16', 'Nome', 'DESC', 30.4, NULL),
-(17, './assets/nft17', 'Nome', 'DESC', 30.4, NULL);
-
--- Inserimento Recensioni
-INSERT INTO recensione VALUES
-('admin', 1, 1);
+INSERT INTO opera(id, path, nome, descrizione, prezzo) VALUES
+(1, './assets/nft1', 'Nome', 'DESC', 30.4),
+(2, './assets/nft2', 'Nome', 'DESC', 30.4),
+(3, './assets/nft3', 'Nome', 'DESC', 30.4),
+(4, './assets/nft4', 'Nome', 'DESC', 30.4),
+(5, './assets/nft5', 'Nome', 'DESC', 30.4),
+(6, './assets/nft6', 'Nome', 'DESC', 30.4),
+(7, './assets/nft7', 'Nome', 'DESC', 30.4),
+(8, './assets/nft8', 'Nome', 'DESC', 30.4),
+(9, './assets/nft9', 'Nome', 'DESC', 30.4),
+(10, './assets/nft10', 'Nome', 'DESC', 30.4),
+(11, './assets/nft11', 'Nome', 'DESC', 30.4),
+(12, './assets/nft12', 'Nome', 'DESC', 30.4),
+(13, './assets/nft13', 'Nome', 'DESC', 30.4),
+(14, './assets/nft14', 'Nome', 'DESC', 30.4),
+(15, './assets/nft15', 'Nome', 'DESC', 30.4),
+(16, './assets/nft16', 'Nome', 'DESC', 30.4),
+(17, './assets/nft17', 'Nome', 'DESC', 30.4);
 
 -- Inserimento Acquisti
 INSERT INTO acquisto VALUES
@@ -156,6 +140,6 @@ INSERT INTO appartenenza VALUES
 ('Animals', 17),
 ('Pixel Art', 17);
 
--- Inserimento Commenti
-INSERT INTO commento VALUES
-('2024-03-22 12:50:05', 'user', 'Bello', 1, NULL, NULL);
+-- Inserimento Recensioni
+INSERT INTO recensione VALUES
+('2024-03-22 12:50:05', 'user', 'Bello', 1, 4);

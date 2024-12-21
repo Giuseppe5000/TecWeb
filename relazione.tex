@@ -3,7 +3,7 @@
 \usepackage{geometry}
 \geometry{a4paper,left=20mm,right=20mm,top=20mm}
 
-\title{Progetto di Tecnologie Web}
+\title{Progetto di Tecnologie Web - Doflamingo}
 \author{
     \textbf{2076430}\\ Gusella Manuel \and
     \textbf{2075541}\\ Marcon Giulia \and
@@ -20,11 +20,11 @@
 
 \section{Introduzione}
 \subsection{Abstract}
-*Nome progetto* è un marketplace digitale che contiene delle opere uniche sotto forma di NFT pubblicate direttamente dall'associazione.
+"Doflamingo" è un marketplace digitale che contiene delle opere uniche sotto forma di NFT pubblicate direttamente dall'associazione.
 Un Non-fungible token (NFT) rappresenta l'atto di proprietà e certificato di autenticità di un bene unico, in questo caso un'opera digitale. \\
 Tutti i visitatori hanno la possibilità di visionare le opere e creare il proprio account digitale.\\
 Gli utenti registrati possono comprare le opere, se non già possedute da qualcun'altro, attraverso una valuta digitale chiamata Ethereum (ETH). Eventualmente l'utente può decidere di vendere le opere che possiede ad altri utenti.\\
-Inoltre gli utenti registrati possono recensire le opere dando un voto da \textbf{1 a 5 stelle} e inserendo opzionalmente anche un commento al riguardo.\\
+Inoltre gli utenti registrati possono recensire le opere dando un voto da \textbf{1 a 5 stelle}, inserendo opzionalmente anche un commento al riguardo.\\
 
 
 \subsection{Analisi}
@@ -62,10 +62,9 @@ Esistono 3 tipologie di utenti:
     \item \textbf{categoria} (\underline{nome}, descrizione)
     \item \textbf{iscrizione} (\underline{\textit{utente}, \textit{categoria}})
     \item \textbf{opera} (\underline{id}, path, nome, descrizione, prezzo, \textit{possessore})
-    \item \textbf{recensione} (\underline{\textit{utente}, \textit{opera}}, voto)
     \item \textbf{acquisto} (\underline{\textit{utente}, \textit{opera}}, prezzo, data)
     \item \textbf{appartenenza} (\underline{\textit{categoria}, \textit{opera}})
-    \item \textbf{commento} (\underline{timestamp, \textit{utente}}, testo, \textit{opera}, \textit{utenterisp*}, \textit{timerisp*})
+    \item \textbf{recensione} (\underline{timestamp, \textit{utente}}, commento*, \textit{opera}, voto)
 \end{itemize}
 Il simbolo * indica che l'attributo può essere nullo.
 
@@ -74,18 +73,14 @@ Il simbolo * indica che l'attributo può essere nullo.
     \item iscrizione.utente → utente.username
     \item iscrizione.categoria → categoria.nome
     \item opera.possessore → utente.username
-    \item recensione.utente → utente.username
-    \item recensione.opera → opera.id
     \item acquisto.utente → utente.username
     \item acquisto.opera → opera.id
     \item appartenenza.categoria → categoria.nome
     \item appartenenza.opera → opera.id
-    \item commento.utente → utente.username
-    \item commento.opera → opera.id
-    \item commento.(timerisp, utenterisp) → commento.(timestamp, utente)
+    \item recensione.utente → utente.username
+    \item recensione.opera → opera.id
 \end{itemize}
 
 \end{document}
 
 %  dove l'arte del futuro incontra la tecnologia blockchain.
-% "Gamma", "ArtChain", "Artoken", "Magma" come nome del sito
