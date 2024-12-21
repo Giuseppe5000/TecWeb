@@ -26,14 +26,14 @@
       </nav>
       <nav class="header-content">
         <h1>Doflamingo</h1>
-  
+
         <ul class="menu-list">
           <li class="menu-item" lang="en"><a id="home-bg" href="index.html">Home</a></li>
-	        <li class="menu-item" id="currentLink"><abbr id="nft-bg" lang="en" title="Non-fungible token">NFT</abbr></li>
-	        <li class="menu-item"><a id="aboutUs-bg" href="chi-siamo.html">Chi siamo</a></li>
-	        <li class="menu-item"><a id="register-bg" href="registrati.html">Registrati</a></li>
-	        <li class="menu-item"><a id="login-bg" href="accedi.html">Accedi</a></li>
-	      </ul>
+	  <li class="menu-item" id="currentLink"><abbr id="nft-bg" lang="en" title="Non-fungible token">NFT</abbr></li>
+	  <li class="menu-item"><a id="aboutUs-bg" href="chi-siamo.html">Chi siamo</a></li>
+	  <li class="menu-item"><a id="register-bg" href="registrati.html">Registrati</a></li>
+	  <li class="menu-item"><a id="login-bg" href="accedi.html">Accedi</a></li>
+	</ul>
       </nav>
 
       <nav id="breadcrumb">
@@ -41,31 +41,24 @@
       </nav>
     </header>
 
+    <main id="content">
 
-    <div> <!-- Potrebbe essere un aside? o magari va messo in main? -->
-      <div id="searchBar"> <!-- Potrei omettere il div e assegnare l'id al form? -->
-        <form action="">
-          <fieldset>
-            <legend>Filtra NFT</legend> <!-- In legend e label NFT va sempre dentro abbr? --> <!-- Va sempre tutto messo dentro fieldset -->
-            <label for="nft">Nome NFT:</label>
-            <input name="nft" id="nft"/>
-            <input type="submit" value="Cerca!"/>
-          </fieldset>
-        </form>
-      </div>
+      <h1>Cerca <abbr lang="en" title="Non-fungible token">NFT</abbr></h1>
 
       <div id="filtri">
         <form action="">
+
           <fieldset>
-            <legend>Prezzo</legend>
+            <legend>Filtra <abbr lang="en" title="Non-fungible token">NFT</abbr></legend>
+            <label for="nft">Titolo:</label>
+            <input name="nft" id="nft"/>
+
             <label for="prezzoMin">Prezzo minimo:</label>
             <input type="number" id="prezzoMin" name="prezzoMin" min="0"/>
             <label for="prezzoMax">Prezzo massimo:</label>
             <input type="number" id="prezzoMax" name="prezzoMax" min="0"/>
-          </fieldset>
 
-          <fieldset>
-            <legend>Ordinamento</legend>
+            <label for="orfin">Ordinamento:</label>
             <select name="ordina" id="ordina">
               <optgroup label="Prezzo">
                 <option value="prezzoCrescente">Prezzo crescente</option>
@@ -77,9 +70,8 @@
                 <option value="nomeZ-A">Nome Z-A</option>
               </optgroup>
             </select>
-          </fieldset>
 
-          <fieldset>
+            <fieldset id="categorie">
             <legend>Categorie</legend>
             <label for="abstract">Abstract: </label>
             <input type="checkbox" id="abstract" name="abstract"/>
@@ -91,15 +83,14 @@
             <input type="checkbox" id="blackAndWhite" name="blackAndWhite"/>
             <label for="photo">Photo: </label>
             <input type="checkbox" id="photo" name="photo"/>
+            </fieldset>
+
+            <input class="button" type="submit" value="Cerca">
           </fieldset>
-          <input type="submit" value="Filtra">
         </form>
       </div>
-    </div>
 
-
-    <main id="content">
-      <h1>Lista degli NFT</h1>
+      <h2>Risultati</h2>
 
       <div id="cards">
 
@@ -167,7 +158,7 @@
     </main>
 
     <footer>
-        <p>Copyright © 2024 Doflamingo. All rights reserved.</p>
+      <p>Copyright © 2024 Doflamingo. All rights reserved.</p>
     </footer>
   </body>
 
