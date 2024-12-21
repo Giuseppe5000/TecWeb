@@ -32,9 +32,9 @@ CREATE TABLE opera (
       nome VARCHAR(30) NOT NULL,
       descrizione VARCHAR(150) NOT NULL,
       prezzo DECIMAL(10,2) NOT NULL,
-      possessore VARCHAR(30) NOT NULL,
+      possessore VARCHAR(30) NOT NULL DEFAULT 'admin',
 
-      FOREIGN KEY (possessore) REFERENCES utente(username) ON DELETE SET NULL
+      FOREIGN KEY (possessore) REFERENCES utente(username) ON DELETE SET DEFAULT
 );
 
 CREATE TABLE acquisto (
@@ -66,7 +66,7 @@ CREATE TABLE recensione (
 
        PRIMARY KEY (timestamp, utente),
        FOREIGN KEY (utente) REFERENCES utente(username) ON DELETE CASCADE,
-       FOREIGN KEY (opera) REFERENCES opera(id) ON DELETE CASCADE,
+       FOREIGN KEY (opera) REFERENCES opera(id) ON DELETE CASCADE
 );
 
 -- Inserimento Utenti
@@ -90,24 +90,24 @@ INSERT INTO iscrizione VALUES
 ('user', 'Photo');
 
 -- Inserimento Opere
-INSERT INTO opera VALUES
-(1, './assets/nft1', 'Nome', 'DESC', 30.4, NULL),
-(2, './assets/nft2', 'Nome', 'DESC', 30.4, NULL),
-(3, './assets/nft3', 'Nome', 'DESC', 30.4, NULL),
-(4, './assets/nft4', 'Nome', 'DESC', 30.4, NULL),
-(5, './assets/nft5', 'Nome', 'DESC', 30.4, NULL),
-(6, './assets/nft6', 'Nome', 'DESC', 30.4, NULL),
-(7, './assets/nft7', 'Nome', 'DESC', 30.4, NULL),
-(8, './assets/nft8', 'Nome', 'DESC', 30.4, NULL),
-(9, './assets/nft9', 'Nome', 'DESC', 30.4, NULL),
-(10, './assets/nft10', 'Nome', 'DESC', 30.4, NULL),
-(11, './assets/nft11', 'Nome', 'DESC', 30.4, NULL),
-(12, './assets/nft12', 'Nome', 'DESC', 30.4, NULL),
-(13, './assets/nft13', 'Nome', 'DESC', 30.4, NULL),
-(14, './assets/nft14', 'Nome', 'DESC', 30.4, NULL),
-(15, './assets/nft15', 'Nome', 'DESC', 30.4, NULL),
-(16, './assets/nft16', 'Nome', 'DESC', 30.4, NULL),
-(17, './assets/nft17', 'Nome', 'DESC', 30.4, NULL);
+INSERT INTO opera(id, path, nome, descrizione, prezzo) VALUES
+(1, './assets/nft1', 'Nome', 'DESC', 30.4),
+(2, './assets/nft2', 'Nome', 'DESC', 30.4),
+(3, './assets/nft3', 'Nome', 'DESC', 30.4),
+(4, './assets/nft4', 'Nome', 'DESC', 30.4),
+(5, './assets/nft5', 'Nome', 'DESC', 30.4),
+(6, './assets/nft6', 'Nome', 'DESC', 30.4),
+(7, './assets/nft7', 'Nome', 'DESC', 30.4),
+(8, './assets/nft8', 'Nome', 'DESC', 30.4),
+(9, './assets/nft9', 'Nome', 'DESC', 30.4),
+(10, './assets/nft10', 'Nome', 'DESC', 30.4),
+(11, './assets/nft11', 'Nome', 'DESC', 30.4),
+(12, './assets/nft12', 'Nome', 'DESC', 30.4),
+(13, './assets/nft13', 'Nome', 'DESC', 30.4),
+(14, './assets/nft14', 'Nome', 'DESC', 30.4),
+(15, './assets/nft15', 'Nome', 'DESC', 30.4),
+(16, './assets/nft16', 'Nome', 'DESC', 30.4),
+(17, './assets/nft17', 'Nome', 'DESC', 30.4);
 
 -- Inserimento Acquisti
 INSERT INTO acquisto VALUES
