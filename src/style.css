@@ -291,8 +291,8 @@ PAGINA NFT
 */
 #filtri {
     text-align: left;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 20%;
+    margin-right: 20%;
 }
 
 div#filtri > form > fieldset {
@@ -307,9 +307,6 @@ div#filtri > form > fieldset {
     padding-left: 3%;
 }
 
-div#filtri input {
-    margin-bottom: 1em;
-}
 
 div#filtri select {
     margin-bottom: 1em;
@@ -327,8 +324,15 @@ div#filtri select {
 #show-filters {
     background: url("./assets/filter_icon.svg") top center no-repeat;
     border: none;
-    margin-bottom: 1em;
     padding: 1em;
+    cursor: pointer;
+}
+
+.head-filter{
+    margin-bottom: 1em;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
 }
 
 /*

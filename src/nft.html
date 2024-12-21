@@ -50,10 +50,13 @@
         <form action="">
 
           <fieldset>
+	    
             <legend>Filtra <abbr lang="en" title="Non-fungible token">NFT</abbr></legend>
-            <label for="nft">Titolo:</label>
-              <input name="nft" id="nft"/>
+		<label for="nft">Titolo:</label>
+	    <div class="head-filter">
+		<input name="nft" id="nft"/>
               <button id="show-filters"></button>
+	    </div>
 
             <label class="filtro-aggiuntivo" for="prezzoMin">Prezzo minimo:</label>
             <input class="filtro-aggiuntivo" type="number" id="prezzoMin" name="prezzoMin" min="0"/>
@@ -93,7 +96,7 @@
 
               <div>
                 <input type="checkbox" id="blackAndWhite" name="blackAndWhite"/>
-                <label for="blackAndWhite">Blakc&White</label>
+                <label for="blackAndWhite">Black&White</label>
               </div>
 
               <div>

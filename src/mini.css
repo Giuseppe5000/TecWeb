@@ -70,6 +70,15 @@ PAGINA NFT
     margin-top: 11em;
 }
 
+#filtri {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+div#filtri > form > fieldset {
+    padding-left: 5%;
+    padding-right: 5%;
+}
 /*
 ===========================
 PAGINA REGISTRATI E ACCEDI
@@ -82,3 +91,4 @@ PAGINA REGISTRATI E ACCEDI
 #accesso-form, #regist-form {
     padding: 2em;    
 }
+
