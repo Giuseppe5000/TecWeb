@@ -290,7 +290,6 @@ PAGINA NFT
 ==========
 */
 #filtri {
-    justify-content: center;
     text-align: left;
     margin-left: 10%;
     margin-right: 10%;
@@ -299,6 +298,7 @@ PAGINA NFT
 div#filtri fieldset {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     padding-left: 10%;
     padding-right: 10%;
 }
@@ -306,13 +306,18 @@ div#filtri fieldset {
 
 div#filtri input {
     margin-bottom: 1em;
-    max-width: 400px;
+}
+
+div#filtri select {
+    display: flex;
+    margin-bottom: 1em;
+    text-align: center;
 }
 
 #categorie {
-    margin-top: 1em;
     margin-bottom: 1em;
 }
+
 
 /*
 ===========================
