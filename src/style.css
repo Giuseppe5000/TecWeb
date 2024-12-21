@@ -227,7 +227,7 @@ main{
 }
 main h1 {
     margin-top: 0.5em;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
 }
 
 main h2{
@@ -254,18 +254,30 @@ main p{
     background-color: var(--contentbgcolor);
 }
 
+.card a {
+    text-decoration: none;
+}
+
+/*Fix per il titolo delle card nella pagina nft*/
+.card h2{
+    padding: 0;
+    text-decoration: underline;
+}
+
+.card h3{
+    text-decoration: underline;
+}
+
+.card span{
+    color: var(--txtcolor);
+}
+
 .head-card{
     align-items: center;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-
-/*Fix per il titolo delle card nella pagina nft*/
-.card h2{
-    padding: 0;
-}
-
 
 form {
     margin-left: 2em;
@@ -279,6 +291,7 @@ SEZIONE FOOTER
 */
 
 footer {
+    padding: 0.5em 0em;
     text-align: center;
     background-color: var(--footerbgcolor);
     color: var(--footercolor);
@@ -372,4 +385,40 @@ PAGINA REGISTRATI E ACCEDI
 #regist-form input, #accesso-form input {
     flex: 1 1 55%;
     min-width: 150px;
+}
+
+/*
+===============
+TABELLA IN HOME
+===============
+*/
+p#descr{
+    margin: 0 10%;
+    padding: 0;
+}
+
+table{
+    margin: 1em;
+    width:80%;
+}
+
+thead{
+    background-color: var(--visitedcolor);
+}
+
+table, th, td{
+    border: 1px solid;
+    border-collapse: collapse;
+    padding: 0.5em;
+}
+
+td{
+    text-align: left;
+}
+
+.tabella{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    padding-bottom: 1em;
 }
