@@ -284,6 +284,22 @@ form {
     margin-right: 2em;
 }
 
+dl dt {
+    text-align: left;
+    padding: 0 1em 0 1em;
+}
+
+dl dd {
+    margin-bottom: 1.5em;
+    text-align: justify;
+    padding: 0 1em 0 1em;
+}
+
+dl dd:last-child {
+    margin-bottom: 0;
+    padding-bottom: 1.5em;
+}
+
 /*
 ==============
 SEZIONE FOOTER
