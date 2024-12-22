@@ -438,3 +438,51 @@ PAGINA PROFILO
 #profilo_utente_logo {
     width: 8em;
 }
+
+/*
+===========================
+PAGINA SINGOLO NFT
+===========================
+*/
+/*
+Immagine contenuto
+*/
+#immagine-contenuto{
+    width: 60%;
+}
+
+/*
+Commento
+*/
+
+.comment-list{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.head-comment, .comment{
+    border: 1px solid;
+}
+.comment{
+    margin: 1em 0;
+    width: 80%;
+}
+
+
+.user-comment{
+    display: flex;
+    align-items: center;
+}
+
+.head-comment{
+    padding: 0.5em;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.logo_utente {
+    width: 2em;
+}
