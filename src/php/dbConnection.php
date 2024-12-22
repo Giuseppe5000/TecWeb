@@ -51,5 +51,23 @@ class DBAccess {
         return null;
 
     }
+
+    public function getUtente($username, $password) {
+        $query = "SELECT * FROM utente WHERE username = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bind_param('s', $username);  
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        if ($result && $result->num_rows > 0) {
+            $utente = $result->fetch_assoc();
+            if (password_verify($password, $utente['password'])) {
+                return $utente; 
+            }
+        }
+        return null; 
+    }    
+    
 }
+
 ?>
