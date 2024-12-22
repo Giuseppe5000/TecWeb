@@ -65,6 +65,10 @@ a:visited {
     color: var(--visitedcolor);
 }
 
+abbr{
+    text-decoration: none;
+}
+
 .button {
     background-color: var(--txtcolor);
     border: none;
@@ -182,8 +186,8 @@ SEZIONE SLIDESHOW
     align-items: center;
     overflow: hidden;
     margin-top: 0.5em;
-    margin-left: 1em;
-    margin-right:1em;
+    margin-left: 10%;
+    margin-right:10%;
 }
 
 .wrapper p{
@@ -401,7 +405,7 @@ PAGINA REGISTRATI E ACCEDI
 TABELLA IN HOME
 ===============
 */
-p#descr{
+p{
     margin: 0 10%;
     padding: 0;
 }
@@ -494,4 +498,15 @@ Commento
 
 .logo_utente {
     width: 2em;
+}
+
+/*
+===========================
+PAGINA CHI SIAMO
+===========================
+*/
+
+dl{
+    display: inline-block;
+    width: 80%;
 }
