@@ -94,12 +94,17 @@ div#filtri > form > fieldset {
 PAGINA REGISTRATI E ACCEDI
 ===========================
 */
-#accesso-form input[type="submit"], #regist-form input[type="submit"] {
-    margin: 2em;
+.user-form input[type="submit"] {
+    margin: 2em 2em 0 2em;
 }
 
-#accesso-form, #regist-form {
-    padding: 2em;    
+.user-form {
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 0 2em 2em 2em;
 }
 
-
+.user-form > fieldset {
+    padding-left: 5%;
+    padding-right: 5%;
+}

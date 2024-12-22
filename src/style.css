@@ -353,38 +353,31 @@ div#filtri select {
 PAGINA REGISTRATI E ACCEDI
 ===========================
 */
-#accesso-form input[type="submit"], #regist-form input[type="submit"] {
+.user-form input[type="submit"] {
     margin-top: 1em;
     margin-left: 25%;
     margin-right: 25%;
     min-width: 120px;
 }
 
-#accesso-form, #regist-form {
+.user-form {
+    text-align: left;
+    margin-left: 30%;
+    margin-right: 30%;
+    padding-bottom: 2em;
+}
+
+.user-form fieldset{
     display: flex;
     flex-direction: column;
-    padding: 4em 12em 6em;    
+    text-align: left;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 1em;
 }
 
-#regist-form fieldset:first-child {
-    margin-bottom: 2em;
-}
-
-#regist-form fieldset, #accesso-form fieldset {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1em;
-    padding: 1em;
-}
-
-#regist-form label, #accesso-form label {
-    flex: 1 1 40%;
-    min-width: 150px;
-}
-
-#regist-form input, #accesso-form input {
-    flex: 1 1 55%;
-    min-width: 150px;
+.user-form fieldset label{
+    margin-top: 1em;
 }
 
 /*
