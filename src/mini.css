@@ -52,6 +52,16 @@ header h1 {
     background: url("./assets/login_icon.svg") top center no-repeat;
     padding-top: 2em; 
 }
+
+#logout-bg{
+    background: url("./assets/logout_icon.svg") top center no-repeat;
+    padding-top: 2em;
+}
+
+#profile-bg{
+    background: url("./assets/profile_icon.svg") top center no-repeat;
+    padding-top: 2em;
+}
 /*
 ============
 SEZIONE MAIN

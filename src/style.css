@@ -422,3 +422,19 @@ td{
     align-items:center;
     padding-bottom: 1em;
 }
+
+/*
+===========================
+PAGINA PROFILO
+===========================
+*/
+
+#utente_saldo {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+#profilo_utente_logo {
+    width: 8em;
+}
