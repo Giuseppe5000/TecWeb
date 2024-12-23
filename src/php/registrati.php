@@ -40,13 +40,13 @@ if(isset($_POST['submit'])){
 
         if(!$connessioneOK){
             if($connessione->verificaRegistrazione($username, $email) == false){
-                $messaggiPerForm .= "<p>Username o email già in uso</p>";
+                $messaggiPerForm = "<p>Username o email già in uso</p>";
             }
             else{
                 $registrazione = $connessione->registraUtente($username, $email, $password);
 
                 if($registrazione == 0){
-                    $messaggiPerForm .= "<p>Errore durante la registrazione</p>";
+                    $messaggiPerForm = "<p>Errore durante la registrazione</p>";
                 }
                 else{
                     session_start();
