@@ -510,3 +510,11 @@ dl{
     display: inline-block;
     width: 80%;
 }
+
+.membro p{
+    text-align: center;
+}
+
+.membro img {
+    border-radius: 50%; 
+}
