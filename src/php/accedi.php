@@ -51,6 +51,6 @@ if(isset($_POST['submit'])){
 		$connessione->closeConnection();
 	}
 
-	str_replace('{{ACCEDI}}', $stringaUtenti, $paginaHTML);
+	$paginaHTML = str_replace('{{ACCEDI}}', $stringaUtenti, $paginaHTML);
 	echo $paginaHTML;
 }

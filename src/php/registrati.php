@@ -63,6 +63,6 @@ if(isset($_POST['submit'])){
         $connessione->closeConnection();
     }
 
-    str_replace('{{REGISTRATI}}', $messaggiPerForm, $paginaHTML);
+    $paginaHTML = str_replace('{{REGISTRATI}}', $messaggiPerForm, $paginaHTML);
     echo $paginaHTML;
 }
