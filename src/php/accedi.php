@@ -33,9 +33,10 @@ if(isset($_POST['submit'])){
 
 		if(!$connessioneOK){
 
-			$utente = $connessione->getUtente($username, $password);
+			$utente = $connessione->getUtenteLogin($username, $password);
 
 			if($utente != null){
+				session_start();
 				$_SESSION['username'] = $username;
 				header('Location: ./index.html');
 				exit;
