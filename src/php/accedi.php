@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once "./dbConnection.php";
 use DB\DBAccess;
 
@@ -33,10 +35,10 @@ if(isset($_POST['submit'])){
 
 		if(!$connessioneOK){
 
+			$connessione->hashConverter();
 			$utente = $connessione->getUtenteLogin($username, $password);
 
 			if($utente != null){
-				session_start();
 				$_SESSION['username'] = $username;
 				header('Location: ./index.html');
 				exit;

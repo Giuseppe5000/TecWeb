@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once "./dbConnection.php";
 use DB\DBAccess;
 
@@ -39,6 +41,8 @@ if(isset($_POST['submit'])){
         $connessioneOK = $connessione->openDBConnection();
 
         if(!$connessioneOK){
+            $connessione->hashConverter();
+            
             if($connessione->verificaRegistrazione($username, $email) == false){
                 $messaggiPerForm = "<p>Username o email già in uso</p>";
             }
@@ -49,7 +53,6 @@ if(isset($_POST['submit'])){
                     $messaggiPerForm = "<p>Errore durante la registrazione</p>";
                 }
                 else{
-                    session_start();
                     $_SESSION['username'] = $username;
                     header('Location: ./index.html');
                     exit;
