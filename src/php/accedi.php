@@ -7,7 +7,7 @@ use DB\DBAccess;
 
 $paginaHTML = file_get_contents('./accedi.html');
 
-$stringaUtenti = "";
+$messaggiPerForm = "";
 
 function pulisciInput($value)
 {
@@ -22,13 +22,13 @@ if(isset($_POST['submit'])){
 	$password = pulisciInput($_POST['password']);
 
 	if (strlen($username)==0 || strlen($password)==0){
-		$stringaUtenti .= "<p>Username o password mancanti!</p>";
+		$messaggiPerForm .= "<p>Username o password mancanti!</p>";
 	}
 	if (strlen($username)>30 || strlen($password)>30){
-		$stringaUtenti .= "<p>Username e password non possono superare i 30 caratteri!</p>";
+		$messaggiPerForm .= "<p>Username e password non possono superare i 30 caratteri!</p>";
 	}
 
-	if($stringaUtenti == ""){
+	if($messaggiPerForm == ""){
 
 		$connessione = new DBAccess();
 		$connessioneOK = $connessione->openDBConnection();
@@ -43,15 +43,15 @@ if(isset($_POST['submit'])){
 				exit;
 			}
 			else{
-				$stringaUtenti = "<p>Username o password errati</p>";
+				$messaggiPerForm = "<p>Username o password errati</p>";
 			}
 		} else {
-			$stringaUtenti = "<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>";
+			$messaggiPerForm = "<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>";
 		}
 
 		$connessione->closeConnection();
 	}
 
-	$paginaHTML = str_replace('{{ACCEDI}}', $stringaUtenti, $paginaHTML);
+	$paginaHTML = str_replace('{{ACCEDI}}', $messaggiPerForm, $paginaHTML);
 	echo $paginaHTML;
 }
