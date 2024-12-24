@@ -6,7 +6,7 @@ USE db;
 -- Creazione tabelle
 CREATE TABLE utente (
        username VARCHAR(30) PRIMARY KEY,
-       password VARCHAR(30) NOT NULL,
+       password VARCHAR(255) NOT NULL,
        email VARCHAR(30) NOT NULL,
        isAdmin BOOLEAN NOT NULL,
        saldo DECIMAL(10,5) NOT NULL
@@ -71,8 +71,8 @@ CREATE TABLE recensione (
 
 -- Inserimento Utenti
 INSERT INTO utente VALUES
-('admin', 'admin', 'amdin@studenti.unipd.it', true, 9.92341),
-('user', 'user', 'user@studenti.unipd.it', false, 8.07022);
+('admin', '$2y$10$KfQJleNwObRs9vPSr3ToRO33CD.7zUnB.tRMP/6E674upMYQTavS.', 'amdin@studenti.unipd.it', true, 9.92341),
+('user', '$2y$10$yiqQZIRp91Gam6l6HIZdb.wPpSgELJSR2uLeho8PwtaTSGM9F.wJC', 'user@studenti.unipd.it', false, 8.07022);
 
 -- Inserimento Categorie
 INSERT INTO categoria VALUES

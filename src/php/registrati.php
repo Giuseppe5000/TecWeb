@@ -41,21 +41,20 @@ if(isset($_POST['submit'])){
         $connessioneOK = $connessione->openDBConnection();
 
         if(!$connessioneOK){
-            $connessione->hashConverter();
-            
+
             if($connessione->verificaRegistrazione($username, $email) == false){
                 $messaggiPerForm = "<p>Username o email già in uso</p>";
             }
             else{
-                $registrazione = $connessione->registraUtente($username, $email, $password);
+                $registrazione = $connessione->registraUtente($username, $password, $email);
 
-                if($registrazione == 0){
-                    $messaggiPerForm = "<p>Errore durante la registrazione</p>";
-                }
-                else{
+                if($registrazione != 0){
                     $_SESSION['username'] = $username;
                     header('Location: ./index.html');
                     exit;
+                }
+                else{
+                    $messaggiPerForm = "<p>Errore durante la registrazione</p>";
                 }
             }
         }

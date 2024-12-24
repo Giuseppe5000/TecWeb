@@ -34,8 +34,7 @@ if(isset($_POST['submit'])){
 		$connessioneOK = $connessione->openDBConnection();
 
 		if(!$connessioneOK){
-
-			$connessione->hashConverter();
+			
 			$utente = $connessione->getUtenteLogin($username, $password);
 
 			if($utente != null){
