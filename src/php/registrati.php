@@ -47,6 +47,7 @@ if(isset($_POST['submit'])){
             }
             else{
                 $registrazione = $connessione->registraUtente($username, $password, $email);
+                $connessione->closeConnection();
 
                 if($registrazione != 0){
                     $_SESSION['username'] = $username;
@@ -62,7 +63,6 @@ if(isset($_POST['submit'])){
             $messaggiPerForm = "<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>";
         }
 
-        $connessione->closeConnection();
     }
 
     $paginaHTML = str_replace('{{REGISTRATI}}', $messaggiPerForm, $paginaHTML);

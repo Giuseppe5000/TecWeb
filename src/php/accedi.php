@@ -36,6 +36,7 @@ if(isset($_POST['submit'])){
 		if(!$connessioneOK){
 			
 			$utente = $connessione->getUtenteLogin($username, $password);
+			$connessione->closeConnection();
 
 			if($utente != null){
 				$_SESSION['username'] = $username;
@@ -48,8 +49,6 @@ if(isset($_POST['submit'])){
 		} else {
 			$messaggiPerForm = "<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>";
 		}
-
-		$connessione->closeConnection();
 	}
 
 	$paginaHTML = str_replace('{{ACCEDI}}', $messaggiPerForm, $paginaHTML);
