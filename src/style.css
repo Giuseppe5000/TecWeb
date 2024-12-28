@@ -47,7 +47,6 @@
 
 html {
     color: var(--txtcolor);
-    background-color: var(--bgcolor);
 }
 
 body {
@@ -55,6 +54,10 @@ body {
     line-height: 1.5em;
     max-width: 1024px;
     margin: auto;
+    background-image:url('../assets/background.webp');
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 a:link {
