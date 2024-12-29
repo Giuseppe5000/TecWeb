@@ -51,5 +51,57 @@ class DBAccess {
         return null;
 
     }
+
+    public function getUtenteLogin($username, $password) {
+        $query = "SELECT * FROM utente WHERE username = ?";
+        $stmt = $this->connection->prepare($query);
+        if (!$stmt) {
+            echo "Errore nella preparazione della query: " . $this->connection->error;
+            exit(1);
+        }
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result && $result->num_rows > 0) {
+            $utente = $result->fetch_assoc();
+            if (password_verify($password, $utente['password'])) {
+                return $utente; 
+            }
+        }
+        return null; 
+    }    
+    
+    public function verificaRegistrazione($username, $email){
+        $query = "SELECT * FROM utente WHERE username = ? OR email = ?";
+        $stmt = $this->connection->prepare($query);
+        if (!$stmt) {
+            echo "Errore nella preparazione della query: " . $this->connection->error;
+            exit(1);
+        }
+        $stmt->bind_param('ss', $username, $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result && $result->num_rows > 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public function registraUtente($username, $password, $email){
+        $query = "INSERT INTO utente (username, password, email, isAdmin, saldo) VALUES (?, ?, ?, 0, 0)";
+        $stmt = $this->connection->prepare($query);
+        if (!$stmt) {
+            echo "Errore nella preparazione della query: " . $this->connection->error;
+            exit(1);
+        }
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $stmt->bind_param('sss', $username, $hashed_password, $email);
+        $stmt->execute();
+
+        return $stmt->affected_rows;
+    }
 }
+
 ?>
