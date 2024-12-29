@@ -44,6 +44,7 @@ if(isset($_POST['submit'])){
 
             if($connessione->verificaRegistrazione($username, $email) == false){
                 $messaggiPerForm = "<p>Username o email già in uso</p>";
+		$connessione->closeConnection();
             }
             else{
                 $registrazione = $connessione->registraUtente($username, $password, $email);
