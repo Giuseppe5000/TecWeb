@@ -124,9 +124,31 @@ Per rispettare la separazione tra struttura e comportamento si è deciso di util
 \subsection{JavaScript}
 
 \section{Progettazione}
+Per la progettazione abbiamo utilizzato la strategia \textit{Mobile First}. Questo approccio permette di concentrarci sulla modalità di accesso principale per la maggioranza degli utenti, cioé quella da mobile. Ci siamo focalizzati soprattutto sul diminuire il numero di click/tap necessari per accedere alle varie sezioni del nostro sito.
 \subsection{Struttura generale}
-\subsection{Header}
+Il sito non ha una profondità elevata ed è composto da:
+\begin{itemize}
+\item \textbf{Home:} Visualizzata come landing page per accogliere l'utente che entra nel sito;
+\item \textbf{NFT:} Pagina dedicata alla ricerca delle opere presenti nel sito;
+\item \textbf{Singolo NFT:} Pagina dedicata ad un singolo NFT. Vengono visualizzate tutte le informazioni dell'opera, il prezzo per poterla acquistare e le recensioni degli utenti dell'opera. 
+\item \textbf{Chi Siamo:} Pagina di presentazione dei componenti del gruppo in cui è presente anche un FAQ per le domande più frequenti tra gli utenti;
+\item \textbf{Registrati:} L'utente utilizzerà questa pagina per registrarsi nella piattaforma;
+\item \textbf{Login:} L'utente utilizzerà questa pagina per accedere al proprio profilo;
+\item \textbf{Profilo:} Pagina che contiene le informazioni personali dell'utente, le opere in suo possesso e le recensioni che ha realizzato.
+\end{itemize}
+
+\subsection{Header e Navbar}
+Nell'Header è sempre presente il logo per poter definire l'identità del sito.\\
+Inoltre sarà sempre presente una navbar che permetterà, grazie al numero non elevato di sezioni, all'utente di vedere subito in quale pagine può navigare senza l'utilizzo di tap aggiuntivi, cosa che servirebbe se avessimo usato un menù ad hamburger. Per evitare link circolari il link della pagina corrente viene rimosso e reso riconoscibile rispetto agli altri.\\
+Saranno presenti due navbar:
+\begin{itemize}
+\item Una per l'utente non autenticato dove saranno presenti le sezioni \textbf{Home}, \textbf{NFT}, \textbf{Chi Siamo}, \textbf{Registrati}, \textbf{Accedi};
+\item Una per l'utente autenticato dove saranno presenti le sezioni \textbf{Home}, \textbf{NFT}, \textbf{Chi Siamo}, \textbf{Profilo}, \textbf{Log out}. 
+\end{itemize}
+
 \subsection{Breadcrumb}
+All'interno di ogni pagina sarà presente la Breadcrumb per informare l'utente dove si trova e per ridurre il disorientamento. Viene rispettato il livello di profondità, mostrando le pagine padri precedenti alla pagina corrente. Per evitare link circolari la pagina corrente non viene resa cliccabile.
+
 \subsection{Contenuto}
 
 \section{Implementazione}
