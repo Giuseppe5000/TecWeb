@@ -2,8 +2,8 @@
 
 session_start();
 
-require_once "./dbConnection.php";
-use DB\DBAccess;
+require_once "./php/Database.php";
+require_once "./php/Utente.php";
 
 $paginaHTML = file_get_contents('./accedi.html');
 
@@ -30,16 +30,17 @@ if(isset($_POST['submit'])){
 
 	if($messaggiPerForm == ""){
 
-		$connessione = new DBAccess();
-		$connessioneOK = $connessione->openDBConnection();
+		$database = new Database();
+		$connessioneOK = $database->openConnection();
 
 		if(!$connessioneOK){
-			
-			$utente = $connessione->getUtenteLogin($username, $password);
-			$connessione->closeConnection();
 
-			if($utente != null){
-				$_SESSION['username'] = $username;
+			$utente = new Utente($database->getConnection(), $username, $password, "");
+			$loginSuccessfull = $utente->login();
+			$database->closeConnection();
+
+			if( $loginSuccessfull ){
+				$_SESSION['username'] = $utente->getUsername();
 				header('Location: ./index.html');
 				exit;
 			}

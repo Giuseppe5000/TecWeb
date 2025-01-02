@@ -2,8 +2,8 @@
 
 session_start();
 
-require_once "./dbConnection.php";
-use DB\DBAccess;
+require_once "./php/Database.php";
+require_once "./php/Utente.php";
 
 $paginaHTML = file_get_contents('./registrati.html');
 
@@ -37,35 +37,32 @@ if(isset($_POST['submit'])){
     }
 
     if($messaggiPerForm == ""){
-        $connessione = new DBAccess();
-        $connessioneOK = $connessione->openDBConnection();
+        $database = new Database();
+        $connessioneOK = $database->openConnection();
 
         if(!$connessioneOK){
 
-            if($connessione->verificaRegistrazione($username, $email) == false){
-                $messaggiPerForm = "<p>Username o email già in uso</p>";
-		$connessione->closeConnection();
-            }
-            else{
-                $registrazione = $connessione->registraUtente($username, $password, $email);
-                $connessione->closeConnection();
+            $utente = new Utente($database->getConnection(), $username, $password, $email);
+            $registerOutcome = $utente->register();
+            $database->closeConnection();
 
-                if($registrazione != 0){
+            switch($registerOutcome){
+                case ErroreUtente::REGISTER_ALREADY_EXIST:
+                    $messaggiPerForm = "<p>Username o email già in uso</p>";
+                    break;
+                case ErroreUtente::REGISTER_ERROR:
+                    $messaggiPerForm = "<p>Errore durante la registrazione</p>";
+                    break;
+                default:    
                     $_SESSION['username'] = $username;
                     header('Location: ./index.html');
                     exit;
-                }
-                else{
-                    $messaggiPerForm = "<p>Errore durante la registrazione</p>";
-                }
             }
-        }
-        else{
+        }else{
             $messaggiPerForm = "<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>";
         }
-
     }
-
-    $paginaHTML = str_replace('{{REGISTRATI}}', $messaggiPerForm, $paginaHTML);
-    echo $paginaHTML;
 }
+$paginaHTML = str_replace('{{REGISTRATI}}', $messaggiPerForm, $paginaHTML);
+echo $paginaHTML;
+
