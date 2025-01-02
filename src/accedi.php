@@ -5,7 +5,7 @@ session_start();
 require_once "./php/Database.php";
 require_once "./php/Utente.php";
 
-$paginaHTML = file_get_contents('./accedi.html');
+$paginaHTML = file_get_contents('./static/accedi.html');
 
 $messaggiPerForm = "";
 
@@ -51,7 +51,7 @@ if(isset($_POST['submit'])){
 			$messaggiPerForm = "<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>";
 		}
 	}
-
-	$paginaHTML = str_replace('{{ACCEDI}}', $messaggiPerForm, $paginaHTML);
-	echo $paginaHTML;
 }
+
+$paginaHTML = str_replace('{{ACCEDI}}', $messaggiPerForm, $paginaHTML);
+echo $paginaHTML;

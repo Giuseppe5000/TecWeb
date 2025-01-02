@@ -5,7 +5,7 @@ session_start();
 require_once "./php/Database.php";
 require_once "./php/Utente.php";
 
-$paginaHTML = file_get_contents('./registrati.html');
+$paginaHTML = file_get_contents('./static/registrati.html');
 
 $messaggiPerForm = "";
 
@@ -43,21 +43,23 @@ if(isset($_POST['submit'])){
         if(!$connessioneOK){
 
             $utente = new Utente($database->getConnection(), $username, $password, $email);
-            $registerOutcome = $utente->register();
-            $database->closeConnection();
-
-            switch($registerOutcome){
-                case ErroreUtente::REGISTER_ALREADY_EXIST:
-                    $messaggiPerForm = "<p>Username o email già in uso</p>";
-                    break;
-                case ErroreUtente::REGISTER_ERROR:
-                    $messaggiPerForm = "<p>Errore durante la registrazione</p>";
-                    break;
-                default:    
-                    $_SESSION['username'] = $username;
-                    header('Location: ./index.html');
-                    exit;
+            try {
+                $utente->register();
+                $database->closeConnection();
+                $_SESSION['username'] = $username;
+                header('Location: ./index.html');
+                exit;
             }
+            catch(UserAlredyExistsException $e) {
+                $messaggiPerForm = "<p>" . $e->errorMessage() . "</p>";
+            }
+            catch(UserRegisterGenericException $e) {
+                $messaggiPerForm = "<p>" . $e->errorMessage() . "</p>";
+            }
+            catch(PrepareStatementException $e) {
+                $messaggiPerForm = "<p>" . $e->errorMessage() . "</p>";
+            }
+
         }else{
             $messaggiPerForm = "<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>";
         }

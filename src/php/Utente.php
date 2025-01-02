@@ -1,8 +1,6 @@
 <?php
-enum ErroreUtente{
-    case REGISTER_ALREADY_EXIST;
-    case REGISTER_ERROR;
-}
+
+require_once "./php/exceptions.php";
 
 class Utente {
     
@@ -26,40 +24,38 @@ class Utente {
         $query = "SELECT * FROM utente WHERE username = ? OR email = ?";
         $stmt = $this->dbConnection->prepare($query);
         if (!$stmt) {
-            echo "Errore nella preparazione della query: " . $this->dbConnection->error;
-            exit(1);
+            throw new PrepareStatementException($this->dbConnection->error);
         }
         $stmt->bind_param('ss', $this->username, $this->email);
         $stmt->execute();
         $result = $stmt->get_result();
     
         if ($result && $result->num_rows > 0) {
-            return true;
+            throw new UserAlredyExistsException();
         }
-        return false;
     }
     
     public function register(){
-        if($this->checkIfUserAlreadyExist()) return ErroreUtente::REGISTER_ALREADY_EXIST;
+        $this->checkIfUserAlreadyExist();
         $query = "INSERT INTO utente (username, password, email, isAdmin, saldo) VALUES (?, ?, ?, 0, 0)";
         $stmt = $this->dbConnection->prepare($query);
         if (!$stmt) {
-            echo "Errore nella preparazione della query: " . $this->dbConnection->error;
-            exit(1);
+            throw new PrepareStatementException($this->dbConnection->error);
         }
         $hashed_password = password_hash($this->password, PASSWORD_DEFAULT);
         $stmt->bind_param('sss', $this->username, $hashed_password, $this->email);
         $stmt->execute();
     
-        return $stmt->affected_rows == 1 ? true : ErroreUtente::REGISTER_ERROR;
+        if ($stmt->affected_rows != 1) {
+            throw new UserRegisterGenericException();
+        }
     }
 
     public function login() {
         $query = "SELECT * FROM utente WHERE username = ?";
         $stmt = $this->dbConnection->prepare($query);
         if (!$stmt) {
-            echo "Errore nella preparazione della query: " . $this->dbConnection->error;
-            exit(1);
+            throw new PrepareStatementException($this->dbConnection->error);
         }
         $stmt->bind_param('s', $this->username);
         $stmt->execute();
