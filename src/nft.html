@@ -2,18 +2,23 @@
 <html lang="it">
   <head>
     <meta charset="utf-8">
-    <title lang="en">TITLE</title>
+    <title lang="en">Scopri le opere! - DoFlamingo</title>
     <meta name="description"
-          content="DESCRIPTION">
-    <meta name="keywords" content="KEYWORDS">
-    <meta name="author" content="NOME_PROGETTO">
+          content="In questa pagina puoi visionare e cercare le varie opere che offriamo.">
+    <meta name="keywords" content="NFT,DoFlamingo,opere,filtri,categorie">
+    <meta name="author" content="DoFlamingo">
     <meta name="viewport" content="width=device-width">
 
     <link rel="stylesheet" href="style.css" media="screen">
     <link rel="stylesheet" href="print.css" media="print">
     <link rel="stylesheet" href="mini.css" media="screen and (max-width:768px)">
 
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicon_io/site.webmanifest">
   </head>
+  
   <body>
 
     <header>
@@ -21,14 +26,14 @@
         <a href="#content" class="navigationHelp">Vai al contenuto</a>
       </nav>
       <nav class="header-content">
-	<h1>NOME_PROGETTO</h1> <!-- Sostituire con l'immagine -->
-	
-	<ul class="menu-list">
-            <li class="menu-item" lang="en"><a id="home-bg" href="index.html">Home</a></li>
-	    <li class="menu-item"><abbr id="nft-bg" lang="en" title="Non-fungible token">NFT</abbr></li>
-	    <li class="menu-item"><a id="aboutUs-bg" href="chi-siamo.html">Chi siamo</a></li>
-	    <li class="menu-item"><a id="register-bg" href="registrati.html">Registrati</a></li>
-	    <li class="menu-item"><a id="login-bg" href="accedi.html">Accedi</a></li>
+        <h1>Doflamingo</h1>
+
+        <ul class="menu-list">
+          <li class="menu-item" lang="en"><a id="home-bg" href="index.html">Home</a></li>
+	  <li class="menu-item" id="currentLink"><abbr id="nft-bg" lang="en" title="Non-fungible token">NFT</abbr></li>
+	  <li class="menu-item"><a id="aboutUs-bg" href="chi-siamo.html">Chi siamo</a></li>
+	  <li class="menu-item"><a id="register-bg" href="registrati.html">Registrati</a></li>
+	  <li class="menu-item"><a id="login-bg" href="accedi.html">Accedi</a></li>
 	</ul>
       </nav>
 
@@ -37,32 +42,29 @@
       </nav>
     </header>
 
+    <main id="content">
 
-    <div> <!-- Potrebbe essere un aside? o magari va messo in main? -->
-      <div id="searchBar"> <!-- Potrei omettere il div e assegnare l'id al form? -->
-        <form action="">
-          <fieldset>
-            <legend>Filtra NFT</legend> <!-- In legend e label NFT va sempre dentro abbr? --> <!-- Va sempre tutto messo dentro fieldset -->
-            <label for="nft">Nome NFT:</label>
-            <input name="nft" id="nft"/>
-            <input type="submit" value="Cerca!"/>
-          </fieldset>
-        </form>
-      </div>
+      <h1>Cerca <abbr lang="en" title="Non-fungible token">NFT</abbr></h1>
 
       <div id="filtri">
         <form action="">
-          <fieldset>
-            <legend>Prezzo</legend>
-            <label for="prezzoMin">Prezzo minimo:</label>
-            <input type="number" id="prezzoMin" name="prezzoMin" min="0"/>
-            <label for="prezzoMax">Prezzo massimo:</label>
-            <input type="number" id="prezzoMax" name="prezzoMax" min="0"/>
-          </fieldset>
 
           <fieldset>
-            <legend>Ordinamento</legend>
-            <select name="ordina" id="ordina">
+	    
+            <legend>Filtra <abbr lang="en" title="Non-fungible token">NFT</abbr></legend>
+		<label for="nft">Titolo:</label>
+	    <div class="head-filter">
+		<input name="nft" id="nft"/>
+              <button id="show-filters"></button>
+	    </div>
+
+            <label class="filtro-aggiuntivo" for="prezzoMin">Prezzo minimo:</label>
+            <input class="filtro-aggiuntivo" type="number" id="prezzoMin" name="prezzoMin" min="0"/>
+            <label class="filtro-aggiuntivo" for="prezzoMax">Prezzo massimo:</label>
+            <input class="filtro-aggiuntivo" type="number" id="prezzoMax" name="prezzoMax" min="0"/>
+
+            <label class="filtro-aggiuntivo" for="orfin">Ordinamento:</label>
+            <select id="ordina" class="filtro-aggiuntivo" name="ordina" >
               <optgroup label="Prezzo">
                 <option value="prezzoCrescente">Prezzo crescente</option>
                 <option value="prezzoDecrescente">Prezzo decrescente</option>
@@ -73,68 +75,112 @@
                 <option value="nomeZ-A">Nome Z-A</option>
               </optgroup>
             </select>
-          </fieldset>
 
-          <fieldset>
-            <legend>Categorie</legend>
-            <label for="abstract">Abstract: </label>
-            <input type="checkbox" id="abstract" name="abstract"/>
-            <label for="animals">Animals: </label>
-            <input type="checkbox" id="animals" name="animals"/>
-            <label for="pixelArt">PixelArt: </label>
-            <input type="checkbox" id="pixelArt" name="pixelArt"/>
-            <label for="blackAndWhite">Blakc&White: </label>
-            <input type="checkbox" id="blackAndWhite" name="blackAndWhite"/>
-            <label for="photo">Photo: </label>
-            <input type="checkbox" id="photo" name="photo"/>
+            <fieldset id="categorie" class="filtro-aggiuntivo" >
+              <legend>Categorie</legend>
+
+              <div>
+                <input type="checkbox" id="abstract" name="abstract"/>
+                <label for="abstract">Abstract</label>
+              </div>
+
+              <div>
+                <input type="checkbox" id="animals" name="animals"/>
+                <label for="animals">Animals</label>
+              </div>
+
+              <div>
+                <input type="checkbox" id="pixelArt" name="pixelArt"/>
+                <label for="pixelArt">PixelArt</label>
+              </div>
+
+              <div>
+                <input type="checkbox" id="blackAndWhite" name="blackAndWhite"/>
+                <label for="blackAndWhite">Black&White</label>
+              </div>
+
+              <div>
+                <input type="checkbox" id="photo" name="photo"/>
+                <label for="photo">Photo</label>
+              </div>
+            </fieldset>
+
+            <input class="button" type="submit" value="Cerca">
           </fieldset>
-          <input type="submit" value="Filtra">
         </form>
       </div>
-    </div>
 
-
-    <main id="content">
-      <h1>Lista degli NFT</h1>
+      <h2>Risultati</h2>
 
       <div id="cards">
 
         <div class="card">
-          <a href="nft.html?nft=TITOLO"><h2>TITOLO</h2></a>
-          <img src="assets/nft1.png" width="200" height="200">
+	  <a href="nft.html?nft=TITOLO">
+	    <div class="head-card">
+	      <h2>TITOLO</h2>
+	      <span>[prezzo]</span>
+	    </div>
+            <img src="assets/nft1.webp" width="200" height="200">
+	  </a>
         </div>
 
         <div class="card">
-          <a href="nft.html?nft=TITOLO"><h2>TITOLO</h2></a>
-          <img src="assets/nft2.png" width="200" height="200">
+	  <a href="nft.html?nft=TITOLO">
+	    <div class="head-card">
+	      <h2>TITOLO</h2>
+	      <span>[prezzo]</span>
+	    </div>
+            <img src="assets/nft2.webp" width="200" height="200">
+	  </a>
         </div>
 
         <div class="card">
-          <a href="nft.html?nft=TITOLO"><h2>TITOLO</h2></a>
-          <img src="assets/nft3.png" width="200" height="200">
+	  <a href="nft.html?nft=TITOLO">
+	    <div class="head-card">
+	      <h2>TITOLO</h2>
+	      <span>[prezzo]</span>
+	    </div>
+            <img src="assets/nft3.webp" width="200" height="200">
+	  </a>
         </div>
 
         <div class="card">
-          <a href="nft.html?nft=TITOLO"><h2>TITOLO</h2></a>
-          <img src="assets/nft17.png" width="200" height="200">
+	  <a href="nft.html?nft=TITOLO">
+	    <div class="head-card">
+	      <h2>TITOLO</h2>
+	      <span>[prezzo]</span>
+	    </div>
+            <img src="assets/nft17.webp" width="200" height="200">
+	  </a>
         </div>
 
         <div class="card">
-          <a href="nft.html?nft=TITOLO"><h2>TITOLO</h2></a>
-          <img src="assets/nft15.png" width="200" height="200">
+	  <a href="nft.html?nft=TITOLO">
+	    <div class="head-card">
+	      <h2>TITOLO</h2>
+	      <span>[prezzo]</span>
+	    </div>
+            <img src="assets/nft15.webp" width="200" height="200">
+	  </a>
         </div>
 
         <div class="card">
-          <a href="nft.html?nft=TITOLO"><h2>TITOLO</h2></a>
-          <img src="assets/nft6.png" width="200" height="200">
+	  <a href="nft.html?nft=TITOLO">
+	    <div class="head-card">
+	      <h2>TITOLO</h2>
+	      <span>[prezzo]</span>
+	    </div>
+            <img src="assets/nft6.webp" width="200" height="200">
+	  </a>
         </div>
 
       </div>
     </main>
 
     <footer>
-        <p>Copyright © 2024 NOME_PROGETTO. All rights reserved.</p>
+      <p>Copyright © 2024 Doflamingo. All rights reserved.</p>
     </footer>
   </body>
 
+  <script src="script.js"></script>
 </html>

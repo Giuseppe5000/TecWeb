@@ -6,13 +6,21 @@ SEZIONE HEADER
 ==============
 */
 
+header h1 {
+    margin-left: 0em;
+}
+
 .header-content{
     flex-direction: column;
 }
 
+.menu-list{
+    margin: 0;
+}
+
 .menu-item{
     font-size: 0.75em;
-    padding: 0.6em 1em;
+    padding: 0.5em 1em;
 }
 
 .menu-item, .menu-item a{
@@ -44,13 +52,23 @@ SEZIONE HEADER
     background: url("./assets/login_icon.svg") top center no-repeat;
     padding-top: 2em; 
 }
+
+#logout-bg{
+    background: url("./assets/logout_icon.svg") top center no-repeat;
+    padding-top: 2em;
+}
+
+#profile-bg{
+    background: url("./assets/profile_icon.svg") top center no-repeat;
+    padding-top: 2em;
+}
 /*
 ============
 SEZIONE MAIN
 ============
 */
 main{
-    margin-top: 10.8em;
+    padding-top: 11em;
 }
 
 /*
@@ -62,12 +80,31 @@ PAGINA NFT
     margin-top: 11em;
 }
 
+#filtri {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+div#filtri > form > fieldset {
+    padding-left: 5%;
+    padding-right: 5%;
+}
 /*
 ===========================
 PAGINA REGISTRATI E ACCEDI
 ===========================
 */
-#accesso-form input[type="submit"], #regist-form input[type="submit"] {
-    margin: 1.5em;
+.user-form input[type="submit"] {
+    margin: 2em 2em 0 2em;
 }
 
+.user-form {
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 0 2em 2em 2em;
+}
+
+.user-form > fieldset {
+    padding-left: 5%;
+    padding-right: 5%;
+}

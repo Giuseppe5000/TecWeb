@@ -47,7 +47,6 @@
 
 html {
     color: var(--txtcolor);
-    background-color: var(--bgcolor);
 }
 
 body {
@@ -55,6 +54,10 @@ body {
     line-height: 1.5em;
     max-width: 1024px;
     margin: auto;
+    background-image:url('./assets/background.webp');
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 a:link {
@@ -63,6 +66,10 @@ a:link {
 
 a:visited {
     color: var(--visitedcolor);
+}
+
+abbr{
+    text-decoration: none;
 }
 
 .button {
@@ -80,7 +87,7 @@ a:visited {
 }
 
 .button:hover {
-  background-color: var(--bgcolor-help);
+    background-color: var(--bgcolor-help);
 }
 
 /*
@@ -96,6 +103,7 @@ header {
     top: 0;
     position: fixed;
     background-color: var(--contentbgcolor);
+    z-index: 2;
 }
 
 header h1 {
@@ -122,10 +130,17 @@ SEZIONE MENU
 .menu-list{
     display: flex;
     list-style:none;
+    margin: 0em 1em;
 }
 
 .menu-item{
     padding: 1.5em 1em;
+}
+
+#currentLink {
+    background-color: var(--visitedcolor);
+    color: var(--txtcolor);
+    border-radius: 5px;
 }
 
 /*
@@ -135,7 +150,6 @@ AIUTI ALLA NAVIGAZIONE
 */
 .navigationHelp{
     margin: 1em;
-    
     position: absolute;
     text-indent: -999em;
     background-color: var(--bgcolor-help);
@@ -176,8 +190,8 @@ SEZIONE SLIDESHOW
     align-items: center;
     overflow: hidden;
     margin-top: 0.5em;
-    margin-left: 1em;
-    margin-right:1em;
+    margin-left: 10%;
+    margin-right:10%;
 }
 
 .wrapper p{
@@ -217,11 +231,11 @@ SEZIONE MAIN
 main{
     text-align: center;
     background-color: var(--contentbgcolor);
-    margin-top: 7em;
+    padding-top: 7em;
 }
 main h1 {
     margin-top: 0.5em;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
 }
 
 main h2{
@@ -248,14 +262,82 @@ main p{
     background-color: var(--contentbgcolor);
 }
 
-.card h2 {
-    text-align: center;
+.card a {
+    text-decoration: none;
+}
+
+/*Fix per il titolo delle card nella pagina nft*/
+.card h2{
+    padding: 0;
+    text-decoration: underline;
+}
+
+.card h3{
+    text-decoration: underline;
+}
+
+.card span{
+    color: var(--txtcolor);
+}
+
+.head-card{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 form {
     margin-left: 2em;
     margin-right: 2em;
 }
+
+dl dt {
+    text-align: left;
+    padding: 0 1em 0 1em;
+}
+
+dl dd {
+    margin-bottom: 1.5em;
+    text-align: justify;
+    padding: 0 1em 0 1em;
+}
+
+dl dd:last-child {
+    margin-bottom: 0;
+    padding-bottom: 1.5em;
+}
+
+
+#primo, #secondo, #terzo {
+    position: relative;
+}
+
+#primo::before, #secondo::before, #terzo::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    bottom: -1em;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+#primo::before{
+    background-image: url('./assets/primo.png');
+} 
+#secondo::before{
+    background-image: url('./assets/secondo.png');
+} 
+#terzo::before {
+    background-image: url('./assets/terzo.png');
+}
+
 
 /*
 ==============
@@ -264,6 +346,7 @@ SEZIONE FOOTER
 */
 
 footer {
+    padding: 0.5em 0em;
     text-align: center;
     background-color: var(--footerbgcolor);
     color: var(--footercolor);
@@ -274,14 +357,50 @@ footer {
 PAGINA NFT
 ==========
 */
-#searchBar {
-    justify-content: center;
-    text-align: center;
-    margin-top: 10em;
+#filtri {
+    text-align: left;
+    margin-left: 20%;
+    margin-right: 20%;
 }
 
-div+main {
-    margin-top: 0;
+div#filtri > form > fieldset {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+#categorie {
+    padding-left: 3%;
+}
+
+
+div#filtri select {
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+#categorie {
+    margin-bottom: 1em;
+}
+
+.filtro-aggiuntivo {
+    display: none;
+}
+
+#show-filters {
+    background: url("./assets/filter_icon.svg") top center no-repeat;
+    border: none;
+    padding: 1em;
+    cursor: pointer;
+}
+
+.head-filter{
+    margin-bottom: 1em;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
 }
 
 /*
@@ -289,36 +408,148 @@ div+main {
 PAGINA REGISTRATI E ACCEDI
 ===========================
 */
-#accesso-form input[type="submit"], #regist-form input[type="submit"] {
+.user-form input[type="submit"] {
     margin-top: 1em;
     margin-left: 25%;
     margin-right: 25%;
     min-width: 120px;
 }
 
-#accesso-form, #regist-form {
+.user-form {
+    text-align: left;
+    margin-left: 30%;
+    margin-right: 30%;
+    padding-bottom: 2em;
+}
+
+.user-form fieldset{
     display: flex;
     flex-direction: column;
-    padding: 4em 12em 6em;    
+    text-align: left;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 1em;
 }
 
-#regist-form fieldset:first-child {
-    margin-bottom: 2em;
+.user-form fieldset label{
+    margin-top: 1em;
 }
 
-#regist-form fieldset, #accesso-form fieldset {
+/*
+===============
+TABELLA IN HOME
+===============
+*/
+p{
+    margin: 0 10%;
+    padding: 0;
+}
+
+table{
+    margin: 1em;
+    width:80%;
+}
+
+thead{
+    background-color: var(--visitedcolor);
+}
+
+table, th, td{
+    border: 1px solid;
+    border-collapse: collapse;
+    padding: 0.5em;
+}
+
+td{
+    text-align: left;
+}
+
+.tabella{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    padding-bottom: 1em;
+}
+
+/*
+===========================
+PAGINA PROFILO
+===========================
+*/
+
+#utente_saldo {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1em;
-    padding: 1em;
+    flex-direction: column;
+    row-gap: 10px;
 }
 
-#regist-form label, #accesso-form label {
-    flex: 1 1 40%;
-    min-width: 150px;
+#profilo_utente_logo {
+    width: 8em;
 }
 
-#regist-form input, #accesso-form input {
-    flex: 1 1 55%;
-    min-width: 150px;
+/*
+===========================
+PAGINA SINGOLO NFT
+===========================
+*/
+/*
+Immagine contenuto
+*/
+#immagine-contenuto{
+    width: 60%;
+}
+
+/*
+Commento
+*/
+
+.comment-list{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.head-comment, .comment{
+    border: 1px solid;
+}
+.comment{
+    margin: 1em 0;
+    width: 80%;
+}
+
+
+.user-comment{
+    display: flex;
+    align-items: center;
+}
+
+.head-comment{
+    padding: 0.5em;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.logo_utente {
+    width: 2em;
+}
+
+/*
+===========================
+PAGINA CHI SIAMO
+===========================
+*/
+
+dl{
+    display: inline-block;
+    width: 80%;
+}
+
+.membro p{
+    text-align: center;
+}
+
+.membro img {
+    border-radius: 50%; 
 }

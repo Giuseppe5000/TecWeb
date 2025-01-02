@@ -1,72 +1,72 @@
 <!DOCTYPE html>
 <html lang="it">
-    <head>
-        <meta charset="utf-8">
-        <title lang="en">TITLE</title>
-        <meta name="description"
-              content="DESCRIPTION">
-        <meta name="keywords" content="KEYWORDS">
-        <meta name="author" content="NOME_PROGETTO">
-        <meta name="viewport" content="width=device-width">
+  <head>
+    <meta charset="utf-8">
+    <title lang="en">Registrati - DoFlamingo</title>
+    <meta name="description"
+          content="In questa pagina puoi registrarti se non possiedi già un account.">
+    <meta name="keywords" content="NFT,DoFlamingo,registrati">
+    <meta name="author" content="DoFlamingo">
+    <meta name="viewport" content="width=device-width">
 
-        <link rel="stylesheet" href="style.css" media="screen">
-        <link rel="stylesheet" href="print.css" media="print">
-	    <link rel="stylesheet" href="mini.css" media="screen and (max-width:768px)">
+    <link rel="stylesheet" href="style.css" media="screen">
+    <link rel="stylesheet" href="print.css" media="print">
+    <link rel="stylesheet" href="mini.css" media="screen and (max-width:768px)">
 
-    </head>
-    <body>
-        
-        <header>
-            <nav aria-label="aiuti alla navigazione" class="listHelp">
-                <a href="#content" class="navigationHelp">Vai al contenuto</a>
-            </nav>
-            <nav class="header-content">
-                <h1>NOME_PROGETTO</h1> <!-- Sostituire con l'immagine -->
-                <ul class="menu-list">
-            <li class="menu-item" lang="en"><a id="home-bg" href="index.html">Home</a></li>
-	    <li class="menu-item"><a id="nft-bg" href="nft.html"><abbr lang="en" title="Non-fungible token">NFT</abbr></a></li>
-	    <li class="menu-item"><a id="aboutUs-bg" href="chi-siamo.html">Chi siamo</a></li>
-                    <li class="menu-item"><span id="register-bg">Registrati</span></li>
-	    <li class="menu-item"><a id="login-bg" href="accedi.html">Accedi</a></li>
-                </ul>
-            </nav>
-            <nav id="breadcrumb">
-                <p>Ti trovi in: Registrati</p>
-            </nav>
-        </header>
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicon_io/site.webmanifest">
+  </head>
+  <body>
 
-        
-        <main id="content">
-            <h1>Registrati</h1>
+    <header>
+      <nav aria-label="aiuti alla navigazione" class="listHelp">
+        <a href="#content" class="navigationHelp">Vai al contenuto</a>
+      </nav>
+      <nav class="header-content">
+        <h1>Doflamingo</h1>
+        <ul class="menu-list">
+          <li class="menu-item" lang="en"><a id="home-bg" href="index.html">Home</a></li>
+	  <li class="menu-item"><a id="nft-bg" href="nft.html"><abbr lang="en" title="Non-fungible token">NFT</abbr></a></li>
+	  <li class="menu-item"><a id="aboutUs-bg" href="chi-siamo.html">Chi siamo</a></li>
+          <li class="menu-item" id="currentLink"><span id="register-bg">Registrati</span></li>
+	  <li class="menu-item"><a id="login-bg" href="accedi.html">Accedi</a></li>
+        </ul>
+      </nav>
+      <nav id="breadcrumb">
+        <p>Ti trovi in: Registrati</p>
+      </nav>
+    </header>
 
-            <form id="regist-form" action="" method="">
 
-                <fieldset>
-                    <legend>Informazioni dell'utente</legend>
-                    <label for="username">Username (max 30 caratteri):</label>
-                    <input type="text" id="username" name="username" maxlength="30" required>
-                    
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" maxlength="30" required>
-                </fieldset>
+    <main id="content">
+      <h1>Registrati</h1>
 
-                <fieldset>
-                    <legend>Credenziali di accesso</legend>
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" maxlength="30" required>
-                    
-                    <label for="confirm-password">Ripeti password:</label>
-                    <input type="password" id="confirm-password" name="confirm-password" maxlength="30" required>
-                </fieldset>
+      <form id="regist-form" class="user-form" action="" method="">
+        <fieldset>
+          <legend>Registrazione</legend>
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" maxlength="30" required>
 
-                <input type="submit" value="Registrati" class="button">
-            </form>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" maxlength="30" required>
 
-        </main>
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" maxlength="30" required>
 
-        <footer>
-            <p>Copyright © 2024 NOME_PROGETTO. All rights reserved.</p>
-        </footer>
-    </body>
+          <label for="confirm-password">Ripeti password:</label>
+          <input type="password" id="confirm-password" name="confirm-password" maxlength="30" required>
+
+          <input type="submit" value="Registrati" class="button">
+        </fieldset>
+      </form>
+
+    </main>
+
+    <footer>
+      <p>Copyright © 2024 Doflamingo. All rights reserved.</p>
+    </footer>
+  </body>
 
 </html>

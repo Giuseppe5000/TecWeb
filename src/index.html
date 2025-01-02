@@ -2,32 +2,35 @@
 <html lang="it">
 <head>
     <meta charset="utf-8">
-    <title lang="en">TITLE</title>
+    <title lang="en">Home - DoFlamingo</title>
     <meta name="description"
-	    content="DESCRIPTION">
-    <meta name="keywords" content="KEYWORDS">
-    <meta name="author" content="NOME_PROGETTO">
+	    content="DoFlamingo è un sito innovativo per scoprire, acquistare e vendere NFT.">
+    <meta name="keywords" content="NFT,DoFlamingo,opere">
+    <meta name="author" content="Doflamingo">
     <meta name="viewport" content="width=device-width">
-
 
     <link rel="stylesheet" href="style.css" media="screen">
     <link rel="stylesheet" href="print.css" media="print">
     <link rel="stylesheet" href="mini.css" media="screen and (max-width:768px)">
 
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicon_io/site.webmanifest">
 </head>
 <body>
     <header>
       <!-- Script js -->
-      <script src="slideshow.js"></script>
+      <script src="script.js"></script>
 
     <nav aria-label="aiuti alla navigazione" class="listHelp">
       <a href="#content" class="navigationHelp">Vai al contenuto</a>
      </nav>
     <nav class="header-content">
-	<h1>NOME_PROGETTO</h1> <!-- Sostituire con l'immagine -->
+	<h1>Doflamingo</h1>
 	
 	<ul class="menu-list">
-	  <li class="menu-item current-page"><span id="home-bg" lang="en">Home</span></li>
+	  <li class="menu-item" id="currentLink"><span id="home-bg" lang="en">Home</span></li>
 	    <li class="menu-item"><a id="nft-bg" href="nft.html"><abbr lang="en" title="Non-fungible token">NFT</abbr></a></li>
 	    <li class="menu-item"><a id="aboutUs-bg" href="chi-siamo.html">Chi siamo</a></li>
 	    <li class="menu-item"><a id="register-bg" href="registrati.html">Registrati</a></li>
@@ -44,7 +47,7 @@
 	<nav aria-label="aiuti alla navigazione" class="listHelp">
 	    <a href="#ultimeUscite" class="navigationHelp">Vai alle Ultime Uscite</a>
 	</nav>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non accumsan dui. Nullam ligula mauris, ullamcorper sit amet rhoncus et, convallis id ligula. Etiam fringilla pharetra turpis in ornare. Proin scelerisque dolor ut nisi dapibus eleifend. Nam libero nulla, vulputate ut convallis sed, ornare sed dolor. Vestibulum hendrerit leo vitae semper tempus. Maecenas est magna, rutrum a leo in, interdum sollicitudin neque. Duis ut nisl et est dignissim pellentesque. Pellentesque quis tincidunt ipsum. Donec pharetra metus sit amet lectus laoreet blandit. Maecenas posuere faucibus enim at maximus. Nulla facilisi. Maecenas vel congue ipsum. Morbi egestas non est in aliquam. Vestibulum nec posuere est, quis blandit sapien. </p>
+	<p>DoFlamingo è un sito innovativo per scoprire, acquistare e vendere <abbr lang="en" title="Non-fungible token">NFT</abbr>, con un'ampia selezione di opere digitali uniche e collezionabili. In questa pagina troverai le ultime opere uscite, la classifica delle 3 opere votate più positivamente e le categorie di opere con maggiori acquisti.</p>
       <h2 id="ultimeUscite">Ultime uscite</h2>
     <nav aria-label="aiuti alla navigazione" class="listHelp">
       <a href="#top3" class="navigationHelp">Vai alla Top 3</a>
@@ -54,25 +57,22 @@
 	<button class="prev" onclick="slider()">&#10094;</button>
 	<div class="slideshow">
                 <div class="card">
-                    <a href="nft.html?nft=TITOLO"><h3>TITOLO</h3></a>
+                    <a href="singolo-nft.html"><h3>TITOLO</h3>
                     <figure>
-                        <img src="assets/ntf.jpg" width="200">
-                        <figcaption>Descrizione dell'opera</figcaption>
-                    </figure>
+                        <img src="assets/ntf.webp" width="200">
+                    </figure></a>
                 </div>
                 <div class="card">
-                    <a href="nft.html?nft=TITOLO"><h3>TITOLO</h3></a>
+                    <a href="singolo-nft.html"><h3>TITOLO</h3>
                     <figure>
-                        <img src="assets/ntf.jpg" width="200">
-                        <figcaption>Descrizione dell'opera</figcaption>
-                    </figure>
+                        <img src="assets/ntf.webp" width="200">
+                    </figure></a>
                 </div>
                 <div class="card">
-                    <a href="nft.html?nft=TITOLO"><h3>TITOLO</h3></a>
+                    <a href="singolo-nft.html"><h3>TITOLO</h3>
                     <figure>
-                        <img src="assets/ntf.jpg" width="200">
-                        <figcaption>Descrizione dell'opera</figcaption>
-                    </figure>
+                        <img src="assets/ntf.webp" width="200">
+                    </figure></a>
                 </div>
 	  
 	</div>
@@ -83,13 +83,73 @@
       
       <h2 id="top3">Top 3 <abbr lang="en" title="Non-fungible token">NFT</abbr></h2>
     <nav aria-label="aiuti alla navigazione" class="listHelp">
-      <a href="#categorie" class="navigationHelp">Vai alle Categorie più acquistate</a>
+      <a href="#acquistate" class="navigationHelp">Vai alle Categorie più acquistate</a>
      </nav>
-      <h2 id="categorie">Categorie più acquistate</h2>
+	<div id="cards">
+                <div class="card" id="primo">
+		  <a href="singolo-nft.html">
+		  <div class="head-card">
+		    <span>1°</span>
+                    <h3>TITOLO</h3>
+		  </div>
+                        <img src="assets/ntf.webp" width="200">
+                    </a>
+                </div>
+                <div class="card" id="secondo">
+		  <a href="singolo-nft.html">
+		  <div class="head-card">
+		    <span>2°</span>
+                    <h3>TITOLO</h3>
+		  </div>
+                        <img src="assets/ntf.webp" width="200">
+                    </a>
+                </div>
+                <div class="card" id="terzo">
+		  <a href="singolo-nft.html">
+		  <div class="head-card">
+		    <span>3°</span>
+                    <h3>TITOLO</h3>
+		  </div>
+                        <img src="assets/ntf.webp" width="200">
+                    </a>
+                </div>
+	  
+	</div>
+
+      <h2 id="acquistate">Categorie più acquistate</h2>
+      <p id="descr"> La tabella contiene l'elenco delle categorie più acquistate del sito. Le categorie vanno dalla più acquistata alla meno acquistata.</p>
+      <div class="tabella">
+      <table aria-describedby="#descr">
+	<thead>
+	<tr>
+	  <th scope="col">Categoria</th>
+	  <th scope="col" abbr="Acqistate">Opere acquistate</th>
+	  <th scope="col" abbr="Totali">Opere totali</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+	  <th scope="row" lang="en">Black&White</th>
+	  <td> 999</td>
+	  <td> 999</td>
+	</tr>
+	<tr>
+	  <th scope="row">[Nome Categoria]</th>
+	  <td> 999</td>
+	  <td> 999</td>
+	</tr>
+	<tr>
+	  <th scope="row">[Nome Categoria]</th>
+	  <td> 999</td>
+	  <td> 999</td>
+	</tr>
+	</tbody>
+      </table>
+      </div>
     </main>
 
     <footer>
-      <p>Copyright © 2024 NOME_PROGETTO. All rights reserved.</p>
+      <p>Copyright © 2024 Doflamingo. All rights reserved.</p>
     </footer>
 </body>
 
