@@ -108,3 +108,19 @@ PAGINA REGISTRATI E ACCEDI
     padding-left: 5%;
     padding-right: 5%;
 }
+
+/*
+===========================
+PAGINA CHI SIAMO
+===========================
+*/
+
+.membro img {
+    max-width: 8em;
+}
+
+.membro {
+    flex: 1 1 45%;
+    max-width: 45%;
+    box-sizing: border-box;
+}
