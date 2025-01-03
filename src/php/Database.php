@@ -52,6 +52,28 @@ class Database {
 
         return array();
     }   
+
+    public function getUltimeUscite() {
+        $query = "SELECT * FROM opera ORDER BY id DESC LIMIT 10";
+        $query_result = mysqli_query($this->connection, $query);
+
+        if (!$query_result) {
+            echo "Query Error: " . mysqli_error($this->connection);
+            exit(1);
+        }
+
+        if ($query_result->num_rows > 0) {
+            $result = array();
+            while ($row = $query_result->fetch_array(MYSQLI_ASSOC)) {
+                array_push($result, $row);
+            }
+            $query_result->free();
+            return $result;
+        }
+
+        return array();
+    }   
+
 }
 
 ?>
