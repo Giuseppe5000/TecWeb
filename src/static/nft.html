@@ -47,7 +47,7 @@
       <h1>Cerca <abbr lang="en" title="Non-fungible token">NFT</abbr></h1>
 
       <div id="filtri">
-        <form action="">
+        <form action="nft.php">
 
           <fieldset>
 	    
@@ -59,9 +59,9 @@
 	    </div>
 
             <label class="filtro-aggiuntivo" for="prezzoMin">Prezzo minimo:</label>
-            <input class="filtro-aggiuntivo" type="number" id="prezzoMin" name="prezzoMin" min="0"/>
+            <input class="filtro-aggiuntivo" type="number" id="prezzoMin" name="prezzoMin" min="0" value="0"/>
             <label class="filtro-aggiuntivo" for="prezzoMax">Prezzo massimo:</label>
-            <input class="filtro-aggiuntivo" type="number" id="prezzoMax" name="prezzoMax" min="0"/>
+            <input class="filtro-aggiuntivo" type="number" id="prezzoMax" name="prezzoMax" min="0" value="100"/>
 
             <label class="filtro-aggiuntivo" for="orfin">Ordinamento:</label>
             <select id="ordina" class="filtro-aggiuntivo" name="ordina" >
@@ -105,7 +105,7 @@
               </div>
             </fieldset>
 
-            <input class="button" type="submit" value="Cerca">
+            <input class="button" type="submit" name="submit" value="Cerca">
           </fieldset>
         </form>
       </div>
