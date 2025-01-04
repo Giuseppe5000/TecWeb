@@ -47,7 +47,7 @@ if(isset($_POST['submit'])){
                 $utente->register();
                 $database->closeConnection();
                 $_SESSION['username'] = $utente->getUsername();
-                header('Location: ./index.html');
+                header('Location: ./index.php');
                 exit;
             }
             catch(UserAlredyExistsException $e) {

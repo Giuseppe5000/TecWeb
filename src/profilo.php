@@ -57,7 +57,7 @@ if(isset($_SESSION['username'])){
     }
 }
 else{
-    header('Location: ./login.html');
+    header('Location: ./accedi.php');
     exit;
 }
 
