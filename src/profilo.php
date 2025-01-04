@@ -16,19 +16,32 @@ if(isset($_SESSION['username'])){
 
     if(!$connessioneOK){
 
-        $query  = "SELECT saldo FROM utente WHERE username = " . $username;
-        $result = $database->executeQuery($query);
+        $query  = "SELECT saldo FROM utente WHERE username = ?";
+        $stmt = $database->getConnection()->prepare($query);
+        if (!$stmt) {
+            throw new PrepareStatementException($database->getConnection()->error);
+        }
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
         $saldo = "<span>" . $username . "</span>
-                <span>Saldo: " . $result[0]['saldo'] . "</span>";
-    
+                <span>Saldo: " . $result->fetch_assoc()['saldo'] . "</span>";
 
-        $query  = "SELECT path, nome FROM opera WHERE possessore = " . $username;
-        $result = $database->executeQuery($query);
-        if(count($result) == 0){
+
+        $query  = "SELECT path, nome FROM opera WHERE possessore = ?";
+        $stmt = $database->getConnection()->prepare($query);
+        if (!$stmt) {
+            throw new PrepareStatementException($database->getConnection()->error);
+        }
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if($result->num_rows == 0){
             $nftPosseduti = "<p>Non possiedi ancora nessun NFT</p>";
         }
         else{
-            foreach($result as $row){
+            while($row = $result->fetch_assoc()){
                 $nftPosseduti .= "<div class='card'>
                                     <a href='nft.html?nft=TITOLO'>
                                     <h3>" . $row['nome'] . "</h3>
