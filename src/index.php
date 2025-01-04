@@ -27,8 +27,8 @@ if (!$connessioneOK) {
   if (count($opereU) > 0) {
     foreach ($opereU as $opera) {
         $ultimeUscite .= '<div class="card">';
-        $ultimeUscite .= '<a href="singolo-nft.html">';
-        $ultimeUscite .= '<h3>' . $opera["path"]  . '</h3>';
+        $ultimeUscite .= '<a href="singolo-nft.php?id='.$opera["id"].'">';
+        $ultimeUscite .= '<h3>' . $opera["nome"]  . '</h3>';
         $ultimeUscite .= '<img src="./' . $opera["path"] . '.webp" width="200" height="200">';
         $ultimeUscite .= '</a>';
         $ultimeUscite .= '</div>';
@@ -44,20 +44,20 @@ if (!$connessioneOK) {
         case 1:
             #inserisco il primo
             $top3 .= '<div class="card" id="primo">';
-            $top3 .= '<a href="singolo-nft.html"><div class="head-card"><span>1°</span>';
+            $top3 .= '<a href="singolo-nft.php?id='.$opera["id"].'"><div class="head-card"><span>1°</span>';
             break;
         case 2:
             #inserisco il secondo
             $top3 .= '<div class="card" id="secondo">';
-            $top3 .= '<a href="singolo-nft.html"><div class="head-card"><span>2°</span>';
+            $top3 .= '<a href="singolo-nft.php?id='.$opera["id"].'"><div class="head-card"><span>2°</span>';
             break;
         case 3:
             #inserisco il terzo
             $top3 .= '<div class="card" id="terzo">';
-            $top3 .= '<a href="singolo-nft.html"><div class="head-card"><span>3°</span>';
+            $top3 .= '<a href="singolo-nft.php?id='.$opera["id"].'"><div class="head-card"><span>3°</span>';
             break;
         }
-        $top3 .= '<h3>' . $opera["path"]  . '</h3></div>';
+        $top3 .= '<h3>' . $opera["nome"]  . '</h3></div>';
         $top3 .= '<img src="./' . $opera["path"] . '.webp" width="200" height="200">';
         $top3 .= '</a>';
         $top3 .= '</div>';
