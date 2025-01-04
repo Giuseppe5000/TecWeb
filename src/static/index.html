@@ -68,65 +68,13 @@
       <a href="#acquistate" class="navigationHelp">Vai alle Categorie più acquistate</a>
      </nav>
 	<div id="cards">
-    <div class="card" id="primo">
-      <a href="singolo-nft.html">
-        <div class="head-card">
-          <span>1°</span>
-          <h3>TITOLO</h3>
-        </div>
-        <img src="assets/ntf.webp" width="200">
-      </a>
-    </div>
-    <div class="card" id="secondo">
-      <a href="singolo-nft.html">
-		  <div class="head-card">
-		    <span>2°</span>
-                    <h3>TITOLO</h3>
-		  </div>
-                        <img src="assets/ntf.webp" width="200">
-                    </a>
-                </div>
-                <div class="card" id="terzo">
-		  <a href="singolo-nft.html">
-		  <div class="head-card">
-		    <span>3°</span>
-                    <h3>TITOLO</h3>
-		  </div>
-                        <img src="assets/ntf.webp" width="200">
-                    </a>
-                </div>
-	  
+	  {{TOP3}}
 	</div>
 
       <h2 id="acquistate">Categorie più acquistate</h2>
       <p id="descr"> La tabella contiene l'elenco delle categorie più acquistate del sito. Le categorie vanno dalla più acquistata alla meno acquistata.</p>
       <div class="tabella">
-      <table aria-describedby="#descr">
-	<thead>
-	<tr>
-	  <th scope="col">Categoria</th>
-	  <th scope="col" abbr="Acqistate">Opere acquistate</th>
-	  <th scope="col" abbr="Totali">Opere totali</th>
-	</tr>
-	</thead>
-	<tbody>
-	<tr>
-	  <th scope="row" lang="en">Black&White</th>
-	  <td> 999</td>
-	  <td> 999</td>
-	</tr>
-	<tr>
-	  <th scope="row">[Nome Categoria]</th>
-	  <td> 999</td>
-	  <td> 999</td>
-	</tr>
-	<tr>
-	  <th scope="row">[Nome Categoria]</th>
-	  <td> 999</td>
-	  <td> 999</td>
-	</tr>
-	</tbody>
-      </table>
+	{{CATEGORIE}}
       </div>
     </main>
 
