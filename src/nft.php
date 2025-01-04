@@ -89,9 +89,9 @@ function mostraOpere($opere, $pageNumber, $pageSize) {
         for ($i = $previousPages; $i < $previousPages + $pageSize && $i < count($opere); $i++) {
             $opera = $opere[$i];
             $stringaOpere .= '<div class="card">';
-            $stringaOpere .= '<a href="nft.html?nft=TITOLO">';
+            $stringaOpere .= '<a href="singolo-nft.php?id=' . $opera["id"] . '">';
             $stringaOpere .= '<div class="head-card">';
-            $stringaOpere .= '<h2>' . $opera["id"]  . '</h2>';
+            $stringaOpere .= '<h2>' . $opera["nome"]  . '</h2>';
             $stringaOpere .= '<span>' . $opera["prezzo"] .'</span>';
             $stringaOpere .= '</div>';
             $stringaOpere .= '<img src="./' . $opera["path"] . '.webp" width="200" height="200">';
@@ -129,16 +129,26 @@ if (!$connessioneOK) {
     $stringaOpere = "<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>";
 }
 
-$paginaHTML = file_get_contents('./static/nft.html');
-echo str_replace('{{OPERE}}', $stringaOpere, $paginaHTML);
 
+$paginaHTML = file_get_contents('./static/nft.html');
+$paginaHTML = str_replace('{{OPERE}}', $stringaOpere, $paginaHTML);
+
+$linkPaginaPrecedente = "";
 if ($pageNumber > 0) {
     $prevPageNumber = $pageNumber - 1;
     $queryString = generatePageNumber($prevPageNumber);
-    echo "<a href=\"nft.php?{$queryString}\">Pagina precendente</a>";
+    $linkPaginaPrecedente =  "<a class='prev-page' href=\"nft.php?{$queryString}\">&#10094;</a>";
 }
+$paginaHTML = str_replace('{{PAGINA_PRECEDENTE}}', $linkPaginaPrecedente, $paginaHTML);
+
+$linkPaginaSuccessiva = "";
 if ($opereDaMostrare > 0) {
     $nextPageNumber = $pageNumber + 1;
     $queryString = generatePageNumber($nextPageNumber);
-    echo "<a href=\"nft.php?{$queryString}\">Pagina successiva</a>";
+    $linkPaginaSuccessiva = "<a class='next-page' href=\"nft.php?{$queryString}\">&#10095;</a>";
 }
+$paginaHTML = str_replace('{{PAGINA_SUCCESSIVA}}', $linkPaginaSuccessiva, $paginaHTML);
+
+$paginaHTML = str_replace('{{PAGINA_CORRENTE}}', "<span class='page-number'>Pagina: {$pageNumber}</span>", $paginaHTML);
+
+echo $paginaHTML;

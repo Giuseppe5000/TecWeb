@@ -406,6 +406,29 @@ div#filtri select {
     justify-content: space-between;
 }
 
+#navigazione-pagine {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.page-number {
+    font-size: 2em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+.prev-page,.next-page{
+    background-color: var(--contentbgcolor);
+    color: var(--txtcolor);
+    font-size: 2em;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
 /*
 ===========================
 PAGINA REGISTRATI E ACCEDI
