@@ -24,31 +24,34 @@ function getOrderBy($ordina) {
 
 function getOpereFiltered($database, $name, $prezzoMin, $prezzoMax, $ordina, $categorie) {
     $name = "%" . $name . "%";
-    echo implode(" ", $categorie);
-
-    $query = "SELECT * FROM opera, appartenenza
-            WHERE opera.id = appartenenza.opera
-            AND nome LIKE ?
-            AND prezzo >= ?
-            AND prezzo <= ? ";
-
     $connection = $database->getConnection();
 
     if (empty($categorie)){
+        $query = "SELECT * FROM opera
+                WHERE nome LIKE ?
+                AND prezzo >= ?
+                AND prezzo <= ? ";
         $query .= getOrderBy($ordina);
+
         $stmt = $connection->prepare($query);
         if (!$stmt) throw new PrepareStatementException($connection->error);
         $stmt->bind_param('sii', $name, $prezzoMin, $prezzoMax);
         return $database->executePreparedStatement($stmt);
+
     } else {
+        $query = "SELECT * FROM opera, appartenenza
+                WHERE opera.id = appartenenza.opera
+                AND nome LIKE ?
+                AND prezzo >= ?
+                AND prezzo <= ? ";
         $placeholders = implode(',', array_fill(0, count($categorie), '?'));
-        $query .= "AND categoria IN ($placeholders) " . getOrderBy($ordina);
+        $query .= "AND categoria IN ($placeholders)" . getOrderBy($ordina);
 
         $stmt = $connection->prepare($query);
         if (!$stmt) throw new PrepareStatementException($connection->error);
-
         $stmt->bind_param('sii' . str_repeat('s', count($categorie)), $name, $prezzoMin, $prezzoMax, ...$categorie);
         return $database->executePreparedStatement($stmt);
+
     }
 
 }
@@ -56,8 +59,8 @@ function getOpereFiltered($database, $name, $prezzoMin, $prezzoMax, $ordina, $ca
 function getOrFilter($database) {
     if(isset($_GET['submit'])){
         $name = $_GET['nft'];
-        $prezzoMin = (int)$_GET['prezzoMin'];
-        $prezzoMax = (int)$_GET['prezzoMax'];
+        $prezzoMin = intval($_GET['prezzoMin']);
+        $prezzoMax = intval($_GET['prezzoMax']);
         $ordina = $_GET['ordina'];
 
         $categorie = array();
@@ -79,23 +82,16 @@ function getOrFilter($database) {
     }
 }
 
-
-$paginaHTML = file_get_contents('./static/nft.html');
-$stringaOpere = '';
-
-$database = new Database();
-$connessioneOK = $database->openConnection();
-
-if (!$connessioneOK) {
-    $opere = getOrFilter($database);
-    $database->closeConnection();
-
+function mostraOpere($opere, $pageNumber, $pageSize) {
+    $stringaOpere = "";
     if (count($opere) > 0) {
-        foreach ($opere as $opera) {
+        $previousPages = $pageNumber*$pageSize;
+        for ($i = $previousPages; $i < $previousPages + $pageSize && $i < count($opere); $i++) {
+            $opera = $opere[$i];
             $stringaOpere .= '<div class="card">';
             $stringaOpere .= '<a href="nft.html?nft=TITOLO">';
             $stringaOpere .= '<div class="head-card">';
-            $stringaOpere .= '<h2>' . $opera["nome"]  . '</h2>';
+            $stringaOpere .= '<h2>' . $opera["id"]  . '</h2>';
             $stringaOpere .= '<span>' . $opera["prezzo"] .'</span>';
             $stringaOpere .= '</div>';
             $stringaOpere .= '<img src="./' . $opera["path"] . '.webp" width="200" height="200">';
@@ -103,9 +99,46 @@ if (!$connessioneOK) {
             $stringaOpere .= '</div>';
         }
     }
+    return $stringaOpere;
+}
 
+function generatePageNumber($pageNumber) {
+    if (isset($_GET['page']))
+        return preg_replace("/page=(\d)*/", "page={$pageNumber}", $_SERVER['QUERY_STRING']);
+    return $queryString = $_SERVER['QUERY_STRING'] . "&page={$pageNumber}";
+}
+
+// Per adesso vengono richieste tutte le opere al db e poi qui ne vengono mostrate 10
+// Sarebbe meglio farsi ritornare solo 10 opere dal db se occorre mostrare solo quelle
+$pageSize = 10;
+$pageNumber = 0;
+if (isset($_GET['page']))
+    $pageNumber = intval($_GET['page']);
+
+$database = new Database();
+$connessioneOK = $database->openConnection();
+$stringaOpere = '';
+$opereDaMostrare = 0;
+
+if (!$connessioneOK) {
+    $opere = getOrFilter($database);
+    $database->closeConnection();
+    $stringaOpere = mostraOpere($opere, $pageNumber, $pageSize);
+    $opereDaMostrare = count($opere) - $pageNumber*$pageSize - $pageSize;
 } else {
     $stringaOpere = "<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>";
 }
 
+$paginaHTML = file_get_contents('./static/nft.html');
 echo str_replace('{{OPERE}}', $stringaOpere, $paginaHTML);
+
+if ($pageNumber > 0) {
+    $prevPageNumber = $pageNumber - 1;
+    $queryString = generatePageNumber($prevPageNumber);
+    echo "<a href=\"nft.php?{$queryString}\">Pagina precendente</a>";
+}
+if ($opereDaMostrare > 0) {
+    $nextPageNumber = $pageNumber + 1;
+    $queryString = generatePageNumber($nextPageNumber);
+    echo "<a href=\"nft.php?{$queryString}\">Pagina successiva</a>";
+}
