@@ -8,6 +8,15 @@ $paginaHTML = file_get_contents('./static/profilo.html');
 
 $saldo = "";
 $nftPosseduti = ""; 
+$avviso = "";
+
+function pulisciInput($value)
+{
+ 	$value = trim($value);
+  	$value = strip_tags($value);
+	$value = htmlentities($value);
+  	return $value;
+}
 
 if(isset($_SESSION['username'])){
     $database = new Database();
@@ -15,8 +24,38 @@ if(isset($_SESSION['username'])){
     $username = $_SESSION['username'];
 
     if(!$connessioneOK){
+        // Se il form di aggiunta nuovo nft è stato inviato
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
+            // Recupera i valori dal form
+            $pathImmagine = pulisciInput($_POST['path-immagine']);
+            $nome = pulisciInput($_POST['nome']);
+            $descrizione = pulisciInput($_POST['descrizione']);
+            $prezzo = pulisciInput($_POST['prezzo']);
 
-        $query  = "SELECT saldo FROM utente WHERE username = ?";
+            if (strlen($pathImmagine) == 0 || strlen($nome) == 0 || strlen($descrizione) == 0 || strlen($prezzo) == 0) {
+                $avviso .= "<p>Compila tutti i campi.</p>";
+            } 
+            else {
+                $query = "INSERT INTO opera (path, nome, descrizione, prezzo) VALUES (?, ?, ?, ?)";
+                $stmt = $database->getConnection()->prepare($query);
+                if (!$stmt) {
+                    throw new PrepareStatementException($database->getConnection()->error);
+                }
+                $stmt->bind_param('sssd', $pathImmagine, $nome, $descrizione, $prezzo);
+                $stmt->execute();
+
+                if ($stmt->affected_rows > 0) {
+                    $avviso .= "<p>NFT aggiunto con successo!</p>";
+                } else {
+                    $avviso = "<p>Errore durante l'aggiunta dell'NFT.</p>";
+                }
+
+                $stmt->close();
+            }
+        }
+
+        // Query per ottenere il username e il saldo dell'utente, se l'utente è amministratore compare il form di insermento di una nuova opera
+        $query  = "SELECT saldo, isAdmin FROM utente WHERE username = ?";
         $stmt = $database->getConnection()->prepare($query);
         if (!$stmt) {
             throw new PrepareStatementException($database->getConnection()->error);
@@ -24,10 +63,32 @@ if(isset($_SESSION['username'])){
         $stmt->bind_param('s', $username);
         $stmt->execute();
         $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
         $saldo = "<span>" . $username . "</span>
-                <span>Saldo: " . $result->fetch_assoc()['saldo'] . "</span>";
+                <span>Saldo: " . $row['saldo'] . "</span>";
+        if($row['isAdmin']){
+            $saldo .= $avviso;
+            $saldo .= "<form id='add-nft' class='user-form' action='profilo.php' method='post'>
+                        <fieldset>
+                        <legend>Aggiungi NFT</legend>
+                        <label for='path-immagine'>Path immagine:</label>
+                        <input type='text' id='path-immagine' name='path-immagine' maxlength='30' required>
 
+                        <label for='nome'>Nome:</label>
+                        <input type='text' id='nome' name='nome' maxlength='30' required>
 
+                        <label for='descrizione'>Descrizione:</label>
+                        <input type='text' id='descrizione' name='descrizione' maxlength='150' required>
+
+                        <label for='prezzo'>Prezzo:</label>
+                        <input type='number' id='prezzo' name='prezzo' step='0.001' min='0' required>
+
+                        <input type='submit' value='Aggiungi' class='button' name='submit'>
+                        </fieldset>
+                      </form>";
+        }
+
+        // Query per ottenere le opere possedute dall'utente
         $query  = "SELECT path, nome FROM opera WHERE possessore = ?";
         $stmt = $database->getConnection()->prepare($query);
         if (!$stmt) {
