@@ -76,11 +76,11 @@ abbr{
     background-color: var(--txtcolor);
     border: none;
     color: var(--contentbgcolor);
-    padding: 16px 32px;
+    padding: 1em 1.5em;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 1em;
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
@@ -312,7 +312,6 @@ dl dd:last-child {
     padding-bottom: 1.5em;
 }
 
-
 #primo, #secondo, #terzo {
     position: relative;
 }
@@ -484,7 +483,7 @@ PAGINA PROFILO
 #utente_saldo {
     display: flex;
     flex-direction: column;
-    row-gap: 10px;
+    row-gap: 0.7em;
 }
 
 #profilo_utente_logo {
@@ -520,7 +519,6 @@ Commento
     margin: 1em 0;
     width: 80%;
 }
-
 
 .user-comment{
     display: flex;

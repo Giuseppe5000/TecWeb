@@ -1,0 +1,207 @@
+#breadcrumb, .menu-list, .listHelp, .prev, .next, #filtri {
+    display: none;
+}
+
+body, footer {
+    margin: 40px 20px;
+    font-family: "Times New Roman", serif;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+p, dl{
+    text-align: left;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+abbr{
+    text-decoration: none;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+h3 {
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/*=========
+LOGO TITOLO
+=========*/
+
+header h1 {
+    padding: 20px 60px;
+    background-image: url(./assets/logo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-indent: -9999px;
+    print-color-adjust: exact; 
+    -webkit-print-color-adjust: exact;
+}
+
+/*==========
+IMMAGINI NFT 
+==========*/
+
+#cards, .slideshow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.head-card {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.head-card span {
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.head-card h3 {
+    margin: 5px 0;
+    text-align: right;
+}
+
+/*=============== 
+TABELLA CATEGORIE
+===============*/
+
+.tabella table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.tabella table th, .tabella table td {
+    border: 1px solid;
+    padding: 8px;
+    text-align: left;
+}
+
+.tabella table th {
+    text-align: center;
+}
+
+/*==============
+PAGINA CHI-SIAMO
+==============*/
+
+.membro p{
+    text-align: center;
+}
+
+.membro img {
+    border-radius: 50%; 
+    margin-top: 18px;
+    max-width: 150px;
+    height: auto;
+}
+
+dd{
+    margin-bottom: 18px;
+}
+
+/*======================
+FORM REGISTRATI E ACCEDI
+======================*/
+
+.user-form input[type="submit"] {
+    margin-top: 18px;
+    margin-left: 25%;
+    margin-right: 25%;
+    min-width: 120px;
+}
+
+.user-form {
+    text-align: left;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding-bottom: 32px;
+}
+
+.user-form fieldset{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 1em;
+}
+
+.user-form fieldset label{
+    margin-top: 18px;
+}
+
+.button {
+    padding: 16px 25px;
+    font-size: 16px;
+}
+
+/*================
+PAGINA SINGOLO NFT
+================*/
+
+#immagine-contenuto{
+    max-width: 300px;
+}
+
+.head-comment, .comment{
+    border: 1px solid;
+}
+.comment{
+    margin: 18px 0;
+    width: 100%;
+}
+
+.user-comment{
+    display: flex;
+    align-items: center;
+}
+
+.head-comment{
+    padding: 9px;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.logo_utente {
+    width: 32px;
+}
+
+/*============
+PAGINA PROFILO
+============*/
+
+#utente_saldo {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+#profilo_utente_logo {
+    width: 8em;
+}
