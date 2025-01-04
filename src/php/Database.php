@@ -32,6 +32,11 @@ class Database {
     }
 
     private function getQueryResult($query_result){
+        if (!$query_result) {
+            echo "Query Error: " . mysqli_error($this->connection);
+            exit(1);
+        }
+
         if ($query_result->num_rows > 0) {
             $result = array();
             while ($row = $query_result->fetch_array(MYSQLI_ASSOC)) {
@@ -45,18 +50,13 @@ class Database {
 
     public function executeQuery($query){
         $query_result = mysqli_query($this->connection, $query);
-
-        if (!$query_result) {
-            echo "Query Error: " . mysqli_error($this->connection);
-            exit(1);
-        }
-
         return $this->getQueryResult($query_result);
     }
 
-    public function getOpere() {
-        $query = "SELECT * FROM opera";
-        return $this->executeQuery($query);
-    }   
+    public function executePreparedStatement($stmt) {
+        $stmt->execute();
+        $query_result = $stmt->get_result();
+        return $this->getQueryResult($query_result);
+    }
 }
 ?>
