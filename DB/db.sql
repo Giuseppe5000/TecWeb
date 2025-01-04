@@ -78,13 +78,13 @@ INSERT INTO utente VALUES
 INSERT INTO categoria VALUES
 ('Abstract', 'DESC'),
 ('Animals', 'DESC'),
-('Pixel Art', 'DESC'),
+('PixelArt', 'DESC'),
 ('Black&White', 'DESC'),
 ('Photo', 'DESC');
 
 -- Inserimento Iscrizioni
 INSERT INTO iscrizione VALUES
-('admin', 'Pixel Art'),
+('admin', 'PixelArt'),
 ('user', 'Abstract'),
 ('user', 'Animals'),
 ('user', 'Photo');
@@ -121,24 +121,24 @@ INSERT INTO appartenenza VALUES
 ('Abstract', 4),
 ('Abstract', 5),
 ('Abstract', 6),
-('Pixel Art', 6),
+('PixelArt', 6),
 ('Abstract', 7),
-('Pixel Art', 7),
+('PixelArt', 7),
 ('Animals', 8),
 ('Animals', 9),
 ('Animals', 10),
 ('Animals', 11),
 ('Animals', 12),
 ('Animals', 13),
-('Pixel Art', 13),
+('PixelArt', 13),
 ('Animals', 14),
-('Pixel Art', 14),
+('PixelArt', 14),
 ('Animals', 15),
-('Pixel Art', 15),
+('PixelArt', 15),
 ('Animals', 16),
-('Pixel Art', 16),
+('PixelArt', 16),
 ('Animals', 17),
-('Pixel Art', 17);
+('PixelArt', 17);
 
 -- Inserimento Recensioni
 INSERT INTO recensione VALUES
