@@ -46,7 +46,7 @@ if(isset($_POST['submit'])){
             try {
                 $utente->register();
                 $database->closeConnection();
-                $_SESSION['username'] = $username;
+                $_SESSION['username'] = $utente->getUsername();
                 header('Location: ./index.html');
                 exit;
             }
