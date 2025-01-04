@@ -71,18 +71,6 @@ if (!$connessioneOK) {
 
   #INSERISCO LE CATEGORIE
   if(count($categorie)>0){
-      #creo la tabella con gli header
-      $categorieAcquistate.='
-      <table aria-describedby="#descr">
-	  <thead>
-	  <tr>
-	    <th scope="col">Categoria</th>
-	    <th scope="col" abbr="Acqistate">Opere acquistate</th>
-	    <th scope="col" abbr="Totali">Opere totali</th>
-	  </tr>  
-	  </thead>  
-	  <tbody>
-      ';
       #inserisco le categorie
       foreach($categorie as $categoria){
           $categorieAcquistate.='<tr>';
@@ -91,16 +79,11 @@ if (!$connessioneOK) {
           $categorieAcquistate.='<td>'.$categoria["opereT"].'</td>';
           $categorieAcquistate.='</tr>';
       }
-      $categorieAcquistate.='
-	  </tbody>
-      </table>
-      ';
   }
 
 } else {
   $ultimeUscite = '<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>';
   $top3 = '<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>';
-  $categorie = '<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>';
 }
 
 $find=['{{ULTIME_USCITE}}','{{TOP3}}','{{CATEGORIE}}'];

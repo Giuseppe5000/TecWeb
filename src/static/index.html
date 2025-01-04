@@ -74,7 +74,18 @@
       <h2 id="acquistate">Categorie più acquistate</h2>
       <p id="descr"> La tabella contiene l'elenco delle categorie più acquistate del sito. Le categorie vanno dalla più acquistata alla meno acquistata.</p>
       <div class="tabella">
-	{{CATEGORIE}}
+      <table aria-describedby="#descr">
+	  <thead>
+	  <tr>
+	    <th scope="col">Categoria</th>
+	    <th scope="col" abbr="Acqistate">Opere acquistate</th>
+	    <th scope="col" abbr="Totali">Opere totali</th>
+	  </tr>  
+	  </thead>  
+	  <tbody>
+	    {{CATEGORIE}}
+	  </tbody>
+      </table>
       </div>
     </main>
 
