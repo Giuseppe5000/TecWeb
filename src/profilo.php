@@ -22,7 +22,7 @@ if(isset($_SESSION['username'])){
                 <span>Saldo: " . $result[0]['saldo'] . "</span>";
     
 
-        $query  = "SELECT path, nome FROM opera WHERE possessore = ?";
+        $query  = "SELECT path, nome FROM opera WHERE possessore = " . $username;
         $result = $database->executeQuery($query);
         if(count($result) == 0){
             $nftPosseduti = "<p>Non possiedi ancora nessun NFT</p>";
