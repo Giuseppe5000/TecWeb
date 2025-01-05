@@ -1,10 +1,8 @@
 <?php
 
-session_start();
-
 require_once "./php/Database.php";
-
-$paginaHTML = file_get_contents('./static/profilo.html');
+require_once "./php/Navbar.php";
+session_start();
 
 $saldo = "";
 $nftPosseduti = ""; 
@@ -116,6 +114,9 @@ else{
     exit;
 }
 
-$find=['{{SALDO}}','{{CARDS}}'];
-$replacemenet=[$saldo,$nftPosseduti];
+$navbar = new Navbar("Profilo");
+$paginaHTML = file_get_contents('./static/profilo.html');
+
+$find=['{{SALDO}}','{{CARDS}}', '{{NAVBAR}}'];
+$replacemenet=[$saldo,$nftPosseduti, $navbar->getNavbar()];
 echo str_replace($find,$replacemenet,$paginaHTML);

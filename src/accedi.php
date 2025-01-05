@@ -1,11 +1,10 @@
 <?php
 
-session_start();
-
 require_once "./php/Database.php";
 require_once "./php/Utente.php";
+require_once "./php/Navbar.php";
 
-$paginaHTML = file_get_contents('./static/accedi.html');
+session_start();
 
 $messaggiPerForm = "";
 
@@ -53,5 +52,11 @@ if(isset($_POST['submit'])){
 	}
 }
 
-$paginaHTML = str_replace('{{ACCEDI}}', $messaggiPerForm, $paginaHTML);
-echo $paginaHTML;
+
+$navbar = new Navbar("Accedi");
+
+$paginaHTML = file_get_contents('./static/accedi.html');
+$find=['{{ACCEDI}}', '{{NAVBAR}}'];
+$replacement=[$messaggiPerForm, $navbar->getNavbar()];
+
+echo str_replace($find, $replacement, $paginaHTML);

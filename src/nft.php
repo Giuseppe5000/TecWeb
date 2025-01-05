@@ -1,6 +1,8 @@
 <?php
 
 require_once "./php/Database.php";
+require_once "./php/Navbar.php";
+session_start();
 
 function getOpere($database) {
     $query = "SELECT * FROM opera";
@@ -123,17 +125,12 @@ if (!$connessioneOK) {
     $stringaOpere = "<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>";
 }
 
-
-$paginaHTML = file_get_contents('./static/nft.html');
-$paginaHTML = str_replace('{{OPERE}}', $stringaOpere, $paginaHTML);
-
 $linkPaginaPrecedente = "";
 if ($pageNumber > 0) {
     $prevPageNumber = $pageNumber - 1;
     $queryString = generatePageNumber($prevPageNumber);
     $linkPaginaPrecedente =  "<a class='prev-page' href=\"nft.php?{$queryString}\">&#10094;</a>";
 }
-$paginaHTML = str_replace('{{PAGINA_PRECEDENTE}}', $linkPaginaPrecedente, $paginaHTML);
 
 $linkPaginaSuccessiva = "";
 if ($opereDaMostrare > 0) {
@@ -141,8 +138,11 @@ if ($opereDaMostrare > 0) {
     $queryString = generatePageNumber($nextPageNumber);
     $linkPaginaSuccessiva = "<a class='next-page' href=\"nft.php?{$queryString}\">&#10095;</a>";
 }
-$paginaHTML = str_replace('{{PAGINA_SUCCESSIVA}}', $linkPaginaSuccessiva, $paginaHTML);
 
-$paginaHTML = str_replace('{{PAGINA_CORRENTE}}', "<span class='page-number'>Pagina: {$pageNumber}</span>", $paginaHTML);
+$navbar = new Navbar("NFT");
 
-echo $paginaHTML;
+$paginaHTML = file_get_contents('./static/nft.html');
+$find=['{{OPERE}}', '{{PAGINA_PRECEDENTE}}', '{{PAGINA_SUCCESSIVA}}', '{{PAGINA_CORRENTE}}', '{{NAVBAR}}'];
+$replacement=[$stringaOpere, $linkPaginaPrecedente, $linkPaginaSuccessiva, "<span class='page-number'>Pagina: {$pageNumber}</span>", $navbar->getNavbar()];
+
+echo str_replace($find, $replacement, $paginaHTML);
