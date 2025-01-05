@@ -1,12 +1,10 @@
 <?php
 
-class Header {
+class Navbar {
     private $currentLink;
-    private const HEADER_FILE = "../static/header.html";
+    private const NAVBAR_FILE = "./static/navbar.txt";
     private const MENU_ITEMS_UNLOGGED = array("Home", "NFT", "Chi siamo", "Registrati", "Accedi");
     private const MENU_ITEMS_LOGGED = array("Home", "NFT", "Chi siamo", "Disconnettiti", "Profilo");
-    private const MENU_ITEMS_NUM = 7;
-
 
     public function __construct($currentLink){
         $this->currentLink = $currentLink;
@@ -44,43 +42,47 @@ class Header {
         return $link;
     }
 
-    private function substitute($allowed_items, $header) {
-        preg_match('/{{([^{}]*)}}/', $header, $matches);
-        $matchWithCurly = $matches[0];
-        $matchStrings = explode(",", $matches[1]);
+    private function substitute($allowed_items, $line) {
+        $fields = explode(",", $line);
 
-        $title = $matchStrings[0];
-        $href = $matchStrings[1];
-        $id = $matchStrings[2];
-        $lang = $matchStrings[3];
-        $abbrev = $matchStrings[4];
+        $title = $fields[0];
+        $href = $fields[1];
+        $id = $fields[2];
+        $lang = $fields[3];
+        $abbrev = $fields[4];
 
         if (in_array($title, $allowed_items)) {
             if ($title == $this->currentLink)
-                return str_replace($matchWithCurly, $this->getMenuItemCurrentLink($title, $id, $lang, $abbrev), $header);
+                return $this->getMenuItemCurrentLink($title, $id, $lang, $abbrev);
             else
-                return str_replace($matchWithCurly, $this->getMenuItemLink($title, $href, $id, $lang, $abbrev), $header);
+                return $this->getMenuItemLink($title, $href, $id, $lang, $abbrev);
         }
         else {
-            return str_replace($matchWithCurly, "", $header);
+            return "";
         }
     }
 
 
-    public function getUnlogged() {
-        $header = file_get_contents(Header::HEADER_FILE);
-        for ($i=0; $i<Header::MENU_ITEMS_NUM; $i++) {
-            $header = $this->substitute(Header::MENU_ITEMS_UNLOGGED, $header);
+    private function getUnlogged() {
+        $navbar = "";
+        foreach(file(Navbar::NAVBAR_FILE) as $line) {
+            $navbar .= $this->substitute(Navbar::MENU_ITEMS_UNLOGGED, $line);
         }
-        return $header;
+        return $navbar;
     }
 
-    public function getLogged() {
-        $header = file_get_contents(Header::HEADER_FILE);
-        for ($i=0; $i<Header::MENU_ITEMS_NUM; $i++) {
-            $header = $this->substitute(Header::MENU_ITEMS_LOGGED, $header);
+    private function getLogged() {
+        $navbar = "";
+        foreach(file(Navbar::NAVBAR_FILE) as $line) {
+            $navbar .= $this->substitute(Navbar::MENU_ITEMS_LOGGED, $line);
         }
-        return $header;
+        return $navbar;
+    }
+
+    public function getNavbar() {
+        if (isset($_SESSION['username']))
+            return $this->getLogged();
+        return $this->getUnlogged();
     }
 
 }
