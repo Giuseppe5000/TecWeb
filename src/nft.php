@@ -32,11 +32,8 @@ function getOpereFiltered($database, $name, $prezzoMin, $prezzoMax, $ordina, $ca
                 AND prezzo >= ?
                 AND prezzo <= ? ";
         $query .= getOrderBy($ordina);
-
-        $stmt = $connection->prepare($query);
-        if (!$stmt) throw new PrepareStatementException($connection->error);
-        $stmt->bind_param('sii', $name, $prezzoMin, $prezzoMax);
-        return $database->executePreparedStatement($stmt);
+        $value = array($name, $prezzoMin, $prezzoMax);
+        return $database->executePreparedStatement($query,'sii',$value);
 
     } else {
         $query = "SELECT * FROM opera, appartenenza
@@ -47,11 +44,8 @@ function getOpereFiltered($database, $name, $prezzoMin, $prezzoMax, $ordina, $ca
         $placeholders = implode(',', array_fill(0, count($categorie), '?'));
         $query .= "AND categoria IN ($placeholders)" . getOrderBy($ordina);
 
-        $stmt = $connection->prepare($query);
-        if (!$stmt) throw new PrepareStatementException($connection->error);
-        $stmt->bind_param('sii' . str_repeat('s', count($categorie)), $name, $prezzoMin, $prezzoMax, ...$categorie);
-        return $database->executePreparedStatement($stmt);
-
+        $value = array($name, $prezzoMin, $prezzoMax, ...$categorie);
+        return $database->executePreparedStatement($query,'sii'. str_repeat('s', count($categorie)),$value);
     }
 
 }

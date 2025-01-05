@@ -41,7 +41,7 @@ if(isset($_POST['submit'])){
 
 			if( $loginSuccessfull ){
 				$_SESSION['username'] = $utente->getUsername();
-				header('Location: ./index.php');
+				header('Location: ./profilo.php');
 				exit;
 			}
 			else{

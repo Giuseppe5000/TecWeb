@@ -31,7 +31,7 @@ class Database {
         return $this->connection;
     }
 
-    private function getQueryResult($query_result){
+    public function getQueryResult($query_result){
         if (!$query_result) {
             echo "Query Error: " . mysqli_error($this->connection);
             exit(1);
@@ -53,9 +53,15 @@ class Database {
         return $this->getQueryResult($query_result);
     }
 
-    public function executePreparedStatement($stmt) {
+    public function executePreparedStatement($query,$format_string,$value) {
+        $stmt = $this->connection->prepare($query);
+        if (!$stmt) throw new PrepareStatementException($this->connection->error);
+
+        $stmt->bind_param($format_string, ...$value);
+
         $stmt->execute();
         $query_result = $stmt->get_result();
+        $stmt->close();
         return $this->getQueryResult($query_result);
     }
 }
