@@ -2,7 +2,7 @@
 
 class Header {
     private $currentLink;
-    private const HEADER_FILE = "static/header.html";
+    private const HEADER_FILE = "../static/header.html";
     private const MENU_ITEMS_UNLOGGED = array("Home", "NFT", "Chi siamo", "Registrati", "Accedi");
     private const MENU_ITEMS_LOGGED = array("Home", "NFT", "Chi siamo", "Disconnettiti", "Profilo");
     private const MENU_ITEMS_NUM = 7;
@@ -68,7 +68,7 @@ class Header {
 
 
     public function getUnlogged() {
-        $header = file_get_contents('../static/header.html');
+        $header = file_get_contents(Header::HEADER_FILE);
         for ($i=0; $i<Header::MENU_ITEMS_NUM; $i++) {
             $header = $this->substitute(Header::MENU_ITEMS_UNLOGGED, $header);
         }
@@ -76,7 +76,7 @@ class Header {
     }
 
     public function getLogged() {
-        $header = file_get_contents('../static/header.html');
+        $header = file_get_contents(Header::HEADER_FILE);
         for ($i=0; $i<Header::MENU_ITEMS_NUM; $i++) {
             $header = $this->substitute(Header::MENU_ITEMS_LOGGED, $header);
         }
