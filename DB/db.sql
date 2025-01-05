@@ -27,7 +27,7 @@ CREATE TABLE iscrizione (
 );
 
 CREATE TABLE opera (
-      id INT UNSIGNED PRIMARY KEY,
+      id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
       path VARCHAR(30) NOT NULL,
       nome VARCHAR(30) NOT NULL,
       descrizione VARCHAR(150) NOT NULL,
