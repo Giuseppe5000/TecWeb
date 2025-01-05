@@ -56,19 +56,15 @@ if(isset($_SESSION['username'])){
 
         // Query per ottenere il username e il saldo dell'utente, se l'utente è amministratore compare il form di insermento di una nuova opera
         $query  = "SELECT saldo, isAdmin FROM utente WHERE username = ?";
-        $stmt = $database->getConnection()->prepare($query);
-        if (!$stmt) {
-            throw new PrepareStatementException($database->getConnection()->error);
-        }
-        $stmt->bind_param('s', $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
-        $saldo = "<span>" . $username . "</span>
+        $value = array($username);
+        $result = $database->executePreparedStatement($query,'s',$value);
+        if(count($result) > 0){
+            foreach($result as $row){
+                $saldo = "<span>" . $username . "</span>
                 <span>Saldo: " . $row['saldo'] . "</span>";
-        if($row['isAdmin']){
-            $saldo .= $avviso;
-            $saldo .= "<form id='add-nft' class='user-form' action='profilo.php' method='post'>
+                if($row['isAdmin']){
+                    $saldo .= $avviso;
+                    $saldo .= "<form id='add-nft' class='user-form' action='profilo.php' method='post'>
                         <fieldset>
                         <legend>Aggiungi NFT</legend>
                         <label for='path-immagine'>Path immagine:</label>
@@ -86,23 +82,21 @@ if(isset($_SESSION['username'])){
                         <input type='submit' value='Aggiungi' class='button' name='submit'>
                         </fieldset>
                       </form>";
+                }
+            }
         }
 
         // Query per ottenere le opere possedute dall'utente
         $query  = "SELECT * FROM opera WHERE possessore = ?";
-        $stmt = $database->getConnection()->prepare($query);
-        if (!$stmt) {
-            throw new PrepareStatementException($database->getConnection()->error);
-        }
-        $stmt->bind_param('s', $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        $value = array($username);
+        $result = $database->executePreparedStatement($query,'s',$value);
+        $database->closeConnection();
 
-        if($result->num_rows == 0){
+        if(count($result) == 0){
             $nftPosseduti = "<p>Non possiedi ancora nessun NFT</p>";
         }
         else{
-            while($row = $result->fetch_assoc()){
+            foreach($result as $row){
                 $nftPosseduti .= '<div class="card">';
                 $nftPosseduti .= '<a href="singolo-nft.php?id='.$row["id"].'">';
                 $nftPosseduti .= '<h3>' . $row["nome"]  . '</h3>';
@@ -111,7 +105,6 @@ if(isset($_SESSION['username'])){
                 $nftPosseduti .= '</div>';
             }
         }
-        $database->closeConnection();
     }
     else{
         $saldo = "<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>";
