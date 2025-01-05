@@ -9,14 +9,12 @@ $paginaHTML = file_get_contents('./static/accedi.html');
 
 $messaggiPerForm = "";
 
-function pulisciInput($value)
-{
- 	$value = trim($value);
-  	$value = strip_tags($value);
-	$value = htmlentities($value);
-  	return $value;
+function pulisciInput($value){
+    $value = trim($value);
+    $value = strip_tags($value);
+    #$value = htmlentities($value);
+    return $value;
 }
-
 if(isset($_POST['submit'])){
     $username = pulisciInput($_POST['username']);
 	$password = pulisciInput($_POST['password']);

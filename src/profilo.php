@@ -10,14 +10,6 @@ $saldo = "";
 $nftPosseduti = ""; 
 $avviso = "";
 
-function pulisciInput($value)
-{
- 	$value = trim($value);
-  	$value = strip_tags($value);
-	$value = htmlentities($value);
-  	return $value;
-}
-
 if(isset($_SESSION['username'])){
     $database = new Database();
     $connessioneOK = $database->openConnection();
@@ -27,10 +19,10 @@ if(isset($_SESSION['username'])){
         // Se il form di aggiunta nuovo nft è stato inviato
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
             // Recupera i valori dal form
-            $pathImmagine = pulisciInput($_POST['path-immagine']);
-            $nome = pulisciInput($_POST['nome']);
-            $descrizione = pulisciInput($_POST['descrizione']);
-            $prezzo = pulisciInput($_POST['prezzo']);
+            $pathImmagine = $database->pulisciInput($_POST['path-immagine']);
+            $nome = $database->pulisciInput($_POST['nome']);
+            $descrizione = $database->pulisciInput($_POST['descrizione']);
+            $prezzo = $database->pulisciInput($_POST['prezzo']);
 
             if (strlen($pathImmagine) == 0 || strlen($nome) == 0 || strlen($descrizione) == 0 || strlen($prezzo) == 0) {
                 $avviso .= "<p>Compila tutti i campi.</p>";

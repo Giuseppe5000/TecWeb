@@ -560,6 +560,14 @@ Commento
     width: 2em;
 }
 
+#agg-recensione #username:read-only{
+    background-color: silver;
+}
+
+#agg-recensione textarea{
+    resize:none;
+}
+
 /*
 ===========================
 PAGINA CHI SIAMO

@@ -31,7 +31,7 @@ class Database {
         return $this->connection;
     }
 
-    public function getQueryResult($query_result){
+    private function getQueryResult($query_result){
         if (!$query_result) {
             echo "Query Error: " . mysqli_error($this->connection);
             exit(1);
@@ -63,6 +63,29 @@ class Database {
         $query_result = $stmt->get_result();
         $stmt->close();
         return $this->getQueryResult($query_result);
+    }
+
+    public function executeStatement($query,$format_string,$value) {
+        $stmt = $this->connection->prepare($query);
+        if (!$stmt) throw new PrepareStatementException($this->connection->error);
+
+        $stmt->bind_param($format_string, ...$value);
+
+        $stmt->execute();
+        if ($stmt->affected_rows > 0) {
+            $avviso = "<p>NFT aggiunto con successo!</p>";
+        } else {
+            $avviso = "<p>Errore durante l'aggiunta dell'NFT.</p>";
+        }
+        $stmt->close();
+        return $avviso;
+    }
+
+    public function pulisciInput($value){
+        $value = trim($value);
+        $value = strip_tags($value);
+        #$value = htmlentities($value);
+        return $value;
     }
 }
 ?>
