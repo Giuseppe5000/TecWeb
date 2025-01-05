@@ -89,7 +89,7 @@ if(isset($_SESSION['username'])){
         }
 
         // Query per ottenere le opere possedute dall'utente
-        $query  = "SELECT path, nome FROM opera WHERE possessore = ?";
+        $query  = "SELECT * FROM opera WHERE possessore = ?";
         $stmt = $database->getConnection()->prepare($query);
         if (!$stmt) {
             throw new PrepareStatementException($database->getConnection()->error);
@@ -103,11 +103,12 @@ if(isset($_SESSION['username'])){
         }
         else{
             while($row = $result->fetch_assoc()){
-                $nftPosseduti .= "<div class='card'>
-                                    <a href='nft.html?nft=TITOLO'>
-                                    <h3>" . $row['nome'] . "</h3>
-                                    <img src='" . $row['path'] . "' width='140' height='140'>
-                                </div>";
+                $nftPosseduti .= '<div class="card">';
+                $nftPosseduti .= '<a href="singolo-nft.php?id='.$row["id"].'">';
+                $nftPosseduti .= '<h3>' . $row["nome"]  . '</h3>';
+                $nftPosseduti .= '<img src="./' . $row["path"] . '.webp" width="140" height="140">';
+                $nftPosseduti .= '</a>';
+                $nftPosseduti .= '</div>';
             }
         }
         $database->closeConnection();
