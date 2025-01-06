@@ -2,6 +2,7 @@
 session_start();
 
 require_once "./php/Database.php";
+require_once "./php/Navbar.php";
 
 $paginaHTML = file_get_contents('./static/singolo-nft.html');
 $database = new Database();
@@ -144,6 +145,8 @@ if (!$connessioneOK) {
 
 }
 
-$find=['{{OPERA}}','{{DESCRIZIONE}}','{{RECENSIONI}}','{{AGGIUNGI_RECENSIONE}}','{{ACQUISTO_RES}}'];
-$replacement=[$opera_html,$descr_html,$recensioni_html,$aggiungi_recensione_html,$acquisto_res];
+$navbar = new Navbar("");
+
+$find=['{{OPERA}}','{{DESCRIZIONE}}','{{RECENSIONI}}','{{AGGIUNGI_RECENSIONE}}','{{ACQUISTO_RES}}', '{{NAVBAR}}'];
+$replacement=[$opera_html,$descr_html,$recensioni_html,$aggiungi_recensione_html,$acquisto_res, $navbar->getnavbar()];
 echo str_replace($find, $replacement, $paginaHTML);
