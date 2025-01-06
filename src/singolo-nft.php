@@ -79,7 +79,7 @@ if (!$connessioneOK) {
     $query='SELECT * FROM opera WHERE id='.$id;
     $opera=$database->executeQuery($query);
 
-    $query='SELECT * FROM recensione WHERE opera='.$id;
+    $query='SELECT * FROM recensione WHERE opera="' . $id . '" ORDER BY timestamp DESC';
     $recensioni=$database->executeQuery($query);
     $database->closeConnection();
 
