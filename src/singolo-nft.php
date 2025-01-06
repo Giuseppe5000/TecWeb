@@ -13,6 +13,7 @@ $opera_html='';
 $descr_html='';
 $recensioni_html='';
 $aggiungi_recensione_html='';
+$acquisto_res='';
 
 
 
@@ -27,28 +28,85 @@ if (!$connessioneOK) {
     if (isset($_POST['aggiungi'])) {
         //recupera valori del form
         $id=$_POST['id'];
-        $voto=$database->pulisciInput($_POST['voto']);
-        $recensione=$database->pulisciInput($_POST['recensione']);
-        
+
         $query = "INSERT INTO recensione (timestamp, utente, commento, opera, voto) VALUES (?, ?, ?, ?, ?)";
         
         $value = array(date("Y-m-d h:i:s"),$username, $recensione, $id, $voto);
         $database->executeStatement($query,'sssii',$value);
     }
+
+    #Se acquista l'opera
+    if (isset($_POST['acquista'])) {
+        //recupera valori del form
+        $id=$_POST['id'];
+        $prezzo=(double)$_POST['prezzo'];
+
+        #controllo che possa acquistare l'opera tramite controllo del saldo
+        $query = "SELECT saldo FROM utente WHERE username = ?";
+        $value=array($username);
+        $saldo = $database->executePreparedStatement($query,'s',$value);
+        
+        if ($saldo[0]["saldo"]>=$prezzo){
+            $query = "INSERT INTO acquisto (utente, opera, prezzo, data) VALUES (?, ?, ?, ?)";
+            $value = array($username, $id, $prezzo, date("Y-m-d h:i:s"));
+            $database->executeStatement($query,'sids',$value);
+
+            #modifico il possessore dell'opera e il saldo dell'utente
+            $query = "UPDATE opera SET possessore = ? WHERE id = ?";
+            $value = array($username, $id);
+            $database->executeStatement($query,'si',$value);
+            
+            $query = "UPDATE utente SET saldo = ? WHERE username = ?";
+            $nuovo_saldo=$saldo[0]["saldo"]-$prezzo;
+            $value = array($nuovo_saldo,$username);
+            $database->executeStatement($query,'ds',$value);
+            
+            $acquisto_res.='<p class="center">Opera acquistata con successo!</p>';
+        }else{
+            $acquisto_res.='<p class="center">Non hai abbastanza ETH per acquistare l\'opera!</p>';
+        }
+    }
+
+    
     #QUERY
     $query='SELECT * FROM opera WHERE id='.$id;
     $opera=$database->executeQuery($query);
 
     $query='SELECT * FROM recensione WHERE opera='.$id;
     $recensioni=$database->executeQuery($query);
+    $database->closeConnection();
 
     if(count($opera)==1){
+
+        $prezzo=$opera[0]["prezzo"];
+        $possessore=$opera[0]["possessore"];
+
         $opera_html.='<h1>'.$opera[0]["nome"].'</h1>';
         $opera_html.='<div>';
         $opera_html.='<img id="immagine-contenuto" src="./'.$opera[0]["path"].'.webp" alt="decr-img">';
         $opera_html.='</div>';
-        $opera_html.='<span>Prezzo: '.$opera[0]["prezzo"].'ETH</span>';
+        $opera_html.='<span>Prezzo: '.$prezzo.'ETH</span>';
         $descr_html.='<p id="descr">'.$opera[0]["descrizione"].'</p>';
+
+        #se l'opera è acquista si vedrà da chi è stata acquistata, per essere acquistata il possessore deve essere DIVERSO da admin
+        if(strcmp($possessore,'admin')!=0){
+            if(strcmp($possessore,$username)!=0){
+                $opera_html.='<p class="center">L\'opera è stata acquistata da: '.$possessore.'</p>';
+            }else{
+                $opera_html.='<p class="center">L\'opera è in tuo possesso!</p>';
+            }
+        }else{
+            #se l'utente è loggato vede il bottone acquista
+            if(isset($_SESSION['username'])){
+                $opera_html.='<form id="acq-nft" action="singolo-nft.php" method="post">';
+                $opera_html.='<input type="hidden" name="id" value="'.$id.'"/>';
+                $opera_html.='<input type="hidden" name="prezzo" value="'.$prezzo.'"/>';
+                $opera_html.='<input type="submit" value="Acquista" class="button" name="acquista">';
+                $opera_html.='</form>';
+            }else{
+                $opera_html.='<p class="center">Se vuoi acquistare l\'opera <a href="accedi.php">Accedi</a> al tuo profilo</p>';
+            }
+        }
     }
 
     if(count($recensioni)>0){
@@ -76,16 +134,16 @@ if (!$connessioneOK) {
         $aggiungi_recensione_html.='<input type="number" id="voto" name="voto" min="1" max="5" required/>';
         $aggiungi_recensione_html.='<label for="recensione">Recensione:</label>';
         $aggiungi_recensione_html.='<textarea id="recensione" name="recensione" required></textarea>';
-        $aggiungi_recensione_html.='<input type="submit" value="Aggiungi" class="button" name="aggiungi"></input>';
         $aggiungi_recensione_html.='<input type="hidden" name="id" value="'.$id.'"/>';
+        $aggiungi_recensione_html.='<input type="submit" value="Aggiungi" class="button" name="aggiungi"></input>';
         $aggiungi_recensione_html.='</fieldset>';
         $aggiungi_recensione_html.='</form>';
     }else{
-        $aggiungi_recensione_html.='<p>Se vuoi aggiungere una recensione <a href="accedi.php">Accedi</a> al tuo profilo</p>';
+        $aggiungi_recensione_html.='<p class="center">Se vuoi aggiungere una recensione <a href="accedi.php">Accedi</a> al tuo profilo</p>';
     }
 
 }
 
-$find=['{{OPERA}}','{{DESCRIZIONE}}','{{RECENSIONI}}','{{AGGIUNGI_RECENSIONE}}'];
-$replacement=[$opera_html,$descr_html,$recensioni_html,$aggiungi_recensione_html];
+$find=['{{OPERA}}','{{DESCRIZIONE}}','{{RECENSIONI}}','{{AGGIUNGI_RECENSIONE}}','{{ACQUISTO_RES}}'];
+$replacement=[$opera_html,$descr_html,$recensioni_html,$aggiungi_recensione_html,$acquisto_res];
 echo str_replace($find, $replacement, $paginaHTML);

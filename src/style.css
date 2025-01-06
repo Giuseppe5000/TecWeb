@@ -248,6 +248,10 @@ main p{
     padding: 1em;
 }
 
+main p.center{
+    text-align: center;
+}
+
 #cards {
     display: flex;
     flex-flow: row wrap;
