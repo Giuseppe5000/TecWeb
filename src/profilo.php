@@ -47,7 +47,7 @@ if(isset($_SESSION['username'])){
         // Query per ottenere il username e il saldo dell'utente, se l'utente è amministratore compare il form di insermento di una nuova opera
         $query  = "SELECT saldo, isAdmin FROM utente WHERE username = ?";
         $value = array($username);
-        $result = $database->executePreparedStatement($query,'s',$value);
+        $result = $database->executeSelectPreparedStatement($query,'s',$value);
         if(count($result) > 0){
             foreach($result as $row){
                 $saldo = "<span>" . $username . "</span>
@@ -79,7 +79,7 @@ if(isset($_SESSION['username'])){
         // Query per ottenere le opere possedute dall'utente
         $query  = "SELECT * FROM opera WHERE possessore = ?";
         $value = array($username);
-        $result = $database->executePreparedStatement($query,'s',$value);
+        $result = $database->executeSelectPreparedStatement($query,'s',$value);
         $database->closeConnection();
 
         if(count($result) == 0){

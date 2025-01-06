@@ -53,7 +53,7 @@ class Database {
         return $this->getQueryResult($query_result);
     }
 
-    public function executePreparedStatement($query,$format_string,$value) {
+    public function executeSelectPreparedStatement($query,$format_string,$value) {
         $stmt = $this->connection->prepare($query);
         if (!$stmt) throw new PrepareStatementException($this->connection->error);
 
@@ -65,7 +65,7 @@ class Database {
         return $this->getQueryResult($query_result);
     }
 
-    public function executeStatement($query,$format_string,$value) {
+    public function executeCRUDPreparedStatement($query,$format_string,$value) {
         $stmt = $this->connection->prepare($query);
         if (!$stmt) throw new PrepareStatementException($this->connection->error);
 
@@ -73,9 +73,9 @@ class Database {
 
         $stmt->execute();
         if ($stmt->affected_rows > 0) {
-            $avviso = "<p>NFT aggiunto con successo!</p>";
+            $avviso = "<p>Operazione avvenuta con successo!</p>";
         } else {
-            $avviso = "<p>Errore durante l'aggiunta dell'NFT.</p>";
+            $avviso = "<p>Errore durante la modifica di un elemento nel Database.</p>";
         }
         $stmt->close();
         return $avviso;

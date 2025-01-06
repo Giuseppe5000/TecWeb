@@ -33,7 +33,7 @@ if (!$connessioneOK) {
         $query = "INSERT INTO recensione (timestamp, utente, commento, opera, voto) VALUES (?, ?, ?, ?, ?)";
         
         $value = array(date("Y-m-d h:i:s"),$username, $recensione, $id, $voto);
-        $database->executeStatement($query,'sssii',$value);
+        $database->executeCRUDPreparedStatement($query,'sssii',$value);
     }
 
     #Se acquista l'opera
@@ -45,22 +45,22 @@ if (!$connessioneOK) {
         #controllo che possa acquistare l'opera tramite controllo del saldo
         $query = "SELECT saldo FROM utente WHERE username = ?";
         $value=array($username);
-        $saldo = $database->executePreparedStatement($query,'s',$value);
+        $saldo = $database->executeSelectPreparedStatement($query,'s',$value);
         
         if ($saldo[0]["saldo"]>=$prezzo){
             $query = "INSERT INTO acquisto (utente, opera, prezzo, data) VALUES (?, ?, ?, ?)";
             $value = array($username, $id, $prezzo, date("Y-m-d h:i:s"));
-            $database->executeStatement($query,'sids',$value);
+            $database->executeCRUDPreparedStatement($query,'sids',$value);
 
             #modifico il possessore dell'opera e il saldo dell'utente
             $query = "UPDATE opera SET possessore = ? WHERE id = ?";
             $value = array($username, $id);
-            $database->executeStatement($query,'si',$value);
+            $database->executeCRUDPreparedStatement($query,'si',$value);
             
             $query = "UPDATE utente SET saldo = ? WHERE username = ?";
             $nuovo_saldo=$saldo[0]["saldo"]-$prezzo;
             $value = array($nuovo_saldo,$username);
-            $database->executeStatement($query,'ds',$value);
+            $database->executeCRUDPreparedStatement($query,'ds',$value);
             
             $acquisto_res.='<p class="center">Opera acquistata con successo!</p>';
         }else{
