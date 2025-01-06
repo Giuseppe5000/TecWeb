@@ -29,6 +29,8 @@ if (!$connessioneOK) {
     if (isset($_POST['aggiungi'])) {
         //recupera valori del form
         $id=$_POST['id'];
+        $voto=$database->pulisciInput($_POST['voto']);
+        $recensione=$database->pulisciInput($_POST['recensione']);
 
         $query = "INSERT INTO recensione (timestamp, utente, commento, opera, voto) VALUES (?, ?, ?, ?, ?)";
         
