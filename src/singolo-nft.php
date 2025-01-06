@@ -7,7 +7,7 @@ require_once "./php/Navbar.php";
 $paginaHTML = file_get_contents('./static/singolo-nft.html');
 $database = new Database();
 $connessioneOK = $database->openConnection();
-$username=$_SESSION['username'];
+$username='';
 $id='';
 
 $opera_html='';
@@ -26,7 +26,9 @@ if (!$connessioneOK) {
     }
 
     #Se aggiunge una recensione
-    if (isset($_POST['aggiungi'])) {
+    if (isset($_POST['aggiungi']) && isset($_SESSION['username'])) {
+        
+        $username=$_SESSION['username'];
         //recupera valori del form
         $id=$_POST['id'];
         $voto=$database->pulisciInput($_POST['voto']);
@@ -39,7 +41,9 @@ if (!$connessioneOK) {
     }
 
     #Se acquista l'opera
-    if (isset($_POST['acquista'])) {
+    if (isset($_POST['acquista']) && isset($_SESSION['username'])) {
+        
+        $username=$_SESSION['username'];
         //recupera valori del form
         $id=$_POST['id'];
         $prezzo=(double)$_POST['prezzo'];
@@ -93,7 +97,7 @@ if (!$connessioneOK) {
 
         #se l'opera è acquista si vedrà da chi è stata acquistata, per essere acquistata il possessore deve essere DIVERSO da admin
         if(strcmp($possessore,'admin')!=0){
-            if(strcmp($possessore,$username)!=0){
+            if(!isset($_SESSION['username']) || strcmp($possessore,$_SESSION['username'])!=0){
                 $opera_html.='<p class="center">L\'opera è stata acquistata da: '.$possessore.'</p>';
             }else{
                 $opera_html.='<p class="center">L\'opera è in tuo possesso!</p>';
