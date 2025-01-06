@@ -1,11 +1,9 @@
 <?php
 
-session_start();
-
 require_once "./php/Database.php";
 require_once "./php/Utente.php";
-
-$paginaHTML = file_get_contents('./static/registrati.html');
+require_once "./php/Navbar.php";
+session_start();
 
 $messaggiPerForm = "";
 
@@ -65,6 +63,11 @@ if(isset($_POST['submit'])){
         }
     }
 }
-$paginaHTML = str_replace('{{REGISTRATI}}', $messaggiPerForm, $paginaHTML);
-echo $paginaHTML;
+
+$navbar = new Navbar("Registrati");
+$paginaHTML = file_get_contents('./static/registrati.html');
+$find=['{{REGISTRATI}}', '{{NAVBAR}}'];
+$replacement=[$messaggiPerForm, $navbar->getNavbar()];
+
+echo str_replace($find, $replacement, $paginaHTML);
 
