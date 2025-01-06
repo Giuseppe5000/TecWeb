@@ -104,7 +104,7 @@ function generatePageNumber($pageNumber) {
 
 // Per adesso vengono richieste tutte le opere al db e poi qui ne vengono mostrate 10
 // Sarebbe meglio farsi ritornare solo 10 opere dal db se occorre mostrare solo quelle
-$pageSize = 10;
+$pageSize = 8;
 $pageNumber = 0;
 if (isset($_GET['page']))
     $pageNumber = intval($_GET['page']);
