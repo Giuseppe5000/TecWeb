@@ -1,9 +1,13 @@
 \documentclass[10pt]{article}
 \usepackage{graphicx} % Required for inserting images
 \usepackage{geometry}
-\geometry{a4paper,left=20mm,right=20mm,top=20mm}
+\usepackage{hyperref}
+\usepackage{tabularx}
 
-\title{Progetto di Tecnologie Web - Doflamingo}
+\geometry{a4paper,left=20mm,right=20mm,top=20mm}
+\graphicspath{{images}}
+
+\title{Relazione Progetto di Tecnologie Web}
 \author{
     \textbf{2076430}\\ Gusella Manuel \and
     \textbf{2075541}\\ Marcon Giulia \and
@@ -14,7 +18,20 @@
 
 \begin{document}
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{logo.png}
+\end{figure}
 \maketitle
+\renewcommand{\arraystretch}{2}
+\begin{tabular}{|>{\centering\arraybackslash}m{7cm}|>{\centering\arraybackslash}m{8cm}|}
+    \hline
+     Link Sito Web & \url{https://giuseppe5000.github.io/TecWeb/} \\
+     \hline
+     E-mail referente del gruppo & manuel.gusella@studenti.unipd.it \\
+    \hline
+\end{tabular}
+\newpage
 \tableofcontents
 \newpage
 
@@ -23,11 +40,21 @@
 "Doflamingo" è un marketplace digitale che contiene delle opere uniche sotto forma di NFT pubblicate direttamente dall'associazione.
 Un Non-fungible token (NFT) rappresenta l'atto di proprietà e certificato di autenticità di un bene unico, in questo caso un'opera digitale. \\
 Tutti i visitatori hanno la possibilità di visionare le opere e creare il proprio account digitale.\\
-Gli utenti registrati possono comprare le opere, se non già possedute da qualcun'altro, attraverso una valuta digitale chiamata Ethereum (ETH). Eventualmente l'utente può decidere di vendere le opere che possiede ad altri utenti.\\
+Gli utenti registrati possono comprare le opere, se non già possedute da qualcun'altro, attraverso una valuta digitale chiamata Ethereum (ETH). Eventualmente l'utente può decidere di vendere le opere che possiede ad altri utenti.\\ 
 Inoltre gli utenti registrati possono recensire le opere dando un voto da \textbf{1 a 5 stelle}, inserendo opzionalmente anche un commento al riguardo.\\
 
 
 \subsection{Analisi}
+\subsubsection{Analisi del Target}
+L'utenza principale sarà composta da persone appassionate agli NFT e alla loro compra-vendita. La maggioranza degli utenti non avrà un'idea precisa di ciò che vuole e per questo verrà aiutata nell'esplorazione.\\
+Per impedire l'esclusione di alcune categorie si è pensato di fornire strumenti per aiutare nella ricerca degli NFT.\\
+Utilizzando la metafora della pesca:
+\begin{itemize}
+    \item \textbf{Tiro perfetto:} L'utente sà già il nome dell'opera che vuole e potrà cercarla facilmente tramite una barra di ricerca;
+    \item \textbf{Trappola per aragoste:} Grazie alla suddivisione in categorie e poter applicare ulteriori filtri sulle opere l'utente può farsi un'idea degli NFT presenti nella piattaforma.
+    \item \textbf{Pesca con la rete:} La struttura del sito è semplice, quindi permette agli utenti di esplorare il sito senza sovraccarico
+    \item \textbf{Boa di segnalazione:} 
+\end{itemize}
 \subsubsection{Utenti}
 Esistono 3 tipologie di utenti:
 \begin{itemize}
@@ -60,7 +87,6 @@ Esistono 3 tipologie di utenti:
 \begin{itemize}
     \item \textbf{utente} (\underline{username}, password, email, isAdmin, saldo)
     \item \textbf{categoria} (\underline{nome}, descrizione)
-    \item \textbf{iscrizione} (\underline{\textit{utente}, \textit{categoria}})
     \item \textbf{opera} (\underline{id}, path, nome, descrizione, prezzo, \textit{possessore})
     \item \textbf{acquisto} (\underline{\textit{utente}, \textit{opera}}, prezzo, data)
     \item \textbf{appartenenza} (\underline{\textit{categoria}, \textit{opera}})
@@ -70,8 +96,6 @@ Il simbolo * indica che l'attributo può essere nullo.
 
 \subsection{Vincoli di integrità referenziale }
 \begin{itemize}
-    \item iscrizione.utente → utente.username
-    \item iscrizione.categoria → categoria.nome
     \item opera.possessore → utente.username
     \item acquisto.utente → utente.username
     \item acquisto.opera → opera.id
@@ -80,6 +104,37 @@ Il simbolo * indica che l'attributo può essere nullo.
     \item recensione.utente → utente.username
     \item recensione.opera → opera.id
 \end{itemize}
+\subsection{Schema E-R}
+\begin{center}
+    \includegraphics[width=0.6\linewidth]{images/schema-ristrutturato.png}
+\end{center}
+
+\section{Linguaggi}
+\subsection{HTML}
+Le pagine sono state create seguendo gli standard HTML5, dato che si presuppone che l'utente visiterà la pagina tramite browser più aggiornati.
+\subsection{CSS}
+Per rispettare la separazione tra struttura e presentazione si è deciso di utilizzare fogli di stile esterni.
+\subsection{SQL}
+Il sito web si appoggia su un database per le informazioni degli Utenti, delle opere, delle recensioni, degli acquisti e delle categorie.
+\subsection{PHP} 
+Per rispettare la separazione tra struttura e comportamento si è deciso di utilizzare script in PHP. Questi script vengono utilizzati per connettersi al database, visualizzare determinati NFT nelle pagine ed effettuare controlli di autenticazione.
+\subsection{JavaScript}
+
+\section{Progettazione}
+\subsection{Struttura generale}
+\subsection{Header}
+\subsection{Breadcrumb}
+\subsection{Contenuto}
+
+\section{Implementazione}
+\subsection{Front-End}
+\subsection{Back-End}
+
+\section{Organizzazione del lavoro}
+\subsection{Gusella Manuel}
+\subsection{Marcon Giulia}
+\subsection{Perozzo Andrea}
+\subsection{Tutino Giuseppe}
 
 \end{document}
 
