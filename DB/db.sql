@@ -67,11 +67,11 @@ INSERT INTO utente VALUES
 
 -- Inserimento Categorie
 INSERT INTO categoria VALUES
-('Abstract', 'DESC'),
-('Animals', 'DESC'),
-('PixelArt', 'DESC'),
-('Black&White', 'DESC'),
-('Photo', 'DESC');
+('Abstract', 'Opere astratte che evocano emozioni e immaginazione'),
+('Animals', 'Illustrazioni e dipinti del mondo animale'),
+('PixelArt', 'Arte digitale in stile pixel'),
+('Black&White', 'Fotografie e disegni in bianco e nero'),
+('Photo', 'Fotografie artistiche e paesaggi');
 
 -- Inserimento Opere
 INSERT INTO opera(id, path, nome, descrizione, prezzo) VALUES
