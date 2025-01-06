@@ -8,6 +8,14 @@ $saldo = "";
 $nftPosseduti = ""; 
 $avviso = "";
 
+function pulisciInput($value)
+{
+ 	$value = trim($value);
+  	$value = strip_tags($value);
+	$value = htmlentities($value);
+  	return $value;
+}
+
 if(isset($_SESSION['username'])){
     $database = new Database();
     $connessioneOK = $database->openConnection();
