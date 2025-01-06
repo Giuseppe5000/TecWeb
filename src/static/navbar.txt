@@ -1,0 +1,7 @@
+Home,index.php,home-bg,en,
+NFT,nft.php,nft-bg,en,Non-fungible token,
+Chi siamo,chi-siamo.php,aboutUs-bg,it,
+Registrati,registrati.php,register-bg,it,
+Accedi,accedi.php,login-bg,it,
+Disconnettiti,logout.php,logout-bg,it,
+Profilo,profilo.php,profile-bg,it,

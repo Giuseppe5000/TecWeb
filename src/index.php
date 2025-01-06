@@ -1,6 +1,8 @@
 <?php
 
 require_once "./php/Database.php";
+require_once "./php/Navbar.php";
+session_start();
 
 $paginaHTML = file_get_contents('./static/index.html');
 $ultimeUscite = '';
@@ -86,6 +88,8 @@ if (!$connessioneOK) {
   $top3 = '<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>';
 }
 
-$find=['{{ULTIME_USCITE}}','{{TOP3}}','{{CATEGORIE}}'];
-$replacement=[$ultimeUscite,$top3,$categorieAcquistate];
+$navbar = new Navbar("Home");
+
+$find=['{{ULTIME_USCITE}}','{{TOP3}}','{{CATEGORIE}}', '{{NAVBAR}}'];
+$replacement=[$ultimeUscite,$top3,$categorieAcquistate, $navbar->getNavbar()];
 echo str_replace($find, $replacement, $paginaHTML);
