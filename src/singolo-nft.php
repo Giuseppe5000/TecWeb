@@ -101,11 +101,15 @@ if (!$connessioneOK) {
         }else{
             #se l'utente è loggato vede il bottone acquista
             if(isset($_SESSION['username'])){
-                $opera_html.='<form id="acq-nft" action="singolo-nft.php" method="post">';
-                $opera_html.='<input type="hidden" name="id" value="'.$id.'"/>';
-                $opera_html.='<input type="hidden" name="prezzo" value="'.$prezzo.'"/>';
-                $opera_html.='<input type="submit" value="Acquista" class="button" name="acquista">';
-                $opera_html.='</form>';
+                if(strcmp($username,'admin')!=0){
+                    $opera_html.='<form id="acq-nft" action="singolo-nft.php" method="post">';
+                    $opera_html.='<input type="hidden" name="id" value="'.$id.'"/>';
+                    $opera_html.='<input type="hidden" name="prezzo" value="'.$prezzo.'"/>';
+                    $opera_html.='<input type="submit" value="Acquista" class="button" name="acquista">';
+                    $opera_html.='</form>';
+                }else{
+                    $opera_html.='<p class="center">L\'opera non è ancora stata acquista</p>';
+                }
             }else{
                 $opera_html.='<p class="center">Se vuoi acquistare l\'opera <a href="accedi.php">Accedi</a> al tuo profilo</p>';
             }
