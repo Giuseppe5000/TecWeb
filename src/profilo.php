@@ -28,11 +28,8 @@ if(isset($_SESSION['username'])){
             $target_dir = "./assets/";
             $imageFileType = strtolower(pathinfo($_FILES["immagine"]["name"], PATHINFO_EXTENSION));
             $target_file = $target_dir . generateUniqueFilename($imageFileType);
-            $check = getimagesize($_FILES["immagine"]["tmp_name"]);
         
-            if (!$check) {
-                $avviso .= "<p>Il file caricato non è un'immagine.</p>";
-            } elseif ($_FILES["immagine"]["size"] > 500000) {
+            if ($_FILES["immagine"]["size"] > 500000) {
                 $avviso .= "<p>L'immagine è di dimensioni troppo grandi.</p>";
             } elseif ($imageFileType !== "webp") {
                 $avviso .= "<p>Sono permessi solo immagini in formato WebP.</p>";
@@ -51,7 +48,7 @@ if(isset($_SESSION['username'])){
                 $stmt->execute();
         
                 if ($stmt->affected_rows > 0) {
-                    
+
                     if (!empty($_POST['categorie']) && is_array($_POST['categorie'])) {
                         $id_opera = $stmt->insert_id;
 
@@ -90,7 +87,7 @@ if(isset($_SESSION['username'])){
                         <fieldset>
                         <legend>Aggiungi NFT</legend>
                         <label for='immagine'>Immagine:</label>
-                        <input type='file' id='immagine' name='immagine' required>
+                        <input type='file' id='immagine' name='immagine' accept='image/*' required>
 
                         <label for='nome'>Nome:</label>
                         <input type='text' id='nome' name='nome' maxlength='30' required>
