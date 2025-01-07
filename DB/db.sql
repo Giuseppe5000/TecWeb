@@ -17,15 +17,6 @@ CREATE TABLE categoria (
        descrizione VARCHAR(150) NOT NULL
 );
 
-CREATE TABLE iscrizione (
-       utente VARCHAR(30) NOT NULL,
-       categoria VARCHAR(20) NOT NULL,
-
-       PRIMARY KEY (utente, categoria),
-       FOREIGN KEY (utente) REFERENCES utente(username) ON DELETE CASCADE,
-       FOREIGN KEY (categoria) REFERENCES categoria(nome) ON DELETE CASCADE
-);
-
 CREATE TABLE opera (
       id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
       path VARCHAR(30) NOT NULL,
@@ -76,38 +67,32 @@ INSERT INTO utente VALUES
 
 -- Inserimento Categorie
 INSERT INTO categoria VALUES
-('Abstract', 'DESC'),
-('Animals', 'DESC'),
-('PixelArt', 'DESC'),
-('Black&White', 'DESC'),
-('Photo', 'DESC');
-
--- Inserimento Iscrizioni
-INSERT INTO iscrizione VALUES
-('admin', 'PixelArt'),
-('user', 'Abstract'),
-('user', 'Animals'),
-('user', 'Photo');
+('Abstract', 'Opere astratte che evocano emozioni e immaginazione'),
+('Animals', 'Illustrazioni e dipinti del mondo animale'),
+('PixelArt', 'Arte digitale in stile pixel'),
+('Black&White', 'Fotografie e disegni in bianco e nero'),
+('Photo', 'Fotografie artistiche e paesaggi');
 
 -- Inserimento Opere
 INSERT INTO opera(id, path, nome, descrizione, prezzo) VALUES
-(1, './assets/nft1', 'Nome', 'DESC', 30.4),
-(2, './assets/nft2', 'Nome', 'DESC', 30.4),
-(3, './assets/nft3', 'Nome', 'DESC', 30.4),
-(4, './assets/nft4', 'Nome', 'DESC', 30.4),
-(5, './assets/nft5', 'Nome', 'DESC', 30.4),
-(6, './assets/nft6', 'Nome', 'DESC', 30.4),
-(7, './assets/nft7', 'Nome', 'DESC', 30.4),
-(8, './assets/nft8', 'Nome', 'DESC', 30.4),
-(9, './assets/nft9', 'Nome', 'DESC', 30.4),
-(10, './assets/nft10', 'Nome', 'DESC', 30.4),
-(11, './assets/nft11', 'Nome', 'DESC', 30.4),
-(12, './assets/nft12', 'Nome', 'DESC', 30.4),
-(13, './assets/nft13', 'Nome', 'DESC', 30.4),
-(14, './assets/nft14', 'Nome', 'DESC', 30.4),
-(15, './assets/nft15', 'Nome', 'DESC', 30.4),
-(16, './assets/nft16', 'Nome', 'DESC', 30.4),
-(17, './assets/nft17', 'Nome', 'DESC', 30.4);
+(1, './assets/nft1', 'Scarabocchio Azzurro', 'Un mix di colori azzurro, blu e viola.', 30.40),
+(2, './assets/nft2', 'Scarabocchio Viola', 'Un insieme di colori viola, blu e azzurro.', 32.50),
+(3, './assets/nft3', 'Scarabocchio Solare', 'Colori giallo, arancione, rosso e viola mescolati con energia.', 35.75),
+(4, './assets/nft4', 'Scarabocchio Blu', 'Un dipinto astratto con tonalità di azzurro, blu e viola.', 29.99),
+(5, './assets/nft5', 'Scarabocchio Caldo', 'Un mix di colori viola, rosso e arancione.', 31.20),
+(6, './assets/nft6', 'Rettangoli Monocromatici', 'Forme rettangolari astratte in bianco e nero.', 40.10),
+(7, './assets/nft7', 'Rettangoli Vivaci', 'Una rappresentazione astratta con forme rettangolari in rosso, bianco e nero.', 42.30),
+(8, './assets/nft8', 'Scimmia Sorridente', 'Una scimmia con un sorriso luminoso.', 50.00),
+(9, './assets/nft9', 'Scimmia Arrabbiata', 'Una scimmia che esprime rabbia con colori intensi.', 52.00),
+(10, './assets/nft10', 'Scimmia Stranita', 'Una espressione stranita e colori vivaci.', 48.50),
+(11, './assets/nft11', 'Scimmia Dubbiosa', 'Una scimmia dubbiosa, ma con uno stile unico.', 49.99),
+(12, './assets/nft12', 'Scimmia Intrigata', 'Una scimmia che sembra approvare con entusiasmo.', 51.20),
+(13, './assets/nft13', 'Gatto Verde', 'Un gattino pixelato dai colori verdi.', 35.00),
+(14, './assets/nft14', 'Gatto Blu', 'Un gattino pixelato con tonalità di blu.', 36.00),
+(15, './assets/nft15', 'Gatto Viola', 'Un gattino pixelato di colore viola.', 37.50),
+(16, './assets/nft16', 'Gatto Rosa', 'Un gattino pixelato rosa e adorabile.', 38.00),
+(17, './assets/nft17', 'Gatto Lilla', 'Un gattino pixelato con tonalità di lilla.', 39.50),
+(18, './assets/nft18', 'Fenicottero Elegante', 'Un fenicottero rosa su uno sfondo turchese a pallini.', 60.00);
 
 -- Inserimento Acquisti
 INSERT INTO acquisto VALUES
