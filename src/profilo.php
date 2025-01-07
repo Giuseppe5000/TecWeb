@@ -8,12 +8,9 @@ $saldo = "";
 $nftPosseduti = ""; 
 $avviso = "";
 
-function pulisciInput($value)
-{
- 	$value = trim($value);
-  	$value = strip_tags($value);
-	$value = htmlentities($value);
-  	return $value;
+function generateUniqueFilename($extension) {
+    $uniqueId = substr(uniqid(), -5); //Prendo solo gli ultimi 5 perchè senno è troppo lungo
+    return "nft" . $uniqueId . "." . $extension;
 }
 
 if(isset($_SESSION['username'])){
@@ -25,49 +22,63 @@ if(isset($_SESSION['username'])){
         // Se il form di aggiunta nuovo nft è stato inviato
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
             // Recupera i valori dal form
-            $nome = pulisciInput($_POST['nome']);
-            $descrizione = pulisciInput($_POST['descrizione']);
-            $prezzo = pulisciInput($_POST['prezzo']);
+            $nome = $database->pulisciInput($_POST['nome']);
+            $descrizione = $database->pulisciInput($_POST['descrizione']);
+            $prezzo = $database->pulisciInput($_POST['prezzo']);
 
             // Gestione upload immagine
             $target_dir = "./assets/";
-            $target_file = $target_dir . basename($_FILES["immagine"]["name"]);
-            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+            $imageFileType = strtolower(pathinfo($_FILES["immagine"]["name"], PATHINFO_EXTENSION));
+            $target_file = $target_dir . generateUniqueFilename($imageFileType);
+            // Ho trovato solo getimagesize per confermare che il file caricato sia un immagine
             $check = getimagesize($_FILES["immagine"]["tmp_name"]);
 
-            if($check === false) {
-                $avviso .= "<p>Il file non è un'immagine.</p>";
-            } elseif (file_exists($target_file)) {
-                $avviso .= "<p>Nome del file non valido</p>";
-            } elseif ($_FILES["immagine"]["size"] > 500000) {
-                $avviso .= "<p>Il file è troppo grande.</p>";
-            } elseif($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" && $imageFileType != "webp") {
-                $avviso .= "<p>Sono permessi solo file JPG, JPEG, PNG & GIF.</p>";
-            } else {           
+            if ($check && $_FILES["immagine"]["size"] > 500000) {
+                $avviso .= "<p>L'immagine è di dimensioni troppo grandi.</p>";
+            } elseif($check && $imageFileType != "webp") {
+                $avviso .= "<p>Sono permessi solo immagini in formato WebP.</p>";
+            } elseif ($check) {           
                 if (strlen($nome) == 0 || strlen($descrizione) == 0 || strlen($prezzo) == 0) {
-                $avviso .= "<p>Compila tutti i campi.</p>";
+                    $avviso .= "<p>Compila tutti i campi.</p>";
                 } else {
                     if (move_uploaded_file($_FILES["immagine"]["tmp_name"], $target_file)) {
-                $query = "INSERT INTO opera (path, nome, descrizione, prezzo) VALUES (?, ?, ?, ?)";
-                $stmt = $database->getConnection()->prepare($query);
-                if (!$stmt) {
-                    throw new PrepareStatementException($database->getConnection()->error);
-                }
-                        $path = $target_dir . pathinfo($_FILES["immagine"]["name"], PATHINFO_FILENAME);
+                        $query = "INSERT INTO opera (path, nome, descrizione, prezzo) VALUES (?, ?, ?, ?)";
+                        $stmt = $database->getConnection()->prepare($query);
+                        if (!$stmt) {
+                            throw new PrepareStatementException($database->getConnection()->error);
+                        }
+                        $path = rtrim($target_file, '.webp'); //Metto in db il path senza l'estensione
                         $stmt->bind_param('sssd', $path, $nome, $descrizione, $prezzo);
-                $stmt->execute();
+                        $stmt->execute();
 
-                if ($stmt->affected_rows > 0) {
-                    $avviso .= "<p>NFT aggiunto con successo!</p>";
-                } else {
-                    $avviso = "<p>Errore durante l'aggiunta dell'NFT.</p>";
-                }
+                        if ($stmt->affected_rows > 0) {
+                            $id_opera = $stmt->insert_id;
+                            $avviso .= "<p>NFT aggiunto con successo!</p>";
 
-                $stmt->close();
+                            $categorie = ['Abstract', 'Animals', 'PixelArt', 'Black&White', 'Photo'];
+                            foreach ($categorie as $categoria) {
+                                if (isset($_POST[$categoria])) {
+                                    $query = "INSERT INTO appartenenza (categoria, opera) VALUES (?, ?)";
+                                    $stmt = $database->getConnection()->prepare($query);
+                                    if (!$stmt) {
+                                        throw new PrepareStatementException($database->getConnection()->error);
+                                    }
+                                    $stmt->bind_param('si', $categoria, $id_opera);
+                                    $stmt->execute();
+                                    $stmt->close();
+                                }
+                            }
+                        } else {
+                            $avviso = "<p>Errore durante l'aggiunta dell'NFT.</p>";
+                        }
+
                     } else {
                         $avviso .= "<p>Errore durante il caricamento dell'immagine.</p>";
                     }
                 } 
+            }
+            else {
+                $avviso .= "<p>Il file caricato non è un'immagine.</p>";
             }
         }
 
@@ -95,6 +106,35 @@ if(isset($_SESSION['username'])){
 
                         <label for='prezzo'>Prezzo:</label>
                         <input type='number' id='prezzo' name='prezzo' step='0.001' min='0' required>
+
+                        <fieldset id='categorie'>
+                        <legend>Categorie</legend>
+
+                        <div>
+                            <input type='checkbox' id='Abstract' name='Abstract'/>
+                            <label for='Abstract'>Abstract</label>
+                        </div>
+
+                        <div>
+                            <input type='checkbox' id='Animals' name='Animals'/>
+                            <label for='Animals'>Animals</label>
+                        </div>
+
+                        <div>
+                            <input type='checkbox' id='PixelArt' name='PixelArt'/>
+                            <label for='PixelArt'>PixelArt</label>
+                        </div>
+
+                        <div>
+                            <input type='checkbox' id='Black&White' name='Black&White'/>
+                            <label for='Black&White'>Black&White</label>
+                        </div>
+
+                        <div>
+                            <input type='checkbox' id='Photo' name='Photo'/>
+                            <label for='Photo'>Photo</label>
+                        </div>
+                        </fieldset>
 
                         <input type='submit' value='Aggiungi' class='button' name='submit'>
                         </fieldset>
