@@ -3,15 +3,12 @@
 require_once "./php/Database.php";
 require_once "./php/Utente.php";
 require_once "./php/Navbar.php";
+require_once "./php/utils.php";
 session_start();
 
 $messaggi = array("generico"=>"", "username"=>"", "password"=>"");
 $username = "";
 $password = "";
-
-function makeMessageParagraph($str) {
-    return '<p class="messaggi-form">' . $str . '</p>';
-}
 
 function checkInput($username, $password, &$messaggi) {
 	if (strlen($username)==0)

@@ -3,6 +3,7 @@
 require_once "./php/Database.php";
 require_once "./php/Utente.php";
 require_once "./php/Navbar.php";
+require_once "./php/utils.php";
 session_start();
 
 $messaggi = array("generico"=>"", "username"=>"", "email"=>"", "password"=>"");
@@ -10,10 +11,6 @@ $username = "";
 $email = "";
 $password = "";
 $confirmPassword = "";
-
-function makeMessageParagraph($str) {
-    return '<p class="messaggi-form">' . $str . '</p>';
-}
 
 function checkInput($username, $email, $password, $confirmPassword, &$messaggi) {
     if (strlen($username)==0)
