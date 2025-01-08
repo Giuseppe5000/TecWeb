@@ -572,6 +572,33 @@ Commento
     resize:none;
 }
 
+#stelle-recensione {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.user-form fieldset label.star {
+    font-size: 2em;
+    margin: 0;
+}
+
+#stelle-recensione input[type="radio"] {
+    display: none;
+}
+
+.star {
+    color: gold;
+}
+
+#stelle-recensione input[type="radio"]:checked  ~ .star{
+    color: gold; /* Color of the selected stars */
+}
+
+#stelle-recensione input[type="radio"]:checked  ~ .star ~ .star{
+    color: gray; /* Color of the selected stars */
+}
+
 /*
 ===========================
 PAGINA CHI SIAMO
