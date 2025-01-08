@@ -124,3 +124,32 @@ PAGINA CHI SIAMO
     max-width: 45%;
     box-sizing: border-box;
 }
+
+/*
+===========================
+PAGINE 404,500
+===========================
+*/
+
+/*
+===========================
+    padding-right: 0;
+    padding-top: 100%;
+    background-position-y: 30%;
+    background-position-x: 50%;
+    background-size: 40%;
+    background-repeat: no-repeat;
+===========================
+*/
+
+#errore404, #errore500{
+    padding-right: 0;
+    padding-top: 85%;
+    background-position: right 50% top 25%;
+    background-size: 40%;
+    background-repeat: no-repeat;
+}
+
+#errore404 h1, #errore500 h1 {
+    background-color: var(--contentbgcolor);
+}
