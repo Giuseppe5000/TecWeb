@@ -619,3 +619,31 @@ dl{
     max-width: 9.5em;
     height: auto;
 }
+
+/*
+===========================
+PAGINE 404,500
+===========================
+*/
+#errore404, #errore500{
+    padding-right: 40%;
+    padding-bottom: 5em;
+    background-position: right 15% top 55%;
+    background-size: 30%;
+    background-repeat: no-repeat;
+}
+
+#errore404{
+    background-image: url("assets/404.png");
+} 
+
+#errore500{
+    background-image: url("assets/500.png");
+}
+
+#errore404 h2, #errore500 h2{
+    margin: 0 10%;
+    color: var(--bgcolor-help);
+    font-weight: bold;
+    font-size: 1.5em;
+}
