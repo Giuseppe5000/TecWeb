@@ -38,40 +38,25 @@ if(isset($_SESSION['username'])){
             } elseif (!move_uploaded_file($_FILES["immagine"]["tmp_name"], $target_file)) {
                 $avviso .= "<p>Errore durante il caricamento dell'immagine.</p>";
             } else {
-                $query = "INSERT INTO opera (path, nome, descrizione, prezzo) VALUES (?, ?, ?, ?)";
-                $stmt = $database->getConnection()->prepare($query);
-                if (!$stmt) {
-                    throw new PrepareStatementException($database->getConnection()->error);
-                }
                 $path = rtrim($target_file, '.webp');
-                $stmt->bind_param('sssd', $path, $nome, $descrizione, $prezzo);
-                $stmt->execute();
+                $query = "INSERT INTO opera (path, nome, descrizione, prezzo) VALUES (?, ?, ?, ?)";
+                $format_string = 'sssd';
+                $values = [$path, $nome, $descrizione, $prezzo];
+                $avviso = $database->executeCRUDPreparedStatement($query, $format_string, $values);
         
-                if ($stmt->affected_rows > 0) {
+                if (strpos($avviso, 'successo') !== false && !empty($_POST['categorie']) && is_array($_POST['categorie'])) {
+                    $id_opera = $database->getConnection()->insert_id;
 
-                    if (!empty($_POST['categorie']) && is_array($_POST['categorie'])) {
-                        $id_opera = $stmt->insert_id;
-
-                        foreach ($_POST['categorie'] as $categoria) {                          
-                            $query = "INSERT INTO appartenenza (categoria, opera) VALUES (?, ?)";
-                            $stmtCategoria = $database->getConnection()->prepare($query);
-                            if (!$stmtCategoria) {
-                                throw new PrepareStatementException($database->getConnection()->error);
-                            }
-                            $stmtCategoria->bind_param('si', $categoria, $id_opera);
-                            $stmtCategoria->execute();
-                            $stmtCategoria->close();
-                        }
-                    }       
-
-                    $avviso .= "<p>NFT aggiunto con successo!</p>";  
-
-                } else {
-                    $avviso .= "<p>Errore durante l'aggiunta dell'NFT.</p>";
-                }    
-                $stmt->close();
-            }
+                    foreach ($_POST['categorie'] as $categoria) {
+                        $query = "INSERT INTO appartenenza (categoria, opera) VALUES (?, ?)";
+                        $format_string = 'si';
+                        $values = [$categoria, $id_opera];
+                        $database->executeCRUDPreparedStatement($query, $format_string, $values);
+                    }
+                } 
+            }    
         }
+    
 
         // Query per ottenere il username e il saldo dell'utente, se l'utente è amministratore compare il form di insermento di una nuova opera
         $query  = "SELECT saldo, isAdmin FROM utente WHERE username = ?";
