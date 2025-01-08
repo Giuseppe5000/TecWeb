@@ -41,23 +41,25 @@
 
       <form id="regist-form" class="user-form" action="registrati.php" method="post">
 
-        <div id="advices">
-          {{REGISTRATI}}
+        <div>
+          {{MESSAGGI_GENERICI}}
         </div>
 
         <fieldset>
           <legend>Registrazione</legend>
           <label for="username">Username:</label>
-          <input type="text" id="username" name="username" maxlength="30" required>
+          {{MESSAGGI_USERNAME}}
+          <input type="text" id="username" name="username" maxlength="30" value="{{USERNAME}}" required>
 
           <label for="email">Email:</label>
-          <input type="email" id="email" name="email" maxlength="30" required>
+          {{MESSAGGI_EMAIL}}
+          <input type="email" id="email" name="email" maxlength="30" value="{{EMAIL}}" required>
 
           <label for="password">Password:</label>
-          <input type="password" id="password" name="password" maxlength="30" required>
-
+          {{MESSAGGI_PASSWORD}}
+          <input type="password" id="password" name="password" maxlength="30" value="{{PASSWD}}" required>
           <label for="confirm-password">Ripeti password:</label>
-          <input type="password" id="confirm-password" name="confirm-password" maxlength="30" required>
+          <input type="password" id="confirm-password" name="confirm-password" value="{{RIPETI_PASSWD}}" maxlength="30" required>
 
           <input type="submit" value="Registrati" class="button" name="submit">
         </fieldset>

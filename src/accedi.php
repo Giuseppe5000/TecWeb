@@ -3,35 +3,36 @@
 require_once "./php/Database.php";
 require_once "./php/Utente.php";
 require_once "./php/Navbar.php";
-
+require_once "./php/utils.php";
 session_start();
 
-$messaggiPerForm = "";
+$messaggi = array("generico"=>"", "username"=>"", "password"=>"");
+$username = "";
+$password = "";
 
-function pulisciInput($value){
-    $value = trim($value);
-    $value = strip_tags($value);
-    #$value = htmlentities($value);
-    return $value;
+function checkInput($username, $password, &$messaggi) {
+	if (strlen($username)==0)
+		$messaggi["username"] .= makeMessageParagraph("Il campo username non può essere vuoto!");
+	if (strlen($password)==0)
+		$messaggi["password"] .= makeMessageParagraph("Il campo password non può essere vuoto!");
+
+    if (strlen($username)>30)
+        $messaggi["username"] .= makeMessageParagraph("Il campo username non può superare i 30 caratteri!");
+    if (strlen($password)>30)
+        $messaggi["password"] .= makeMessageParagraph("Il campo password non può superare i 30 caratteri!");
+
+    return strlen($messaggi["username"])==0 && strlen($messaggi["password"])==0;
 }
+
 if(isset($_POST['submit'])){
-    $username = pulisciInput($_POST['username']);
-	$password = pulisciInput($_POST['password']);
+    $database = new Database();
+    $username = $database->pulisciInput($_POST['username']);
+	$password = $database->pulisciInput($_POST['password']);
 
-	if (strlen($username)==0 || strlen($password)==0){
-		$messaggiPerForm .= "<p>Username o password mancanti!</p>";
-	}
-	if (strlen($username)>30 || strlen($password)>30){
-		$messaggiPerForm .= "<p>Username e password non possono superare i 30 caratteri!</p>";
-	}
-
-	if($messaggiPerForm == ""){
-
-		$database = new Database();
+    if(checkInput($username, $password, $messaggi)){
 		$connessioneOK = $database->openConnection();
 
 		if(!$connessioneOK){
-
 			$utente = new Utente($database->getConnection(), $username, $password, "");
 			$loginSuccessfull = $utente->login();
 			$database->closeConnection();
@@ -42,19 +43,20 @@ if(isset($_POST['submit'])){
 				exit;
 			}
 			else{
-				$messaggiPerForm = "<p>Username o password errati</p>";
+				$messaggi["generico"] .= makeMessageParagraph("Username o password errati");
 			}
 		} else {
-			$messaggiPerForm = "<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>";
+            header('Location: ./500.php');
 		}
 	}
 }
 
-
 $navbar = new Navbar("Accedi");
 
 $paginaHTML = file_get_contents('./static/accedi.html');
-$find=['{{ACCEDI}}', '{{NAVBAR}}'];
-$replacement=[$messaggiPerForm, $navbar->getNavbar()];
+$find=['{{MESSAGGI_GENERICI}}', '{{MESSAGGI_USERNAME}}', '{{MESSAGGI_PASSWORD}}',
+       '{{USERNAME}}', '{{PASSWD}}', '{{NAVBAR}}'];
+$replacement=[$messaggi["generico"], $messaggi["username"], $messaggi["password"],
+              $username, $password, $navbar->getNavbar()];
 
 echo str_replace($find, $replacement, $paginaHTML);

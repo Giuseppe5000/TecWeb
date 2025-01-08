@@ -3,43 +3,50 @@
 require_once "./php/Database.php";
 require_once "./php/Utente.php";
 require_once "./php/Navbar.php";
+require_once "./php/utils.php";
 session_start();
 
-$messaggiPerForm = "";
+$messaggi = array("generico"=>"", "username"=>"", "email"=>"", "password"=>"");
+$username = "";
+$email = "";
+$password = "";
+$confirmPassword = "";
 
-function pulisciInput($value)
-{
- 	$value = trim($value);
-  	$value = strip_tags($value);
-	$value = htmlentities($value);
-  	return $value;
+function checkInput($username, $email, $password, $confirmPassword, &$messaggi) {
+    if (strlen($username)==0)
+        $messaggi["username"] .= makeMessageParagraph("Il campo username non può essere vuoto!");
+    if (strlen($email)==0)
+        $messaggi["email"] .= makeMessageParagraph("Il campo email non può essere vuoto!");
+    if (strlen($password)==0 || strlen($confirmPassword)==0)
+        $messaggi["password"] .= makeMessageParagraph("I campi password e conferma password non possono essere vuoti!");
+
+    if (strlen($username)>30)
+        $messaggi["username"] .= makeMessageParagraph("Il campo username non può superare i 30 caratteri!");
+    if (strlen($email)>30)
+        $messaggi["email"] .= makeMessageParagraph("Il campo email non può superare i 30 caratteri!");
+    if (strlen($password)>30 || strlen($confirmPassword)>30)
+        $messaggi["password"] .= makeMessageParagraph("I campi password e ripeti password non possono superare 30 caratteri!");
+
+    if($password != $confirmPassword)
+        $messaggi["password"] .= makeMessageParagraph("I campi password e ripeti password non corrispondono!");
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+        $messaggi["email"] .= makeMessageParagraph("Formato email non valido!");
+
+    return strlen($messaggi["username"])==0 && strlen($messaggi["email"])==0 && strlen($messaggi["password"])==0;
 }
 
 if(isset($_POST['submit'])){
-    $username = pulisciInput($_POST['username']);
-    $email = pulisciInput($_POST['email']);
-    $password = pulisciInput($_POST['password']);
-    $confirmpassword = pulisciInput($_POST['confirm-password']);
+    $database = new Database();
+    $username = $database->pulisciInput($_POST['username']);
+    $email = $database->pulisciInput($_POST['email']);
+    $password = $database->pulisciInput($_POST['password']);
+    $confirmPassword = $database->pulisciInput($_POST['confirm-password']);
 
-    if (strlen($username)==0 || strlen($email)==0 || strlen($password)==0 || strlen($confirmpassword)==0){
-        $messaggiPerForm .= "<p>Compilare tutti i campi</p>";
-    }
-    if (strlen($username)>30 || strlen($email)>30 || strlen($password)>30 || strlen($confirmpassword)>30){
-        $messaggiPerForm .= "<p>Username, email e password non possono superare i 30 caratteri</p>";
-    }
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $messaggiPerForm .= "<p>Formato email non valido</p>";
-    }
-    if($password != $confirmpassword){
-        $messaggiPerForm .= "<p>Le password non corrispondono</p>";
-    }
-
-    if($messaggiPerForm == ""){
-        $database = new Database();
+    if(checkInput($username, $email, $password, $confirmPassword, $messaggi)){
         $connessioneOK = $database->openConnection();
 
         if(!$connessioneOK){
-
             $utente = new Utente($database->getConnection(), $username, $password, $email);
             try {
                 $utente->register();
@@ -49,25 +56,25 @@ if(isset($_POST['submit'])){
                 exit;
             }
             catch(UserAlredyExistsException $e) {
-                $messaggiPerForm = "<p>" . $e->errorMessage() . "</p>";
+                $messaggi["generico"] .= makeMessageParagraph("Lo username o la email inserite sono già usate da un altro utente!");
             }
             catch(UserRegisterGenericException $e) {
-                $messaggiPerForm = "<p>" . $e->errorMessage() . "</p>";
+                $messaggi["generico"] .= makeMessageParagraph("È avvenuto un errore durante la registrazione, per favore riprova più tardi.");
             }
             catch(PrepareStatementException $e) {
-                $messaggiPerForm = "<p>" . $e->errorMessage() . "</p>";
+                header('Location: ./500.php');
             }
-
         }else{
-            $messaggiPerForm = "<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>";
+            header('Location: ./500.php');
         }
     }
 }
 
 $navbar = new Navbar("Registrati");
 $paginaHTML = file_get_contents('./static/registrati.html');
-$find=['{{REGISTRATI}}', '{{NAVBAR}}'];
-$replacement=[$messaggiPerForm, $navbar->getNavbar()];
+$find=['{{MESSAGGI_GENERICI}}', '{{MESSAGGI_USERNAME}}', '{{MESSAGGI_EMAIL}}', '{{MESSAGGI_PASSWORD}}',
+       '{{USERNAME}}', '{{EMAIL}}', '{{PASSWD}}', '{{RIPETI_PASSWD}}', '{{NAVBAR}}'];
+$replacement=[$messaggi["generico"], $messaggi["username"], $messaggi["email"], $messaggi["password"],
+              $username, $email, $password, $confirmPassword, $navbar->getNavbar()];
 
 echo str_replace($find, $replacement, $paginaHTML);
-

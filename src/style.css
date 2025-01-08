@@ -465,6 +465,10 @@ PAGINA REGISTRATI E ACCEDI
     margin-top: 1em;
 }
 
+.messaggi-form {
+    color: var(--bgcolor-help);
+}
+
 /*
 ===============
 TABELLA IN HOME
