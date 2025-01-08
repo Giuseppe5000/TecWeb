@@ -59,7 +59,7 @@ if(isset($_POST['submit'])){
                 exit;
             }
             catch(UserAlredyExistsException $e) {
-                $messaggi["generico"] .= makeMessageParagraph("Lo username o la password inserite sono già usate da un altro utente!");
+                $messaggi["generico"] .= makeMessageParagraph("Lo username o la email inserite sono già usate da un altro utente!");
             }
             catch(UserRegisterGenericException $e) {
                 $messaggi["generico"] .= makeMessageParagraph("È avvenuto un errore durante la registrazione, per favore riprova più tardi.");
