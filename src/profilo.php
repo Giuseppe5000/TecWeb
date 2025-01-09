@@ -2,6 +2,7 @@
 
 require_once "./php/Database.php";
 require_once "./php/Navbar.php";
+require_once "./php/utils.php";
 session_start();
 
 $saldo = "";
@@ -127,7 +128,7 @@ if(isset($_SESSION['username'])){
             foreach($result as $row){
                 $nftPosseduti .= '<div class="card">';
                 $nftPosseduti .= '<a href="singolo-nft.php?id='.$row["id"].'">';
-                $nftPosseduti .= '<h3>' . $row["nome"]  . '</h3>';
+                $nftPosseduti .= '<h3>' . trimName($row["nome"])  . '</h3>';
                 $nftPosseduti .= '<img src="./' . $row["path"] . '.webp" width="140" height="140">';
                 $nftPosseduti .= '</a>';
                 $nftPosseduti .= '</div>';

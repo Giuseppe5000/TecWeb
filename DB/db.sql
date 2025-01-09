@@ -87,7 +87,7 @@ INSERT INTO opera(id, path, nome, descrizione, prezzo) VALUES
 (10, './assets/nft10', 'Scimmia Stranita', 'Una espressione stranita e colori vivaci.', 48.50),
 (11, './assets/nft11', 'Scimmia Dubbiosa', 'Una scimmia dubbiosa, ma con uno stile unico.', 49.99),
 (12, './assets/nft12', 'Scimmia Intrigata', 'Una scimmia che sembra approvare con entusiasmo.', 51.20),
-(13, './assets/nft13', 'Gatto Verde', 'Un gattino pixelato dai colori verdi.', 35.00),
+(13, './assets/nft13', 'Broly', 'Un gattino pixelato dai colori verdi.', 35.00),
 (14, './assets/nft14', 'Gatto Blu', 'Un gattino pixelato con tonalità di blu.', 36.00),
 (15, './assets/nft15', 'Gatto Viola', 'Un gattino pixelato di colore viola.', 37.50),
 (16, './assets/nft16', 'Gatto Rosa', 'Un gattino pixelato rosa e adorabile.', 38.00),
