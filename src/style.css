@@ -521,6 +521,13 @@ PAGINA PROFILO
     width: 8em;
 }
 
+.del_recensione{
+    display: flex;
+    margin: 0 1em;
+    align-items: center;
+}
+
+
 /*
 ===========================
 PAGINA SINGOLO NFT

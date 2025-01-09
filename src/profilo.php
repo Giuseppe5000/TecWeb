@@ -6,6 +6,7 @@ session_start();
 
 $saldo = "";
 $nftPosseduti = ""; 
+$recensioni_html = "";
 $avviso = "";
 
 function generateUniqueFilename($extension) {
@@ -20,7 +21,7 @@ if(isset($_SESSION['username'])){
 
     if(!$connessioneOK){
         // Se il form di aggiunta nuovo nft è stato inviato
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aggiungi-opera'])) {
             $nome = $database->pulisciInput($_POST['nome']);
             $descrizione = $database->pulisciInput($_POST['descrizione']);
             $prezzo = $database->pulisciInput($_POST['prezzo']);
@@ -56,7 +57,17 @@ if(isset($_SESSION['username'])){
                 } 
             }    
         }
-    
+
+        #post che cancella la recensione
+        if (isset($_POST['cancella_x'])) {
+            //recupera valori del form
+            $date=$_POST['timestamp'];
+
+            $query = "DELETE FROM recensione WHERE utente=? AND timestamp=?";
+            
+            $value = array($username,$date);
+            $database->executeCRUDPreparedStatement($query,'ss',$value);
+        }
 
         // Query per ottenere il username e il saldo dell'utente, se l'utente è amministratore compare il form di insermento di una nuova opera
         $query  = "SELECT saldo, isAdmin FROM utente WHERE username = ?";
@@ -107,24 +118,27 @@ if(isset($_SESSION['username'])){
                         </div>
                         </fieldset>
 
-                        <input type='submit' value='Aggiungi' class='button' name='submit'>
+                        <input type='submit' value='Aggiungi' class='button' name='aggiungi-opera'>
                         </fieldset>
                       </form>";
                 }
             }
         }
 
-        // Query per ottenere le opere possedute dall'utente
+        // Query per ottenere le opere e le recensioni dell'utente
         $query  = "SELECT * FROM opera WHERE possessore = ?";
         $value = array($username);
-        $result = $database->executeSelectPreparedStatement($query,'s',$value);
+        $opere = $database->executeSelectPreparedStatement($query,'s',$value);
+
+        $query  = "SELECT recensione.*, nome FROM recensione JOIN opera ON recensione.opera = opera.id WHERE utente = ? ORDER BY timestamp DESC";
+        $recensioni = $database->executeSelectPreparedStatement($query,'s',$value);
         $database->closeConnection();
 
-        if(count($result) == 0){
-            $nftPosseduti = "<p>Non possiedi ancora nessun NFT</p>";
+        if(count($opere) == 0){
+            $nftPosseduti = '<p>Non possiedi ancora nessun <abbr lang="en" title="Non-fungible token">NFT</abbr></p>';
         }
         else{
-            foreach($result as $row){
+            foreach($opere as $row){
                 $nftPosseduti .= '<div class="card">';
                 $nftPosseduti .= '<a href="singolo-nft.php?id='.$row["id"].'">';
                 $nftPosseduti .= '<h3>' . $row["nome"]  . '</h3>';
@@ -133,7 +147,39 @@ if(isset($_SESSION['username'])){
                 $nftPosseduti .= '</div>';
             }
         }
+
+        if(count($recensioni) == 0){
+            $recensioni_html = "<p>Non hai ancora fatto alcuna recensione</p>";
+        }else{
+            foreach($recensioni as $recensione){
+                $date = strtotime($recensione["timestamp"]);
+                $date = date('d-m-Y',$date);
+                $utente = $recensione["utente"];
+                
+                $recensioni_html.='<div class="comment">';
+                $recensioni_html.='<div class="head-comment">';
+                $recensioni_html.='<div class="user-comment">';
+                $recensioni_html.= '<a href="singolo-nft.php?id=' . $recensione["opera"] . '">';
+                $recensioni_html.='<span>'.$recensione["nome"].'</span>';
+                $recensioni_html.= '</a>';
+                $recensioni_html.='</div>';
+                $recensioni_html .= '<div>' . str_repeat('<span>&#9733;</span>', $recensione["voto"]) . '</div>';
+                $recensioni_html.='<div class="user-comment">';
+                $recensioni_html.= "{$date}";
+                $recensioni_html.='<form class="del_recensione" action="profilo.php" method="post">';
+                $recensioni_html.='<div>';
+                $recensioni_html.='<input type="hidden" name="timestamp" value="'.$recensione["timestamp"].'"/>';
+                $recensioni_html.='<input id="cancella" type="image" src="assets/delete_icon.svg" alt="cancella recensione" name="cancella">';
+                $recensioni_html.='</div>';
+                $recensioni_html.='</form>';
+                $recensioni_html.='</div>';
+                $recensioni_html.='</div>';
+                $recensioni_html.='<p>'.$recensione["commento"].'</p>';
+                $recensioni_html.='</div>';
+            }
+        }
     }
+    
     else{
         $saldo = "<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>";
         $nftPosseduti = "<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>";
@@ -147,6 +193,6 @@ else{
 $navbar = new Navbar("Profilo");
 $paginaHTML = file_get_contents('./static/profilo.html');
 
-$find=['{{SALDO}}','{{CARDS}}', '{{NAVBAR}}'];
-$replacemenet=[$saldo,$nftPosseduti, $navbar->getNavbar()];
+$find=['{{SALDO}}','{{CARDS}}', '{{NAVBAR}}','{{RECENSIONI}}'];
+$replacemenet=[$saldo,$nftPosseduti, $navbar->getNavbar(), $recensioni_html];
 echo str_replace($find,$replacemenet,$paginaHTML);
