@@ -6,6 +6,7 @@ session_start();
 
 $saldo = "";
 $nftPosseduti = ""; 
+$recensioni_html = "";
 $avviso = "";
 
 function generateUniqueFilename($extension) {
@@ -114,17 +115,20 @@ if(isset($_SESSION['username'])){
             }
         }
 
-        // Query per ottenere le opere possedute dall'utente
+        // Query per ottenere le opere e le recensioni dell'utente
         $query  = "SELECT * FROM opera WHERE possessore = ?";
         $value = array($username);
-        $result = $database->executeSelectPreparedStatement($query,'s',$value);
+        $opere = $database->executeSelectPreparedStatement($query,'s',$value);
+
+        $query  = "SELECT * FROM recensione WHERE utente = ? ORDER BY timestamp DESC";
+        $recensioni = $database->executeSelectPreparedStatement($query,'s',$value);
         $database->closeConnection();
 
-        if(count($result) == 0){
-            $nftPosseduti = "<p>Non possiedi ancora nessun NFT</p>";
+        if(count($opere) == 0){
+            $nftPosseduti = '<p>Non possiedi ancora nessun <abbr lang="en" title="Non-fungible token">NFT</abbr></p>';
         }
         else{
-            foreach($result as $row){
+            foreach($opere as $row){
                 $nftPosseduti .= '<div class="card">';
                 $nftPosseduti .= '<a href="singolo-nft.php?id='.$row["id"].'">';
                 $nftPosseduti .= '<h3>' . $row["nome"]  . '</h3>';
@@ -133,7 +137,28 @@ if(isset($_SESSION['username'])){
                 $nftPosseduti .= '</div>';
             }
         }
+
+        if(count($recensioni) == 0){
+            $recensioni_html = "<p>Non hai ancora fatto alcuna recensione</p>";
+        }else{
+            foreach($recensioni as $recensione){
+                $date = strtotime($recensione["timestamp"]);
+                $date = date('d-m-Y',$date);
+                $recensioni_html.='<div class="comment">';
+                $recensioni_html.='<div class="head-comment">';
+                $recensioni_html.='<div class="user-comment">';
+                $recensioni_html.='<img class="logo_utente" src="assets/user.svg" alt="Logo profilo utente"/>';
+                $recensioni_html.='<span>'.$recensione["utente"].'</span>';
+                $recensioni_html.='</div>';
+                $recensioni_html .= '<div>' . str_repeat('<span>&#9733;</span>', $recensione["voto"]) . '</div>';
+                $recensioni_html.= "<div>{$date}</div>";
+                $recensioni_html.='</div>';
+                $recensioni_html.='<p>'.$recensione["commento"].'</p>';
+                $recensioni_html.='</div>';
+            }
+        }
     }
+    
     else{
         $saldo = "<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>";
         $nftPosseduti = "<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>";
@@ -147,6 +172,6 @@ else{
 $navbar = new Navbar("Profilo");
 $paginaHTML = file_get_contents('./static/profilo.html');
 
-$find=['{{SALDO}}','{{CARDS}}', '{{NAVBAR}}'];
-$replacemenet=[$saldo,$nftPosseduti, $navbar->getNavbar()];
+$find=['{{SALDO}}','{{CARDS}}', '{{NAVBAR}}','{{RECENSIONI}}'];
+$replacemenet=[$saldo,$nftPosseduti, $navbar->getNavbar(), $recensioni_html];
 echo str_replace($find,$replacemenet,$paginaHTML);
