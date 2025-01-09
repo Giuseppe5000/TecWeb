@@ -21,7 +21,7 @@ if(isset($_SESSION['username'])){
 
     if(!$connessioneOK){
         // Se il form di aggiunta nuovo nft è stato inviato
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aggiungi-opera'])) {
             $nome = $database->pulisciInput($_POST['nome']);
             $descrizione = $database->pulisciInput($_POST['descrizione']);
             $prezzo = $database->pulisciInput($_POST['prezzo']);
@@ -57,7 +57,17 @@ if(isset($_SESSION['username'])){
                 } 
             }    
         }
-    
+
+        #post che cancella la recensione
+        if (isset($_POST['cancella_x'])) {
+            //recupera valori del form
+            $date=$_POST['timestamp'];
+
+            $query = "DELETE FROM recensione WHERE utente=? AND timestamp=?";
+            
+            $value = array($username,$date);
+            $database->executeCRUDPreparedStatement($query,'ss',$value);
+        }
 
         // Query per ottenere il username e il saldo dell'utente, se l'utente è amministratore compare il form di insermento di una nuova opera
         $query  = "SELECT saldo, isAdmin FROM utente WHERE username = ?";
@@ -108,7 +118,7 @@ if(isset($_SESSION['username'])){
                         </div>
                         </fieldset>
 
-                        <input type='submit' value='Aggiungi' class='button' name='submit'>
+                        <input type='submit' value='Aggiungi' class='button' name='aggiungi-opera'>
                         </fieldset>
                       </form>";
                 }
@@ -120,7 +130,7 @@ if(isset($_SESSION['username'])){
         $value = array($username);
         $opere = $database->executeSelectPreparedStatement($query,'s',$value);
 
-        $query  = "SELECT * FROM recensione WHERE utente = ? ORDER BY timestamp DESC";
+        $query  = "SELECT recensione.*, nome FROM recensione JOIN opera ON recensione.opera = opera.id WHERE utente = ? ORDER BY timestamp DESC";
         $recensioni = $database->executeSelectPreparedStatement($query,'s',$value);
         $database->closeConnection();
 
@@ -144,14 +154,25 @@ if(isset($_SESSION['username'])){
             foreach($recensioni as $recensione){
                 $date = strtotime($recensione["timestamp"]);
                 $date = date('d-m-Y',$date);
+                $utente = $recensione["utente"];
+                
                 $recensioni_html.='<div class="comment">';
                 $recensioni_html.='<div class="head-comment">';
                 $recensioni_html.='<div class="user-comment">';
-                $recensioni_html.='<img class="logo_utente" src="assets/user.svg" alt="Logo profilo utente"/>';
-                $recensioni_html.='<span>'.$recensione["utente"].'</span>';
+                $recensioni_html.= '<a href="singolo-nft.php?id=' . $recensione["opera"] . '">';
+                $recensioni_html.='<span>'.$recensione["nome"].'</span>';
+                $recensioni_html.= '</a>';
                 $recensioni_html.='</div>';
                 $recensioni_html .= '<div>' . str_repeat('<span>&#9733;</span>', $recensione["voto"]) . '</div>';
-                $recensioni_html.= "<div>{$date}</div>";
+                $recensioni_html.='<div class="user-comment">';
+                $recensioni_html.= "{$date}";
+                $recensioni_html.='<form class="del_recensione" action="profilo.php" method="post">';
+                $recensioni_html.='<div>';
+                $recensioni_html.='<input type="hidden" name="timestamp" value="'.$recensione["timestamp"].'"/>';
+                $recensioni_html.='<input id="cancella" type="image" src="assets/delete_icon.svg" alt="cancella recensione" name="cancella">';
+                $recensioni_html.='</div>';
+                $recensioni_html.='</form>';
+                $recensioni_html.='</div>';
                 $recensioni_html.='</div>';
                 $recensioni_html.='<p>'.$recensione["commento"].'</p>';
                 $recensioni_html.='</div>';
