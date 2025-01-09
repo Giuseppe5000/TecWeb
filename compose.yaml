@@ -12,6 +12,7 @@ services:
       - "./src:/var/www/html"
     depends_on:
       - mariadb
+    command: /bin/sh -c "chmod +rw /var/www/html/assets && apache2-foreground"
 
   mariadb:
     image: mariadb:10.6.7
