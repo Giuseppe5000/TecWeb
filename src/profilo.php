@@ -7,7 +7,8 @@ session_start();
 $saldo = "";
 $nftPosseduti = ""; 
 $recensioni_html = "";
-$avviso = "";
+$avvisoSaldo = "";
+$avvisoCaricaNFT = "";
 
 function generateUniqueFilename($extension) {
     $uniqueId = substr(uniqid(), -5); //Prendo solo gli ultimi 5 perchè senno è troppo lungo
@@ -31,21 +32,21 @@ if(isset($_SESSION['username'])){
             $target_file = $target_dir . generateUniqueFilename($imageFileType);
         
             if ($_FILES["immagine"]["size"] > 500000) {
-                $avviso .= "<p>L'immagine è di dimensioni troppo grandi.</p>";
+                $avvisoCaricaNFT .= "<p>L'immagine è di dimensioni troppo grandi.</p>";
             } elseif ($imageFileType !== "webp") {
-                $avviso .= "<p>Sono permessi solo immagini in formato WebP.</p>";
+                $avvisoCaricaNFT .= "<p>Sono permessi solo immagini in formato WebP.</p>";
             } elseif (empty($nome) || empty($descrizione) || empty($prezzo)) {
-                $avviso .= "<p>Compila tutti i campi.</p>";
+                $avvisoCaricaNFT .= "<p>Compila tutti i campi.</p>";
             } elseif (!move_uploaded_file($_FILES["immagine"]["tmp_name"], $target_file)) {
-                $avviso .= "<p>Errore durante il caricamento dell'immagine.</p>";
+                $avvisoCaricaNFT .= "<p>Errore durante il caricamento dell'immagine.</p>";
             } else {
                 $path = rtrim($target_file, '.webp');
                 $query = "INSERT INTO opera (path, nome, descrizione, prezzo) VALUES (?, ?, ?, ?)";
                 $format_string = 'sssd';
                 $values = [$path, $nome, $descrizione, $prezzo];
-                $avviso = $database->executeCRUDPreparedStatement($query, $format_string, $values);
+                $avvisoCaricaNFT = $database->executeCRUDPreparedStatement($query, $format_string, $values);
         
-                if (strpos($avviso, 'successo') !== false && !empty($_POST['categorie']) && is_array($_POST['categorie'])) {
+                if (strpos($avvisoCaricaNFT, 'successo') !== false && !empty($_POST['categorie']) && is_array($_POST['categorie'])) {
                     $id_opera = $database->getConnection()->insert_id;
 
                     foreach ($_POST['categorie'] as $categoria) {
@@ -56,6 +57,13 @@ if(isset($_SESSION['username'])){
                     }
                 } 
             }    
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aggiungi-saldo'])){
+            $saldo = $database->pulisciInput($_POST['saldo']);
+            $query = "UPDATE utente SET saldo = saldo + ? WHERE username = ?";
+            $values = [$saldo, $username];
+            $avvisoSaldo .= $database->executeCRUDPreparedStatement($query, 'ds', $values);
         }
 
         #post che cancella la recensione
@@ -75,10 +83,21 @@ if(isset($_SESSION['username'])){
         $result = $database->executeSelectPreparedStatement($query,'s',$value);
         if(count($result) > 0){
             foreach($result as $row){
-                $saldo = "<span>" . $username . "</span>
-                <span>Saldo: " . $row['saldo'] . "</span>";
+                $saldo = "<span>" . $username . "</span>";
+                $saldo .= "<span>Saldo: " . $row['saldo'] . "</span>";
+                
+                $saldo .= $avvisoSaldo;
+                $saldo .= "<form id='add-saldo' class='user-form' action='profilo.php' method='post'>";
+                $saldo .= "<fieldset>";
+                $saldo .= "<legend>Carica ETH</legend>";
+                $saldo .= "<label for='saldo'>Quantità:</label>";
+                $saldo .= "<input type='number' id='saldo' name='saldo' step='0.001' min='0' required>";
+                $saldo .= "<input type='submit' value='Carica' class='button' name='aggiungi-saldo'>";
+                $saldo .= "</fieldset>";
+                $saldo .= "</form>";
+
                 if($row['isAdmin']){
-                    $saldo .= $avviso;
+                    $saldo .= $avvisoCaricaNFT;
                     $saldo .= "<form id='add-nft' class='user-form' action='profilo.php' method='post' enctype='multipart/form-data'>
                         <fieldset>
                         <legend>Aggiungi NFT</legend>
