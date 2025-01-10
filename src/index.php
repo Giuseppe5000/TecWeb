@@ -2,6 +2,7 @@
 
 require_once "./php/Database.php";
 require_once "./php/Navbar.php";
+require_once "./php/utils.php";
 session_start();
 
 $paginaHTML = file_get_contents('./static/index.html');
@@ -30,7 +31,7 @@ if (!$connessioneOK) {
     foreach ($opereU as $opera) {
         $ultimeUscite .= '<div class="card">';
         $ultimeUscite .= '<a href="singolo-nft.php?id='.$opera["id"].'">';
-        $ultimeUscite .= '<h3>' . $opera["nome"]  . '</h3>';
+        $ultimeUscite .= '<h3>' . trimName($opera["nome"],17)  . '</h3>';
         $ultimeUscite .= '<img src="./' . $opera["path"] . '.webp" width="200" height="200">';
         $ultimeUscite .= '</a>';
         $ultimeUscite .= '</div>';
@@ -59,7 +60,7 @@ if (!$connessioneOK) {
             $top3 .= '<a href="singolo-nft.php?id='.$opera["id"].'"><div class="head-card"><span>3°</span>';
             break;
         }
-        $top3 .= '<h3>' . $opera["nome"]  . '</h3></div>';
+        $top3 .= '<h3>' . trimName($opera["nome"],15)  . '</h3></div>';
         $top3 .= '<img src="./' . $opera["path"] . '.webp" width="200" height="200">';
         $top3 .= '</a>';
         $top3 .= '</div>';
