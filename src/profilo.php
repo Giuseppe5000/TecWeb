@@ -12,6 +12,7 @@ $avvisoSaldo = "";
 $avvisoCaricaNFT = "";
 $caricaNFT = "";
 $linkNft = "";
+$linkRecensioni = "";
 
 function generateUniqueFilename($extension) {
     $uniqueId = substr(uniqid(), -5); //Prendo solo gli ultimi 5 perchè senno è troppo lungo
@@ -110,10 +111,11 @@ if(isset($_SESSION['username'])){
         else{
             $count=0;
             while($count<6 && $count<count($opere)){
+                $opera=$opere[$count];
                 $nftPosseduti .= '<div class="card">';
-                $nftPosseduti .= '<a href="singolo-nft.php?id='.$opere[$count]["id"].'">';
-                $nftPosseduti .= '<h3>' . trimName($opere[$count]["nome"])  . '</h3>';
-                $nftPosseduti .= '<img src="./' . $opere[$count]["path"] . '.webp" width="140" height="140">';
+                $nftPosseduti .= '<a href="singolo-nft.php?id='.$opera["id"].'">';
+                $nftPosseduti .= '<h3>' . trimName($opera["nome"])  . '</h3>';
+                $nftPosseduti .= '<img src="./' . $opera["path"] . '.webp" width="140" height="140">';
                 $nftPosseduti .= '</a>';
                 $nftPosseduti .= '</div>';
                 $count++;
@@ -126,7 +128,10 @@ if(isset($_SESSION['username'])){
         if(count($recensioni) == 0){
             $recensioni_html = "<p>Non hai ancora fatto alcuna recensione</p>";
         }else{
-            foreach($recensioni as $recensione){
+            $count=0;
+            while($count<5 && $count<count($recensioni)){
+                $recensione=$recensioni[$count];
+
                 $date = strtotime($recensione["timestamp"]);
                 $date = date('d-m-Y',$date);
                 $utente = $recensione["utente"];
@@ -160,6 +165,11 @@ if(isset($_SESSION['username'])){
                 $recensioni_html.='</div>';
                 $recensioni_html.='<p>'.$recensione["commento"].'</p>';
                 $recensioni_html.='</div>';
+
+                $count++;
+            }
+            if($count<count($recensioni)){
+                $linkRecensioni.='<p class="center"><a href="mie-recensioni.php">Visualizza le altre recensioni effettuate</a></p>';
             }
         }
     }
@@ -177,6 +187,6 @@ else{
 $navbar = new Navbar("Profilo");
 $paginaHTML = file_get_contents('./static/profilo.html');
 
-$find=['{{SALDO}}', '{{AVVISO_SALDO}}', '{{AVVISO_CARICA_NFT}}', '{{CARICA_NFT}}', '{{CARDS}}', '{{NAVBAR}}','{{RECENSIONI}}','{{LINK_NFT}}'];
-$replacemenet=[$saldo, $avvisoSaldo, $avvisoCaricaNFT, $caricaNFT, $nftPosseduti, $navbar->getNavbar(), $recensioni_html,$linkNft];
+$find=['{{SALDO}}', '{{AVVISO_SALDO}}', '{{AVVISO_CARICA_NFT}}', '{{CARICA_NFT}}', '{{CARDS}}', '{{NAVBAR}}','{{RECENSIONI}}','{{LINK_NFT}}','{{LINK_RECENSIONI}}'];
+$replacemenet=[$saldo, $avvisoSaldo, $avvisoCaricaNFT, $caricaNFT, $nftPosseduti, $navbar->getNavbar(), $recensioni_html, $linkNft, $linkRecensioni];
 echo str_replace($find,$replacemenet,$paginaHTML);
