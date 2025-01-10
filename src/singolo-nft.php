@@ -84,11 +84,12 @@ if (!$connessioneOK) {
     $database->closeConnection();
 
     if(count($opera)==1){
-
+        $nome_opera=$opera[0]["nome"];
+        
         $prezzo=$opera[0]["prezzo"];
         $possessore=$opera[0]["possessore"];
 
-        $opera_html.='<h1>'.$opera[0]["nome"].'</h1>';
+        $opera_html.='<h1>'.$nome_opera.'</h1>';
         $opera_html.='<div>';
         $opera_html.='<img id="immagine-contenuto" src="./'.$opera[0]["path"].'.webp" alt="decr-img">';
         $opera_html.='</div>';
@@ -171,6 +172,6 @@ if (!$connessioneOK) {
 
 $navbar = new Navbar("");
 
-$find=['{{OPERA}}','{{DESCRIZIONE}}','{{RECENSIONI}}','{{AGGIUNGI_RECENSIONE}}','{{ACQUISTO_RES}}', '{{NAVBAR}}'];
-$replacement=[$opera_html,$descr_html,$recensioni_html,$aggiungi_recensione_html,$acquisto_res, $navbar->getnavbar()];
+$find=['{{OPERA}}','{{DESCRIZIONE}}','{{RECENSIONI}}','{{AGGIUNGI_RECENSIONE}}','{{ACQUISTO_RES}}', '{{NAVBAR}}','{{NOME_NFT}}'];
+$replacement=[$opera_html,$descr_html,$recensioni_html,$aggiungi_recensione_html,$acquisto_res, $navbar->getnavbar(),$nome_opera];
 echo str_replace($find, $replacement, $paginaHTML);
