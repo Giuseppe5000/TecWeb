@@ -9,6 +9,7 @@ $nftPosseduti = "";
 $recensioni_html = "";
 $avvisoSaldo = "";
 $avvisoCaricaNFT = "";
+$caricaNFT = "";
 
 function generateUniqueFilename($extension) {
     $uniqueId = substr(uniqid(), -5); //Prendo solo gli ultimi 5 perchè senno è troppo lungo
@@ -85,61 +86,9 @@ if(isset($_SESSION['username'])){
             foreach($result as $row){
                 $saldo = "<span>" . $username . "</span>";
                 $saldo .= "<span>Saldo: " . $row['saldo'] . "</span>";
-                
-                $saldo .= $avvisoSaldo;
-                $saldo .= "<form id='add-saldo' class='user-form' action='profilo.php' method='post'>";
-                $saldo .= "<fieldset>";
-                $saldo .= "<legend>Carica ETH</legend>";
-                $saldo .= "<label for='saldo'>Quantità:</label>";
-                $saldo .= "<input type='number' id='saldo' name='saldo' step='0.001' min='0' required>";
-                $saldo .= "<input type='submit' value='Carica' class='button' name='aggiungi-saldo'>";
-                $saldo .= "</fieldset>";
-                $saldo .= "</form>";
 
                 if($row['isAdmin']){
-                    $saldo .= $avvisoCaricaNFT;
-                    $saldo .= "<form id='add-nft' class='user-form' action='profilo.php' method='post' enctype='multipart/form-data'>
-                        <fieldset>
-                        <legend>Aggiungi NFT</legend>
-                        <label for='immagine'>Immagine:</label>
-                        <input type='file' id='immagine' name='immagine' accept='image/*' required>
-
-                        <label for='nome'>Nome:</label>
-                        <input type='text' id='nome' name='nome' maxlength='30' required>
-
-                        <label for='descrizione'>Descrizione:</label>
-                        <input type='text' id='descrizione' name='descrizione' maxlength='150' required>
-
-                        <label for='prezzo'>Prezzo:</label>
-                        <input type='number' id='prezzo' name='prezzo' step='0.001' min='0' required>
-
-                        <fieldset id='categorie'>
-                        <legend>Categorie</legend>
-                        <div>
-                            <input type='checkbox' id='Abstract' name='categorie[]' value='Abstract'/>
-                            <label for='Abstract'>Abstract</label>
-                        </div>
-                        <div>
-                            <input type='checkbox' id='Animals' name='categorie[]' value='Animals'/>
-                            <label for='Animals'>Animals</label>
-                        </div>
-                        <div>
-                            <input type='checkbox' id='PixelArt' name='categorie[]' value='PixelArt'/>
-                            <label for='PixelArt'>PixelArt</label>
-                        </div>
-                        <div>
-                            <input type='checkbox' id='Black&White' name='categorie[]' value='Black&White'/>
-                            <label for='Black&White'>Black&White</label>
-                        </div>
-                        <div>
-                            <input type='checkbox' id='Photo' name='categorie[]' value='Photo'/>
-                            <label for='Photo'>Photo</label>
-                        </div>
-                        </fieldset>
-
-                        <input type='submit' value='Aggiungi' class='button' name='aggiungi-opera'>
-                        </fieldset>
-                      </form>";
+                    $caricaNFT = file_get_contents('./static/carica-nft.html');;
                 }
             }
         }
@@ -212,6 +161,6 @@ else{
 $navbar = new Navbar("Profilo");
 $paginaHTML = file_get_contents('./static/profilo.html');
 
-$find=['{{SALDO}}','{{CARDS}}', '{{NAVBAR}}','{{RECENSIONI}}'];
-$replacemenet=[$saldo,$nftPosseduti, $navbar->getNavbar(), $recensioni_html];
+$find=['{{SALDO}}', '{{AVVISO_SALDO}}', '{{AVVISO_CARICA_NFT}}', '{{CARICA_NFT}}', '{{CARDS}}', '{{NAVBAR}}','{{RECENSIONI}}'];
+$replacemenet=[$saldo, $avvisoSaldo, $avvisoCaricaNFT, $caricaNFT, $nftPosseduti, $navbar->getNavbar(), $recensioni_html];
 echo str_replace($find,$replacemenet,$paginaHTML);
