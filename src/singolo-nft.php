@@ -106,7 +106,7 @@ if (!$connessioneOK) {
         }else{
             #se l'utente è loggato vede il bottone acquista
             if(isset($_SESSION['username'])){
-                if(strcmp($username,'admin')!=0){
+                if(strcmp($_SESSION['username'],'admin')!=0){
                     $opera_html.='<form id="acq-nft" action="singolo-nft.php" method="post">';
                     $opera_html.='<input type="hidden" name="id" value="'.$id.'"/>';
                     $opera_html.='<input type="hidden" name="prezzo" value="'.$prezzo.'"/>';

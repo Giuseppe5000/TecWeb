@@ -11,6 +11,7 @@ $recensioni_html = "";
 $avvisoSaldo = "";
 $avvisoCaricaNFT = "";
 $caricaNFT = "";
+$linkNft = "";
 
 function generateUniqueFilename($extension) {
     $uniqueId = substr(uniqid(), -5); //Prendo solo gli ultimi 5 perchè senno è troppo lungo
@@ -107,13 +108,18 @@ if(isset($_SESSION['username'])){
             $nftPosseduti = '<p>Non possiedi ancora nessun <abbr lang="en" title="Non-fungible token">NFT</abbr></p>';
         }
         else{
-            foreach($opere as $row){
+            $count=0;
+            while($count<6 && $count<count($opere)){
                 $nftPosseduti .= '<div class="card">';
-                $nftPosseduti .= '<a href="singolo-nft.php?id='.$row["id"].'">';
-                $nftPosseduti .= '<h3>' . trimName($row["nome"])  . '</h3>';
-                $nftPosseduti .= '<img src="./' . $row["path"] . '.webp" width="140" height="140">';
+                $nftPosseduti .= '<a href="singolo-nft.php?id='.$opere[$count]["id"].'">';
+                $nftPosseduti .= '<h3>' . trimName($opere[$count]["nome"])  . '</h3>';
+                $nftPosseduti .= '<img src="./' . $opere[$count]["path"] . '.webp" width="140" height="140">';
                 $nftPosseduti .= '</a>';
                 $nftPosseduti .= '</div>';
+                $count++;
+            }
+            if($count<count($opere)){
+                $linkNft.='<p class="center"><a href="miei-nft.php">Visualizza gli altri <abbr lang="en" title="Non-fungible token">NFT</abbr> posseduti</a></p>';
             }
         }
 
@@ -162,6 +168,6 @@ else{
 $navbar = new Navbar("Profilo");
 $paginaHTML = file_get_contents('./static/profilo.html');
 
-$find=['{{SALDO}}', '{{AVVISO_SALDO}}', '{{AVVISO_CARICA_NFT}}', '{{CARICA_NFT}}', '{{CARDS}}', '{{NAVBAR}}','{{RECENSIONI}}'];
-$replacemenet=[$saldo, $avvisoSaldo, $avvisoCaricaNFT, $caricaNFT, $nftPosseduti, $navbar->getNavbar(), $recensioni_html];
+$find=['{{SALDO}}', '{{AVVISO_SALDO}}', '{{AVVISO_CARICA_NFT}}', '{{CARICA_NFT}}', '{{CARDS}}', '{{NAVBAR}}','{{RECENSIONI}}','{{LINK_NFT}}'];
+$replacemenet=[$saldo, $avvisoSaldo, $avvisoCaricaNFT, $caricaNFT, $nftPosseduti, $navbar->getNavbar(), $recensioni_html,$linkNft];
 echo str_replace($find,$replacemenet,$paginaHTML);
