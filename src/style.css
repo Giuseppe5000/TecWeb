@@ -521,10 +521,14 @@ PAGINA PROFILO
     width: 8em;
 }
 
-.del_recensione{
+.form_recensione{
     display: flex;
     margin: 0 1em;
     align-items: center;
+}
+
+.form_recensione + .form_recensione{
+    margin-left: 0;
 }
 
 
