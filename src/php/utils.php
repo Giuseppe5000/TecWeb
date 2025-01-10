@@ -11,3 +11,9 @@ function trimName($nome,$max=10){
     }
     return $nome;
 }
+
+function generatePageNumber($pageNumber) {
+    if (isset($_GET['page']))
+        return preg_replace("/page=(\d)*/", "page={$pageNumber}", $_SERVER['QUERY_STRING']);
+    return $queryString = $_SERVER['QUERY_STRING'] . "&page={$pageNumber}";
+}
