@@ -5,7 +5,7 @@ require_once "./php/Database.php";
 require_once "./php/Navbar.php";
 require_once "./php/utils.php";
 
-function mostraRecensioni($recensioni, $pageNumber, $pageSize) {
+function getRecensioni($recensioni, $pageNumber, $pageSize) {
     $recensioni_html = "";
     if(count($recensioni)>0){
         $previousPages = $pageNumber*$pageSize;
@@ -175,7 +175,7 @@ if (!$connessioneOK) {
     $query='SELECT * FROM recensione WHERE opera="' . $id . '" ORDER BY timestamp DESC';
     $recensioni=$database->executeQuery($query);
     $database->closeConnection();
-    $recensioni_html = mostraRecensioni($recensioni, $pageNumber, $pageSize);
+    $recensioni_html = getRecensioni($recensioni, $pageNumber, $pageSize);
     $recensioniDaMostrare = count($recensioni) - $pageNumber*$pageSize - $pageSize;
 }
 
