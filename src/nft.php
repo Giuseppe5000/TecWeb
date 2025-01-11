@@ -100,6 +100,29 @@ function mostraOpere($opere, $pageNumber, $pageSize) {
     return $stringaOpere;
 }
 
+function setFormValues(&$nomeNft, &$prezzoMin, &$prezzoMax, &$ordinaPrezzo) {
+    if(isset($_GET['submit'])){
+        $nomeNft = $_GET['nft'];
+        $prezzoMin = intval($_GET['prezzoMin']);
+        $prezzoMax = intval($_GET['prezzoMax']);
+        $ordinaPrezzo = $_GET['ordina'];
+    }
+}
+
+function getOrdinaSelect($selectedValue) {
+    return '<select id="ordina" class="filtro-aggiuntivo" name="ordina">
+        <optgroup label="Prezzo"> '
+        .getOrdinaSelectOption("prezzoCrescente", "Prezzo crescente", $selectedValue). ''
+        .getOrdinaSelectOption("prezzoDescrescente", "Prezzo decrescente", $selectedValue).'
+        </optgroup>
+
+        <optgroup label="Nome"> '
+        . getOrdinaSelectOption("nomeA-Z", "Nome A-Z", $selectedValue) . ''
+        . getOrdinaSelectOption("nomeZ-A", "Nome Z-A", $selectedValue) . '
+        </optgroup>
+        </select>';
+}
+
 // Per adesso vengono richieste tutte le opere al db e poi qui ne vengono mostrate 10
 // Sarebbe meglio farsi ritornare solo 10 opere dal db se occorre mostrare solo quelle
 $pageSize = 8;
@@ -111,6 +134,31 @@ $database = new Database();
 $connessioneOK = $database->openConnection();
 $stringaOpere = '';
 $opereDaMostrare = 0;
+
+$nomeNft = "";
+$prezzoMin = 0;
+$prezzoMax = 100;
+$ordinaPrezzo = "prezzoCrescente";
+
+$abstractCheckbox = "";
+$animalsCheckbox = "";
+$pixelArtCheckbox = "";
+$blackAndWhiteCheckbox = "";
+$photoCheckbox = "";
+
+if (isset($_GET['abstract']) && $_GET['abstract'] == "on")
+    $abstractCheckbox = "checked";
+if (isset($_GET['animals']) && $_GET['animals'] == "on")
+    $animalsCheckbox = "checked";
+if (isset($_GET['pixelArt']) && $_GET['pixelArt'] == "on")
+    $pixelArtCheckbox = "checked";
+if (isset($_GET['blackAndWhite']) && $_GET['blackAndWhite'] == "on")
+    $blackAndWhiteCheckbox = "checked";
+if (isset($_GET['photo']) && $_GET['photo'] == "on")
+    $photoCheckbox = "checked";
+
+setFormValues($nomeNft, $prezzoMin, $prezzoMax, $ordinaPrezzo);
+$selectForm = getOrdinaSelect($ordinaPrezzo);
 
 if (!$connessioneOK) {
     $opere = getOrFilter($database);
@@ -138,7 +186,13 @@ if ($opereDaMostrare > 0) {
 $navbar = new Navbar("NFT");
 
 $paginaHTML = file_get_contents('./static/nft.html');
-$find=['{{OPERE}}', '{{PAGINA_PRECEDENTE}}', '{{PAGINA_SUCCESSIVA}}', '{{PAGINA_CORRENTE}}', '{{NAVBAR}}'];
-$replacement=[$stringaOpere, $linkPaginaPrecedente, $linkPaginaSuccessiva, "<span class='page-number'>Pagina: {$pageNumber}</span>", $navbar->getNavbar()];
+$find=['{{OPERE}}', '{{PAGINA_PRECEDENTE}}', '{{PAGINA_SUCCESSIVA}}', '{{PAGINA_CORRENTE}}',
+       '{{NAVBAR}}', '{{NOME_NFT}}', '{{PREZZO_MINIMO}}', '{{PREZZO_MASSIMO}}', '{{ORDINA}}',
+       '{{ABSTRACT_CHECKED}}', '{{ANIMALS_CHECKED}}', '{{PIXELART_CHECKED}}', '{{BLACKANDWHITE_CHECKED}}', '{{PHOTO_CHECKED}}'
+];
+$replacement=[$stringaOpere, $linkPaginaPrecedente, $linkPaginaSuccessiva,
+              "<span class='page-number'>Pagina: {$pageNumber}</span>", $navbar->getNavbar(),
+              $nomeNft, $prezzoMin, $prezzoMax, $selectForm,
+              $abstractCheckbox, $animalsCheckbox, $pixelArtCheckbox, $blackAndWhiteCheckbox, $photoCheckbox];
 
 echo str_replace($find, $replacement, $paginaHTML);
