@@ -153,3 +153,7 @@ PAGINE 404,500
 #errore404 h1, #errore500 h1 {
     background-color: var(--contentbgcolor);
 }
+
+.head-comment{
+    flex-direction: column;
+}

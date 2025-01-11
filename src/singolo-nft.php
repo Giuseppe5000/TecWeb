@@ -22,7 +22,7 @@ function getRecensioni($recensioni, $pageNumber, $pageSize) {
             $recensioni_html.='<img class="logo_utente" src="assets/user.svg" alt="Logo profilo utente"/>';
             $recensioni_html.='<span>'.$utente.'</span>';
             $recensioni_html.='</div>';
-            $recensioni_html .= '<div>' . str_repeat('<span>&#9733;</span>', $voto) . '</div>';
+            $recensioni_html .= '<div><span>' . $recensione["voto"] .' &#9733;</span></div>';
             $recensioni_html.= "<div>{$date}</div>";
             $recensioni_html.='</div>';
             $recensioni_html.='<p>'.$commento.'</p>';
