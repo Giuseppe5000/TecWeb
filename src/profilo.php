@@ -70,16 +70,6 @@ if(isset($_SESSION['username'])){
             $avvisoSaldo .= $database->executeCRUDPreparedStatement($query, 'ds', $values);
         }
 
-        #post che cancella la recensione
-        if (isset($_POST['cancella_x'])) {
-            //recupera valori del form
-            $date=$_POST['timestamp'];
-
-            $query = "DELETE FROM recensione WHERE utente=? AND timestamp=?";
-            
-            $value = array($username,$date);
-            $database->executeCRUDPreparedStatement($query,'ss',$value);
-        }
 
         // Query per ottenere il username e il saldo dell'utente, se l'utente è amministratore compare il form di insermento di una nuova opera
         $query  = "SELECT saldo, isAdmin FROM utente WHERE username = ?";
@@ -143,9 +133,9 @@ if(isset($_SESSION['username'])){
                 $recensioni_html.='<span>'.$recensione["nome"].'</span>';
                 $recensioni_html.= '</a>';
                 $recensioni_html.='</div>';
-                $recensioni_html .= '<div>' . str_repeat('<span>&#9733;</span>', $recensione["voto"]) . '</div>';
-                $recensioni_html.='<div class="user-comment">';
+                $recensioni_html .= '<div><span>' . $recensione["voto"] .' &#9733;</span></div>';
                 $recensioni_html.= "{$date}";
+                $recensioni_html.='<div class="user-comment">';
 
                 $recensioni_html.='<form class="form_recensione" action="modifica-recensione.php">';
                 $recensioni_html.='<div>';
@@ -154,8 +144,9 @@ if(isset($_SESSION['username'])){
                 $recensioni_html.='</div>';
                 $recensioni_html.='</form>';
 
-                $recensioni_html.='<form class="form_recensione" action="profilo.php" method="post">';
+                $recensioni_html.='<form class="form_recensione" action="cancella-recensione.php" method="post">';
                 $recensioni_html.='<div>';
+                $recensioni_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'"/>';
                 $recensioni_html.='<input type="hidden" name="timestamp" value="'.$recensione["timestamp"].'"/>';
                 $recensioni_html.='<input id="cancella" type="image" src="assets/delete_icon.svg" alt="cancella recensione" name="cancella">';
                 $recensioni_html.='</div>';
