@@ -5,30 +5,59 @@ require_once "./php/Navbar.php";
 require_once "./php/utils.php";
 session_start();
 
-$recensioni_html = "";
-$linkPaginaPrecedente ="";
-$linkPaginaSuccessiva ="";
-
-if(isset($_SESSION['username'])){
-    $database = new Database();
-    $connessioneOK = $database->openConnection();
-    $username = $_SESSION['username'];
-
-
+function getRecensioni($database){
     $query  = "SELECT recensione.*, nome FROM recensione JOIN opera ON recensione.opera = opera.id WHERE utente = ? ORDER BY timestamp DESC";
-    $value = array($username);
-    $recensioni = $database->executeSelectPreparedStatement($query,'s',$value);
-    $database->closeConnection();
+    $value = array($_SESSION['username']);
+    return $database->executeSelectPreparedStatement($query,'s',$value);
+}
+function getOrderBy($ordina) {
+    switch($ordina) {
+    case "piuRecente":
+        return "ORDER BY recensione.timestamp DESC";
+    case "menoRecente":
+        return "ORDER BY timestamp ASC";
+    case "piuAlto":
+        return "ORDER BY voto DESC";
+    case "piuBasso":
+        return "ORDER BY voto ASC";
+    default:
+        return "";
+    }
+}
 
+function getRecensioniFiltered($database, $opera, $ordina) {
+    $opera = "%" . $opera . "%";
+    $connection = $database->getConnection();
 
+    $query = "SELECT recensione.*, nome FROM recensione JOIN opera ON recensione.opera = opera.id WHERE utente = ? AND nome LIKE ? ";
+    $query .= getOrderBy($ordina);
+    $value = array($_SESSION['username'],$opera);
+    return $database->executeSelectPreparedStatement($query,'ss',$value);
+}
+
+function getOrFilter($database){
+    if(isset($_GET['submit'])){
+        $opera=$_GET['nft'];
+        $ordina=$_GET['ordina'];
+
+        return getRecensioniFiltered($database, $opera, $ordina);
+    }else{
+        return getRecensioni($database);
+    }
+}
+
+function printRecensioni($recensioni, $pageNumber, $pageSize) {
+    $recensioni_html = "";
     if(count($recensioni) == 0){
         $recensioni_html = "<p>Non hai ancora fatto alcuna recensione</p>";
     }else{
-        foreach($recensioni as $recensione){
+        $previousPages = $pageNumber*$pageSize;
+        for ($i = $previousPages; $i < $previousPages + $pageSize && $i < count($recensioni); $i++) {
+            $recensione=$recensioni[$i];
             $date = strtotime($recensione["timestamp"]);
             $date = date('d-m-Y',$date);
             $utente = $recensione["utente"];
-            
+
             $recensioni_html.='<div class="comment">';
             $recensioni_html.='<div class="head-comment">';
             $recensioni_html.='<div class="user-comment">';
@@ -47,7 +76,7 @@ if(isset($_SESSION['username'])){
             $recensioni_html.='</div>';
             $recensioni_html.='</form>';
 
-            $recensioni_html.='<form class="form_recensione" action="profilo.php" method="post">';
+            $recensioni_html.='<form class="form_recensione" action="mie-recensioni.php" method="post">';
             $recensioni_html.='<div>';
             $recensioni_html.='<input type="hidden" name="timestamp" value="'.$recensione["timestamp"].'"/>';
             $recensioni_html.='<input id="cancella" type="image" src="assets/delete_icon.svg" alt="cancella recensione" name="cancella">';
@@ -59,8 +88,59 @@ if(isset($_SESSION['username'])){
             $recensioni_html.='<p>'.$recensione["commento"].'</p>';
             $recensioni_html.='</div>';
         }
+        return $recensioni_html;
+    }
+}
+
+$recensioni_html = "";
+$linkPaginaPrecedente ="";
+$linkPaginaSuccessiva ="";
+$pageSize = 3;
+$pageNumber = 0;
+if (isset($_GET['page']))
+    $pageNumber = intval($_GET['page']);
+$recensioniDaMostrare = 0;
+$id="";
+
+if(isset($_SESSION['username'])){
+    $database = new Database();
+    $connessioneOK = $database->openConnection();
+    $username = $_SESSION['username'];
+
+    #post che cancella la recensione
+    if (isset($_POST['cancella_x'])) {
+        //recupera valori del form
+        $date=$_POST['timestamp'];
+        
+        $query = "DELETE FROM recensione WHERE utente=? AND timestamp=?";
+        
+        $value = array($username,$date);
+        $database->executeCRUDPreparedStatement($query,'ss',$value);
     }
 
+    if(!$connessioneOK){
+
+        $recensioni = getOrFilter($database);
+        $database->closeConnection();
+        $recensioni_html = printRecensioni($recensioni, $pageNumber, $pageSize);
+        $recensioniDaMostrare = count($recensioni) - $pageNumber*$pageSize - $pageSize;
+        
+        
+        if ($pageNumber > 0) {
+            $prevPageNumber = $pageNumber - 1;
+            $queryString = generatePageNumber($prevPageNumber);
+            $linkPaginaPrecedente =  "<a class='prev-page' href=\"mie-recensioni.php?{$queryString}\">&#10094;</a>";
+        }
+        
+        if ($recensioniDaMostrare > 0) {
+            $nextPageNumber = $pageNumber + 1;
+            $queryString = generatePageNumber($nextPageNumber);
+            $linkPaginaSuccessiva = "<a class='next-page' href=\"mie-recensioni.php?{$queryString}\">&#10095;</a>";
+        }
+    }else{
+        header('Location: ./500.php');
+        exit;
+    }
 
 }
 else{
@@ -71,6 +151,6 @@ else{
 $navbar = new Navbar("");
 $paginaHTML = file_get_contents('./static/mie-recensioni.html');
 
-$find=['{{NAVBAR}}','{{RECENSIONI}}','{{PAGINA_PRECEDENTE}}', '{{PAGINA_SUCCESSIVA}}', '{{PAGINA_CORRENTE}'];
+$find=['{{NAVBAR}}','{{RECENSIONI}}','{{PAGINA_PRECEDENTE}}', '{{PAGINA_SUCCESSIVA}}', '{{PAGINA_CORRENTE}}', '{{PAGINA_PRECEDENTE}}', '{{PAGINA_SUCCESSIVA}}', '{{PAGINA_CORRENTE}}'];
 $replacemenet=[$navbar->getNavbar(), $recensioni_html, $linkPaginaPrecedente, $linkPaginaSuccessiva, "<span class='page-number'>Pagina: {$pageNumber}</span>"];
 echo str_replace($find,$replacemenet,$paginaHTML);

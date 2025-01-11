@@ -48,17 +48,19 @@
           <fieldset>
 	    
             <legend>Filtra recensioni</legend>
-		<label for="nft">Titolo:</label>
-	    <div class="head-filter">
-		<input name="nft" id="nft"/>
-              <button id="show-filters"></button>
-	    </div>
-            <select id="ordina" class="filtro-aggiuntivo" name="ordina" >
-              <optgroup label="Prezzo">
-                <option value="prezzoCrescente">Prezzo crescente</option>
-                <option value="prezzoDecrescente">Prezzo decrescente</option>
+	    <label for="nft">Opera:</label>
+	    <input name="nft" id="nft"/>
+            <label for="ordina">Ordinamento:</label>
+            <select id="ordina" name="ordina" >
+              <optgroup label="Data">
+                <option value="piuRecente">Più recente</option>
+                <option value="menoRecente">Meno recente</option>
               </optgroup>
 
+              <optgroup label="Voto">
+                <option value="piuAlto">Più alto</option>
+                <option value="piuBasso">Più basso</option>
+              </optgroup>
             </select>
             <input class="button" type="submit" name="submit" value="Cerca">
           </fieldset>
