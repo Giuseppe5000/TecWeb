@@ -5,6 +5,7 @@ require_once "./php/Navbar.php";
 require_once "./php/utils.php";
 session_start();
 
+
 function getRecensioni($database){
     $query  = "SELECT recensione.*, nome FROM recensione JOIN opera ON recensione.opera = opera.id WHERE utente = ? ORDER BY timestamp DESC";
     $value = array($_SESSION['username']);
@@ -35,9 +36,10 @@ function getRecensioniFiltered($database, $opera, $ordina) {
     return $database->executeSelectPreparedStatement($query,'ss',$value);
 }
 
-function getOrFilter($database){
+function getOrFilter($database, &$filtro_opera){
     if(isset($_GET['submit'])){
         $opera=$_GET['nft'];
+        $filtro_opera=$opera;
         $ordina=$_GET['ordina'];
 
         return getRecensioniFiltered($database, $opera, $ordina);
@@ -65,10 +67,9 @@ function printRecensioni($recensioni, $pageNumber, $pageSize) {
             $recensioni_html.='<span>'.$recensione["nome"].'</span>';
             $recensioni_html.= '</a>';
             $recensioni_html.='</div>';
-            $recensioni_html .= '<div>' . str_repeat('<span>&#9733;</span>', $recensione["voto"]) . '</div>';
-            $recensioni_html.='<div class="user-comment">';
+            $recensioni_html .= '<div><span>' . $recensione["voto"] .' &#9733;</span></div>';
             $recensioni_html.= "{$date}";
-
+            $recensioni_html.='<div class="user-comment">';
             $recensioni_html.='<form class="form_recensione" action="modifica-recensione.php">';
             $recensioni_html.='<div>';
             $recensioni_html.='<input type="hidden" name="timestamp" value="'.$recensione["timestamp"].'"/>';
@@ -76,8 +77,9 @@ function printRecensioni($recensioni, $pageNumber, $pageSize) {
             $recensioni_html.='</div>';
             $recensioni_html.='</form>';
 
-            $recensioni_html.='<form class="form_recensione" action="mie-recensioni.php" method="post">';
+            $recensioni_html.='<form class="form_recensione" action="cancella-recensione.php" method="post">';
             $recensioni_html.='<div>';
+            $recensioni_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'?'.$_SERVER['QUERY_STRING'].'"/>';
             $recensioni_html.='<input type="hidden" name="timestamp" value="'.$recensione["timestamp"].'"/>';
             $recensioni_html.='<input id="cancella" type="image" src="assets/delete_icon.svg" alt="cancella recensione" name="cancella">';
             $recensioni_html.='</div>';
@@ -100,27 +102,17 @@ $pageNumber = 0;
 if (isset($_GET['page']))
     $pageNumber = intval($_GET['page']);
 $recensioniDaMostrare = 0;
-$id="";
+$filtro_opera="";
 
 if(isset($_SESSION['username'])){
     $database = new Database();
     $connessioneOK = $database->openConnection();
     $username = $_SESSION['username'];
 
-    #post che cancella la recensione
-    if (isset($_POST['cancella_x'])) {
-        //recupera valori del form
-        $date=$_POST['timestamp'];
-        
-        $query = "DELETE FROM recensione WHERE utente=? AND timestamp=?";
-        
-        $value = array($username,$date);
-        $database->executeCRUDPreparedStatement($query,'ss',$value);
-    }
 
     if(!$connessioneOK){
 
-        $recensioni = getOrFilter($database);
+        $recensioni = getOrFilter($database,$filtro_opera);
         $database->closeConnection();
         $recensioni_html = printRecensioni($recensioni, $pageNumber, $pageSize);
         $recensioniDaMostrare = count($recensioni) - $pageNumber*$pageSize - $pageSize;
@@ -151,6 +143,6 @@ else{
 $navbar = new Navbar("");
 $paginaHTML = file_get_contents('./static/mie-recensioni.html');
 
-$find=['{{NAVBAR}}','{{RECENSIONI}}','{{PAGINA_PRECEDENTE}}', '{{PAGINA_SUCCESSIVA}}', '{{PAGINA_CORRENTE}}', '{{PAGINA_PRECEDENTE}}', '{{PAGINA_SUCCESSIVA}}', '{{PAGINA_CORRENTE}}'];
-$replacemenet=[$navbar->getNavbar(), $recensioni_html, $linkPaginaPrecedente, $linkPaginaSuccessiva, "<span class='page-number'>Pagina: {$pageNumber}</span>"];
-echo str_replace($find,$replacemenet,$paginaHTML);
+$find=['{{NAVBAR}}','{{RECENSIONI}}','{{PAGINA_PRECEDENTE}}', '{{PAGINA_SUCCESSIVA}}', '{{PAGINA_CORRENTE}}', '{{OPERA}}'];
+$replacement=[$navbar->getNavbar(), $recensioni_html, $linkPaginaPrecedente, $linkPaginaSuccessiva, "<span class='page-number'>Pagina: {$pageNumber}</span>", $filtro_opera];
+echo str_replace($find,$replacement,$paginaHTML);
