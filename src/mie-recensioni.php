@@ -118,7 +118,7 @@ function printRecensioni($recensioni, $pageNumber, $pageSize) {
 $recensioni_html = "";
 $linkPaginaPrecedente ="";
 $linkPaginaSuccessiva ="";
-$pageSize = 3;
+$pageSize = 6;
 $pageNumber = 0;
 if (isset($_GET['page']))
     $pageNumber = intval($_GET['page']);
