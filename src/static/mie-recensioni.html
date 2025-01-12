@@ -2,10 +2,10 @@
 <html lang="it">
   <head>
     <meta charset="utf-8">
-    <title lang="en">Profilo - DoFlamingo</title>
+    <title lang="en">Le mie recensioni - DoFlamingo</title>
     <meta name="description"
-          content="In questa pagina puoi visionare il tuo profilo e le varie info associate ad esso.">
-    <meta name="keywords" content="profilo,NFT,DoFlamingo,opere">
+          content="In questa pagina puoi visionare e cercare le varie opere che offriamo.">
+    <meta name="keywords" content="recensioni,profilo,DoFlamingo,filtri,categorie">
     <meta name="author" content="DoFlamingo">
     <meta name="viewport" content="width=device-width">
 
@@ -18,63 +18,59 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png">
     <link rel="manifest" href="assets/favicon_io/site.webmanifest">
   </head>
+  
   <body>
-    <header>
 
+    <header>
       <nav aria-label="aiuti alla navigazione" class="listHelp">
         <a href="#content" class="navigationHelp">Vai al contenuto</a>
       </nav>
       <nav class="header-content">
-	<h1>Doflamingo</h1>
+        <h1>Doflamingo</h1>
 
-	<ul class="menu-list">
-	  {{NAVBAR}}
+        <ul class="menu-list">
+          {{NAVBAR}}
 	</ul>
       </nav>
+
       <nav id="breadcrumb">
-	<p>Ti trovi in: Profilo</p>
+	<p>Ti trovi in: <a href="profilo.php">Profilo</a>&gt;&gt;Mie recensioni</p>
       </nav>
     </header>
 
     <main id="content">
 
-      <h1>Profilo</h1>
+      <h1>Mie recensioni</h1>
 
-      <img id="profilo_utente_logo" src="assets/user.svg" alt="Logo profilo utente"/>
+      <div id="filtri">
+        <form action="mie-recensioni.php">
 
-      <div id="utente_saldo">
-        {{SALDO}}
-        {{AVVISO_SALDO}}
-
-        <form id='add-saldo' class='user-form' action='profilo.php' method='post'>
           <fieldset>
-            <legend>Carica ETH</legend>
-            <label for='saldo'>Quantità:</label>
-            <input type='number' id='saldo' name='saldo' step='0.001' min='0' required>
-            <input type='submit' value='Carica' class='button' name='aggiungi-saldo'>
+	    
+            <legend>Filtra recensioni</legend>
+	    <label for="nft">Opera:</label>
+
+	    <input name="nft" id="nft" value="{{OPERA}}" />
+
+            <label for="ordina">Ordinamento:</label>
+	    {{ORDINA}}
+            <input class="button" type="submit" name="submit" value="Cerca">
           </fieldset>
         </form>
       </div>
 
-      {{AVVISO_CARICA_NFT}}
-      {{CARICA_NFT}}
-
-      <h2>I miei <abbr lang="en" title="Non-fungible token">NFT</abbr></h2>
-
-      <div id="cards">
-
-        {{CARDS}}
-
-      </div>
-      {{LINK_NFT}}
-      <h2>Le mie recensioni</h2>
+      <h2>Risultati</h2>
 
       <div class="comment-list">
-
-        {{RECENSIONI}}
-
+	{{RECENSIONI}}
       </div>
-      {{LINK_RECENSIONI}}
+
+      <div id="navigazione-pagine">
+        {{PAGINA_PRECEDENTE}}
+        {{PAGINA_CORRENTE}}
+        {{PAGINA_SUCCESSIVA}}
+      </div>
+
     </main>
 
     <footer>
@@ -82,4 +78,5 @@
     </footer>
   </body>
 
+  <script src="script.js"></script>
 </html>

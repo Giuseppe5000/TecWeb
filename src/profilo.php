@@ -11,6 +11,8 @@ $recensioni_html = "";
 $avvisoSaldo = "";
 $avvisoCaricaNFT = "";
 $caricaNFT = "";
+$linkNft = "";
+$linkRecensioni = "";
 
 function generateUniqueFilename($extension) {
     $uniqueId = substr(uniqid(), -5); //Prendo solo gli ultimi 5 perchè senno è troppo lungo
@@ -68,16 +70,6 @@ if(isset($_SESSION['username'])){
             $avvisoSaldo .= $database->executeCRUDPreparedStatement($query, 'ds', $values);
         }
 
-        #post che cancella la recensione
-        if (isset($_POST['cancella_x'])) {
-            //recupera valori del form
-            $date=$_POST['timestamp'];
-
-            $query = "DELETE FROM recensione WHERE utente=? AND timestamp=?";
-            
-            $value = array($username,$date);
-            $database->executeCRUDPreparedStatement($query,'ss',$value);
-        }
 
         // Query per ottenere il username e il saldo dell'utente, se l'utente è amministratore compare il form di insermento di una nuova opera
         $query  = "SELECT saldo, isAdmin FROM utente WHERE username = ?";
@@ -107,20 +99,29 @@ if(isset($_SESSION['username'])){
             $nftPosseduti = '<p>Non possiedi ancora nessun <abbr lang="en" title="Non-fungible token">NFT</abbr></p>';
         }
         else{
-            foreach($opere as $row){
+            $count=0;
+            while($count<6 && $count<count($opere)){
+                $opera=$opere[$count];
                 $nftPosseduti .= '<div class="card">';
-                $nftPosseduti .= '<a href="singolo-nft.php?id='.$row["id"].'">';
-                $nftPosseduti .= '<h3>' . trimName($row["nome"])  . '</h3>';
-                $nftPosseduti .= '<img src="./' . $row["path"] . '.webp" width="140" height="140">';
+                $nftPosseduti .= '<a href="singolo-nft.php?id='.$opera["id"].'">';
+                $nftPosseduti .= '<h3>' . trimName($opera["nome"])  . '</h3>';
+                $nftPosseduti .= '<img src="./' . $opera["path"] . '.webp" width="140" height="140">';
                 $nftPosseduti .= '</a>';
                 $nftPosseduti .= '</div>';
+                $count++;
+            }
+            if($count<count($opere)){
+                $linkNft.='<p class="center"><a href="miei-nft.php">Visualizza gli altri <abbr lang="en" title="Non-fungible token">NFT</abbr> posseduti</a></p>';
             }
         }
 
         if(count($recensioni) == 0){
             $recensioni_html = "<p>Non hai ancora fatto alcuna recensione</p>";
         }else{
-            foreach($recensioni as $recensione){
+            $count=0;
+            while($count<5 && $count<count($recensioni)){
+                $recensione=$recensioni[$count];
+
                 $date = strtotime($recensione["timestamp"]);
                 $date = date('d-m-Y',$date);
                 $utente = $recensione["utente"];
@@ -132,9 +133,9 @@ if(isset($_SESSION['username'])){
                 $recensioni_html.='<span>'.$recensione["nome"].'</span>';
                 $recensioni_html.= '</a>';
                 $recensioni_html.='</div>';
-                $recensioni_html .= '<div>' . str_repeat('<span>&#9733;</span>', $recensione["voto"]) . '</div>';
-                $recensioni_html.='<div class="user-comment">';
+                $recensioni_html .= '<div><span>' . $recensione["voto"] .' &#9733;</span></div>';
                 $recensioni_html.= "{$date}";
+                $recensioni_html.='<div class="user-comment">';
 
                 $recensioni_html.='<form class="form_recensione" action="modifica-recensione.php">';
                 $recensioni_html.='<div>';
@@ -143,8 +144,9 @@ if(isset($_SESSION['username'])){
                 $recensioni_html.='</div>';
                 $recensioni_html.='</form>';
 
-                $recensioni_html.='<form class="form_recensione" action="profilo.php" method="post">';
+                $recensioni_html.='<form class="form_recensione" action="cancella-recensione.php" method="post">';
                 $recensioni_html.='<div>';
+                $recensioni_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'"/>';
                 $recensioni_html.='<input type="hidden" name="timestamp" value="'.$recensione["timestamp"].'"/>';
                 $recensioni_html.='<input id="cancella" type="image" src="assets/delete_icon.svg" alt="cancella recensione" name="cancella">';
                 $recensioni_html.='</div>';
@@ -154,6 +156,11 @@ if(isset($_SESSION['username'])){
                 $recensioni_html.='</div>';
                 $recensioni_html.='<p>'.$recensione["commento"].'</p>';
                 $recensioni_html.='</div>';
+
+                $count++;
+            }
+            if($count<count($recensioni)){
+                $linkRecensioni.='<p class="center"><a href="mie-recensioni.php">Visualizza le altre recensioni effettuate</a></p>';
             }
         }
     }
@@ -171,6 +178,6 @@ else{
 $navbar = new Navbar("Profilo");
 $paginaHTML = file_get_contents('./static/profilo.html');
 
-$find=['{{SALDO}}', '{{AVVISO_SALDO}}', '{{AVVISO_CARICA_NFT}}', '{{CARICA_NFT}}', '{{CARDS}}', '{{NAVBAR}}','{{RECENSIONI}}'];
-$replacemenet=[$saldo, $avvisoSaldo, $avvisoCaricaNFT, $caricaNFT, $nftPosseduti, $navbar->getNavbar(), $recensioni_html];
+$find=['{{SALDO}}', '{{AVVISO_SALDO}}', '{{AVVISO_CARICA_NFT}}', '{{CARICA_NFT}}', '{{CARDS}}', '{{NAVBAR}}','{{RECENSIONI}}','{{LINK_NFT}}','{{LINK_RECENSIONI}}'];
+$replacemenet=[$saldo, $avvisoSaldo, $avvisoCaricaNFT, $caricaNFT, $nftPosseduti, $navbar->getNavbar(), $recensioni_html, $linkNft, $linkRecensioni];
 echo str_replace($find,$replacemenet,$paginaHTML);

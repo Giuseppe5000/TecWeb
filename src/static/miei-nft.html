@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <title lang="en">Le mie opere - DoFlamingo</title>
+    <meta name="description"
+          content="In questa pagina puoi visionare e cercare le opere che possiedi.">
+    <meta name="keywords" content="NFT,profilo,DoFlamingo,opere,filtra,categorie">
+    <meta name="author" content="DoFlamingo">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="style.css" media="screen">
+    <link rel="stylesheet" href="print.css" media="print">
+    <link rel="stylesheet" href="mini.css" media="screen and (max-width:768px)">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicon_io/site.webmanifest">
+  </head>
+  
+  <body>
+
+    <header>
+      <nav aria-label="aiuti alla navigazione" class="listHelp">
+        <a href="#content" class="navigationHelp">Vai al contenuto</a>
+      </nav>
+      <nav class="header-content">
+        <h1>Doflamingo</h1>
+
+        <ul class="menu-list">
+          {{NAVBAR}}
+	</ul>
+      </nav>
+
+      <nav id="breadcrumb">
+	<p>Ti trovi in: <a href="profilo.php">Profilo</a>&gt;&gt;Miei <abbr lang="en" title="Non-fungible token">NFT</abbr></p>
+      </nav>
+    </header>
+
+    <main id="content">
+
+      <h1>Miei <abbr lang="en" title="Non-fungible token">NFT</abbr></h1>
+
+      <div id="filtri">
+        <form action="miei-nft.php">
+
+          <fieldset>
+	    
+            <legend>Filtra <abbr lang="en" title="Non-fungible token">NFT</abbr></legend>
+		<label for="nft">Titolo:</label>
+	    <div class="head-filter">
+		<input name="nft" id="nft" value="{{NOME_NFT}}"/>
+              <button id="show-filters"></button>
+	    </div>
+
+            <label class="filtro-aggiuntivo" for="prezzoMin">Prezzo minimo:</label>
+            <input class="filtro-aggiuntivo" type="number" id="prezzoMin" name="prezzoMin" min="0" value="{{PREZZO_MINIMO}}"/>
+            <label class="filtro-aggiuntivo" for="prezzoMax">Prezzo massimo:</label>
+            <input class="filtro-aggiuntivo" type="number" id="prezzoMax" name="prezzoMax" min="0" value="{{PREZZO_MASSIMO}}"/>
+
+            <label class="filtro-aggiuntivo" for="orfin">Ordinamento:</label>
+
+            {{ORDINA}}
+
+            <fieldset id="categorie" class="filtro-aggiuntivo" >
+              <legend>Categorie</legend>
+
+              <div>
+                <input type="checkbox" id="abstract" name="abstract" {{ABSTRACT_CHECKED}}/>
+                <label for="abstract">Abstract</label>
+              </div>
+
+              <div>
+                <input type="checkbox" id="animals" name="animals" {{ANIMALS_CHECKED}}/>
+                <label for="animals">Animals</label>
+              </div>
+
+              <div>
+                <input type="checkbox" id="pixelArt" name="pixelArt" {{PIXELART_CHECKED}}/>
+                <label for="pixelArt">PixelArt</label>
+              </div>
+
+              <div>
+                <input type="checkbox" id="blackAndWhite" name="blackAndWhite" {{BLACKANDWHITE_CHECKED}}/>
+                <label for="blackAndWhite">Black&White</label>
+              </div>
+
+              <div>
+                <input type="checkbox" id="photo" name="photo" {{PHOTO_CHECKED}}/>
+                <label for="photo">Photo</label>
+              </div>
+            </fieldset>
+
+            <input class="button" type="submit" name="submit" value="Cerca">
+          </fieldset>
+        </form>
+      </div>
+
+      <h2>Risultati</h2>
+
+      <div id="cards">
+
+        {{OPERE}}
+
+      </div>
+
+      <div id="navigazione-pagine">
+        {{PAGINA_PRECEDENTE}}
+        {{PAGINA_CORRENTE}}
+        {{PAGINA_SUCCESSIVA}}
+      </div>
+
+    </main>
+
+    <footer>
+      <p>Copyright © 2025 Doflamingo. All rights reserved.</p>
+    </footer>
+  </body>
+
+  <script src="script.js"></script>
+</html>

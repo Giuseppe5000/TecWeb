@@ -22,7 +22,7 @@ function getRecensioni($recensioni, $pageNumber, $pageSize) {
             $recensioni_html.='<img class="logo_utente" src="assets/user.svg" alt="Logo profilo utente"/>';
             $recensioni_html.='<span>'.$utente.'</span>';
             $recensioni_html.='</div>';
-            $recensioni_html .= '<div>' . str_repeat('<span>&#9733;</span>', $voto) . '</div>';
+            $recensioni_html .= '<div><span>' . $recensione["voto"] .' &#9733;</span></div>';
             $recensioni_html.= "<div>{$date}</div>";
             $recensioni_html.='</div>';
             $recensioni_html.='<p>'.$commento.'</p>';
@@ -157,7 +157,7 @@ if (!$connessioneOK) {
         }else{
             #se l'utente è loggato vede il bottone acquista
             if(isset($_SESSION['username'])){
-                if(strcmp($username,'admin')!=0){
+                if(strcmp($_SESSION['username'],'admin')!=0){
                     $opera_html.='<form id="acq-nft" action="singolo-nft.php" method="post">';
                     $opera_html.='<input type="hidden" name="id" value="'.$id.'"/>';
                     $opera_html.='<input type="hidden" name="prezzo" value="'.$prezzo.'"/>';
