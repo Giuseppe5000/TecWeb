@@ -35,7 +35,7 @@ function getOpereFiltered($database, $name, $prezzoMin, $prezzoMax, $ordina, $ca
                 WHERE nome LIKE ?
                 AND prezzo >= ?
                 AND prezzo <= ?
-                AND possessore = ?";
+                AND possessore = ? ";
         $query .= getOrderBy($ordina);
         $value = array($name, $prezzoMin, $prezzoMax, $_SESSION['username']);
         return $database->executeSelectPreparedStatement($query,'siis',$value);
@@ -53,7 +53,6 @@ function getOpereFiltered($database, $name, $prezzoMin, $prezzoMax, $ordina, $ca
         $value = array($name, $prezzoMin, $prezzoMax, $_SESSION['username'], ...$categorie);
         return $database->executeSelectPreparedStatement($query,'siis'. str_repeat('s', count($categorie)),$value);
     }
-    
 }
 
 function getOrFilter($database) {
@@ -103,6 +102,28 @@ function mostraOpere($opere, $pageNumber, $pageSize) {
     return $stringaOpere;
 }
 
+function setFormValues(&$nomeNft, &$prezzoMin, &$prezzoMax, &$ordinaPrezzo) {
+    if(isset($_GET['submit'])){
+        $nomeNft = $_GET['nft'];
+        $prezzoMin = intval($_GET['prezzoMin']);
+        $prezzoMax = intval($_GET['prezzoMax']);
+        $ordinaPrezzo = $_GET['ordina'];
+    }
+}
+
+function getOrdinaSelect($selectedValue) {
+    return '<select id="ordina" class="filtro-aggiuntivo" name="ordina">
+        <optgroup label="Prezzo"> '
+        .getOrdinaSelectOption("prezzoCrescente", "Prezzo crescente", $selectedValue). ''
+        .getOrdinaSelectOption("prezzoDescrescente", "Prezzo decrescente", $selectedValue).'
+        </optgroup>
+
+        <optgroup label="Nome"> '
+        . getOrdinaSelectOption("nomeA-Z", "Nome A-Z", $selectedValue) . ''
+        . getOrdinaSelectOption("nomeZ-A", "Nome Z-A", $selectedValue) . '
+        </optgroup>
+        </select>';
+}
 if(isset($_SESSION['username'])){
     $pageSize = 8;
     $pageNumber = 0;
@@ -114,6 +135,32 @@ if(isset($_SESSION['username'])){
     $stringaOpere = '';
     $opereDaMostrare = 0;
     
+
+    $nomeNft = "";
+    $prezzoMin = 0;
+    $prezzoMax = 100;
+    $ordinaPrezzo = "prezzoCrescente";
+    
+    $abstractCheckbox = "";
+    $animalsCheckbox = "";
+    $pixelArtCheckbox = "";
+    $blackAndWhiteCheckbox = "";
+    $photoCheckbox = "";
+    
+    if (isset($_GET['abstract']) && $_GET['abstract'] == "on")
+        $abstractCheckbox = "checked";
+    if (isset($_GET['animals']) && $_GET['animals'] == "on")
+        $animalsCheckbox = "checked";
+    if (isset($_GET['pixelArt']) && $_GET['pixelArt'] == "on")
+        $pixelArtCheckbox = "checked";
+    if (isset($_GET['blackAndWhite']) && $_GET['blackAndWhite'] == "on")
+        $blackAndWhiteCheckbox = "checked";
+    if (isset($_GET['photo']) && $_GET['photo'] == "on")
+        $photoCheckbox = "checked";
+
+    setFormValues($nomeNft, $prezzoMin, $prezzoMax, $ordinaPrezzo);
+    $selectForm = getOrdinaSelect($ordinaPrezzo);
+
     if (!$connessioneOK) {
         $opere = getOrFilter($database);
         $database->closeConnection();
@@ -145,7 +192,7 @@ else{
 $navbar = new Navbar("");
 
 $paginaHTML = file_get_contents('./static/miei-nft.html');
-$find=['{{OPERE}}', '{{PAGINA_PRECEDENTE}}', '{{PAGINA_SUCCESSIVA}}', '{{PAGINA_CORRENTE}}', '{{NAVBAR}}'];
-$replacement=[$stringaOpere, $linkPaginaPrecedente, $linkPaginaSuccessiva, "<span class='page-number'>Pagina: {$pageNumber}</span>", $navbar->getNavbar()];
+$find=['{{OPERE}}', '{{PAGINA_PRECEDENTE}}', '{{PAGINA_SUCCESSIVA}}', '{{PAGINA_CORRENTE}}', '{{NAVBAR}}', '{{NOME_NFT}}', '{{PREZZO_MINIMO}}', '{{PREZZO_MASSIMO}}', '{{ORDINA}}', '{{ABSTRACT_CHECKED}}', '{{ANIMALS_CHECKED}}', '{{PIXELART_CHECKED}}', '{{BLACKANDWHITE_CHECKED}}', '{{PHOTO_CHECKED}}'];
+$replacement=[$stringaOpere, $linkPaginaPrecedente, $linkPaginaSuccessiva, "<span class='page-number'>Pagina: {$pageNumber}</span>", $navbar->getNavbar(),$nomeNft, $prezzoMin, $prezzoMax, $selectForm,$abstractCheckbox, $animalsCheckbox, $pixelArtCheckbox, $blackAndWhiteCheckbox, $photoCheckbox];
 
 echo str_replace($find, $replacement, $paginaHTML);

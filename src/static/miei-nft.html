@@ -50,53 +50,44 @@
             <legend>Filtra <abbr lang="en" title="Non-fungible token">NFT</abbr></legend>
 		<label for="nft">Titolo:</label>
 	    <div class="head-filter">
-		<input name="nft" id="nft"/>
+		<input name="nft" id="nft" value="{{NOME_NFT}}"/>
               <button id="show-filters"></button>
 	    </div>
 
             <label class="filtro-aggiuntivo" for="prezzoMin">Prezzo minimo:</label>
-            <input class="filtro-aggiuntivo" type="number" id="prezzoMin" name="prezzoMin" min="0" value="0"/>
+            <input class="filtro-aggiuntivo" type="number" id="prezzoMin" name="prezzoMin" min="0" value="{{PREZZO_MINIMO}}"/>
             <label class="filtro-aggiuntivo" for="prezzoMax">Prezzo massimo:</label>
-            <input class="filtro-aggiuntivo" type="number" id="prezzoMax" name="prezzoMax" min="0" value="100"/>
+            <input class="filtro-aggiuntivo" type="number" id="prezzoMax" name="prezzoMax" min="0" value="{{PREZZO_MASSIMO}}"/>
 
             <label class="filtro-aggiuntivo" for="orfin">Ordinamento:</label>
-            <select id="ordina" class="filtro-aggiuntivo" name="ordina" >
-              <optgroup label="Prezzo">
-                <option value="prezzoCrescente">Prezzo crescente</option>
-                <option value="prezzoDecrescente">Prezzo decrescente</option>
-              </optgroup>
 
-              <optgroup label="Nome">
-                <option value="nomeA-Z">Nome A-Z</option>
-                <option value="nomeZ-A">Nome Z-A</option>
-              </optgroup>
-            </select>
+            {{ORDINA}}
 
             <fieldset id="categorie" class="filtro-aggiuntivo" >
               <legend>Categorie</legend>
 
               <div>
-                <input type="checkbox" id="abstract" name="abstract"/>
+                <input type="checkbox" id="abstract" name="abstract" {{ABSTRACT_CHECKED}}/>
                 <label for="abstract">Abstract</label>
               </div>
 
               <div>
-                <input type="checkbox" id="animals" name="animals"/>
+                <input type="checkbox" id="animals" name="animals" {{ANIMALS_CHECKED}}/>
                 <label for="animals">Animals</label>
               </div>
 
               <div>
-                <input type="checkbox" id="pixelArt" name="pixelArt"/>
+                <input type="checkbox" id="pixelArt" name="pixelArt" {{PIXELART_CHECKED}}/>
                 <label for="pixelArt">PixelArt</label>
               </div>
 
               <div>
-                <input type="checkbox" id="blackAndWhite" name="blackAndWhite"/>
+                <input type="checkbox" id="blackAndWhite" name="blackAndWhite" {{BLACKANDWHITE_CHECKED}}/>
                 <label for="blackAndWhite">Black&White</label>
               </div>
 
               <div>
-                <input type="checkbox" id="photo" name="photo"/>
+                <input type="checkbox" id="photo" name="photo" {{PHOTO_CHECKED}}/>
                 <label for="photo">Photo</label>
               </div>
             </fieldset>
