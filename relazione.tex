@@ -31,6 +31,22 @@
      E-mail referente del gruppo & manuel.gusella@studenti.unipd.it \\
     \hline
 \end{tabular}
+
+\vspace{0.5cm} 
+\begin{center}
+    \textbf{\Large Credenziali di accesso}
+\end{center}
+\vspace{0.5cm} 
+\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|}
+    \hline
+    Ruolo & Username & Password \\
+    \hline
+    Utente & user & user \\
+    \hline
+    Amministratore & admin & admin \\
+    \hline
+\end{tabularx}
+
 \newpage
 \tableofcontents
 \newpage
@@ -124,32 +140,76 @@ Per rispettare la separazione tra struttura e comportamento si è deciso di util
 \subsection{JavaScript}
 
 \section{Progettazione}
-Per la progettazione abbiamo utilizzato la strategia \textit{Mobile First}. Questo approccio permette di concentrarci sulla modalità di accesso principale per la maggioranza degli utenti, cioé quella da mobile. Ci siamo focalizzati soprattutto sul diminuire il numero di click/tap necessari per accedere alle varie sezioni del nostro sito.
+Per la progettazione del nostro sito web, abbiamo adottato la strategia \textit{Mobile First}. Questo approccio ci ha permesso di concentrarci sulla modalità di accesso più comune per la maggioranza degli utenti, ossia quella da dispositivi mobili. Abbiamo dato priorità alla semplicità, garantendo che l’esperienza utente fosse fluida e accessibile, riducendo al minimo il numero di tap o click necessari per navigare tra le varie sezioni del sito.\\
+L’implementazione del \textit{Responsive Web Design} (RWD) ha permesso di adattare dinamicamente il layout del sito per diversi dispositivi e risoluzioni. Abbiamo utilizzato una struttura modulare basata su tre file CSS:
+\begin{itemize}
+\item \textbf{style.css:} Contiene le regole principali, pensate per dispositivi mobili e successivamente estese a risoluzioni maggiori;
+\item \textbf{mini.css:} Adatta ulteriormente lo stile per schermi di dimensioni particolarmente ridotte;
+\item \textbf{print.css:} Ottimizza la resa grafica per la stampa.
+\end{itemize}
+
 \subsection{Struttura generale}
-Il sito non ha una profondità elevata ed è composto da:
+Il sito presenta una struttura semplice e lineare, senza una profondità gerarchica eccessiva. Le principali sezioni includono:
 \begin{itemize}
 \item \textbf{Home:} Visualizzata come landing page per accogliere l'utente che entra nel sito;
 \item \textbf{NFT:} Pagina dedicata alla ricerca delle opere presenti nel sito;
-\item \textbf{Singolo NFT:} Pagina dedicata ad un singolo NFT. Vengono visualizzate tutte le informazioni dell'opera, il prezzo per poterla acquistare e le recensioni degli utenti dell'opera. 
-\item \textbf{Chi Siamo:} Pagina di presentazione dei componenti del gruppo in cui è presente anche un FAQ per le domande più frequenti tra gli utenti;
-\item \textbf{Registrati:} L'utente utilizzerà questa pagina per registrarsi nella piattaforma;
-\item \textbf{Login:} L'utente utilizzerà questa pagina per accedere al proprio profilo;
-\item \textbf{Profilo:} Pagina che contiene le informazioni personali dell'utente, le opere in suo possesso e le recensioni che ha realizzato.
+\item \textbf{Singolo NFT:} Pagina che mostra i dettagli di un singolo NFT, inclusi descrizione, prezzo e recensioni degli utenti;
+\item \textbf{Chi Siamo:} Pagina di presentazione dei membri del team e delle FAQ;
+\item \textbf{Registrati:} Pagina per la registrazione degli utenti alla piattaforma;
+\item \textbf{Login:} Pagina per l'accesso al profilo utente;
+\item \textbf{Profilo:} Area personale dell'utente con informazioni personali, NFT acquistati e recensioni realizzate.
 \end{itemize}
 
 \subsection{Header e Navbar}
-Nell'Header è sempre presente il logo per poter definire l'identità del sito.\\
-Inoltre sarà sempre presente una navbar che permetterà, grazie al numero non elevato di sezioni, all'utente di vedere subito in quale pagine può navigare senza l'utilizzo di tap aggiuntivi, cosa che servirebbe se avessimo usato un menù ad hamburger. Per evitare link circolari il link della pagina corrente viene rimosso e reso riconoscibile rispetto agli altri.\\
-Saranno presenti due navbar:
+L'header del sito include sempre il logo, che contribuisce a definire l’identità visiva del sito.\\
+La barra di navigazione è stata progettata con particolare attenzione all'accessibilità e alla semplicità, soprattutto per dispositivi mobili. Abbiamo deciso di limitare il numero di voci presenti nella navbar per eliminare la necessità di un menù ad hamburger. Questa scelta, coerente con l'approccio \textit{Mobile First}, permette agli utenti di accedere rapidamente alle informazioni desiderate senza dover compiere ulteriori tap, migliorando l’esperienza d’uso.\\
+Per evitare confusione, il link alla pagina corrente viene disattivato e reso visivamente distinguibile dagli altri. Questo accorgimento aiuta a orientarsi nella navigazione senza sovraccaricare l'utente con opzioni ridondanti.\\
+
+Sono state implementate due versioni della navbar:
 \begin{itemize}
-\item Una per l'utente non autenticato dove saranno presenti le sezioni \textbf{Home}, \textbf{NFT}, \textbf{Chi Siamo}, \textbf{Registrati}, \textbf{Accedi};
-\item Una per l'utente autenticato dove saranno presenti le sezioni \textbf{Home}, \textbf{NFT}, \textbf{Chi Siamo}, \textbf{Profilo}, \textbf{Log out}. 
+\item Per utenti non autenticati: \textbf{Home}, \textbf{NFT}, \textbf{Chi Siamo}, \textbf{Registrati}, \textbf{Accedi};
+\item Per utenti autenticati: \textbf{Home}, \textbf{NFT}, \textbf{Chi Siamo}, \textbf{Profilo}, \textbf{Log out}.
 \end{itemize}
 
 \subsection{Breadcrumb}
-All'interno di ogni pagina sarà presente la Breadcrumb per informare l'utente dove si trova e per ridurre il disorientamento. Viene rispettato il livello di profondità, mostrando le pagine padri precedenti alla pagina corrente. Per evitare link circolari la pagina corrente non viene resa cliccabile.
+Ogni pagina del sito include una breadcrumb che informa l'utente sulla posizione corrente all'interno della struttura del sito. Questo elemento facilita la navigazione, riducendo il rischio di disorientamento.\\
+La breadcrumb segue fedelmente l’organizzazione delle pagine, mostrando i passaggi che portano alla pagina attuale. Per evitare confusione, la voce corrispondente alla pagina corrente è disattivata, eliminando il rischio di link circolari.
 
-\subsection{Contenuto}
+\subsection{Contenuto} Nella progettazione delle pagine del sito ci siamo concentrati su tre domande chiave per garantire un’esperienza utente ottimale: \begin{itemize} \item \textbf{Dove sono?} Ogni pagina presenta un chiaro titolo e, dove necessario, un breadcrumb che aiuta l’utente a comprendere la propria posizione all’interno della struttura del sito. \item \textbf{Di cosa si tratta?} Gli elementi principali di ogni pagina sono immediatamente visibili e ben distinti, con descrizioni chiare e organizzazione logica dei contenuti. \item \textbf{Dove posso andare?} I collegamenti principali sono sempre presenti nella navbar, mentre le call-to-action nelle singole pagine guidano l’utente verso le azioni principali come la ricerca, l’acquisto, o la registrazione. \end{itemize}
+
+\subsubsection{Descrizione delle pagine} Di seguito, una panoramica delle pagine del sito:
+
+\paragraph{Home} La home page accoglie l’utente con una breve introduzione al sito. I contenuti principali sono: \begin{itemize} \item Un carosello che mostra le 10 NFT più recenti caricate sulla piattaforma; \item Una sezione con le 3 NFT più popolari; \item Una tabella che elenca le categorie di NFT, ordinate per volume di vendite. \end{itemize} Questa struttura permette di offrire una visione sintetica e completa delle principali attività del sito.
+
+\paragraph{Pagina NFT} Questa pagina consente agli utenti di esplorare tutte le opere disponibili sul sito. È divisa in due sezioni: \begin{itemize} \item Una form con opzioni di ricerca e filtri per affinare i risultati; \item Un elenco di NFT, organizzato in più pagine numerate (per non sovracaricare di informazioni l'utente e per rendere la pagina più veloce da caricare). \end{itemize}
+
+\paragraph{Chi Siamo} La pagina "Chi Siamo" presenta una breve descrizione del gruppo e un elenco di domande frequenti (FAQ) che chiariscono dubbi comuni degli utenti.
+
+\paragraph{Pagina di un singolo NFT} Questa pagina fornisce tutti i dettagli relativi a un singolo NFT. Gli elementi principali includono: \begin{itemize} \item L’immagine dell’NFT; \item Il prezzo e un pulsante per acquistarlo (visibile solo agli utenti loggati); \item Una descrizione dettagliata dell’opera; \item Una sezione per inserire una recensione (accessibile agli utenti loggati); \item L’elenco delle recensioni lasciate dagli altri utenti. \end{itemize}
+
+\paragraph{Profilo} La pagina del profilo raccoglie le informazioni personali dell’utente. Include: \begin{itemize} \item Dati personali; \item L’elenco degli NFT acquistati dall’utente; \item Le recensioni scritte dall’utente; \item Per gli amministratori, un’opzione per aggiungere nuove NFT al sito. \end{itemize}
+
+\paragraph{Registrati e Accedi} Queste pagine sono dedicate alla gestione degli account. Ognuna include un form semplice e diretto per la registrazione di nuovi utenti o l’accesso a un account esistente.
+
+\paragraph{Errori 404 e 500} Per garantire un’esperienza utente coerente anche in caso di errori, le pagine 404 (pagina non trovata) e 500 (errore del server) sono state progettate con un approccio di \textit{emotional design}. Sono utilizzati messaggi rassicuranti e immagini accattivanti per ridurre il senso di frustrazione e incoraggiare l’utente a rimanere sul sito. In queste pagine, la navbar è sempre visibile e completamente funzionante, consentendo all’utente di proseguire la navigazione e mantenendo alta la fiducia dell’utente nel sito.
+
+\subsection{Gestione della registrazione}
+Il sito è navigabile senza obbligo di registrazione. Gli utenti non autenticati possono esplorare gli NFT disponibili, ma per acquistare opere o lasciare recensioni è necessaria la registrazione. Questa scelta garantisce un’esperienza più libera per l'utente, incentivando una registrazione spontanea.
+
+\subsection{Scelta della palette colori}
+La definizione della palette colori è stata un processo evolutivo, durante il quale abbiamo cambiato la palette diverse volte per garantire il contrasto minimo (4.5:1) e tenendo in considerazione che il colore di bandiera era il rosa. Inizialmente, non riuscivamo a trovare una combinazione di colori per i link che rispettasse il contrasto tra link visitati, non visitati e lo sfondo. Per risolvere il problema, abbiamo apportato leggere modifiche al colore del testo normale (da #FFFFE8 a #FFFEF4) e allo sfondo (da #191919 a #000408), in modo da aumentare il contrasto tra questi e permettere l’introduzione di un terzo colore (#C0469D).\\
+Abbiamo deciso di tenere il colore dei link non visitati identico a quello del testo normale, distinguendoli solo tramite la sottolineatura (in linea con le convenzioni esterne comunemente adottate a cui gli utenti sono abituati). Per verificare i contrasti, abbiamo utilizzato lo strumento \textit{Coolors Contrast Checker} (\url{https://coolors.co/contrast-checker/112a46-6f95bd}), ottenendo i valori richiesti.
+
+\subsection{Accessibilità}
+Per garantire un'esperienza utente ottimale, sono state adottate convenzioni che favoriscono l'usabilità e l'accessibilità del sito:
+\begin{itemize}
+\item Le etichette dei pulsanti e dei link sono chiare e descrittive, in modo da comunicare immediatamente l’azione associata;
+\item La struttura del sito è lineare e intuitiva, con un design \textit{mobile-first} che privilegia la semplicità e l'accessibilità;
+\item Il sito è navigabile tramite tastiera, garantendo l'accesso a utenti con disabilità motorie;
+\item Le immagini di contenuto sono accompagnate da testi alternativi descrittivi (quando necessari), per permettere la comprensione dei contenuti da parte di utenti non vedenti o con disabilità visive;
+\item Sono stati utilizzati font leggibili, con contrasto e dimensioni adeguate, per garantire la fruibilità al maggior numero di utenti possibile;
+\item I contenuti interattivi sono facilmente identificabili e accessibili, con un chiaro feedback visivo per l’interazione.
+\end{itemize}
 
 \section{Implementazione}
 \subsection{Front-End}
