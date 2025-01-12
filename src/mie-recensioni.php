@@ -11,6 +11,7 @@ function getRecensioni($database){
     $value = array($_SESSION['username']);
     return $database->executeSelectPreparedStatement($query,'s',$value);
 }
+
 function getOrderBy($ordina) {
     switch($ordina) {
     case "piuRecente":
@@ -36,16 +37,36 @@ function getRecensioniFiltered($database, $opera, $ordina) {
     return $database->executeSelectPreparedStatement($query,'ss',$value);
 }
 
-function getOrFilter($database, &$filtro_opera){
+function getOrFilter($database){
     if(isset($_GET['submit'])){
         $opera=$_GET['nft'];
-        $filtro_opera=$opera;
         $ordina=$_GET['ordina'];
 
         return getRecensioniFiltered($database, $opera, $ordina);
     }else{
         return getRecensioni($database);
     }
+}
+
+function setFormValues(&$filtro_opera, &$ordina) {
+    if(isset($_GET['submit'])){
+        $filtro_opera=$_GET['nft'];
+        $ordina=$_GET['ordina'];
+    }
+}
+
+function getOrdinaSelect($selectedValue) {
+    return '<select id="ordina" name="ordina">
+        <optgroup label="Data"> '
+        .getOrdinaSelectOption("piuRecente", "Più recente", $selectedValue). ''
+        .getOrdinaSelectOption("menoRecente", "Meno recente", $selectedValue).'
+        </optgroup>
+
+        <optgroup label="Voto"> '
+        . getOrdinaSelectOption("piuAlto", "Più alto", $selectedValue) . ''
+        . getOrdinaSelectOption("piuBasso", "Più basso", $selectedValue) . '
+        </optgroup>
+        </select>';
 }
 
 function printRecensioni($recensioni, $pageNumber, $pageSize) {
@@ -103,16 +124,18 @@ if (isset($_GET['page']))
     $pageNumber = intval($_GET['page']);
 $recensioniDaMostrare = 0;
 $filtro_opera="";
+$ordina="piuRecente";
 
 if(isset($_SESSION['username'])){
     $database = new Database();
     $connessioneOK = $database->openConnection();
     $username = $_SESSION['username'];
-
+    setFormValues($filtro_opera,$ordina);
+    $selectForm = getOrdinaSelect($ordina);
 
     if(!$connessioneOK){
 
-        $recensioni = getOrFilter($database,$filtro_opera);
+        $recensioni = getOrFilter($database);
         $database->closeConnection();
         $recensioni_html = printRecensioni($recensioni, $pageNumber, $pageSize);
         $recensioniDaMostrare = count($recensioni) - $pageNumber*$pageSize - $pageSize;
@@ -143,6 +166,6 @@ else{
 $navbar = new Navbar("");
 $paginaHTML = file_get_contents('./static/mie-recensioni.html');
 
-$find=['{{NAVBAR}}','{{RECENSIONI}}','{{PAGINA_PRECEDENTE}}', '{{PAGINA_SUCCESSIVA}}', '{{PAGINA_CORRENTE}}', '{{OPERA}}'];
-$replacement=[$navbar->getNavbar(), $recensioni_html, $linkPaginaPrecedente, $linkPaginaSuccessiva, "<span class='page-number'>Pagina: {$pageNumber}</span>", $filtro_opera];
+$find=['{{NAVBAR}}','{{RECENSIONI}}','{{PAGINA_PRECEDENTE}}', '{{PAGINA_SUCCESSIVA}}', '{{PAGINA_CORRENTE}}', '{{OPERA}}','{{ORDINA}}'];
+$replacement=[$navbar->getNavbar(), $recensioni_html, $linkPaginaPrecedente, $linkPaginaSuccessiva, "<span class='page-number'>Pagina: {$pageNumber}</span>", $filtro_opera, $selectForm];
 echo str_replace($find,$replacement,$paginaHTML);
