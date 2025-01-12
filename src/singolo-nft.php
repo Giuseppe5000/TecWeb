@@ -33,7 +33,7 @@ function getRecensioni($recensioni, $pageNumber, $pageSize) {
 }
 
 function mostraAggiungiRecensione(&$aggiungi_recensione_html, $id) {
-    $aggiungi_recensione_html.='<form id="agg-recensione" class="user-form" action="singolo-nft.php" method="post">';
+    $aggiungi_recensione_html.='<form id="agg-recensione" class="user-form" action="php/post/recensione/aggiungi-recensione.php" method="post">';
     $aggiungi_recensione_html.='<fieldset>';
     $aggiungi_recensione_html.='<legend>Aggiungi recensione</legend>';
     $aggiungi_recensione_html.= '<fieldset id="stelle-recensione">';
@@ -52,6 +52,7 @@ function mostraAggiungiRecensione(&$aggiungi_recensione_html, $id) {
     $aggiungi_recensione_html.='<label for="recensione">Recensione:</label>';
     $aggiungi_recensione_html.='<textarea id="recensione" name="recensione" required></textarea>';
     $aggiungi_recensione_html.='<input type="hidden" name="id" value="'.$id.'"/>';
+    $aggiungi_recensione_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'?'.$_SERVER['QUERY_STRING'].'"/>';
     $aggiungi_recensione_html.='<input type="submit" value="Aggiungi" class="button" name="aggiungi"></input>';
     $aggiungi_recensione_html.='</fieldset>';
     $aggiungi_recensione_html.='</form>';
@@ -80,19 +81,6 @@ if (!$connessioneOK) {
     #richiesta get e salvo il parametro di sessione
     if(isset($_GET['id'])) {
         $id=$_GET["id"];
-    }
-
-    #Se aggiunge una recensione
-    if (isset($_POST['aggiungi']) && isset($_SESSION['username'])) {
-        $username=$_SESSION['username'];
-        $id=$_POST['id'];
-        $voto=$database->pulisciInput($_POST['voto']);
-        $recensione=$database->pulisciInput($_POST['recensione']);
-
-        $query = "INSERT INTO recensione (timestamp, utente, commento, opera, voto) VALUES (?, ?, ?, ?, ?)";
-        
-        $value = array(date("Y-m-d h:i:s"),$username, $recensione, $id, $voto);
-        $database->executeCRUDPreparedStatement($query,'sssii',$value);
     }
 
     #Se acquista l'opera
