@@ -103,12 +103,6 @@ function mostraOpere($opere, $pageNumber, $pageSize) {
     return $stringaOpere;
 }
 
-function generatePageNumber($pageNumber) {
-    if (isset($_GET['page']))
-        return preg_replace("/page=(\d)*/", "page={$pageNumber}", $_SERVER['QUERY_STRING']);
-    return $queryString = $_SERVER['QUERY_STRING'] . "&page={$pageNumber}";
-}
-
 if(isset($_SESSION['username'])){
     $pageSize = 8;
     $pageNumber = 0;
@@ -133,14 +127,14 @@ if(isset($_SESSION['username'])){
     if ($pageNumber > 0) {
         $prevPageNumber = $pageNumber - 1;
         $queryString = generatePageNumber($prevPageNumber);
-        $linkPaginaPrecedente =  "<a class='prev-page' href=\"nft.php?{$queryString}\">&#10094;</a>";
+        $linkPaginaPrecedente =  "<a class='prev-page' href=\"miei-nft.php?{$queryString}\">&#10094;</a>";
     }
     
     $linkPaginaSuccessiva = "";
     if ($opereDaMostrare > 0) {
         $nextPageNumber = $pageNumber + 1;
         $queryString = generatePageNumber($nextPageNumber);
-        $linkPaginaSuccessiva = "<a class='next-page' href=\"nft.php?{$queryString}\">&#10095;</a>";
+        $linkPaginaSuccessiva = "<a class='next-page' href=\"miei-nft.php?{$queryString}\">&#10095;</a>";
     }
 }
 else{
