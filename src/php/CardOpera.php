@@ -44,6 +44,9 @@ class CardOpera {
         return str_replace('{{HEADER}}', $this->getCardNameHeading("h2") . $spanPrice, $nftCard);
     }
 
+    public function getMieiNFTCard() {
+        return $this->getNFTCard();
+    }
 
     private function getBaseCard($width = 200, $height = 200) {
         $card = '';
