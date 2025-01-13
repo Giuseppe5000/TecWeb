@@ -2,6 +2,7 @@
 
 require_once "./php/Database.php";
 require_once "./php/Navbar.php";
+require_once "./php/CardOpera.php";
 require_once "./php/utils.php";
 session_start();
 
@@ -46,12 +47,8 @@ if (!$connessioneOK) {
     #INSERISCO ULTIME USCITE
     if (count($opereU) > 0) {
         foreach ($opereU as $opera) {
-            $ultimeUscite .= '<div class="card">';
-            $ultimeUscite .= '<a href="singolo-nft.php?id='.$opera["id"].'">';
-            $ultimeUscite .= '<h3>' . trimName($opera["nome"],17)  . '</h3>';
-            $ultimeUscite .= '<img src="./' . $opera["path"] . '.webp" width="200" height="200">';
-            $ultimeUscite .= '</a>';
-            $ultimeUscite .= '</div>';
+            $card = new CardOpera($opera, 17);
+            $ultimeUscite .= $card->getHomeCard();
         }
     }
 
@@ -62,25 +59,18 @@ if (!$connessioneOK) {
         foreach ($opereT as $opera) {
             switch($count){
             case 1:
-                #inserisco il primo
-                $top3 .= '<div class="card" id="primo">';
-                $top3 .= '<a href="singolo-nft.php?id='.$opera["id"].'"><div class="head-card"><span>1°</span>';
+                $card = new CardOpera($opera, 15);
+                $top3 .= $card->getHomeTopCard(1);
                 break;
             case 2:
-                #inserisco il secondo
-                $top3 .= '<div class="card" id="secondo">';
-                $top3 .= '<a href="singolo-nft.php?id='.$opera["id"].'"><div class="head-card"><span>2°</span>';
+                $card = new CardOpera($opera, 15);
+                $top3 .= $card->getHomeTopCard(2);
                 break;
             case 3:
-                #inserisco il terzo
-                $top3 .= '<div class="card" id="terzo">';
-                $top3 .= '<a href="singolo-nft.php?id='.$opera["id"].'"><div class="head-card"><span>3°</span>';
+                $card = new CardOpera($opera, 15);
+                $top3 .= $card->getHomeTopCard(3);
                 break;
             }
-            $top3 .= '<h3>' . trimName($opera["nome"],15)  . '</h3></div>';
-            $top3 .= '<img src="./' . $opera["path"] . '.webp" width="200" height="200">';
-            $top3 .= '</a>';
-            $top3 .= '</div>';
 
             #se sono presenti poche opere con recensioni mostra solo quelle con le recensioni
             if($count<$nTop){

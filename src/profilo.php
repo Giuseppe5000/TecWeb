@@ -2,6 +2,7 @@
 
 require_once "./php/Database.php";
 require_once "./php/Navbar.php";
+require_once "./php/CardOpera.php";
 require_once "./php/utils.php";
 session_start();
 
@@ -102,12 +103,8 @@ if(isset($_SESSION['username'])){
             $count=0;
             while($count<6 && $count<count($opere)){
                 $opera=$opere[$count];
-                $nftPosseduti .= '<div class="card">';
-                $nftPosseduti .= '<a href="singolo-nft.php?id='.$opera["id"].'">';
-                $nftPosseduti .= '<h3>' . trimName($opera["nome"])  . '</h3>';
-                $nftPosseduti .= '<img src="./' . $opera["path"] . '.webp" width="140" height="140">';
-                $nftPosseduti .= '</a>';
-                $nftPosseduti .= '</div>';
+                $card = new CardOpera($opera);
+                $nftPosseduti .= $card->getProfileCard();
                 $count++;
             }
             if($count<count($opere)){
