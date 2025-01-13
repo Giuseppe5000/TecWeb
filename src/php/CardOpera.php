@@ -64,7 +64,7 @@ class CardOpera {
     }
 
     private function getCardNameHeading($headingNumber) {
-        return "<{$headingNumber}>" . trimName($this->opera["nome"], $this->trimSizeName)  . "</{$headingNumber}>";
+        return "<{$headingNumber}>" . $this->trimName($this->opera["nome"], $this->trimSizeName)  . "</{$headingNumber}>";
     }
 
     private function getStringIdTopPosition($topPosition) {
@@ -73,5 +73,13 @@ class CardOpera {
         case 2: return "secondo";
         case 3: return "terzo";
         }
+    }
+
+    private function trimName($nome,$max=10){
+        if(strlen($nome)>$max){
+            $nome=substr($nome,0,($max-3));
+            $nome.='...';
+        }
+        return $nome;
     }
 }
