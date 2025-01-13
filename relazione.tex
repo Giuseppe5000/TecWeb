@@ -184,6 +184,14 @@ La breadcrumb segue fedelmente l’organizzazione delle pagine, mostrando i pass
 
 \paragraph{Profilo} La pagina del profilo raccoglie le informazioni personali dell’utente. Include: \begin{itemize} \item Dati personali; \item L’elenco degli NFT acquistati dall’utente; \item Le recensioni scritte dall’utente; \item Per gli amministratori, un’opzione per aggiungere nuove NFT al sito. \end{itemize}
 
+\paragraph{Mie Recensioni}
+Questa pagina raccoglie tutte le recensioni scritte dall’utente, organizzandole in un elenco paginato per evitare problemi di scroll infinito. Ogni recensione include:
+\begin{itemize} \item L’opera a cui si riferisce, con un collegamento diretto alla relativa pagina; \item Il testo completo della recensione; \item La data in cui è stata scritta la recensione.
+\end{itemize} 
+
+\paragraph{Miei NFT}
+Questa pagina mostra l’elenco di tutti gli NFT acquistati dall’utente. Anche in questo caso, è stata implementata la paginazione per evitare problemi di caricamento o scroll infinito.
+
 \paragraph{Registrati e Accedi} Queste pagine sono dedicate alla gestione degli account. Ognuna include un form semplice e diretto per la registrazione di nuovi utenti o l’accesso a un account esistente.
 
 \paragraph{Errori 404 e 500} Per garantire un’esperienza utente coerente anche in caso di errori, le pagine 404 (pagina non trovata) e 500 (errore del server) sono state progettate con un approccio di \textit{emotional design}. Sono utilizzati messaggi rassicuranti e immagini accattivanti per ridurre il senso di frustrazione e incoraggiare l’utente a rimanere sul sito. In queste pagine, la navbar è sempre visibile e completamente funzionante, consentendo all’utente di proseguire la navigazione e mantenendo alta la fiducia dell’utente nel sito.
@@ -192,7 +200,7 @@ La breadcrumb segue fedelmente l’organizzazione delle pagine, mostrando i pass
 Il sito è navigabile senza obbligo di registrazione. Gli utenti non autenticati possono esplorare gli NFT disponibili, ma per acquistare opere o lasciare recensioni è necessaria la registrazione. Questa scelta garantisce un’esperienza più libera per l'utente, incentivando una registrazione spontanea.
 
 \subsection{Scelta della palette colori}
-La definizione della palette colori è stata un processo evolutivo, durante il quale abbiamo cambiato la palette diverse volte per garantire il contrasto minimo (4.5:1) e tenendo in considerazione che il colore di bandiera era il rosa. Inizialmente, non riuscivamo a trovare una combinazione di colori per i link che rispettasse il contrasto tra link visitati, non visitati e lo sfondo. Per risolvere il problema, abbiamo apportato leggere modifiche al colore del testo normale (da #FFFFE8 a #FFFEF4) e allo sfondo (da #191919 a #000408), in modo da aumentare il contrasto tra questi e permettere l’introduzione di un terzo colore (#C0469D).\\
+La definizione della palette colori è stata un processo evolutivo, durante il quale abbiamo cambiato la palette diverse volte per garantire il contrasto minimo (4.5:1) e tenendo in considerazione che il colore di bandiera era il rosa. Inizialmente, non riuscivamo a trovare una combinazione di colori per i link che rispettasse il contrasto tra link visitati, non visitati e lo sfondo. Per risolvere il problema, abbiamo apportato leggere modifiche al colore del testo normale (da /#FFFFE8 a /#FFFEF4) e allo sfondo (da /#191919 a /#000408), in modo da aumentare il contrasto tra questi e permettere l’introduzione di un terzo colore (/#C0469D).\\
 Abbiamo deciso di tenere il colore dei link non visitati identico a quello del testo normale, distinguendoli solo tramite la sottolineatura (in linea con le convenzioni esterne comunemente adottate a cui gli utenti sono abituati). Per verificare i contrasti, abbiamo utilizzato lo strumento \textit{Coolors Contrast Checker} (\url{https://coolors.co/contrast-checker/112a46-6f95bd}), ottenendo i valori richiesti.
 
 \subsection{Accessibilità}
