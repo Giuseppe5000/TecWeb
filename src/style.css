@@ -148,14 +148,15 @@ SEZIONE MENU
 AIUTI ALLA NAVIGAZIONE
 ======================
 */
-nav{
-    margin: 0.5em 0;
-}
 .navigationHelp{
     margin: 1em;
     position: absolute;
     text-indent: -999em;
     background-color: var(--bgcolor-help);
+}
+
+.listHelp{
+    margin: 0.5em 0;
 }
 
 .listHelp a{
@@ -180,6 +181,10 @@ SEZIONE BREADCRUMB
     text-align: center;
     background-color: var(--breadcolor);
     color: var(--contentbgcolor);
+}
+
+#breadcrumb p{
+    margin: 0;
 }
 
 /*
