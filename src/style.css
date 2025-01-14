@@ -148,6 +148,9 @@ SEZIONE MENU
 AIUTI ALLA NAVIGAZIONE
 ======================
 */
+nav{
+    margin: 0.5em 0;
+}
 .navigationHelp{
     margin: 1em;
     position: absolute;
