@@ -84,39 +84,14 @@ if (!$connessioneOK) {
     }
 
     #Se acquista l'opera
-    if (isset($_POST['acquista']) && isset($_SESSION['username'])) {
-        
-        $username=$_SESSION['username'];
-        //recupera valori del form
-        $id=$_POST['id'];
-        $prezzo=(double)$_POST['prezzo'];
-
-        #controllo che possa acquistare l'opera tramite controllo del saldo
-        $query = "SELECT saldo FROM utente WHERE username = ?";
-        $value=array($username);
-        $saldo = $database->executeSelectPreparedStatement($query,'s',$value);
-        
-        if ($saldo[0]["saldo"]>=$prezzo){
-            $query = "INSERT INTO acquisto (utente, opera, prezzo, data) VALUES (?, ?, ?, ?)";
-            $value = array($username, $id, $prezzo, date("Y-m-d h:i:s"));
-            $database->executeCRUDPreparedStatement($query,'sids',$value);
-
-            #modifico il possessore dell'opera e il saldo dell'utente
-            $query = "UPDATE opera SET possessore = ? WHERE id = ?";
-            $value = array($username, $id);
-            $database->executeCRUDPreparedStatement($query,'si',$value);
-            
-            $query = "UPDATE utente SET saldo = ? WHERE username = ?";
-            $nuovo_saldo=$saldo[0]["saldo"]-$prezzo;
-            $value = array($nuovo_saldo,$username);
-            $database->executeCRUDPreparedStatement($query,'ds',$value);
-            
+    if(isset($_SESSION['risultato_acquisto'])){
+        if($_SESSION['risultato_acquisto']==0){
             $acquisto_res.='<p class="center">Opera acquistata con successo!</p>';
         }else{
             $acquisto_res.='<p class="center">Non hai abbastanza ETH per acquistare l\'opera!</p>';
         }
+        unset($_SESSION['risultato_acquisto']);
     }
-
     
     #QUERY
     $query='SELECT * FROM opera WHERE id='.$id;
@@ -146,9 +121,10 @@ if (!$connessioneOK) {
             #se l'utente è loggato vede il bottone acquista
             if(isset($_SESSION['username'])){
                 if(strcmp($_SESSION['username'],'admin')!=0){
-                    $opera_html.='<form id="acq-nft" action="singolo-nft.php" method="post">';
+                    $opera_html.='<form id="acq-nft" action="php/post/opera/acquisto.php" method="post">';
                     $opera_html.='<input type="hidden" name="id" value="'.$id.'"/>';
                     $opera_html.='<input type="hidden" name="prezzo" value="'.$prezzo.'"/>';
+                    $opera_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'?'.$_SERVER['QUERY_STRING'].'"/>';
                     $opera_html.='<input type="submit" value="Acquista" class="button" name="acquista">';
                     $opera_html.='</form>';
                 }else{
