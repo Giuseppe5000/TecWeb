@@ -4,12 +4,12 @@
     --bgcolor: #785D9B;
     --bgcolor-help: #ffbdcf;
     --txtcolor: #FFFEF4;
-    --breadcolor: #8CA0D7;
+    --breadcolor: #5973BB;
     --contenttxtcolor: #000408;
     --contentbgcolor: #000408;    ;
     --linkcolor: #FFFEF4;
     --visitedcolor: #C0469D;
-    --footerbgcolor: #8CA0D7;
+    --footerbgcolor: #5973BB;
     --footercolor: #000408;
     --logocolor: #Fc8eac;
 }
@@ -178,6 +178,15 @@ SEZIONE BREADCRUMB
     background-color: var(--breadcolor);
     color: var(--contentbgcolor);
 }
+
+#breadcrumb a:link {
+    color: var(--contentbgcolor);
+}
+
+#breadcrumb :visited {
+    color: var(--txtcolor);
+}
+
 
 /*
 =================
@@ -392,9 +401,9 @@ div#filtri select {
     margin-bottom: 1em;
 }
 
-.filtro-aggiuntivo {
+/*.filtro-aggiuntivo {
     display: none;
-}
+}*/
 
 #show-filters {
     background: url("./assets/filter_icon.svg") top center no-repeat;
@@ -409,6 +418,8 @@ div#filtri select {
     display: flex;
     justify-content: space-between;
 }
+
+
 
 #navigazione-pagine {
     display: flex;
