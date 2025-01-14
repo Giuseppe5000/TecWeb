@@ -266,6 +266,10 @@ main p.center{
     background-color: var(--contentbgcolor);
 }
 
+.card img {
+    border-radius: 10px;
+}
+
 .card a {
     text-decoration: none;
 }
@@ -467,6 +471,7 @@ PAGINA REGISTRATI E ACCEDI
 
 .messaggi-form {
     color: var(--bgcolor-help);
+    text-align: center;
 }
 
 /*
