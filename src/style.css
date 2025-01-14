@@ -218,6 +218,7 @@ SEZIONE SLIDESHOW
     scroll-behavior: smooth;
     margin-left: 0.5em;
     margin-right:0.5em;
+    padding-top: 5px;
 }
 
 .prev,.next{
