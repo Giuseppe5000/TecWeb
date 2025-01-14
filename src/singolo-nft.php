@@ -84,8 +84,8 @@ if (!$connessioneOK) {
     }
 
     #Se acquista l'opera
-    if(isset($_SESSION['risultato_acquisto'])){
-        if($_SESSION['risultato_acquisto']==0){
+    if(isset($_SESSION['acquistato'])){
+        if($_SESSION['acquistato']){
             $acquisto_res.='<p class="center">Opera acquistata con successo!</p>';
         }else{
             $acquisto_res.='<p class="center">Non hai abbastanza ETH per acquistare l\'opera!</p>';

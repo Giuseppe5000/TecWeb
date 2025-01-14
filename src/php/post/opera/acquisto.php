@@ -1,7 +1,6 @@
 <?php
 
 require_once "../../Database.php";
-require_once "../../utils.php";
 session_start();
 #post che cancella la recensione
 function acquistaOpera($username,$database){
@@ -30,9 +29,9 @@ function acquistaOpera($username,$database){
             $nuovo_saldo=$saldo[0]["saldo"]-$prezzo;
             $value = array($nuovo_saldo,$username);
             $database->executeCRUDPreparedStatement($query,'ds',$value);
-            $_SESSION['risultato_acquisto']=0;
+            $_SESSION['acquistato']=true;
         }else{
-            $_SESSION['risultato_acquisto']=1;
+            $_SESSION['acquistato']=false;
         }
         header('Location: ../../..'.$_POST['currentPage']);
         exit;
