@@ -303,6 +303,10 @@ main p.center{
     justify-content: space-between;
 }
 
+.card {
+    transition: transform 0.3s ease;
+}
+
 .card:hover, .card:focus-within {
     transform: translateY(-0.5em); 
 }
