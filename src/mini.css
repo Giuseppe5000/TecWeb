@@ -80,9 +80,14 @@ PAGINA NFT
     margin-top: 11em;
 }
 
-#filtri {
-    margin-left: 5%;
-    margin-right: 5%;
+#filtri, #add-saldo, #add-nft, #agg-recensione{
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0.5em; 
+}
+
+legend {
+    text-align: center;
 }
 
 div#filtri > form > fieldset {
@@ -150,4 +155,9 @@ PAGINE 404,500
 
 .head-comment{
     flex-direction: column;
+}
+
+
+#stelle-recensione label {
+    font-size: 2.2em;
 }

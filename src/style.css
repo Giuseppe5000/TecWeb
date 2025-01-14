@@ -275,6 +275,10 @@ main p.center{
     background-color: var(--contentbgcolor);
 }
 
+.card img{
+border-radius: 10px;
+}
+
 .card a {
     text-decoration: none;
 }
@@ -373,52 +377,152 @@ footer {
 PAGINA NFT
 ==========
 */
-#filtri {
+
+#filtri, #add-saldo, #add-nft, #agg-recensione {
     text-align: left;
     margin-left: 20%;
     margin-right: 20%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    background-color: var(--visitedcolor); 
+    border-radius: 8px; 
+    padding: 2em; 
 }
 
 div#filtri > form > fieldset {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding-left: 10%;
-    padding-right: 10%;
-}
-
-#categorie {
-    padding-left: 3%;
-}
-
-
-div#filtri select {
-    margin-bottom: 1em;
-    text-align: center;
-}
-
-#categorie {
-    margin-bottom: 1em;
-}
-
-#show-filters {
-    background: url("./assets/filter_icon.svg") top center no-repeat;
+    justify-content: flex-start;
+    padding-left: 2em;
+    padding-right: 2em;
     border: none;
-    padding: 1em;
-    cursor: pointer;
+    margin-bottom: 1.5em;
 }
 
-.head-filter{
+legend {
+    font-size: 1.5em;
+    font-weight: bold;
     margin-bottom: 1em;
-    align-items: center;
+}
+
+label {
+    font-size: 1em;
+    font-weight: normal;
+    color: var(--txtcolor);
+    padding-bottom: 0.5em;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="email"],
+textarea{
+    padding: 0.5em;
+    border-radius: 5px;
+    border: 0px;
+    font-size: 1em;
+    width: 100%;
+    margin-bottom: 1em;
+    box-sizing: border-box;
+}
+
+input:focus, input:hover,
+textarea:focus, textarea:hover {
+    outline: none;
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.head-filter {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.head-filter input{
+    width: 80%;
+    padding: 0.75em;
+    border-radius: 5px;
+    border: 0px;
+    font-size: 1em;
 }
 
 #prezzoMin, #prezzoMax {
-    width: 50%;
-    margin-bottom: 1em; 
+    width: 60%;
 }
+
+#show-filters {
+    background: url("./assets/filter_icon.svg") center center no-repeat;
+    border: none;
+    width: 3em;
+    height: 3em;
+    cursor: pointer;
+    background-size: contain;
+    transition: transform 0.3s ease;
+    margin-left: 1em;
+}
+
+#show-filters:focus, #show-filters:hover {
+    transform: scale(1.2);
+}
+
+.filtro-aggiuntivo {
+    padding-bottom: 0.5em;
+}
+
+fieldset  {
+    border-radius: 7px;
+    border: 2px solid var(--txtcolor);
+    padding-left: 1em;
+    margin-bottom: 1em;
+    padding-top: 1em;
+}
+
+fieldset div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75em;
+}
+
+input[type="checkbox"] {
+    width: 2em;
+    height:2em;
+    margin-right: 1em;
+    border: 0px;
+    margin-bottom: 0.7em;
+}
+
+#add-nft input[type="checkbox"]{
+    margin-bottom: -0.7em;
+}
+
+fieldset input[type="checkbox"]:hover {
+    transform: scale(1.5); 
+    transition: transform 0.2s ease-in-out;
+}
+
+select {
+    padding: 0.75em;
+    border-radius: 5px;
+    border: 0px;
+    font-size: 1em;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+select:focus, select:hover {
+    outline: none;
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+
+
+
+
+
+
 
 #navigazione-pagine {
     display: flex;
@@ -570,6 +674,7 @@ Commento
 .comment{
     margin: 1em 0;
     width: 80%;
+    border-radius: 3px;
 }
 
 .user-comment{
@@ -609,19 +714,29 @@ Commento
 }
 
 #stelle-recensione input[type="radio"] {
-    display: none;
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
-.star {
-    color: gold;
+#stelle-recensione label {
+    cursor: pointer;
+    font-size: 3em;
+    transition: color 0.2s ease-in-out;
 }
 
-#stelle-recensione input[type="radio"]:checked  ~ .star{
-    color: gold; /* Color of the selected stars */
+#stelle-recensione input[type="radio"]:focus + label, #stelle-recensione input[type="radio"]:hover + label {
+    transform: scale(1.3);
+    transition: 0.2s;
 }
 
-#stelle-recensione input[type="radio"]:checked  ~ .star ~ .star{
-    color: gray; /* Color of the selected stars */
+#stelle-recensione input[type="radio"]:checked ~ label {
+    color: var(--txtcolor);
+}
+
+#stelle-recensione input[type="radio"]:checked ~ label ~ label {
+    color: var(--contentbgcolor); 
 }
 
 /*
