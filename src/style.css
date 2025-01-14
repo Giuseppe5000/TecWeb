@@ -278,6 +278,10 @@ main p.center{
     text-decoration: none;
 }
 
+.card img {
+    border-radius: 10px;
+}
+
 /*Fix per il titolo delle card nella pagina nft*/
 .card h2{
     padding: 0;
