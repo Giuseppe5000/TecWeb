@@ -272,6 +272,7 @@ main p.center{
 
 .card {
     background-color: var(--contentbgcolor);
+    transition: transform 0.3s ease;
 }
 
 .card a {
@@ -301,10 +302,6 @@ main p.center{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-}
-
-.card {
-    transition: transform 0.3s ease;
 }
 
 .card:hover, .card:focus-within {
