@@ -401,10 +401,6 @@ div#filtri select {
     margin-bottom: 1em;
 }
 
-/*.filtro-aggiuntivo {
-    display: none;
-}*/
-
 #show-filters {
     background: url("./assets/filter_icon.svg") top center no-repeat;
     border: none;
@@ -419,7 +415,10 @@ div#filtri select {
     justify-content: space-between;
 }
 
-
+#prezzoMin, #prezzoMax {
+    width: 50%;
+    margin-bottom: 1em; 
+}
 
 #navigazione-pagine {
     display: flex;
