@@ -26,34 +26,40 @@ function slider(){
 
 // ===== CONTROLLI FORM ======
 function validazioneCaricaNft() {
-    const input = document.getElementById("descrizione");
-
-    let node;
-    let p = input.parentNode.previousSibling;
-    if (p.className == "messaggi-form") {
+    const form = document.getElementById("add-nft");
+    let p = form.previousSibling;
+    while (p.className == "messaggi-form") {
         p.remove();
-        p = input.parentNode.previousSibling;
+        p = form.previousSibling;
     }
 
-    let desc = input.value;
+    let desc = document.getElementById("descrizione").value;
+    const resDesc = validaDescrizione(desc);
+    if (resDesc !== true) {
+        createMessageNode(p, resDesc);
+    }
+
+    return resDesc === true;
+}
+
+function validaDescrizione(desc) {
     if (desc.includes(".")) {
-        let desc = desc.split(".");
+        desc = desc.split(".");
         let alt = desc[0];
         if (alt.length > 100) {
-            node = document.createElement("p");
-            node.className = "messaggi-form";
-            node.appendChild(document.createTextNode("La prima frase del campo descrizione (dall'inizio fino al primo punto) deve essere lunga al massimo 150 caratteri!"));
-            p.after(node);
-            return false;
+            return "La prima frase del campo descrizione (dall'inizio fino al primo punto) deve essere lunga al massimo 150 caratteri!";
         }
     }
     else {
-        node = document.createElement("p");
-        node.className = "messaggi-form";
-        node.appendChild(document.createTextNode("Il campo descrizione deve avere almeno un punto alla fine!"));
-        p.after(node);
-        return false;
+        return "Il campo descrizione deve avere almeno un punto alla fine!";
     }
 
+    return true;
+}
 
+function createMessageNode(parent, text) {
+        let node = document.createElement("p");
+        node.className = "messaggi-form";
+        node.appendChild(document.createTextNode(text));
+        parent.after(node);
 }
