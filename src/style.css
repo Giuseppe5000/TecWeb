@@ -4,13 +4,13 @@
     --bgcolor: #785D9B;
     --bgcolor-help: #ffbdcf;
     --txtcolor: #FFFEF4;
-    --breadcolor: #5973BB;
+    --breadcolor: #FFFEF4;
     --contenttxtcolor: #000408;
     --contentbgcolor: #000408;    ;
     --linkcolor: #FFFEF4;
     --visitedcolor: #C0469D;
-    --footerbgcolor: #5973BB;
-    --footercolor: #000408;
+    --footerbgcolor: #000408;
+    --footercolor: #FFFEF4;
     --logocolor: #Fc8eac;
 }
 
@@ -179,6 +179,8 @@ SEZIONE BREADCRUMB
     padding: 0.5em;
     align-items: center;
     text-align: center;
+    background-color: var(--contentbgcolor);
+    color:var(--breadcolor)
 }
 
 #breadcrumb, footer {
@@ -372,7 +374,8 @@ SEZIONE FOOTER
 footer {
     padding: 0.5em 0em;
     text-align: center;
-    background-color: var(--contentbgcolor);
+    background-color: var(--footerbgcolor);
+    color: var(--footercolor);
 }
 
 /*
