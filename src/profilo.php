@@ -45,7 +45,7 @@ function checkDescrizione($descrizione, &$messaggi) {
     if ($firstDot != false) {
         $alt = substr($descrizione, 0, $firstDot);
         if (strlen($alt)>100)
-            $messaggi .= makeMessageParagraph("La prima frase del campo descrizione (dall'inizio fino al primo punto) deve essere lunga al massimo 150 caratteri!");
+            $messaggi .= makeMessageParagraph("La prima frase del campo descrizione (dall'inizio fino al primo punto) deve essere lunga al massimo 100 caratteri!");
     }
     else {
             $messaggi .= makeMessageParagraph("Il campo descrizione deve avere almeno un punto alla fine!");
