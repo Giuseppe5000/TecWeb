@@ -403,10 +403,10 @@ div#filtri > form > fieldset {
 }
 
 legend {
-    font-size: 1.5em;
     font-weight: bold;
     margin-bottom: 1em;
 }
+
 
 input, textarea, #ordina{
     border-radius: 5px;
