@@ -653,17 +653,21 @@ Commento
     transition: color 0.2s ease-in-out;
 }
 
-#stelle-recensione input[type="radio"]:focus + label, #stelle-recensione input[type="radio"]:hover + label {
+#stelle-recensione input[type="radio"]:focus + label {
     transform: scale(1.3);
     transition: 0.2s;
 }
 
+.star {
+    color: var(--visitedcolor);
+}
+
 #stelle-recensione input[type="radio"]:checked ~ label {
-    color: var(--txtcolor);
+    color: var(--visitedcolor);
 }
 
 #stelle-recensione input[type="radio"]:checked ~ label ~ label {
-    color: var(--contentbgcolor); 
+    color: var(--txtcolor); 
 }
 
 /*
