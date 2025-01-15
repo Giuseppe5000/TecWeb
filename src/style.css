@@ -179,17 +179,11 @@ SEZIONE BREADCRUMB
     padding: 0.5em;
     align-items: center;
     text-align: center;
-    background-color: var(--breadcolor);
-    color: var(--contentbgcolor);
 }
 
-
-#breadcrumb a:link {
-    color: var(--contentbgcolor);
-}
-
-#breadcrumb :visited {
-    color: var(--txtcolor);
+#breadcrumb, footer {
+    border-top: 2px solid var(--txtcolor); 
+    border-bottom: 2px solid var(--txtcolor); 
 }
 
 #breadcrumb p{
@@ -378,8 +372,7 @@ SEZIONE FOOTER
 footer {
     padding: 0.5em 0em;
     text-align: center;
-    background-color: var(--footerbgcolor);
-    color: var(--footercolor);
+    background-color: var(--contentbgcolor);
 }
 
 /*
@@ -388,25 +381,23 @@ PAGINA NFT
 ==========
 */
 
-#filtri, #add-saldo, #add-nft, #agg-recensione {
+#filtri {
     text-align: left;
     margin-left: 20%;
     margin-right: 20%;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    background-color: var(--visitedcolor); 
-    border-radius: 8px; 
-    padding: 2em; 
+}
+
+fieldset  {
+    border-radius: 7px;
+    border: 2px solid;
 }
 
 div#filtri > form > fieldset {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    padding-left: 2em;
-    padding-right: 2em;
-    border: none;
-    margin-bottom: 1.5em;
+    justify-content: center;
+    padding-left: 10%;
+    padding-right: 10%;
     padding-top: 1em;
     padding-bottom: 1em;
 }
@@ -417,124 +408,47 @@ legend {
     margin-bottom: 1em;
 }
 
-label {
-    font-size: 1em;
-    font-weight: normal;
-    color: var(--txtcolor);
-    padding-bottom: 0.5em;
-}
-
-input[type="text"],
-input[type="number"],
-input[type="password"],
-input[type="email"],
-textarea{
-    padding: 0.5em;
+input, textarea, #ordina{
     border-radius: 5px;
     border: 0px;
-    font-size: 1em;
-    width: 100%;
-    margin-bottom: 1em;
     box-sizing: border-box;
 }
 
-input:focus, input:hover,
-textarea:focus, textarea:hover {
-    outline: none;
-    transform: scale(1.05);
-    transition: transform 0.3s ease;
+#categorie {
+    padding-left: 3%;
 }
 
-.head-filter {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+div#filtri select {
     margin-bottom: 1em;
+    text-align: center;
 }
 
-.head-filter input{
-    width: 80%;
-    padding: 0.75em;
-    border-radius: 5px;
-    border: 0px;
-    font-size: 1em;
+input[type="checkbox"]:last-of-type {
+    margin-bottom: 1.5em;
 }
 
-#prezzoMin, #prezzoMax {
-    width: 60%;
+#categorie {
+    margin-bottom: 1em;
 }
 
 #show-filters {
     background: url("./assets/filter_icon.svg") center center no-repeat;
     border: none;
-    width: 3em;
-    height: 3em;
+    width: 2.5em;
+    height: 2.5em;
     cursor: pointer;
-    background-size: contain;
-    transition: transform 0.3s ease;
-    margin-left: 1em;
 }
 
-#show-filters:focus, #show-filters:hover {
-    transform: scale(1.2);
-}
-
-.filtro-aggiuntivo {
-    padding-bottom: 0.5em;
-}
-
-fieldset  {
-    border-radius: 7px;
-    border: 2px solid var(--txtcolor);
-    padding-left: 1em;
+.head-filter{
     margin-bottom: 1em;
-    padding-top: 1em;
-}
-
-fieldset div {
-    display: flex;
     align-items: center;
-    margin-bottom: 0.75em;
+    display: flex;
+    justify-content: space-between;
 }
 
-input[type="checkbox"] {
-    width: 2em;
-    height:2em;
-    margin-right: 1em;
-    border: 0px;
-    margin-bottom: 0.7em;
+.head-filter input{
+    width: 90%;
 }
-
-#add-nft input[type="checkbox"]{
-    margin-bottom: -0.7em;
-}
-
-fieldset input[type="checkbox"]:hover {
-    transform: scale(1.5); 
-    transition: transform 0.2s ease-in-out;
-}
-
-select {
-    padding: 0.75em;
-    border-radius: 5px;
-    border: 0px;
-    font-size: 1em;
-    width: 100%;
-    margin-bottom: 1em;
-}
-
-select:focus, select:hover {
-    outline: none;
-    transform: scale(1.05);
-    transition: transform 0.3s ease;
-}
-
-
-
-
-
-
-
 
 #navigazione-pagine {
     display: flex;
@@ -558,6 +472,7 @@ select:focus, select:hover {
     border: none;
     cursor: pointer;
 }
+
 
 /*
 ===========================
