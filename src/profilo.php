@@ -116,9 +116,6 @@ if(isset($_SESSION['username'])){
                     }
                 }
             }
-
-            echo $avvisoCaricaNFT;
-
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aggiungi-saldo'])){
