@@ -1,6 +1,5 @@
 <?php
 
-require_once "./php/Database.php";
 require_once "./php/Navbar.php";
 session_start();
 
