@@ -3,6 +3,7 @@
 require_once "./php/Database.php";
 require_once "./php/Navbar.php";
 require_once "./php/utils.php";
+require_once "./php/CardOpera.php";
 session_start();
 
 function getOpere($database) {
@@ -87,16 +88,8 @@ function mostraOpere($opere, $pageNumber, $pageSize) {
         $previousPages = $pageNumber*$pageSize;
         for ($i = $previousPages; $i < $previousPages + $pageSize && $i < count($opere); $i++) {
             $opera = $opere[$i];
-            $nome = $opera["nome"];
-            $stringaOpere .= '<div class="card">';
-            $stringaOpere .= '<a href="singolo-nft.php?id=' . $opera["id"] . '">';
-            $stringaOpere .= '<div class="head-card">';
-            $stringaOpere .= '<h2>' . trimName($nome) . '</h2>';
-            $stringaOpere .= '<span>' . $opera["prezzo"] .'</span>';
-            $stringaOpere .= '</div>';
-            $stringaOpere .= '<img src="./' . $opera["path"] . '.webp" width="200" height="200">';
-            $stringaOpere .= '</a>';
-            $stringaOpere .= '</div>';
+            $card = new CardOpera($opera);
+            $stringaOpere .= $card->getMieiNFTCard();
         }
     }
     return $stringaOpere;

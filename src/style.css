@@ -155,6 +155,10 @@ AIUTI ALLA NAVIGAZIONE
     background-color: var(--bgcolor-help);
 }
 
+.listHelp{
+    margin: 0.5em 0;
+}
+
 .listHelp a{
     color: var(--contenttxtcolor);
 }
@@ -177,6 +181,10 @@ SEZIONE BREADCRUMB
     text-align: center;
     background-color: var(--breadcolor);
     color: var(--contentbgcolor);
+}
+
+#breadcrumb p{
+    margin: 0;
 }
 
 /*
@@ -467,6 +475,7 @@ PAGINA REGISTRATI E ACCEDI
 
 .messaggi-form {
     color: var(--bgcolor-help);
+    text-align: center;
 }
 
 /*

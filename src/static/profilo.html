@@ -17,6 +17,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png">
     <link rel="manifest" href="assets/favicon_io/site.webmanifest">
+    <script src="script.js"></script>
   </head>
   <body>
     <header>
@@ -44,22 +45,27 @@
 
       <div id="utente_saldo">
         {{SALDO}}
+	{{SKIP_BUTTON}}
         {{AVVISO_SALDO}}
-
         <form id='add-saldo' class='user-form' action='profilo.php' method='post'>
           <fieldset>
             <legend>Carica ETH</legend>
             <label for='saldo'>Quantità:</label>
-            <input type='number' id='saldo' name='saldo' step='0.001' min='0' required>
+            <input type='number' id='saldo' name='saldo' step='0.01' min='0' max='99999999.99' required>
             <input type='submit' value='Carica' class='button' name='aggiungi-saldo'>
           </fieldset>
         </form>
       </div>
 
       {{AVVISO_CARICA_NFT}}
+
       {{CARICA_NFT}}
 
-      <h2>I miei <abbr lang="en" title="Non-fungible token">NFT</abbr></h2>
+      <h2 id="miei-nft">I miei <abbr lang="en" title="Non-fungible token">NFT</abbr></h2>
+
+      <nav aria-label="aiuti alla navigazione" class="listHelp">
+	<a href="#mie-recensioni" class="navigationHelp">Vai alle Mie recensioni</a>
+      </nav>
 
       <div id="cards">
 
@@ -67,7 +73,7 @@
 
       </div>
       {{LINK_NFT}}
-      <h2>Le mie recensioni</h2>
+      <h2 id="mie-recensioni">Le mie recensioni</h2>
 
       <div class="comment-list">
 

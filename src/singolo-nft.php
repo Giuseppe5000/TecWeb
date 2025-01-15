@@ -33,6 +33,9 @@ function getRecensioni($recensioni, $pageNumber, $pageSize) {
 }
 
 function mostraAggiungiRecensione(&$aggiungi_recensione_html, $id) {
+    $aggiungi_recensione_html.='<nav aria-label="aiuti alla navigazione" class="listHelp">
+	<a href="#recensioni" class="navigationHelp">Vai alle recensioni</a>
+      </nav>';
     $aggiungi_recensione_html.='<form id="agg-recensione" class="user-form" action="php/post/recensione/aggiungi-recensione.php" method="post">';
     $aggiungi_recensione_html.='<fieldset>';
     $aggiungi_recensione_html.='<legend>Aggiungi recensione</legend>';
@@ -121,6 +124,9 @@ if (!$connessioneOK) {
             #se l'utente è loggato vede il bottone acquista
             if(isset($_SESSION['username'])){
                 if(strcmp($_SESSION['username'],'admin')!=0){
+                    $opera_html.='<nav aria-label="aiuti alla navigazione" class="listHelp">
+	<a href="#recensione" class="navigationHelp">Vai ad aggiungi recensioni</a>
+      </nav>';
                     $opera_html.='<form id="acq-nft" action="php/post/opera/acquisto.php" method="post">';
                     $opera_html.='<input type="hidden" name="id" value="'.$id.'"/>';
                     $opera_html.='<input type="hidden" name="prezzo" value="'.$prezzo.'"/>';

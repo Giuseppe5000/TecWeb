@@ -21,7 +21,7 @@ CREATE TABLE opera (
       id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
       path VARCHAR(30) NOT NULL,
       nome VARCHAR(30) NOT NULL,
-      descrizione VARCHAR(150) NOT NULL,
+      descrizione VARCHAR(300) NOT NULL,
       prezzo DECIMAL(10,2) NOT NULL,
       possessore VARCHAR(30) NOT NULL DEFAULT 'admin',
 
