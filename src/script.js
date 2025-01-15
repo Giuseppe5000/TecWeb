@@ -47,7 +47,7 @@ function validaDescrizione(desc) {
         desc = desc.split(".");
         let alt = desc[0];
         if (alt.length > 100) {
-            return "La prima frase del campo descrizione (dall'inizio fino al primo punto) deve essere lunga al massimo 150 caratteri!";
+            return "La prima frase del campo descrizione (dall'inizio fino al primo punto) deve essere lunga al massimo 100 caratteri!";
         }
     }
     else {
