@@ -4,13 +4,14 @@
     --bgcolor: #785D9B;
     --bgcolor-help: #ffbdcf;
     --txtcolor: #FFFEF4;
-    --breadcolor: #FFFEF4;
     --contenttxtcolor: #000408;
     --contentbgcolor: #000408;    ;
     --linkcolor: #FFFEF4;
     --visitedcolor: #C0469D;
-    --footerbgcolor: #000408;
-    --footercolor: #FFFEF4;
+    --breadfootercolor: #FFFEF4;
+    --breadfooterbgcolor: #5873BD;
+    --linkbreadfooter: #FFFEF4;
+    --visitedbreadfooter: #000408;
     --logocolor: #Fc8eac;
 }
 
@@ -171,25 +172,37 @@ AIUTI ALLA NAVIGAZIONE
 }
 
 /*
-==================
-SEZIONE BREADCRUMB
-==================
+===========================
+SEZIONE BREADCRUMB E FOOTER
+===========================
 */
+
+#breadcrumb, footer {
+    background-color: var(--breadfooterbgcolor);
+    color:var(--breadfootercolor);
+}
+
+#breadcrumb a:link, footer a:link{
+    color: var(--linkbreadfooter);
+}
+
+#breadcrumb a:visited, footer a:visited{
+    color: var(--visitedbreadfooter);
+}
+
 #breadcrumb {
     padding: 0.5em;
     align-items: center;
     text-align: center;
-    background-color: var(--contentbgcolor);
-    color:var(--breadcolor)
-}
-
-#breadcrumb, footer {
-    border-top: 2px solid var(--txtcolor); 
-    border-bottom: 2px solid var(--txtcolor); 
 }
 
 #breadcrumb p{
     margin: 0;
+}
+
+footer {
+    padding: 0.5em 0em;
+    text-align: center;
 }
 
 /*
@@ -365,18 +378,6 @@ dl dd:last-child {
 }
 
 
-/*
-==============
-SEZIONE FOOTER
-==============
-*/
-
-footer {
-    padding: 0.5em 0em;
-    text-align: center;
-    background-color: var(--footerbgcolor);
-    color: var(--footercolor);
-}
 
 /*
 ==========
