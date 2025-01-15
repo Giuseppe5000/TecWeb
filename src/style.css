@@ -418,8 +418,12 @@ input, textarea, #ordina{
     box-sizing: border-box;
 }
 
-#categorie {
+#categorie.filtro-aggiuntivo {
     padding-left: 3%;
+}
+
+label.filtro-aggiuntivo{
+    margin-top: 1em;
 }
 
 div#filtri select {
@@ -574,6 +578,10 @@ PAGINA PROFILO
 
 .form_recensione + .form_recensione{
     margin-left: 0;
+}
+
+input#prezzo{
+    margin-bottom: 1em;
 }
 
 
