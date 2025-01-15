@@ -69,17 +69,16 @@ function validazioneRegistrati() {
         createMessageNode(username.previousSibling, resUsername);
     }
 
-    const resPassword = validaPassword(password.value);
-    if (resPassword !== true) {
-        createMessageNode(password.previousSibling, resPassword);
+    const resPasswdAndConfermaPasswd = validaPasswordAndConfermaPassword(password.value, confermaPassword.value);
+    if (resPasswdAndConfermaPasswd !== true) {
+        createMessageNode(password.previousSibling, resPasswdAndConfermaPasswd);
     }
 
-    const resPasswdAndConferma = validaPasswordAndConfermaPassword(password.value, confermaPassword.value);
-    if (resPasswdAndConferma !== true) {
-        createMessageNode(password.previousSibling, resPasswdAndConferma);
-    }
+    const passwdEquals = password.value === confermaPassword.value;
+    if (!passwdEquals)
+        createMessageNode(password.previousSibling, "I campi password e ripeti password non corrispondono!");
 
-    return resUsername === true && resPassword === true && resPasswdAndConferma === true;
+    return resUsername === true && resPasswdAndConfermaPasswd === true && passwdEquals === true;
 }
 
 function validaDescrizione(desc) {
@@ -112,11 +111,11 @@ function validaPassword(password) {
 }
 
 function validaPasswordAndConfermaPassword(password, confermaPassword) {
-    if (password !== confermaPassword)
-        return "I campi password e ripeti password non corrispondono!";
+    const regex = /^[a-zA-Z0-9!@#$]*$/;
+    if (!regex.test(password) || !regex.test(confermaPassword))
+        return "Il campi password e ripeti password possono contenere solo lettere, numeri e i seguenti caratteri speciali: ! @ # $";
     return true;
 }
-
 
 function createMessageNode(parent, text) {
         let node = document.createElement("p");
