@@ -42,6 +42,26 @@ function validazioneCaricaNft() {
     return resDesc === true;
 }
 
+function validazioneAccedi() {
+    let username = document.getElementById("username");
+    let password = document.getElementById("password");
+    removeOldMessages(password);
+    removeOldMessages(username);
+
+    const resUsername = validaUsername(username.value);
+    if (resUsername !== true) {
+        createMessageNode(username.previousSibling, resUsername);
+    }
+
+    const resPassword = validaPassword(password.value);
+    console.log(resPassword)
+    if (resPassword !== true) {
+        createMessageNode(password.previousSibling, resPassword);
+    }
+
+    return resUsername === true && resPassword === true;
+}
+
 function validaDescrizione(desc) {
     if (desc.includes(".")) {
         desc = desc.split(".");
@@ -57,9 +77,31 @@ function validaDescrizione(desc) {
     return true;
 }
 
+function validaUsername(username) {
+    const regex = /^[a-zA-Z0-9]+$/;
+    if (!regex.test(username))
+        return "Il campo username può contenere solo lettere e numeri!";
+    return true;
+}
+
+function validaPassword(password) {
+    const regex = /^[a-zA-Z0-9!@#$]*$/;
+    if (!regex.test(password))
+        return "Il campo password può contenere solo lettere, numeri e i seguenti caratteri speciali: ! @ # $";
+    return true;
+}
+
 function createMessageNode(parent, text) {
         let node = document.createElement("p");
         node.className = "messaggi-form";
         node.appendChild(document.createTextNode(text));
         parent.after(node);
+}
+
+function removeOldMessages(el) {
+    let p = el.previousSibling;
+    while (p.className == "messaggi-form") {
+        p.remove();
+        p = el.previousSibling;
+    }
 }

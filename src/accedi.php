@@ -22,8 +22,8 @@ function checkInput($username, $password, &$messaggi) {
 		$messaggi["password"] .= makeMessageParagraph("Il campo password non può essere vuoto!");
     if (strlen($password)>30)
         $messaggi["password"] .= makeMessageParagraph("Il campo password non può superare i 30 caratteri!");
-    if (preg_match("/^[^a-zA-Z0-9!@#$]*$/", $password))
-		$messaggi["password"] .= makeMessageParagraph("Il campo password può contenere solo lettere, numeri e i seguenti caratteri speciali: ! @ # $ ");
+    if (!preg_match("/^[a-zA-Z0-9!@#$]*$/", $password))
+		$messaggi["password"] .= makeMessageParagraph("Il campo password può contenere solo lettere, numeri e i seguenti caratteri speciali: ! @ # $");
 
     return strlen($messaggi["username"])==0 && strlen($messaggi["password"])==0;
 }
