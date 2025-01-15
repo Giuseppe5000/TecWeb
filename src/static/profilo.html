@@ -45,9 +45,8 @@
 
       <div id="utente_saldo">
         {{SALDO}}
-
+	{{SKIP_BUTTON}}
         {{AVVISO_SALDO}}
-
         <form id='add-saldo' class='user-form' action='profilo.php' method='post'>
           <fieldset>
             <legend>Carica ETH</legend>
@@ -62,7 +61,11 @@
 
       {{CARICA_NFT}}
 
-      <h2>I miei <abbr lang="en" title="Non-fungible token">NFT</abbr></h2>
+      <h2 id="miei-nft">I miei <abbr lang="en" title="Non-fungible token">NFT</abbr></h2>
+
+      <nav aria-label="aiuti alla navigazione" class="listHelp">
+	<a href="#mie-recensioni" class="navigationHelp">Vai alle Mie recensioni</a>
+      </nav>
 
       <div id="cards">
 
@@ -70,7 +73,7 @@
 
       </div>
       {{LINK_NFT}}
-      <h2>Le mie recensioni</h2>
+      <h2 id="mie-recensioni">Le mie recensioni</h2>
 
       <div class="comment-list">
 

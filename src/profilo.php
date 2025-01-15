@@ -14,6 +14,7 @@ $avvisoCaricaNFT = "";
 $caricaNFT = "";
 $linkNft = "";
 $linkRecensioni = "";
+$skipButton = "";
 
 function generateUniqueFilename($extension) {
     $uniqueId = substr(uniqid(), -5); //Prendo solo gli ultimi 5 perchè senno è troppo lungo
@@ -140,7 +141,14 @@ if(isset($_SESSION['username'])){
                 $saldo .= "<span>Saldo: " . $row['saldo'] . "</span>";
 
                 if($row['isAdmin']){
-                    $caricaNFT = file_get_contents('./static/carica-nft.html');;
+                    $caricaNFT = file_get_contents('./static/carica-nft.html');
+                    $skipButton.='<nav aria-label="aiuti alla navigazione" class="listHelp">
+	<a href="#agg-nft" class="navigationHelp">Vai ad Aggiungi <abbr lang="en" title="Non-fungible token">NFT</abbr></a>
+      </nav>';
+                }else{
+                    $skipButton.='<nav aria-label="aiuti alla navigazione" class="listHelp">
+	<a href="#miei-nft" class="navigationHelp">Vai ai Miei <abbr lang="en" title="Non-fungible token">NFT</abbr></a>
+      </nav>';
                 }
             }
         }
@@ -233,6 +241,6 @@ else{
 $navbar = new Navbar("Profilo");
 $paginaHTML = file_get_contents('./static/profilo.html');
 
-$find=['{{SALDO}}', '{{AVVISO_SALDO}}', '{{AVVISO_CARICA_NFT}}', '{{CARICA_NFT}}', '{{CARDS}}', '{{NAVBAR}}','{{RECENSIONI}}','{{LINK_NFT}}','{{LINK_RECENSIONI}}'];
-$replacemenet=[$saldo, $avvisoSaldo, $avvisoCaricaNFT, $caricaNFT, $nftPosseduti, $navbar->getNavbar(), $recensioni_html, $linkNft, $linkRecensioni];
+$find=['{{SALDO}}', '{{AVVISO_SALDO}}', '{{AVVISO_CARICA_NFT}}', '{{CARICA_NFT}}', '{{CARDS}}', '{{NAVBAR}}','{{RECENSIONI}}','{{LINK_NFT}}','{{LINK_RECENSIONI}}','{{SKIP_BUTTON}}'];
+$replacemenet=[$saldo, $avvisoSaldo, $avvisoCaricaNFT, $caricaNFT, $nftPosseduti, $navbar->getNavbar(), $recensioni_html, $linkNft, $linkRecensioni,$skipButton];
 echo str_replace($find,$replacemenet,$paginaHTML);
