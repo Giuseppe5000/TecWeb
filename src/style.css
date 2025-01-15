@@ -227,6 +227,7 @@ SEZIONE SLIDESHOW
     scroll-behavior: smooth;
     margin-left: 0.5em;
     margin-right:0.5em;
+    padding-top: 0.4em;
 }
 
 .prev,.next{
@@ -281,6 +282,7 @@ main p.center{
 
 .card {
     background-color: var(--contentbgcolor);
+    transition: transform 0.3s ease;
 }
 
 .card img{
@@ -405,6 +407,8 @@ div#filtri > form > fieldset {
     padding-right: 2em;
     border: none;
     margin-bottom: 1.5em;
+    padding-top: 1em;
+    padding-bottom: 1em;
 }
 
 legend {
