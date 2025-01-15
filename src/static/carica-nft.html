@@ -1,7 +1,7 @@
 <nav id='agg-nft' aria-label="aiuti alla navigazione" class="listHelp">
   <a href="#miei-nft" class="navigationHelp">Vai ai Miei <abbr lang="en" title="Non-fungible token">NFT</abbr></a>
 </nav>
-<form id='add-nft' class='user-form' action='profilo.php' method='post' enctype='multipart/form-data'>
+<form id='add-nft' class='user-form' action='profilo.php' method='post' onsubmit="return validazioneCaricaNft();" enctype='multipart/form-data'>
   <fieldset>
     <legend>Aggiungi NFT</legend>
     <label for='immagine'>Immagine:</label>
@@ -11,10 +11,10 @@
     <input type='text' id='nome' name='nome' maxlength='30' required>
 
     <label for='descrizione'>Descrizione:</label>
-    <input type='text' id='descrizione' name='descrizione' maxlength='150' required>
+    <input type='text' id='descrizione' name='descrizione' maxlength='300' required>
 
     <label for='prezzo'>Prezzo:</label>
-    <input type='number' id='prezzo' name='prezzo' step='0.001' min='0' required>
+    <input type='number' id='prezzo' name='prezzo' step='0.01' min='0' max='99999999.99' required>
 
     <fieldset id='categorie'>
       <legend>Categorie</legend>

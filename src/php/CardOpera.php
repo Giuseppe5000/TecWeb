@@ -53,7 +53,7 @@ class CardOpera {
         $card .= '<div class="card" {{CARD_ID}}>';
         $card .= '<a href="singolo-nft.php?id='.$this->opera["id"].'">';
         $card .= '{{CARD_HEADER}}';
-        $card .= '<img src="./' . $this->opera["path"] . '.webp" width="' . $width . '" height="' . $height . '">';
+        $card .= '<img alt="'.$this->getAlt().'" src="./' . $this->opera["path"] . '.webp" width="' . $width . '" height="' . $height . '">';
         $card .= '</a>';
         $card .= '</div>';
         return $card;
@@ -81,5 +81,13 @@ class CardOpera {
             $nome.='...';
         }
         return $nome;
+    }
+
+    private function getAlt() {
+        $firstDot = strpos($this->opera["descrizione"], '.');
+        if ($firstDot != false) {
+            return substr($this->opera["descrizione"], 0, $firstDot);
+        }
+        return $this->opera["descrizione"];
     }
 }
