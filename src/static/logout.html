@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <title>Modifica recensione - DoFlamingo</title>
+    <meta name="description" content="Modifica una recensione che hai lasciato in passato.">
+    <meta name="keywords" content="recensione,modifica,stelle">
+    <meta name="author" content="Doflamingo">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="style.css" media="screen">
+    <link rel="stylesheet" href="print.css" media="print">
+    <link rel="stylesheet" href="mini.css" media="screen and (max-width:768px)">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicon_io/site.webmanifest">
+  </head>
+  <body>
+    <header>
+      <nav aria-label="aiuti alla navigazione" class="listHelp">
+        <a href="#content" class="navigationHelp">Vai al contenuto</a>
+      </nav>
+      <nav class="header-content">
+        <h1>Doflamingo</h1>
+
+	<ul class="menu-list">
+          {{NAVBAR}}
+	</ul>
+      </nav>
+      <nav id="breadcrumb">
+	<p>Ti trovi in: Disconnettiti</p>
+      </nav>
+    </header>
+    <main id="content">
+      <h1>Disconnettiti</h1>
+      <div>
+        <p class="conferma-logout">Potresti perderti l'occasione di acquistare il prossimo NFT dei tuoi sogni!</p>
+        <p class="conferma-logout" ><strong>Sei proprio sicuro di volerci lasciare?</strong></p>
+      </div>
+      <form id='logout' class='user-form' action='logout.php' method='post'>
+        <fieldset>
+          <legend>Disconnettiti</legend>          
+          <input type='submit' value='Rimani' class='button' name='permanenza'>
+          <input type='submit' value='Disconnettiti' class='button' name='disconnessione'>
+        </fieldset>
+      </form>
+    </main>
+    <footer>
+      <p>Copyright © 2025 Doflamingo. All rights reserved.</p>
+    </footer>
+  </body>
+
+</html>

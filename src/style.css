@@ -671,3 +671,13 @@ PAGINE 404,500
     font-weight: bold;
     font-size: 1.5em;
 }
+
+/*
+=====================
+PAGINA DISCONNESSIONE
+=====================
+*/
+
+.conferma-logout {
+    text-align: center;
+}
