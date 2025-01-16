@@ -4,13 +4,14 @@
     --bgcolor: #785D9B;
     --bgcolor-help: #ffbdcf;
     --txtcolor: #FFFEF4;
-    --breadcolor: #8CA0D7;
     --contenttxtcolor: #000408;
     --contentbgcolor: #000408;    ;
     --linkcolor: #FFFEF4;
     --visitedcolor: #C0469D;
-    --footerbgcolor: #8CA0D7;
-    --footercolor: #000408;
+    --breadfootercolor: #FFFEF4;
+    --breadfooterbgcolor: #5873BD;
+    --linkbreadfooter: #FFFEF4;
+    --visitedbreadfooter: #000408;
     --logocolor: #Fc8eac;
 }
 
@@ -171,20 +172,37 @@ AIUTI ALLA NAVIGAZIONE
 }
 
 /*
-==================
-SEZIONE BREADCRUMB
-==================
+===========================
+SEZIONE BREADCRUMB E FOOTER
+===========================
 */
+
+#breadcrumb, footer {
+    background-color: var(--breadfooterbgcolor);
+    color:var(--breadfootercolor);
+}
+
+#breadcrumb a:link, footer a:link{
+    color: var(--linkbreadfooter);
+}
+
+#breadcrumb a:visited, footer a:visited{
+    color: var(--visitedbreadfooter);
+}
+
 #breadcrumb {
     padding: 0.5em;
     align-items: center;
     text-align: center;
-    background-color: var(--breadcolor);
-    color: var(--contentbgcolor);
 }
 
 #breadcrumb p{
     margin: 0;
+}
+
+footer {
+    padding: 0.5em 0em;
+    text-align: center;
 }
 
 /*
@@ -218,6 +236,7 @@ SEZIONE SLIDESHOW
     scroll-behavior: smooth;
     margin-left: 0.5em;
     margin-right:0.5em;
+    padding-top: 0.4em;
 }
 
 .prev,.next{
@@ -272,6 +291,11 @@ main p.center{
 
 .card {
     background-color: var(--contentbgcolor);
+    transition: transform 0.3s ease;
+}
+
+.card img{
+border-radius: 10px;
 }
 
 .card a {
@@ -354,28 +378,22 @@ dl dd:last-child {
 }
 
 
-/*
-==============
-SEZIONE FOOTER
-==============
-*/
-
-footer {
-    padding: 0.5em 0em;
-    text-align: center;
-    background-color: var(--footerbgcolor);
-    color: var(--footercolor);
-}
 
 /*
 ==========
 PAGINA NFT
 ==========
 */
+
 #filtri {
     text-align: left;
     margin-left: 20%;
     margin-right: 20%;
+}
+
+fieldset  {
+    border-radius: 7px;
+    border: 2px solid;
 }
 
 div#filtri > form > fieldset {
@@ -384,30 +402,44 @@ div#filtri > form > fieldset {
     justify-content: center;
     padding-left: 10%;
     padding-right: 10%;
+    padding-bottom: 1em;
 }
 
-#categorie {
+legend {
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
+
+input, textarea, #ordina{
+    border-radius: 5px;
+    border: 0px;
+    box-sizing: border-box;
+}
+
+#categorie.filtro-aggiuntivo {
     padding-left: 3%;
+    margin-bottom: 1em;
 }
 
+label{
+    margin-top: 1em;
+}
 
 div#filtri select {
     margin-bottom: 1em;
     text-align: center;
 }
 
-#categorie {
-    margin-bottom: 1em;
-}
-
-.filtro-aggiuntivo {
-    display: none;
+input[type="checkbox"]:last-of-type {
+    margin-bottom: 1.5em;
 }
 
 #show-filters {
-    background: url("./assets/filter_icon.svg") top center no-repeat;
+    background: url("./assets/filter_icon.svg") center center no-repeat;
     border: none;
-    padding: 1em;
+    width: 2.5em;
+    height: 2.5em;
     cursor: pointer;
 }
 
@@ -416,6 +448,10 @@ div#filtri select {
     align-items: center;
     display: flex;
     justify-content: space-between;
+}
+
+.head-filter input{
+    width: 90%;
 }
 
 #navigazione-pagine {
@@ -440,6 +476,7 @@ div#filtri select {
     border: none;
     cursor: pointer;
 }
+
 
 /*
 ===========================
@@ -540,6 +577,10 @@ PAGINA PROFILO
     margin-left: 0;
 }
 
+input#prezzo{
+    margin-bottom: 1em;
+}
+
 
 /*
 ===========================
@@ -569,6 +610,7 @@ Commento
 .comment{
     margin: 1em 0;
     width: 80%;
+    border-radius: 3px;
 }
 
 .user-comment{
@@ -586,6 +628,10 @@ Commento
 
 .logo_utente {
     width: 2em;
+}
+
+#agg-recensione{
+    margin: 0 10%;
 }
 
 #agg-recensione #username:read-only{
@@ -608,19 +654,32 @@ Commento
 }
 
 #stelle-recensione input[type="radio"] {
-    display: none;
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
+
+#stelle-recensione label {
+    cursor: pointer;
+    font-size: 3em;
+}
+
+#stelle-recensione input[type="radio"]:focus + label {
+    outline: 2px solid var(--visitedcolor);
+}
+
 
 .star {
-    color: gold;
+    color: var(--visitedcolor);
 }
 
-#stelle-recensione input[type="radio"]:checked  ~ .star{
-    color: gold; /* Color of the selected stars */
+#stelle-recensione input[type="radio"]:checked ~ label {
+    color: var(--visitedcolor);
 }
 
-#stelle-recensione input[type="radio"]:checked  ~ .star ~ .star{
-    color: gray; /* Color of the selected stars */
+#stelle-recensione input[type="radio"]:checked ~ label ~ label {
+    color: var(--txtcolor); 
 }
 
 /*
