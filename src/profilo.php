@@ -24,6 +24,8 @@ function generateUniqueFilename($extension) {
 function checkInput($nome, $descrizione, $prezzo, &$messaggi) {
 	if (strlen($nome)==0)
 		$messaggi .= makeMessageParagraph("Il campo nome non può essere vuoto!");
+    if (preg_match("/[\W]/", $nome))
+		$messaggi .= makeMessageParagraph("Il campo nome può contenere solo lettere e numeri!");
 
     if (strlen($nome)>30)
         $messaggi .= makeMessageParagraph("Il campo nome non può superare i 30 caratteri!");
@@ -57,11 +59,11 @@ function checkMoney($money, &$messaggi) {
     if ($firstComma) {
         $money = explode($money, ",");
 
-        if (strlen($money[0])>10)
-            $messaggi .= makeMessageParagraph("La valuta non può avere più di 10 cifre nella parte intera!");
+        if (strlen($money[0])>5)
+            $messaggi .= makeMessageParagraph("La valuta non può avere più di 5 cifre nella parte intera!");
 
-        if (isset($money[1]) && strlen($money[1])>2)
-            $messaggi .= makeMessageParagraph("La valuta non può avere più di 2 cifre nella parte decimale!");
+        if (isset($money[1]) && strlen($money[1])>5)
+            $messaggi .= makeMessageParagraph("La valuta non può avere più di 5 cifre nella parte decimale!");
     }
     else {
         if (strlen($money)>10)
@@ -69,6 +71,21 @@ function checkMoney($money, &$messaggi) {
     }
 
     return strlen($messaggi)==0;
+}
+
+function isSaldoOverflow($database, $utente, $saldo) {
+    $query = "SELECT saldo FROM utente WHERE username = ?";
+    $value = array($utente);
+    $result = $database->executeSelectPreparedStatement($query,'s',$value);
+    if(count($result) == 1){
+        $saldoUtente = $result[0]["saldo"];
+        return $saldoUtente + $saldo > 99999.99999;
+    }
+    else {
+        // Non trovo l'utente o ne trovo più di uno,
+        // quindi assumo che ci sia qualche errore di inconsistenza nel db => errore 500
+        header('Location: ./500.php');
+    }
 }
 
 
@@ -121,9 +138,14 @@ if(isset($_SESSION['username'])){
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aggiungi-saldo'])){
             $saldo = $database->pulisciInput($_POST['saldo']);
             if (checkMoney($saldo, $avvisoSaldo)) {
-                $query = "UPDATE utente SET saldo = saldo + ? WHERE username = ?";
-                $values = [$saldo, $username];
-                $avvisoSaldo .= $database->executeCRUDPreparedStatement($query, 'ds', $values);
+                if (!isSaldoOverflow($database, $username, $saldo)) {
+                    $query = "UPDATE utente SET saldo = saldo + ? WHERE username = ?";
+                    $values = [$saldo, $username];
+                    $avvisoSaldo .= $database->executeCRUDPreparedStatement($query, 'ds', $values);
+                }
+                else {
+                    $avvisoSaldo .= makeMessageParagraph("Questa aggiunta potrebbe sforare il tetto massimo del saldo possedibile, che sarebbe 99999.99999!");
+                }
             }
         }
 

@@ -17,6 +17,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png">
     <link rel="manifest" href="assets/favicon_io/site.webmanifest">
+    <script src="script.js"></script>
   </head>
   <body>
 
@@ -39,7 +40,7 @@
     <main id="content">
       <h1>Accedi</h1>
 
-      <form id="accesso-form" class="user-form" action="accedi.php" method="post">
+      <form id="accesso-form" class="user-form" action="accedi.php" onsubmit="return validazioneAccedi();" method="post">
 
         <div>
           {{MESSAGGI_GENERICI}}

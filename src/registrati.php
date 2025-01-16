@@ -15,21 +15,24 @@ $confirmPassword = "";
 function checkInput($username, $email, $password, $confirmPassword, &$messaggi) {
     if (strlen($username)==0)
         $messaggi["username"] .= makeMessageParagraph("Il campo username non può essere vuoto!");
-    if (strlen($email)==0)
-        $messaggi["email"] .= makeMessageParagraph("Il campo email non può essere vuoto!");
-    if (strlen($password)==0 || strlen($confirmPassword)==0)
-        $messaggi["password"] .= makeMessageParagraph("I campi password e conferma password non possono essere vuoti!");
-
     if (strlen($username)>30)
         $messaggi["username"] .= makeMessageParagraph("Il campo username non può superare i 30 caratteri!");
-    if (strlen($email)>30)
-        $messaggi["email"] .= makeMessageParagraph("Il campo email non può superare i 30 caratteri!");
+    if (preg_match("/[\W]/", $username))
+		$messaggi["username"] .= makeMessageParagraph("Il campo username può contenere solo lettere e numeri!");
+
+    if (strlen($password)==0 || strlen($confirmPassword)==0)
+        $messaggi["password"] .= makeMessageParagraph("I campi password e ripeti password non possono essere vuoti!");
     if (strlen($password)>30 || strlen($confirmPassword)>30)
         $messaggi["password"] .= makeMessageParagraph("I campi password e ripeti password non possono superare 30 caratteri!");
-
     if($password != $confirmPassword)
         $messaggi["password"] .= makeMessageParagraph("I campi password e ripeti password non corrispondono!");
+    if (!preg_match("/^[a-zA-Z0-9!@#$]*$/", $password) || !preg_match("/^[a-zA-Z0-9!@#$]*$/", $confirmPassword))
+		$messaggi["password"] .= makeMessageParagraph("I campi password e ripeti password possono contenere solo lettere, numeri e i seguenti caratteri speciali: ! @ # $");
 
+    if (strlen($email)==0)
+        $messaggi["email"] .= makeMessageParagraph("Il campo email non può essere vuoto!");
+    if (strlen($email)>30)
+        $messaggi["email"] .= makeMessageParagraph("Il campo email non può superare i 30 caratteri!");
     if (!filter_var($email, FILTER_VALIDATE_EMAIL))
         $messaggi["email"] .= makeMessageParagraph("Formato email non valido!");
 
