@@ -206,51 +206,6 @@ footer {
 }
 
 /*
-=================
-SEZIONE SLIDESHOW
-=================
-*/
-.wrapper{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    overflow: hidden;
-    margin-top: 0.5em;
-    margin-left: 10%;
-    margin-right:10%;
-}
-
-.wrapper p{
-    font-size: 3em;
-    font-weight: bold;
-    display: contents;
-    text-align: center;
-}
-
-.slideshow{
-    display: flex;
-    column-gap: 1em;
-    transition: 0.5s all ease-out;
-    overflow-x: scroll;
-    scrollbar-width: none;
-    scroll-behavior: smooth;
-    margin-left: 0.5em;
-    margin-right:0.5em;
-    padding-top: 0.4em;
-}
-
-.prev,.next{
-    background-color: var(--contentbgcolor);
-    color: var(--txtcolor);
-    font-size: 3em;
-    font-weight: bold;
-    display: contents;
-    text-align: center;
-    border: none;
-    cursor: pointer;
-}
-
-/*
 ============
 SEZIONE MAIN
 ============
@@ -279,7 +234,7 @@ main p.center{
     text-align: center;
 }
 
-#cards {
+#cards, .last-cards {
     display: flex;
     flex-flow: row wrap;
     margin-top: 2em;
