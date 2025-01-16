@@ -179,14 +179,15 @@ SEZIONE BREADCRUMB E FOOTER
 #breadcrumb, footer {
     background-color: var(--breadfooterbgcolor);
     color:var(--txtbreadfooter);
-    border-top: 4px solid var(--breadfooterlinecolor); 
-    border-bottom: 4px solid var(--breadfooterlinecolor); 
+    border-top: 2px solid var(--visitedcolor); 
+    border-bottom: 2px solid var(--visitedcolor); 
 }
 
 #breadcrumb {
     padding: 0.5em;
     align-items: center;
     text-align: center;
+    margin-top: 0.3em;
 }
 
 #breadcrumb p{
