@@ -79,9 +79,6 @@ function isSaldoOverflow($database, $utente, $saldo) {
     $result = $database->executeSelectPreparedStatement($query,'s',$value);
     if(count($result) == 1){
         $saldoUtente = $result[0]["saldo"];
-        echo "===============";
-        echo $saldoUtente;
-        echo "===============";
         return $saldoUtente + $saldo > 99999.99999;
     }
     else {
