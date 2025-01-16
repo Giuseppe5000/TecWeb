@@ -29,13 +29,19 @@ function validazioneCaricaNft() {
     const form = document.getElementById("add-nft");
     removeOldMessages(form);
 
-    let desc = document.getElementById("descrizione").value;
+    const desc = document.getElementById("descrizione").value;
     const resDesc = validaDescrizione(desc);
     if (resDesc !== true) {
         createMessageNode(form.previousSibling, resDesc);
     }
 
-    return resDesc === true;
+    const nome = document.getElementById("nome").value;
+    const resNome = validaNome(nome);
+    if (resNome !== true) {
+        createMessageNode(form.previousSibling, "Il campo nome può contenere solo lettere e numeri!");
+    }
+
+    return resDesc === true && resNome === true;
 }
 
 function validazioneAccedi() {
@@ -44,9 +50,9 @@ function validazioneAccedi() {
     removeOldMessages(password);
     removeOldMessages(username);
 
-    const resUsername = validaUsername(username.value);
+    const resUsername = validaNome(username.value);
     if (resUsername !== true) {
-        createMessageNode(username.previousSibling, resUsername);
+        createMessageNode(username.previousSibling, "Il campo username può contenere solo lettere e numeri!");
     }
 
     const resPassword = validaPassword(password.value);
@@ -64,9 +70,9 @@ function validazioneRegistrati() {
     removeOldMessages(password);
     removeOldMessages(username);
 
-    const resUsername = validaUsername(username.value);
+    const resUsername = validaNome(username.value);
     if (resUsername !== true) {
-        createMessageNode(username.previousSibling, resUsername);
+        createMessageNode(username.previousSibling, "Il campo username può contenere solo lettere e numeri!");
     }
 
     const resPasswdAndConfermaPasswd = validaPasswordAndConfermaPassword(password.value, confermaPassword.value);
@@ -96,11 +102,9 @@ function validaDescrizione(desc) {
     return true;
 }
 
-function validaUsername(username) {
+function validaNome(username) {
     const regex = /^[a-zA-Z0-9]+$/;
-    if (!regex.test(username))
-        return "Il campo username può contenere solo lettere e numeri!";
-    return true;
+    return regex.test(username);
 }
 
 function validaPassword(password) {
