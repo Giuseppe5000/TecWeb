@@ -183,14 +183,6 @@ SEZIONE BREADCRUMB E FOOTER
     border-bottom: 4px solid var(--breadfooterlinecolor); 
 }
 
-#breadcrumb a:link, footer a:link{
-    color: var(--linkbreadfooter);
-}
-
-#breadcrumb a:visited, footer a:visited{
-    color: var(--visitedbreadfooter);
-}
-
 #breadcrumb {
     padding: 0.5em;
     align-items: center;
