@@ -77,7 +77,7 @@ function validazioneRegistrati() {
 
     const resPasswdAndConfermaPasswd = validaPasswordAndConfermaPassword(password.value, confermaPassword.value);
     if (resPasswdAndConfermaPasswd !== true) {
-        createMessageNode(password.previousSibling, "Il campi password e ripeti password possono contenere solo lettere, numeri e i seguenti caratteri speciali: ! @ # $");
+        createMessageNode(password.previousSibling, "I campi password e ripeti password possono contenere solo lettere, numeri e i seguenti caratteri speciali: ! @ # $");
     }
 
     const passwdEquals = password.value === confermaPassword.value;

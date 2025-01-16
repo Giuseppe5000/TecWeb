@@ -27,7 +27,7 @@ function checkInput($username, $email, $password, $confirmPassword, &$messaggi) 
     if($password != $confirmPassword)
         $messaggi["password"] .= makeMessageParagraph("I campi password e ripeti password non corrispondono!");
     if (!preg_match("/^[a-zA-Z0-9!@#$]*$/", $password) || !preg_match("/^[a-zA-Z0-9!@#$]*$/", $confirmPassword))
-		$messaggi["password"] .= makeMessageParagraph("Il campi password e ripeti password possono contenere solo lettere, numeri e i seguenti caratteri speciali: ! @ # $");
+		$messaggi["password"] .= makeMessageParagraph("I campi password e ripeti password possono contenere solo lettere, numeri e i seguenti caratteri speciali: ! @ # $");
 
     if (strlen($email)==0)
         $messaggi["email"] .= makeMessageParagraph("Il campo email non può essere vuoto!");
