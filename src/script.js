@@ -57,7 +57,7 @@ function validazioneAccedi() {
 
     const resPassword = validaPassword(password.value);
     if (resPassword !== true) {
-        createMessageNode(password.previousSibling, resPassword);
+        createMessageNode(password.previousSibling, "Il campo password può contenere solo lettere, numeri e i seguenti caratteri speciali: ! @ # $");
     }
 
     return resUsername === true && resPassword === true;
@@ -77,7 +77,7 @@ function validazioneRegistrati() {
 
     const resPasswdAndConfermaPasswd = validaPasswordAndConfermaPassword(password.value, confermaPassword.value);
     if (resPasswdAndConfermaPasswd !== true) {
-        createMessageNode(password.previousSibling, resPasswdAndConfermaPasswd);
+        createMessageNode(password.previousSibling, "Il campi password e ripeti password possono contenere solo lettere, numeri e i seguenti caratteri speciali: ! @ # $");
     }
 
     const passwdEquals = password.value === confermaPassword.value;
@@ -109,15 +109,13 @@ function validaNome(username) {
 
 function validaPassword(password) {
     const regex = /^[a-zA-Z0-9!@#$]*$/;
-    if (!regex.test(password))
-        return "Il campo password può contenere solo lettere, numeri e i seguenti caratteri speciali: ! @ # $";
-    return true;
+    return regex.test(password);
 }
 
 function validaPasswordAndConfermaPassword(password, confermaPassword) {
     const regex = /^[a-zA-Z0-9!@#$]*$/;
     if (!regex.test(password) || !regex.test(confermaPassword))
-        return "Il campi password e ripeti password possono contenere solo lettere, numeri e i seguenti caratteri speciali: ! @ # $";
+        return false;
     return true;
 }
 
