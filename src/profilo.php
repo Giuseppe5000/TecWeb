@@ -24,6 +24,8 @@ function generateUniqueFilename($extension) {
 function checkInput($nome, $descrizione, $prezzo, &$messaggi) {
 	if (strlen($nome)==0)
 		$messaggi .= makeMessageParagraph("Il campo nome non può essere vuoto!");
+    if (preg_match("/[\W]/", $nome))
+		$messaggi .= makeMessageParagraph("Il campo nome può contenere solo lettere e numeri!");
 
     if (strlen($nome)>30)
         $messaggi .= makeMessageParagraph("Il campo nome non può superare i 30 caratteri!");
