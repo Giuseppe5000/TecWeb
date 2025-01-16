@@ -4,7 +4,7 @@ require_once "./php/Database.php";
 require_once "./php/Navbar.php";
 session_start();
 
-function getForm($voto, $commento, $timestamp) {
+function getForm($voto, $commento, $timestamp,$prevPage) {
     $form = '';
     $form .= '<form "mod-recensione" class="user-form" action="modifica-recensione.php" method="post">';
     $form .= '<fieldset>';
@@ -24,6 +24,7 @@ function getForm($voto, $commento, $timestamp) {
     $form .= '</fieldset>';
     $form .= '<label for="recensione">Recensione:</label>';
     $form .= '<textarea id="commento" name="commento" maxlength="200" required>' . $commento . '</textarea>';
+    $form.='<input type="hidden" name="currentPage" value="'.$prevPage.'"/>';
     $form .= '<input type="hidden" name="timestamp" value="' . $timestamp . '"/>';
     $form .= '<input type="submit" value="Modifica" class="button" name="modifica"></input>';
     $form .= '</fieldset>';
@@ -31,7 +32,7 @@ function getForm($voto, $commento, $timestamp) {
     return $form;
 }
 
-function getRecensione($database, $utente, $timestamp) {
+function getRecensione($database, $utente, $timestamp,$prevPage) {
         $query = "SELECT * FROM recensione WHERE utente=? AND timestamp=?";
         $value = array($utente,$timestamp);
         $recensione = $database->executeSelectPreparedStatement($query,'ss',$value);
@@ -42,7 +43,7 @@ function getRecensione($database, $utente, $timestamp) {
             $commento = $recensione["commento"];
             $timestamp = $recensione["timestamp"];
 
-            return getForm($voto, $commento, $timestamp);
+            return getForm($voto, $commento, $timestamp,$prevPage);
         }
         # THROW 404
 }
@@ -67,7 +68,7 @@ if (isset($_POST['modifica']) && isset($_SESSION['username'])) {
         # Se non va bene l'execute mostro l'avviso altrimenti redirect
         #$recensione_html .= getRecensione($database, $_SESSION["username"], $newTimestamp);
 
-        header('Location: ./profilo.php');
+        header('Location: .'.$_POST['currentPage']);
     }
 }
 
@@ -78,7 +79,8 @@ if (isset($_GET['modifica_x']) && isset($_SESSION['username'])) {
     if (!$connessioneOK) {
         $username = $_SESSION['username'];
         $date = $_GET['timestamp'];
-        $recensione_html .= getRecensione($database, $username, $date);
+        $prevPage = $_GET['currentPage'];
+        $recensione_html .= getRecensione($database, $username, $date,$prevPage);
     }
 }
 
