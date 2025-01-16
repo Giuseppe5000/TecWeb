@@ -34,7 +34,7 @@ function getRequestCategoryName($categoria) {
 if (!$connessioneOK) {
 
     #QUERY AL DB
-    $query = "SELECT * FROM opera ORDER BY id DESC LIMIT 10";
+    $query = "SELECT * FROM opera ORDER BY id DESC LIMIT 4";
     $opereU = $database->executeQuery($query);
 
     $query = "SELECT opera.*,AVG(r.voto) as media FROM opera JOIN recensione as r ON r.opera=opera.id GROUP BY opera.id ORDER BY media DESC LIMIT 3";
