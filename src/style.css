@@ -8,10 +8,9 @@
     --contentbgcolor: #000408;    ;
     --linkcolor: #FFFEF4;
     --visitedcolor: #C0469D;
-    --breadfootercolor: #FFFEF4;
-    --breadfooterbgcolor: #5873BD;
-    --linkbreadfooter: #FFFEF4;
-    --visitedbreadfooter: #000408;
+    --breadfooterlinecolor: #5873BD;
+    --txtbreadfooter: #FFFEF4;
+    --breadfooterbgcolor: #000408;
     --logocolor: #Fc8eac;
 }
 
@@ -179,7 +178,9 @@ SEZIONE BREADCRUMB E FOOTER
 
 #breadcrumb, footer {
     background-color: var(--breadfooterbgcolor);
-    color:var(--breadfootercolor);
+    color:var(--txtbreadfooter);
+    border-top: 4px solid var(--breadfooterlinecolor); 
+    border-bottom: 4px solid var(--breadfooterlinecolor); 
 }
 
 #breadcrumb a:link, footer a:link{
