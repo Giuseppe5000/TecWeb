@@ -402,7 +402,6 @@ div#filtri > form > fieldset {
     justify-content: center;
     padding-left: 10%;
     padding-right: 10%;
-    padding-top: 1em;
     padding-bottom: 1em;
 }
 
@@ -423,7 +422,7 @@ input, textarea, #ordina{
     margin-bottom: 1em;
 }
 
-label.filtro-aggiuntivo{
+label{
     margin-top: 1em;
 }
 
@@ -628,6 +627,10 @@ Commento
 
 .logo_utente {
     width: 2em;
+}
+
+#agg-recensione{
+    margin: 0 10%;
 }
 
 #agg-recensione #username:read-only{

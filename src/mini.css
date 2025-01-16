@@ -80,10 +80,14 @@ PAGINA NFT
     margin-top: 11em;
 }
 
-#filtri, #add-saldo, #add-nft, #agg-recensione{
+#filtri form, #add-saldo, #add-nft, #agg-recensione{
     margin-left: 0;
     margin-right: 0;
     padding: 0.5em; 
+}
+#filtri {
+    margin-left: 0;
+    margin-right: 0;
 }
 
 legend {
