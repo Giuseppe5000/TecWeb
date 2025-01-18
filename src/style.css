@@ -185,13 +185,7 @@ SEZIONE BREADCRUMB E FOOTER
 
 #breadcrumb {
     padding: 0.5em;
-    align-items: center;
-    text-align: center;
     margin-top: 0.3em;
-}
-
-#breadcrumb p{
-    margin: 0;
 }
 
 footer {
