@@ -6,7 +6,7 @@ session_start();
 
 function getForm($voto, $commento, $timestamp,$prevPage) {
     $form = '';
-    $form .= '<form "mod-recensione" class="user-form" action="modifica-recensione.php" method="post">';
+    $form .= '<form id="mod-recensione" class="user-form" action="modifica-recensione.php" method="post">';
     $form .= '<fieldset>';
     $form .= '<legend>Modifica recensione</legend>';
     $form .= '<fieldset id="stelle-recensione">';

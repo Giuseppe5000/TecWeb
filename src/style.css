@@ -593,7 +593,7 @@ Commento
     background-color: silver;
 }
 
-#agg-recensione textarea{
+#mod-recensione textarea, #agg-recensione textarea{
     resize:none;
 }
 
