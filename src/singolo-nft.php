@@ -71,8 +71,8 @@ function mostraAggiungiRecensione(&$aggiungi_recensione_html, $id) {
     $aggiungi_recensione_html.= '<input type="radio" id="voto-5" name="voto" value="5"/>';
     $aggiungi_recensione_html.= '<label class="star" for="voto-5">&#9733;</label>';
     $aggiungi_recensione_html.= '</fieldset>';
-    $aggiungi_recensione_html.='<label for="recensione">Recensione:</label>';
-    $aggiungi_recensione_html.='<textarea id="recensione" name="recensione" required></textarea>';
+    $aggiungi_recensione_html.='<label for="commento">Recensione:</label>';
+    $aggiungi_recensione_html.='<textarea id="commento" name="recensione" required></textarea>';
     $aggiungi_recensione_html.='<input type="hidden" name="id" value="'.$id.'"/>';
     $aggiungi_recensione_html.='<input type="submit" value="Aggiungi" class="button" name="aggiungi"></input>';
     $aggiungi_recensione_html.='</fieldset>';
