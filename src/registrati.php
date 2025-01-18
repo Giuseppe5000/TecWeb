@@ -14,27 +14,27 @@ $confirmPassword = "";
 
 function checkInput($username, $email, $password, $confirmPassword, &$messaggi) {
     if (strlen($username)==0)
-        $messaggi["username"] .= makeMessageParagraph("Il campo username non può essere vuoto!");
+        $messaggi["username"] .= makeMessageParagraph("Il campo <span lang='en'>username</span> non può essere vuoto!");
     if (strlen($username)>30)
-        $messaggi["username"] .= makeMessageParagraph("Il campo username non può superare i 30 caratteri!");
+        $messaggi["username"] .= makeMessageParagraph("Il campo <span lang='en'>username</span> non può superare i 30 caratteri!");
     if (preg_match("/[\W]/", $username))
-		$messaggi["username"] .= makeMessageParagraph("Il campo username può contenere solo lettere e numeri!");
+		$messaggi["username"] .= makeMessageParagraph("Il campo <span lang='en'>username</span> può contenere solo lettere e numeri!");
 
     if (strlen($password)==0 || strlen($confirmPassword)==0)
-        $messaggi["password"] .= makeMessageParagraph("I campi password e ripeti password non possono essere vuoti!");
+        $messaggi["password"] .= makeMessageParagraph("I campi <span lang='en'>password</span> e ripeti <span lang='en'>password</span> non possono essere vuoti!");
     if (strlen($password)>30 || strlen($confirmPassword)>30)
-        $messaggi["password"] .= makeMessageParagraph("I campi password e ripeti password non possono superare 30 caratteri!");
+        $messaggi["password"] .= makeMessageParagraph("I campi <span lang='en'>password</span> e ripeti <span lang='en'>password</span> non possono superare 30 caratteri!");
     if($password != $confirmPassword)
-        $messaggi["password"] .= makeMessageParagraph("I campi password e ripeti password non corrispondono!");
+        $messaggi["password"] .= makeMessageParagraph("I campi <span lang='en'>password</span> e ripeti <span lang='en'>password</span> non corrispondono!");
     if (!preg_match("/^[a-zA-Z0-9!@#$]*$/", $password) || !preg_match("/^[a-zA-Z0-9!@#$]*$/", $confirmPassword))
-		$messaggi["password"] .= makeMessageParagraph("I campi password e ripeti password possono contenere solo lettere, numeri e i seguenti caratteri speciali: ! @ # $");
+		$messaggi["password"] .= makeMessageParagraph("I campi <span lang='en'>password</span> e ripeti <span lang='en'>password</span> possono contenere solo lettere, numeri e i seguenti caratteri speciali: ! @ # $");
 
     if (strlen($email)==0)
-        $messaggi["email"] .= makeMessageParagraph("Il campo email non può essere vuoto!");
+        $messaggi["email"] .= makeMessageParagraph("Il campo <span lang='en'>email</span> non può essere vuoto!");
     if (strlen($email)>30)
-        $messaggi["email"] .= makeMessageParagraph("Il campo email non può superare i 30 caratteri!");
+        $messaggi["email"] .= makeMessageParagraph("Il campo <span lang='en'>email</span> non può superare i 30 caratteri!");
     if (!filter_var($email, FILTER_VALIDATE_EMAIL))
-        $messaggi["email"] .= makeMessageParagraph("Formato email non valido!");
+        $messaggi["email"] .= makeMessageParagraph("Formato <span lang='en'>email</span> non valido!");
 
     return strlen($messaggi["username"])==0 && strlen($messaggi["email"])==0 && strlen($messaggi["password"])==0;
 }
@@ -59,7 +59,7 @@ if(isset($_POST['submit'])){
                 exit;
             }
             catch(UserAlredyExistsException $e) {
-                $messaggi["generico"] .= makeMessageParagraph("Lo username o la email inserite sono già usate da un altro utente!");
+                $messaggi["generico"] .= makeMessageParagraph("Lo <span lang='en'>username</span> o la <span lang='en'>email</span> inserite sono già usate da un altro utente!");
             }
             catch(UserRegisterGenericException $e) {
                 $messaggi["generico"] .= makeMessageParagraph("È avvenuto un errore durante la registrazione, per favore riprova più tardi.");
