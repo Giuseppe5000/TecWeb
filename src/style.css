@@ -424,6 +424,11 @@ input[type="checkbox"]:last-of-type {
     cursor: pointer;
 }
 
+#nft-price {
+    display: flex;
+    align-items: center; 
+}
+
 
 /*
 ===========================
