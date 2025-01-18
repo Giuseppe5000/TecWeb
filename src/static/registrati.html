@@ -2,7 +2,7 @@
 <html lang="it">
   <head>
     <meta charset="utf-8">
-    <title lang="en">Registrati - DoFlamingo</title>
+    <title>Registrati - DoFlamingo</title>
     <meta name="description"
           content="In questa pagina puoi registrarti se non possiedi già un account.">
     <meta name="keywords" content="NFT,DoFlamingo,registrati">
@@ -48,18 +48,18 @@
 
         <fieldset>
           <legend>Registrazione</legend>
-          <label for="username">Username:</label>
+          <label for="username" lang="en">Username:</label>
           {{MESSAGGI_USERNAME}}
           <input type="text" id="username" name="username" maxlength="30" value="{{USERNAME}}" required>
 
-          <label for="email">Email:</label>
+          <label for="email" lang="en">Email:</label>
           {{MESSAGGI_EMAIL}}
           <input type="email" id="email" name="email" maxlength="30" value="{{EMAIL}}" required>
 
-          <label for="password">Password:</label>
+          <label for="password" lang="en">Password:</label>
           {{MESSAGGI_PASSWORD}}
           <input type="password" id="password" name="password" maxlength="30" value="{{PASSWD}}" required>
-          <label for="confirm-password">Ripeti password:</label>
+          <label for="confirm-password">Ripeti <span lang="en">password</span>:</label>
           <input type="password" id="confirm-password" name="confirm-password" value="{{RIPETI_PASSWD}}" maxlength="30" required>
 
           <input type="submit" value="Registrati" class="button" name="submit">
