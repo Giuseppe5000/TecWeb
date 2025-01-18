@@ -22,7 +22,7 @@ function getForm($voto, $commento, $timestamp,$prevPage) {
     $form .= '<input type="radio" id="voto-5" name="voto" value="5"' . ($voto == 5 ? "checked" : ""). '/>';
     $form .= '<label class="star" for="voto-5">&#9733;</label>';
     $form .= '</fieldset>';
-    $form .= '<label for="recensione">Recensione:</label>';
+    $form .= '<label for="commento">Recensione:</label>';
     $form .= '<textarea id="commento" name="commento" maxlength="200" required>' . $commento . '</textarea>';
     $form.='<input type="hidden" name="currentPage" value="'.$prevPage.'"/>';
     $form .= '<input type="hidden" name="timestamp" value="' . $timestamp . '"/>';

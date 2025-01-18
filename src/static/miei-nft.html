@@ -2,7 +2,7 @@
 <html lang="it">
   <head>
     <meta charset="utf-8">
-    <title lang="en">Le mie opere - DoFlamingo</title>
+    <title>Le mie opere - DoFlamingo</title>
     <meta name="description"
           content="In questa pagina puoi visionare e cercare le opere che possiedi.">
     <meta name="keywords" content="NFT,profilo,DoFlamingo,opere,filtra,categorie">
@@ -52,9 +52,9 @@
           <fieldset>
 	    
             <legend>Filtra <abbr lang="en" title="Non-fungible token">NFT</abbr></legend>
-		<label for="nft">Titolo:</label>
+	    <label for="nft">Titolo:</label>
 	    <div class="head-filter">
-		<input name="nft" id="nft" value="{{NOME_NFT}}"/>
+	      <input name="nft" id="nft" value="{{NOME_NFT}}"/>
               <button id="show-filters"></button>
 	    </div>
 
@@ -63,7 +63,7 @@
             <label class="filtro-aggiuntivo" for="prezzoMax">Prezzo massimo:</label>
             <input class="filtro-aggiuntivo" type="number" id="prezzoMax" name="prezzoMax" min="0" value="{{PREZZO_MASSIMO}}"/>
 
-            <label class="filtro-aggiuntivo" for="orfin">Ordinamento:</label>
+            <label class="filtro-aggiuntivo" for="ordina">Ordinamento:</label>
 
             {{ORDINA}}
 
@@ -72,27 +72,27 @@
 
               <div>
                 <input type="checkbox" id="abstract" name="abstract" {{ABSTRACT_CHECKED}}/>
-                <label for="abstract">Abstract</label>
+                <label lang="en" for="abstract">Abstract</label>
               </div>
 
               <div>
                 <input type="checkbox" id="animals" name="animals" {{ANIMALS_CHECKED}}/>
-                <label for="animals">Animals</label>
+                <label lang="en" for="animals">Animals</label>
               </div>
 
               <div>
                 <input type="checkbox" id="pixelArt" name="pixelArt" {{PIXELART_CHECKED}}/>
-                <label for="pixelArt">PixelArt</label>
+                <label lang="en" for="pixelArt">PixelArt</label>
               </div>
 
               <div>
                 <input type="checkbox" id="blackAndWhite" name="blackAndWhite" {{BLACKANDWHITE_CHECKED}}/>
-                <label for="blackAndWhite">Black&White</label>
+                <label lang="en" for="blackAndWhite">Black&White</label>
               </div>
 
               <div>
                 <input type="checkbox" id="photo" name="photo" {{PHOTO_CHECKED}}/>
-                <label for="photo">Photo</label>
+                <label lang="en" for="photo">Photo</label>
               </div>
             </fieldset>
 
@@ -118,9 +118,8 @@
     </main>
 
     <footer>
-      <p>Copyright © 2025 Doflamingo. All rights reserved.</p>
+      <p><span lang="en">Copyright</span> © 2025 Doflamingo. <span lang="en">All rights reserved.</span></p>
     </footer>
+    <script src="script.js"></script>
   </body>
-
-  <script src="script.js"></script>
 </html>
