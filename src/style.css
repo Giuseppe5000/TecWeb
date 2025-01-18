@@ -188,6 +188,10 @@ SEZIONE BREADCRUMB E FOOTER
     margin-top: 0.3em;
 }
 
+#breadcrumb p{
+    margin: 0;
+}
+
 footer {
     padding: 0.5em 0em;
     text-align: center;
