@@ -52,7 +52,7 @@ function getRecensioni($recensioni, $pageNumber, $pageSize) {
 }
 
 function mostraAggiungiRecensione(&$aggiungi_recensione_html, $id) {
-    $aggiungi_recensione_html.='<nav aria-label="aiuti alla navigazione" class="listHelp">
+    $aggiungi_recensione_html.='<nav aria-label="aiuti alla navigazione: recensioni" class="listHelp">
 	<a href="#recensioni" class="navigationHelp">Vai alle recensioni</a>
       </nav>';
     $aggiungi_recensione_html.='<form id="agg-recensione" class="user-form" action="singolo-nft.php" method="post">';
@@ -180,7 +180,7 @@ if (!$connessioneOK) {
             #se l'utente è loggato vede il bottone acquista
             if(isset($_SESSION['username'])){
                 if(strcmp($_SESSION['username'],'admin')!=0){
-                    $opera_html.='<nav aria-label="aiuti alla navigazione" class="listHelp">
+                    $opera_html.='<nav aria-label="aiuti alla navigazione: aggiungi recensioni" class="listHelp">
 	<a href="#recensione" class="navigationHelp">Vai ad aggiungi recensioni</a>
       </nav>';
                     $opera_html.='<form id="acq-nft" action="singolo-nft.php" method="post">';
