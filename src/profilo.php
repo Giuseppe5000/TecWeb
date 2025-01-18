@@ -161,11 +161,11 @@ if(isset($_SESSION['username'])){
 
                 if($row['isAdmin']){
                     $caricaNFT = file_get_contents('./static/carica-nft.html');
-                    $skipButton.='<nav aria-label="aiuti alla navigazione" class="listHelp">
+                    $skipButton.='<nav aria-label="aiuti alla navigazione: aggiungi NFT" class="listHelp">
 	<a href="#agg-nft" class="navigationHelp">Vai ad Aggiungi <abbr lang="en" title="Non-fungible token">NFT</abbr></a>
       </nav>';
                 }else{
-                    $skipButton.='<nav aria-label="aiuti alla navigazione" class="listHelp">
+                    $skipButton.='<nav aria-label="aiuti alla navigazione: miei NFT" class="listHelp">
 	<a href="#miei-nft" class="navigationHelp">Vai ai Miei <abbr lang="en" title="Non-fungible token">NFT</abbr></a>
       </nav>';
                 }
