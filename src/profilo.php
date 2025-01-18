@@ -144,7 +144,7 @@ if(isset($_SESSION['username'])){
                     $avvisoSaldo .= $database->executeCRUDPreparedStatement($query, 'ds', $values);
                 }
                 else {
-                    $avvisoSaldo .= makeMessageParagraph("Questa aggiunta potrebbe sforare il tetto massimo del saldo posseduto, che sarebbe 99999.99999!");
+                    $avvisoSaldo .= makeMessageParagraph("Questa aggiunta potrebbe sforare il tetto massimo del saldo possedibile, che sarebbe 99999.99999!");
                 }
             }
         }
