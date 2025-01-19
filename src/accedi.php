@@ -12,18 +12,18 @@ $password = "";
 
 function checkInput($username, $password, &$messaggi) {
 	if (strlen($username)==0)
-		$messaggi["username"] .= makeMessageParagraph("Il campo username non può essere vuoto!");
+		$messaggi["username"] .= makeMessageParagraph('Il campo <span lang="en">username</span> non può essere vuoto!');
     if (strlen($username)>30)
-        $messaggi["username"] .= makeMessageParagraph("Il campo username non può superare i 30 caratteri!");
+        $messaggi["username"] .= makeMessageParagraph('Il campo <span lang="en">username</span> non può superare i 30 caratteri!');
     if (preg_match("/[\W]/", $username))
-		$messaggi["username"] .= makeMessageParagraph("Il campo username può contenere solo lettere e numeri!");
+		$messaggi["username"] .= makeMessageParagraph('Il campo <span lang="en">username</span> può contenere solo lettere e numeri!');
 
 	if (strlen($password)==0)
-		$messaggi["password"] .= makeMessageParagraph("Il campo password non può essere vuoto!");
+		$messaggi["password"] .= makeMessageParagraph('Il campo <span lang="en">password</span> non può essere vuoto!');
     if (strlen($password)>30)
-        $messaggi["password"] .= makeMessageParagraph("Il campo password non può superare i 30 caratteri!");
+        $messaggi["password"] .= makeMessageParagraph('Il campo <span lang="en">password</span> non può superare i 30 caratteri!');
     if (!preg_match("/^[a-zA-Z0-9!@#$]*$/", $password))
-		$messaggi["password"] .= makeMessageParagraph("Il campo password può contenere solo lettere, numeri e i seguenti caratteri speciali: ! @ # $");
+		$messaggi["password"] .= makeMessageParagraph('Il campo <span lang="en">password</span> può contenere solo lettere, numeri e i seguenti caratteri speciali: ! @ # $');
 
     return strlen($messaggi["username"])==0 && strlen($messaggi["password"])==0;
 }
@@ -47,7 +47,7 @@ if(isset($_POST['submit'])){
 				exit;
 			}
 			else{
-				$messaggi["generico"] .= makeMessageParagraph("Username o password errati");
+				$messaggi["generico"] .= makeMessageParagraph('<span lang="en">Username</span> o <span lang="en">password</span> errati');
 			}
 		} else {
             header('Location: ./500.php');
