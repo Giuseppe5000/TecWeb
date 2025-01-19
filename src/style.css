@@ -424,6 +424,11 @@ input[type="checkbox"]:last-of-type {
     cursor: pointer;
 }
 
+span.nft-price {
+    background: url('assets/ethLogo.webp') right center no-repeat;
+    padding-right: 1.5em;
+    background-size: 1.2em 1.2em;
+}
 
 /*
 ===========================
