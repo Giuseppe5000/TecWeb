@@ -16,6 +16,13 @@
 }
 \date{A.A. 2024/25}
 
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=black,
+  citecolor=black,
+}
+
 \begin{document}
 
 \begin{figure}
@@ -26,7 +33,7 @@
 \renewcommand{\arraystretch}{2}
 \begin{tabular}{|>{\centering\arraybackslash}m{7cm}|>{\centering\arraybackslash}m{8cm}|}
     \hline
-     Link Sito Web & \url{} \\
+     Link Sito Web & \small{\url{https://tecweb.studenti.math.unipd.it/mgusella}} \\
      \hline
      E-mail referente del gruppo & manuel.gusella@studenti.unipd.it \\
     \hline
@@ -53,47 +60,47 @@
 
 \section{Introduzione}
 \subsection{Abstract}
-"Doflamingo" è un marketplace digitale che contiene delle opere uniche sotto forma di NFT pubblicate direttamente dall'associazione.
+"Doflamingo" è un marketplace digitale che contiene delle opere uniche sotto forma di NFT.
 Un Non-fungible token (NFT) rappresenta l'atto di proprietà e certificato di autenticità di un bene unico, in questo caso un'opera digitale. \\
 Tutti i visitatori hanno la possibilità di visionare le opere e creare il proprio account digitale.\\
-Gli utenti registrati possono comprare le opere, se non già possedute da qualcun'altro, attraverso una valuta digitale chiamata Ethereum (ETH). Eventualmente l'utente può decidere di vendere le opere che possiede ad altri utenti.\\ 
-Inoltre gli utenti registrati possono recensire le opere dando un voto da \textbf{1 a 5 stelle}, inserendo opzionalmente anche un commento al riguardo.\\
+Gli utenti registrati possono comprare le opere, se non già possedute da qualcun'altro, attraverso una valuta digitale chiamata Ethereum (ETH). \\
+Inoltre gli utenti registrati possono recensire le opere dando un voto da \textbf{1 a 5 stelle} e inserendo un commento al riguardo.\\
 
 
 \subsection{Analisi}
 \subsubsection{Analisi del Target}
-L'utenza principale sarà composta da persone appassionate agli NFT e alla loro compra-vendita. La maggioranza degli utenti non avrà un'idea precisa di ciò che vuole e per questo verrà aiutata nell'esplorazione.\\
+L'utenza principale sarà composta da persone appassionate di NFT o in generale opere d'arte digitali, interessata oltretutto alla loro compra-vendita. La maggioranza degli utenti non avrà un'idea precisa di ciò che vuole e per questo verrà aiutata nell'esplorazione.\\
 Per impedire l'esclusione di alcune categorie si è pensato di fornire strumenti per aiutare nella ricerca degli NFT.\\
 Utilizzando la metafora della pesca:
 \begin{itemize}
     \item \textbf{Tiro perfetto:} L'utente sà già il nome dell'opera che vuole e potrà cercarla facilmente tramite una barra di ricerca;
-    \item \textbf{Trappola per aragoste:} Grazie alla suddivisione in categorie e poter applicare ulteriori filtri sulle opere l'utente può farsi un'idea degli NFT presenti nella piattaforma.
-    \item \textbf{Pesca con la rete:} La struttura del sito è semplice, quindi permette agli utenti di esplorare il sito senza sovraccarico
-    \item \textbf{Boa di segnalazione:} 
+    \item \textbf{Trappola per aragoste:} Grazie alla suddivisione in categorie e poter applicare ulteriori filtri sulle opere l'utente può farsi un'idea degli NFT presenti nella piattaforma;
+    \item \textbf{Pesca con la rete:} La struttura del sito è semplice, quindi permette agli utenti di esplorare il sito senza sovraccarico;
+    \item \textbf{Boa di segnalazione:}
 \end{itemize}
 \subsubsection{Utenti}
 Esistono 3 tipologie di utenti:
 \begin{itemize}
     \item Utente non registrato, che può eseguire le seguenti azioni:
     \begin{itemize}
-        \item Visualizzare il sito con le relative opere
-        \item Registrare un proprio account
-        \item Autenticarsi
-        \item Ricerca delle opere
-        \item Visualizzare i dettagli di un'opera con le relative recensioni
+        \item Visualizzare il sito con le relative opere;
+        \item Registrare un proprio account;
+        \item Autenticarsi;
+        \item Ricerca delle opere;
+        \item Visualizzare i dettagli di un'opera con le relative recensioni.
     \end{itemize}
     \item Utente registrato, che può eseguire le seguenti azioni:
     \begin{itemize}
-        \item Comprare le opere
-        \item Recensire le opere
-        \item Visualizzare le opere che possiede
-        \item Vendere le opere che possiede
+        \item Comprare le opere;
+        \item Recensire le opere;
+        \item Visualizzare le opere che possiede;
+        \item Visualizzare le proprie recensioni;
+        \item Modificare le proprie recensioni;
+        \item Cancellare le proprie recensioni;
     \end{itemize}
     \item Amministratore, che può eseguire le seguenti azioni:
     \begin{itemize}
-        \item Gestire gli utenti
-        \item Aggiungere opere
-        \item Visualizzare le vendite
+        \item Aggiungere opere.
     \end{itemize}
 \end{itemize}
 
@@ -103,7 +110,6 @@ Esistono 3 tipologie di utenti:
 \begin{itemize}
     \item \textbf{utente} (\underline{username}, password, email, isAdmin, saldo)
     \item \textbf{categoria} (\underline{nome}, descrizione)
-    \item \textbf{iscrizione} (\underline{\textit{utente}, \textit{categoria}})
     \item \textbf{opera} (\underline{id}, path, nome, descrizione, prezzo, \textit{possessore})
     \item \textbf{acquisto} (\underline{\textit{utente}, \textit{opera}}, prezzo, data)
     \item \textbf{appartenenza} (\underline{\textit{categoria}, \textit{opera}})
@@ -113,8 +119,6 @@ Il simbolo * indica che l'attributo può essere nullo.
 
 \subsection{Vincoli di integrità referenziale }
 \begin{itemize}
-    \item iscrizione.utente → utente.username
-    \item iscrizione.categoria → categoria.nome
     \item opera.possessore → utente.username
     \item acquisto.utente → utente.username
     \item acquisto.opera → opera.id
@@ -123,7 +127,7 @@ Il simbolo * indica che l'attributo può essere nullo.
     \item recensione.utente → utente.username
     \item recensione.opera → opera.id
 \end{itemize}
-\subsection{Schema E-R}
+\subsection{Schema E-R (già ristrutturato)}
 \begin{center}
     \includegraphics[width=0.6\linewidth]{schema_ristrutturato.png}
 \end{center}
@@ -134,15 +138,17 @@ Le pagine sono state create seguendo gli standard HTML5, dato che si presuppone 
 \subsection{CSS}
 Per rispettare la separazione tra struttura e presentazione si è deciso di utilizzare fogli di stile esterni.
 \subsection{SQL}
-Il sito web si appoggia su un database per le informazioni degli Utenti, delle opere, delle recensioni, degli acquisti e delle categorie.
+Il sito web utilizza un database relazionale per salvare le informazioni degli utenti, delle opere, delle recensioni, degli acquisti e delle categorie.
 \subsection{PHP} 
-Per rispettare la separazione tra struttura e comportamento si è deciso di utilizzare script in PHP. Questi script vengono utilizzati per connettersi al database, visualizzare determinati NFT nelle pagine ed effettuare controlli di autenticazione.
+PHP è utilizzato per gestire le richieste di acquisto, visualizzazione, inserimento delle recensioni dei vari NFT (interfacciandosi con il database) e per implementare l'autenticazione utente.
 \subsection{JavaScript}
-JavaScript è stato utilizzato per gestire la visualizzazione dinamica dei filtri di ricerca delle pagine "NFT", "Mie recensioni", "Miei NFT" e per implementare un carosello nella sezione "Ultime uscite" della pagina Home.
+JavaScript è stato utilizzato per gestire la visualizzazione dinamica dei filtri del form di ricerca delle pagine "NFT", "Mie recensioni", "Miei NFT".
+Inoltre è utilizzato per vari controlli lato client in tutte le pagine che lo necessitano.
 
 \section{Progettazione}
 Per la progettazione del nostro sito web, abbiamo adottato la strategia \textit{Mobile First}. Questo approccio ci ha permesso di concentrarci sulla modalità di accesso più comune per la maggioranza degli utenti, ossia quella da dispositivi mobili. Abbiamo dato priorità alla semplicità, garantendo che l’esperienza utente fosse fluida e accessibile, riducendo al minimo il numero di tap o click necessari per navigare tra le varie sezioni del sito.\\
-Per il design del sito, abbiamo optato per un layout fluido, che ci ha permesso di adattare dinamicamente il layout del sito per diversi dispositivi e risoluzioni. Sebbene sia stato utilizzato un unico punto di rottura per ottimizzare l’esperienza su dispositivi mobili, il design si basa principalmente su proporzioni flessibili e sull’adattamento dei contenuti, garantendo una visualizzazione ottimale su schermi di diverse dimensioni.
+Per il design del sito, abbiamo optato per un layout fluido, che ci ha permesso di adattare dinamicamente il layout del sito per diversi dispositivi e risoluzioni. Sebbene sia stato utilizzato un unico punto di rottura per ottimizzare l’esperienza su dispositivi mobili, il design si basa principalmente su proporzioni flessibili e sull’adattamento dei contenuti, garantendo una visualizzazione ottimale su schermi di diverse dimensioni. \\
+La progettazione del sito da mobile è stata realizzata in Balsamiq ed è presente in un file apposito.
 
 \subsection{Struttura generale}
 Il sito presenta una struttura semplice e lineare, senza una profondità gerarchica eccessiva. Le principali sezioni includono:
@@ -159,12 +165,12 @@ Il sito presenta una struttura semplice e lineare, senza una profondità gerarch
 \subsection{Header e Navbar}
 L'header del sito include sempre il logo, che contribuisce a definire l’identità visiva del sito.\\
 La barra di navigazione è stata progettata con particolare attenzione all'accessibilità e alla semplicità, soprattutto per dispositivi mobili. Abbiamo deciso di limitare il numero di voci presenti nella navbar per eliminare la necessità di un menù ad hamburger. Questa scelta, coerente con l'approccio \textit{Mobile First}, permette agli utenti di accedere rapidamente alle informazioni desiderate senza dover compiere ulteriori tap, migliorando l’esperienza d’uso.\\
-Per evitare confusione, il link alla pagina corrente viene disattivato e reso visivamente distinguibile dagli altri. Questo accorgimento aiuta a orientarsi nella navigazione senza sovraccaricare l'utente con opzioni ridondanti.\\
+La pagina corrente viene distinta dagli elementi della navbar con un colore di background differente. Questo accorgimento aiuta a orientarsi nella navigazione senza sovraccaricare l'utente.\\
 
 Sono state implementate due versioni della navbar:
 \begin{itemize}
 \item Per utenti non autenticati: \textbf{Home}, \textbf{NFT}, \textbf{Chi Siamo}, \textbf{Registrati}, \textbf{Accedi};
-\item Per utenti autenticati: \textbf{Home}, \textbf{NFT}, \textbf{Chi Siamo}, \textbf{Profilo}, \textbf{Log out}.
+\item Per utenti autenticati: \textbf{Home}, \textbf{NFT}, \textbf{Chi Siamo}, \textbf{Disconnettiti}, \textbf{Profilo}.
 \end{itemize}
 
 \subsection{Breadcrumb}
@@ -175,19 +181,48 @@ La breadcrumb segue fedelmente l’organizzazione delle pagine, mostrando i pass
 
 \subsubsection{Descrizione delle pagine} Di seguito, una panoramica delle pagine del sito:
 
-\paragraph{Home} La home page accoglie l’utente con una breve introduzione al sito. I contenuti principali sono: \begin{itemize} \item Un carosello che mostra le 10 NFT più recenti caricate sulla piattaforma; \item Una sezione con le 3 NFT più popolari; \item Una tabella che elenca le categorie di NFT, ordinate per volume di vendite. \end{itemize} Questa struttura permette di offrire una visione sintetica e completa delle principali attività del sito.
+\paragraph{Home} La home page accoglie l’utente con una breve introduzione al sito. I contenuti principali sono:
+\begin{itemize}
+    \item Una sezione che mostra i 4 NFT più recenti caricati sulla piattaforma, con un link che porta alla pagina NFT in cui si possono visionare tutti;
+    \item Una sezione con i 3 NFT più popolari;
+    \item Una tabella che elenca le categorie di NFT, ordinate per volume di vendite.
+\end{itemize}
+Questa struttura permette di offrire una visione sintetica e completa delle principali attività del sito.
 
-\paragraph{Pagina NFT} Questa pagina consente agli utenti di esplorare tutte le opere disponibili sul sito. È divisa in due sezioni: \begin{itemize} \item Una form con opzioni di ricerca e filtri per affinare i risultati; \item Un elenco di NFT, organizzato in più pagine numerate (per non sovracaricare di informazioni l'utente e per rendere la pagina più veloce da caricare). \end{itemize}
+\paragraph{Pagina NFT} Questa pagina consente agli utenti di esplorare tutte le opere disponibili sul sito. È divisa in due sezioni:
+\begin{itemize}
+    \item Una form con opzioni di ricerca e filtri per affinare i risultati;
+    \item Un elenco di NFT, organizzato in più pagine numerate, per non sovracaricare di informazioni l'utente, rendere la pagina più veloce da caricare e per evitare lo scrolling infinito.
+\end{itemize}
 
 \paragraph{Chi Siamo} La pagina "Chi Siamo" presenta una breve descrizione del gruppo e un elenco di domande frequenti (FAQ) che chiariscono dubbi comuni degli utenti.
 
-\paragraph{Pagina di un singolo NFT} Questa pagina fornisce tutti i dettagli relativi a un singolo NFT. Gli elementi principali includono: \begin{itemize} \item L’immagine dell’NFT; \item Il prezzo e un pulsante per acquistarlo (visibile solo agli utenti loggati); \item Una descrizione dettagliata dell’opera; \item Una sezione per inserire una recensione (accessibile agli utenti loggati); \item L’elenco delle recensioni lasciate dagli altri utenti. \end{itemize}
+\paragraph{Pagina di un singolo NFT} Questa pagina fornisce tutti i dettagli relativi a un singolo NFT. Gli elementi principali includono:
+\begin{itemize}
+    \item L’immagine dell’NFT;
+    \item Il prezzo e un pulsante per acquistarlo, visibile solo se l'opera non è già stata acquistata e solo agli utenti loggati;
+    \item Una descrizione dettagliata dell’opera;
+    \item Una form per inserire una recensione, accessibile solo agli utenti loggati;
+    \item L’elenco delle recensioni lasciate dagli altri utenti.
+\end{itemize}
 
-\paragraph{Profilo} La pagina del profilo raccoglie le informazioni personali dell’utente. Include: \begin{itemize} \item Dati personali; \item L’elenco degli NFT acquistati dall’utente; \item Le recensioni scritte dall’utente; \item Per gli amministratori, un’opzione per aggiungere nuove NFT al sito. \end{itemize}
+\paragraph{Profilo} La pagina del profilo raccoglie le informazioni personali dell’utente. Include:
+\begin{itemize}
+    \item Il nome;
+    \item Il saldo;
+    \item Una form per caricare ulteriore saldo;
+    \item L’elenco degli NFT acquistati dall’utente;
+    \item Le recensioni scritte dall’utente;
+    \item Per gli amministratori, un form per aggiungere nuove NFT al sito.
+\end{itemize}
 
 \paragraph{Mie Recensioni}
 Questa pagina raccoglie tutte le recensioni scritte dall’utente, organizzandole in un elenco paginato per evitare problemi di scroll infinito. Ogni recensione include:
-\begin{itemize} \item L’opera a cui si riferisce, con un collegamento diretto alla relativa pagina; \item Il testo completo della recensione; \item La data in cui è stata scritta la recensione.
+\begin{itemize}
+    \item L’opera a cui si riferisce, con un collegamento diretto alla relativa pagina;
+    \item Il testo completo della recensione;
+    \item Il voto in stelle (da 1 a 5);
+    \item La data in cui è stata scritta la recensione.
 \end{itemize} 
 
 \paragraph{Miei NFT}
