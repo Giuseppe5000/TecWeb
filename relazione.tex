@@ -136,11 +136,12 @@ Le pagine sono state create seguendo gli standard HTML5, dato che si presuppone 
 \subsection{CSS}
 Per rispettare la separazione tra struttura e presentazione si è deciso di utilizzare fogli di stile esterni.
 \subsection{SQL}
-Il sito web si appoggia su un database per le informazioni degli Utenti, delle opere, delle recensioni, degli acquisti e delle categorie.
+Il sito web utilizza un database relazionale per salvare le informazioni degli utenti, delle opere, delle recensioni, degli acquisti e delle categorie.
 \subsection{PHP} 
-Per rispettare la separazione tra struttura e comportamento si è deciso di utilizzare script in PHP. Questi script vengono utilizzati per connettersi al database, visualizzare determinati NFT nelle pagine ed effettuare controlli di autenticazione.
+PHP è utilizzato per gestire le richieste di acquisto, visualizzazione, inserimento delle recensioni dei vari NFT (interfacciandosi con il database) e per implementare l'autenticazione utente.
 \subsection{JavaScript}
-JavaScript è stato utilizzato per gestire la visualizzazione dinamica dei filtri di ricerca delle pagine "NFT", "Mie recensioni", "Miei NFT" e per implementare un carosello nella sezione "Ultime uscite" della pagina Home.
+JavaScript è stato utilizzato per gestire la visualizzazione dinamica dei filtri del form di ricerca delle pagine "NFT", "Mie recensioni", "Miei NFT".
+Inoltre è utilizzato per vari controlli lato client in tutte le pagine che lo necessitano.
 
 \section{Progettazione}
 Per la progettazione del nostro sito web, abbiamo adottato la strategia \textit{Mobile First}. Questo approccio ci ha permesso di concentrarci sulla modalità di accesso più comune per la maggioranza degli utenti, ossia quella da dispositivi mobili. Abbiamo dato priorità alla semplicità, garantendo che l’esperienza utente fosse fluida e accessibile, riducendo al minimo il numero di tap o click necessari per navigare tra le varie sezioni del sito.\\
