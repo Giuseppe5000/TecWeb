@@ -166,7 +166,7 @@ if (!$connessioneOK) {
         $opera_html.='<div>';
         $opera_html.='<img id="immagine-contenuto" src="./'.$opera[0]["path"].'.webp" alt="decr-img">';
         $opera_html.='</div>';
-        $opera_html.='<span>Prezzo: '.$prezzo.'ETH</span>';
+        $opera_html.='<span class="nft-price">Prezzo: '.$prezzo.'</span>';
         $descr_html.='<p id="descr">'.$opera[0]["descrizione"].'</p>';
 
         #se l'opera è acquista si vedrà da chi è stata acquistata, per essere acquistata il possessore deve essere DIVERSO da admin
