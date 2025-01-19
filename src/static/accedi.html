@@ -2,7 +2,7 @@
 <html lang="it">
   <head>
     <meta charset="utf-8">
-    <title lang="en">Accedi - DoFlamingo</title>
+    <title>Accedi - DoFlamingo</title>
     <meta name="description"
           content="In questa pagina puoi accedere al tuo account.">
     <meta name="keywords" content="NFT,DoFlamingo,accedi">
@@ -17,15 +17,16 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png">
     <link rel="manifest" href="assets/favicon_io/site.webmanifest">
+    <script src="script.js"></script>
   </head>
   <body>
 
     <header>
-      <nav aria-label="aiuti alla navigazione" class="listHelp">
+      <nav aria-label="aiuti alla navigazione: contenuto" class="listHelp">
         <a href="#content" class="navigationHelp">Vai al contenuto</a>
       </nav>
       <nav class="header-content">
-        <h1>Doflamingo</h1>
+        <a href="index.php"><h1>Doflamingo</h1></a>
         <ul class="menu-list">
           {{NAVBAR}}
         </ul>
@@ -39,7 +40,7 @@
     <main id="content">
       <h1>Accedi</h1>
 
-      <form id="accesso-form" class="user-form" action="accedi.php" method="post">
+      <form id="accesso-form" class="user-form" action="accedi.php" onsubmit="return validazioneAccedi();" method="post">
 
         <div>
           {{MESSAGGI_GENERICI}}
@@ -47,11 +48,11 @@
 
         <fieldset>
           <legend>Accesso</legend>
-          <label for="username">Username:</label>
+          <label lang="en" for="username">Username:</label>
           {{MESSAGGI_USERNAME}}
           <input type="text" id="username" name="username" maxlength="30" value="{{USERNAME}}" required>
 
-          <label for="password">Password:</label>
+          <label lang="en" for="password">Password:</label>
           {{MESSAGGI_PASSWORD}}
           <input type="password" id="password" name="password" maxlength="30" value="{{PASSWD}}" required>
 
@@ -62,7 +63,7 @@
     </main>
 
     <footer>
-      <p>Copyright © 2025 Doflamingo. All rights reserved.</p>
+      <p><span lang="en">Copyright</span> © 2025 Doflamingo. <span lang="en">All rights reserved.</span></p>
     </footer>
 
   </body>

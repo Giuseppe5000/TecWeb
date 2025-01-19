@@ -24,6 +24,25 @@ function getRecensioni($recensioni, $pageNumber, $pageSize) {
             $recensioni_html.='</div>';
             $recensioni_html .= '<div><span>' . $recensione["voto"] .' &#9733;</span></div>';
             $recensioni_html.= "<div>{$date}</div>";
+            if(isset($_SESSION['username']) && $utente==$_SESSION['username']){
+                $recensioni_html.='<div class="user-comment">';
+
+                $recensioni_html.='<form class="form_recensione" action="modifica-recensione.php">';
+                $recensioni_html.='<div>';
+                $recensioni_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'?'.$_SERVER['QUERY_STRING'].'"/>';
+                $recensioni_html.='<input type="hidden" name="timestamp" value="'.$recensione["timestamp"].'"/>';
+                $recensioni_html.='<input id="modifica" type="image" src="assets/edit_icon.svg" alt="modifica recensione" name="modifica">';
+                $recensioni_html.='</div>';
+                $recensioni_html.='</form>';
+
+                $recensioni_html.='<form class="form_recensione" action="cancella-recensione.php" method="post">';
+                $recensioni_html.='<div>';
+                $recensioni_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'?'.$_SERVER['QUERY_STRING'].'"/>';
+                $recensioni_html.='<input type="hidden" name="timestamp" value="'.$recensione["timestamp"].'"/>';
+                $recensioni_html.='<input id="cancella" type="image" src="assets/delete_icon.svg" alt="cancella recensione" name="cancella">';
+                $recensioni_html.='</div>';
+                $recensioni_html.='</div>';
+            }
             $recensioni_html.='</div>';
             $recensioni_html.='<p>'.$commento.'</p>';
             $recensioni_html.='</div>';
@@ -33,7 +52,7 @@ function getRecensioni($recensioni, $pageNumber, $pageSize) {
 }
 
 function mostraAggiungiRecensione(&$aggiungi_recensione_html, $id) {
-    $aggiungi_recensione_html.='<nav aria-label="aiuti alla navigazione" class="listHelp">
+    $aggiungi_recensione_html.='<nav aria-label="aiuti alla navigazione: recensioni" class="listHelp">
 	<a href="#recensioni" class="navigationHelp">Vai alle recensioni</a>
       </nav>';
     $aggiungi_recensione_html.='<form id="agg-recensione" class="user-form" action="php/post/recensione/aggiungi-recensione.php" method="post">';
@@ -52,8 +71,8 @@ function mostraAggiungiRecensione(&$aggiungi_recensione_html, $id) {
     $aggiungi_recensione_html.= '<input type="radio" id="voto-5" name="voto" value="5"/>';
     $aggiungi_recensione_html.= '<label class="star" for="voto-5">&#9733;</label>';
     $aggiungi_recensione_html.= '</fieldset>';
-    $aggiungi_recensione_html.='<label for="recensione">Recensione:</label>';
-    $aggiungi_recensione_html.='<textarea id="recensione" name="recensione" required></textarea>';
+    $aggiungi_recensione_html.='<label for="commento">Recensione:</label>';
+    $aggiungi_recensione_html.='<textarea id="commento" name="recensione" required></textarea>';
     $aggiungi_recensione_html.='<input type="hidden" name="id" value="'.$id.'"/>';
     $aggiungi_recensione_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'?'.$_SERVER['QUERY_STRING'].'"/>';
     $aggiungi_recensione_html.='<input type="submit" value="Aggiungi" class="button" name="aggiungi"></input>';
@@ -124,7 +143,7 @@ if (!$connessioneOK) {
             #se l'utente è loggato vede il bottone acquista
             if(isset($_SESSION['username'])){
                 if(strcmp($_SESSION['username'],'admin')!=0){
-                    $opera_html.='<nav aria-label="aiuti alla navigazione" class="listHelp">
+                    $opera_html.='<nav aria-label="aiuti alla navigazione: aggiungi recensioni" class="listHelp">
 	<a href="#recensione" class="navigationHelp">Vai ad aggiungi recensioni</a>
       </nav>';
                     $opera_html.='<form id="acq-nft" action="php/post/opera/acquisto.php" method="post">';

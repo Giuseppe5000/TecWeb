@@ -80,15 +80,29 @@ PAGINA NFT
     margin-top: 11em;
 }
 
+#filtri form, #add-saldo, #add-nft, #agg-recensione{
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0.5em; 
+}
 #filtri {
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+legend {
+    text-align: center;
 }
 
 div#filtri > form > fieldset {
     padding-left: 5%;
     padding-right: 5%;
 }
+
+#prezzoMin, #prezzoMax {
+    width: 100%;
+}
+
 /*
 ===========================
 PAGINA REGISTRATI E ACCEDI
@@ -131,17 +145,6 @@ PAGINE 404,500
 ===========================
 */
 
-/*
-===========================
-    padding-right: 0;
-    padding-top: 100%;
-    background-position-y: 30%;
-    background-position-x: 50%;
-    background-size: 40%;
-    background-repeat: no-repeat;
-===========================
-*/
-
 #errore404, #errore500{
     padding-right: 0;
     padding-top: 85%;
@@ -156,4 +159,9 @@ PAGINE 404,500
 
 .head-comment{
     flex-direction: column;
+}
+
+
+#stelle-recensione label {
+    font-size: 2.2em;
 }

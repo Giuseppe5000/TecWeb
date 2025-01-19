@@ -2,7 +2,7 @@
 <html lang="it">
   <head>
     <meta charset="utf-8">
-    <title lang="en">Le mie recensioni - DoFlamingo</title>
+    <title>Le mie recensioni - DoFlamingo</title>
     <meta name="description"
           content="In questa pagina puoi visionare e cercare le varie opere che offriamo.">
     <meta name="keywords" content="recensioni,profilo,DoFlamingo,filtri,categorie">
@@ -22,11 +22,11 @@
   <body>
 
     <header>
-      <nav aria-label="aiuti alla navigazione" class="listHelp">
+      <nav aria-label="aiuti alla navigazione: contenuto" class="listHelp">
         <a href="#content" class="navigationHelp">Vai al contenuto</a>
       </nav>
       <nav class="header-content">
-        <h1>Doflamingo</h1>
+        <a href="index.php"><h1>Doflamingo</h1></a>
 
         <ul class="menu-list">
           {{NAVBAR}}
@@ -42,7 +42,7 @@
 
       <h1>Mie recensioni</h1>
 
-      <nav aria-label="aiuti alla navigazione" class="listHelp">
+      <nav aria-label="aiuti alla navigazione: recensioni" class="listHelp">
 	<a href="#recensioni" class="navigationHelp">Vai alle recensioni</a>
       </nav>
 
@@ -54,7 +54,7 @@
             <legend>Filtra recensioni</legend>
 	    <label for="nft">Opera:</label>
 
-	    <input name="nft" id="nft" value="{{OPERA}}" />
+	    <input type="text" name="nft" id="nft" value="{{OPERA}}" />
 
             <label for="ordina">Ordinamento:</label>
 	    {{ORDINA}}
@@ -78,9 +78,8 @@
     </main>
 
     <footer>
-      <p>Copyright © 2025 Doflamingo. All rights reserved.</p>
+      <p><span lang="en">Copyright</span> © 2025 Doflamingo. <span lang="en">All rights reserved.</span></p>
     </footer>
+    <script src="script.js"></script>
   </body>
-
-  <script src="script.js"></script>
 </html>

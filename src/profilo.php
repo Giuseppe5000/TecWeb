@@ -16,6 +16,23 @@ $linkNft = "";
 $linkRecensioni = "";
 $skipButton = "";
 
+
+function isSaldoOverflow($database, $utente, $saldo) {
+    $query = "SELECT saldo FROM utente WHERE username = ?";
+    $value = array($utente);
+    $result = $database->executeSelectPreparedStatement($query,'s',$value);
+    if(count($result) == 1){
+        $saldoUtente = $result[0]["saldo"];
+        return $saldoUtente + $saldo > 99999.99999;
+    }
+    else {
+        // Non trovo l'utente o ne trovo più di uno,
+        // quindi assumo che ci sia qualche errore di inconsistenza nel db => errore 500
+        header('Location: ./500.php');
+    }
+}
+
+
 if(isset($_SESSION['username'])){
     $database = new Database();
     $connessioneOK = $database->openConnection();
@@ -30,9 +47,14 @@ if(isset($_SESSION['username'])){
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aggiungi-saldo'])){
             $saldo = $database->pulisciInput($_POST['saldo']);
             if (checkMoney($saldo, $avvisoSaldo)) {
-                $query = "UPDATE utente SET saldo = saldo + ? WHERE username = ?";
-                $values = [$saldo, $username];
-                $avvisoSaldo .= $database->executeCRUDPreparedStatement($query, 'ds', $values);
+                if (!isSaldoOverflow($database, $username, $saldo)) {
+                    $query = "UPDATE utente SET saldo = saldo + ? WHERE username = ?";
+                    $values = [$saldo, $username];
+                    $avvisoSaldo .= $database->executeCRUDPreparedStatement($query, 'ds', $values);
+                }
+                else {
+                    $avvisoSaldo .= makeMessageParagraph("Questa aggiunta potrebbe sforare il tetto massimo del saldo possedibile, che sarebbe 99999.99999!");
+                }
             }
         }
 
@@ -48,11 +70,11 @@ if(isset($_SESSION['username'])){
 
                 if($row['isAdmin']){
                     $caricaNFT = file_get_contents('./static/carica-nft.html');
-                    $skipButton.='<nav aria-label="aiuti alla navigazione" class="listHelp">
+                    $skipButton.='<nav aria-label="aiuti alla navigazione: aggiungi NFT" class="listHelp">
 	<a href="#agg-nft" class="navigationHelp">Vai ad Aggiungi <abbr lang="en" title="Non-fungible token">NFT</abbr></a>
       </nav>';
                 }else{
-                    $skipButton.='<nav aria-label="aiuti alla navigazione" class="listHelp">
+                    $skipButton.='<nav aria-label="aiuti alla navigazione: miei NFT" class="listHelp">
 	<a href="#miei-nft" class="navigationHelp">Vai ai Miei <abbr lang="en" title="Non-fungible token">NFT</abbr></a>
       </nav>';
                 }
@@ -108,6 +130,7 @@ if(isset($_SESSION['username'])){
 
                 $recensioni_html.='<form class="form_recensione" action="modifica-recensione.php">';
                 $recensioni_html.='<div>';
+                $recensioni_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'"/>';
                 $recensioni_html.='<input type="hidden" name="timestamp" value="'.$recensione["timestamp"].'"/>';
                 $recensioni_html.='<input id="modifica" type="image" src="assets/edit_icon.svg" alt="modifica recensione" name="modifica">';
                 $recensioni_html.='</div>';

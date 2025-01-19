@@ -2,7 +2,7 @@
 <html lang="it">
   <head>
     <meta charset="utf-8">
-    <title lang="en">Scopri le opere! - DoFlamingo</title>
+    <title>Scopri le opere! - DoFlamingo</title>
     <meta name="description"
           content="In questa pagina puoi visionare e cercare le varie opere che offriamo.">
     <meta name="keywords" content="NFT,DoFlamingo,opere,filtri,categorie">
@@ -17,16 +17,17 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png">
     <link rel="manifest" href="assets/favicon_io/site.webmanifest">
+
   </head>
   
   <body>
 
     <header>
-      <nav aria-label="aiuti alla navigazione" class="listHelp">
+      <nav aria-label="aiuti alla navigazione: contenuto" class="listHelp">
         <a href="#content" class="navigationHelp">Vai al contenuto</a>
       </nav>
       <nav class="header-content">
-        <h1>Doflamingo</h1>
+        <a href="index.php"><h1>Doflamingo</h1></a>
 
         <ul class="menu-list">
           {{NAVBAR}}
@@ -42,7 +43,7 @@
 
       <h1>Cerca <abbr lang="en" title="Non-fungible token">NFT</abbr></h1>
 
-      <nav aria-label="aiuti alla navigazione" class="listHelp">
+      <nav aria-label="aiuti alla navigazione: NFT" class="listHelp">
 	<a href="#cards" class="navigationHelp">Vai agli <abbr lang="en" title="Non-fungible token">NFT</abbr></a>
       </nav>
 
@@ -63,7 +64,7 @@
             <label class="filtro-aggiuntivo" for="prezzoMax">Prezzo massimo:</label>
             <input class="filtro-aggiuntivo" type="number" id="prezzoMax" name="prezzoMax" min="0" value="{{PREZZO_MASSIMO}}"/>
 
-            <label class="filtro-aggiuntivo" for="orfin">Ordinamento:</label>
+            <label class="filtro-aggiuntivo" for="ordina">Ordinamento:</label>
 
             {{ORDINA}}
 
@@ -72,27 +73,27 @@
 
               <div>
                 <input type="checkbox" id="abstract" name="abstract" {{ABSTRACT_CHECKED}}/>
-                <label for="abstract">Abstract</label>
+                <label lang="en" for="abstract">Abstract</label>
               </div>
 
               <div>
                 <input type="checkbox" id="animals" name="animals" {{ANIMALS_CHECKED}}/>
-                <label for="animals">Animals</label>
+                <label lang="en" for="animals">Animals</label>
               </div>
 
               <div>
                 <input type="checkbox" id="pixelArt" name="pixelArt" {{PIXELART_CHECKED}}/>
-                <label for="pixelArt">PixelArt</label>
+                <label lang="en" for="pixelArt">PixelArt</label>
               </div>
 
               <div>
                 <input type="checkbox" id="blackAndWhite" name="blackAndWhite" {{BLACKANDWHITE_CHECKED}}/>
-                <label for="blackAndWhite">Black&White</label>
+                <label lang="en" for="blackAndWhite">Black&White</label>
               </div>
 
               <div>
                 <input type="checkbox" id="photo" name="photo" {{PHOTO_CHECKED}}/>
-                <label for="photo">Photo</label>
+                <label lang="en" for="photo">Photo</label>
               </div>
             </fieldset>
 
@@ -118,9 +119,8 @@
     </main>
 
     <footer>
-      <p>Copyright © 2025 Doflamingo. All rights reserved.</p>
+      <p><span lang="en">Copyright</span> © 2025 Doflamingo. <span lang="en">All rights reserved.</span></p>
     </footer>
+    <script src="script.js"></script>
   </body>
-
-  <script src="script.js"></script>
 </html>

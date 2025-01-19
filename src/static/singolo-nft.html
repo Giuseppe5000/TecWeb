@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
     <meta charset="utf-8">
-    <title lang="en">Dettagli Opera - DoFlamingo</title>
+    <title>Dettagli Opera - DoFlamingo</title>
     <meta name="description"
 	    content="In questa pagina potrai scroprire tutti i dettagli di un'opera, acquistarla e recensirla.">
     <meta name="keywords" content="NFT,DoFlamingo,opera,acquista,recensione,commenti">
@@ -23,18 +23,18 @@
       <!-- Script js -->
       <script src="script.js"></script>
 
-    <nav aria-label="aiuti alla navigazione" class="listHelp">
+    <nav aria-label="aiuti alla navigazione: contenuto" class="listHelp">
       <a href="#content" class="navigationHelp">Vai al contenuto</a>
      </nav>
     <nav class="header-content">
-	<h1>Doflamingo</h1>
+        <a href="index.php"><h1>Doflamingo</h1></a>
 	
 	<ul class="menu-list">
 	  {{NAVBAR}}
 	</ul>
     </nav>
     <nav id="breadcrumb">
-	<p>Ti trovi in: <a href="nft.php"><span lang="en">NFT</span></a>&gt;&gt;{{NOME_NFT}}</p>
+	<p>Ti trovi in: <a href="nft.php"><abbr lang="en" title="Non-fungible token">NFT</abbr></a>&gt;&gt;{{NOME_NFT}}</p>
     </nav>
     </header>
 
@@ -46,7 +46,8 @@
       <h2 id="recensione">Recensioni</h2>
       {{AGGIUNGI_RECENSIONE}}
       <div id="recensioni" class="comment-list">
-	{{RECENSIONI}}
+	  {{RECENSIONI}}
+
       </div>
 
       <div id="navigazione-pagine">
@@ -57,7 +58,7 @@
 
     </main>
     <footer>
-      <p>Copyright © 2025 Doflamingo. All rights reserved.</p>
+      <p><span lang="en">Copyright</span> © 2025 Doflamingo. <span lang="en">All rights reserved.</span></p>
     </footer>
 </body>
 

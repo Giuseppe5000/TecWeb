@@ -18,7 +18,7 @@ class Navbar {
         else
             $link = str_replace("{{LANG}}", '', $link);
 
-        if ($abbr != "")
+        if (trim($abbr) != "")
             $link = str_replace("{{ABBR}}", '<abbr lang="en" title="' . $abbr . '">' . $title . '</abbr>', $link);
         else
             $link = str_replace("{{ABBR}}", $title, $link);
@@ -29,10 +29,10 @@ class Navbar {
     private function getMenuItemCurrentLink($title, $id, $lang="", $abbr="") {
         $link = '<li class="menu-item" id="currentLink">{{ABBR}}</li>';
 
-        if ($abbr != "")
+        if (trim($abbr) != "")
             $link = str_replace("{{ABBR}}", '<abbr id="' . $id . '"{{LANG}} title="' . $abbr . '">' . $title . '</abbr>', $link);
         else
-            $link = str_replace("{{ABBR}}", '<span id="' . $id . ' "{{LANG}}>' . $title . '</span>', $link);
+            $link = str_replace("{{ABBR}}", '<span id="' . $id . '"{{LANG}}>' . $title . '</span>', $link);
 
         if ($lang != "it")
             $link = str_replace("{{LANG}}", 'lang="' . $lang . '"', $link);

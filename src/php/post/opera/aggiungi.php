@@ -12,6 +12,8 @@ function generateUniqueFilename($extension) {
 function checkInput($nome, $descrizione, $prezzo, &$messaggi) {
 	if (strlen($nome)==0)
 		$messaggi .= makeMessageParagraph("Il campo nome non può essere vuoto!");
+    if (preg_match("/[\W]/", $nome))
+		$messaggi .= makeMessageParagraph("Il campo nome può contenere solo lettere e numeri!");
 
     if (strlen($nome)>30)
         $messaggi .= makeMessageParagraph("Il campo nome non può superare i 30 caratteri!");
@@ -45,11 +47,11 @@ function checkMoney($money, &$messaggi) {
     if ($firstComma) {
         $money = explode($money, ",");
 
-        if (strlen($money[0])>10)
-            $messaggi .= makeMessageParagraph("La valuta non può avere più di 10 cifre nella parte intera!");
+        if (strlen($money[0])>5)
+            $messaggi .= makeMessageParagraph("La valuta non può avere più di 5 cifre nella parte intera!");
 
-        if (isset($money[1]) && strlen($money[1])>2)
-            $messaggi .= makeMessageParagraph("La valuta non può avere più di 2 cifre nella parte decimale!");
+        if (isset($money[1]) && strlen($money[1])>5)
+            $messaggi .= makeMessageParagraph("La valuta non può avere più di 5 cifre nella parte decimale!");
     }
     else {
         if (strlen($money)>10)

@@ -93,8 +93,9 @@ function printRecensioni($recensioni, $pageNumber, $pageSize) {
             $recensioni_html.='<div class="user-comment">';
             $recensioni_html.='<form class="form_recensione" action="modifica-recensione.php">';
             $recensioni_html.='<div>';
+            $recensioni_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'?'.$_SERVER['QUERY_STRING'].'"/>';
             $recensioni_html.='<input type="hidden" name="timestamp" value="'.$recensione["timestamp"].'"/>';
-            $recensioni_html.='<input id="modifica" type="image" src="assets/edit_icon.svg" alt="modifica recensione" name="modifica">';
+            $recensioni_html.='<input type="image" src="assets/edit_icon.svg" alt="modifica recensione ' . $i . '" name="modifica">';
             $recensioni_html.='</div>';
             $recensioni_html.='</form>';
 
@@ -102,7 +103,7 @@ function printRecensioni($recensioni, $pageNumber, $pageSize) {
             $recensioni_html.='<div>';
             $recensioni_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'?'.$_SERVER['QUERY_STRING'].'"/>';
             $recensioni_html.='<input type="hidden" name="timestamp" value="'.$recensione["timestamp"].'"/>';
-            $recensioni_html.='<input id="cancella" type="image" src="assets/delete_icon.svg" alt="cancella recensione" name="cancella">';
+            $recensioni_html.='<input type="image" src="assets/delete_icon.svg" alt="cancella recensione ' . $i . '" name="cancella">';
             $recensioni_html.='</div>';
             $recensioni_html.='</form>';
 

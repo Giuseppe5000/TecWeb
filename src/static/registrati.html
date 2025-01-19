@@ -2,7 +2,7 @@
 <html lang="it">
   <head>
     <meta charset="utf-8">
-    <title lang="en">Registrati - DoFlamingo</title>
+    <title>Registrati - DoFlamingo</title>
     <meta name="description"
           content="In questa pagina puoi registrarti se non possiedi già un account.">
     <meta name="keywords" content="NFT,DoFlamingo,registrati">
@@ -17,15 +17,16 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png">
     <link rel="manifest" href="assets/favicon_io/site.webmanifest">
+    <script src="script.js"></script>
   </head>
   <body>
 
     <header>
-      <nav aria-label="aiuti alla navigazione" class="listHelp">
+      <nav aria-label="aiuti alla navigazione: contenuto" class="listHelp">
         <a href="#content" class="navigationHelp">Vai al contenuto</a>
       </nav>
       <nav class="header-content">
-        <h1>Doflamingo</h1>
+        <a href="index.php"><h1>Doflamingo</h1></a>
         <ul class="menu-list">
           {{NAVBAR}}
         </ul>
@@ -39,7 +40,7 @@
     <main id="content">
       <h1>Registrati</h1>
 
-      <form id="regist-form" class="user-form" action="registrati.php" method="post">
+      <form id="regist-form" class="user-form" action="registrati.php" onsubmit="return validazioneRegistrati();" method="post">
 
         <div>
           {{MESSAGGI_GENERICI}}
@@ -47,18 +48,18 @@
 
         <fieldset>
           <legend>Registrazione</legend>
-          <label for="username">Username:</label>
+          <label for="username" lang="en">Username:</label>
           {{MESSAGGI_USERNAME}}
           <input type="text" id="username" name="username" maxlength="30" value="{{USERNAME}}" required>
 
-          <label for="email">Email:</label>
+          <label for="email" lang="en">Email:</label>
           {{MESSAGGI_EMAIL}}
           <input type="email" id="email" name="email" maxlength="30" value="{{EMAIL}}" required>
 
-          <label for="password">Password:</label>
+          <label for="password" lang="en">Password:</label>
           {{MESSAGGI_PASSWORD}}
           <input type="password" id="password" name="password" maxlength="30" value="{{PASSWD}}" required>
-          <label for="confirm-password">Ripeti password:</label>
+          <label for="confirm-password">Ripeti <span lang="en">password</span>:</label>
           <input type="password" id="confirm-password" name="confirm-password" value="{{RIPETI_PASSWD}}" maxlength="30" required>
 
           <input type="submit" value="Registrati" class="button" name="submit">
@@ -68,7 +69,7 @@
     </main>
 
     <footer>
-      <p>Copyright © 2025 Doflamingo. All rights reserved.</p>
+      <p><span lang="en">Copyright</span> © 2025 Doflamingo. <span lang="en">All rights reserved.</span></p>
     </footer>
   </body>
 
