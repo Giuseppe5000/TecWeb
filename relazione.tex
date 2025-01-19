@@ -108,7 +108,6 @@ Esistono 3 tipologie di utenti:
 \begin{itemize}
     \item \textbf{utente} (\underline{username}, password, email, isAdmin, saldo)
     \item \textbf{categoria} (\underline{nome}, descrizione)
-    \item \textbf{iscrizione} (\underline{\textit{utente}, \textit{categoria}})
     \item \textbf{opera} (\underline{id}, path, nome, descrizione, prezzo, \textit{possessore})
     \item \textbf{acquisto} (\underline{\textit{utente}, \textit{opera}}, prezzo, data)
     \item \textbf{appartenenza} (\underline{\textit{categoria}, \textit{opera}})
@@ -118,8 +117,6 @@ Il simbolo * indica che l'attributo può essere nullo.
 
 \subsection{Vincoli di integrità referenziale }
 \begin{itemize}
-    \item iscrizione.utente → utente.username
-    \item iscrizione.categoria → categoria.nome
     \item opera.possessore → utente.username
     \item acquisto.utente → utente.username
     \item acquisto.opera → opera.id
@@ -128,7 +125,7 @@ Il simbolo * indica che l'attributo può essere nullo.
     \item recensione.utente → utente.username
     \item recensione.opera → opera.id
 \end{itemize}
-\subsection{Schema E-R}
+\subsection{Schema E-R (già ristrutturato)}
 \begin{center}
     \includegraphics[width=0.6\linewidth]{schema_ristrutturato.png}
 \end{center}
