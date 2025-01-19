@@ -99,7 +99,7 @@ function printRecensioni($recensioni, $pageNumber, $pageSize) {
             $recensioni_html.='</div>';
             $recensioni_html.='</form>';
 
-            $recensioni_html.='<form class="form_recensione" action="cancella-recensione.php" method="post">';
+            $recensioni_html.='<form class="form_recensione" action="php/post/recensione/cancella-recensione.php" method="post">';
             $recensioni_html.='<div>';
             $recensioni_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'?'.$_SERVER['QUERY_STRING'].'"/>';
             $recensioni_html.='<input type="hidden" name="timestamp" value="'.$recensione["timestamp"].'"/>';

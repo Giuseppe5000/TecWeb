@@ -1,7 +1,7 @@
 <nav id='agg-nft' aria-label="aiuti alla navigazione: miei NFT" class="listHelp">
   <a href="#miei-nft" class="navigationHelp">Vai ai Miei <abbr lang="en" title="Non-fungible token">NFT</abbr></a>
 </nav>
-<form id='add-nft' class='user-form' action='profilo.php' method='post' onsubmit="return validazioneCaricaNft();" enctype='multipart/form-data'>
+<form id='add-nft' class='user-form' action='php/post/opera/aggiungi.php' method='post' onsubmit="return validazioneCaricaNft();" enctype='multipart/form-data'>
   <fieldset>
     <legend>Aggiungi <abbr lang='en' title='Non-fungible token'>NFT</abbr></legend>
     <label for='immagine'>Immagine:</label>
@@ -40,6 +40,7 @@
       </div>
     </fieldset>
 
+    <input type="hidden" name="currentPage" value="profilo.php"/>
     <input type='submit' value='Aggiungi' class='button' name='aggiungi-opera'>
   </fieldset>
 </form>

@@ -1,7 +1,5 @@
 <?php
 
-require_once "./php/Database.php";
-require_once "./php/Utente.php";
 require_once "./php/Navbar.php";
 require_once "./php/utils.php";
 session_start();
@@ -12,65 +10,43 @@ $email = "";
 $password = "";
 $confirmPassword = "";
 
-function checkInput($username, $email, $password, $confirmPassword, &$messaggi) {
-    if (strlen($username)==0)
-        $messaggi["username"] .= makeMessageParagraph("Il campo <span lang='en'>username</span> non può essere vuoto!");
-    if (strlen($username)>30)
-        $messaggi["username"] .= makeMessageParagraph("Il campo <span lang='en'>username</span> non può superare i 30 caratteri!");
-    if (preg_match("/[\W]/", $username))
-		$messaggi["username"] .= makeMessageParagraph("Il campo <span lang='en'>username</span> può contenere solo lettere e numeri!");
 
-    if (strlen($password)==0 || strlen($confirmPassword)==0)
-        $messaggi["password"] .= makeMessageParagraph("I campi <span lang='en'>password</span> e ripeti <span lang='en'>password</span> non possono essere vuoti!");
-    if (strlen($password)>30 || strlen($confirmPassword)>30)
-        $messaggi["password"] .= makeMessageParagraph("I campi <span lang='en'>password</span> e ripeti <span lang='en'>password</span> non possono superare 30 caratteri!");
-    if($password != $confirmPassword)
-        $messaggi["password"] .= makeMessageParagraph("I campi <span lang='en'>password</span> e ripeti <span lang='en'>password</span> non corrispondono!");
-    if (!preg_match("/^[a-zA-Z0-9!@#$]*$/", $password) || !preg_match("/^[a-zA-Z0-9!@#$]*$/", $confirmPassword))
-		$messaggi["password"] .= makeMessageParagraph("I campi <span lang='en'>password</span> e ripeti <span lang='en'>password</span> possono contenere solo lettere, numeri e i seguenti caratteri speciali: ! @ # $");
-
-    if (strlen($email)==0)
-        $messaggi["email"] .= makeMessageParagraph("Il campo <span lang='en'>email</span> non può essere vuoto!");
-    if (strlen($email)>30)
-        $messaggi["email"] .= makeMessageParagraph("Il campo <span lang='en'>email</span> non può superare i 30 caratteri!");
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL))
-        $messaggi["email"] .= makeMessageParagraph("Formato <span lang='en'>email</span> non valido!");
-
-    return strlen($messaggi["username"])==0 && strlen($messaggi["email"])==0 && strlen($messaggi["password"])==0;
+if(isset($_SESSION['username'])){
+    header('Location: profilo.php');
+    exit;
 }
 
-if(isset($_POST['submit'])){
-    $database = new Database();
-    $username = $database->pulisciInput($_POST['username']);
-    $email = $database->pulisciInput($_POST['email']);
-    $password = $database->pulisciInput($_POST['password']);
-    $confirmPassword = $database->pulisciInput($_POST['confirm-password']);
-
-    if(checkInput($username, $email, $password, $confirmPassword, $messaggi)){
-        $connessioneOK = $database->openConnection();
-
-        if(!$connessioneOK){
-            $utente = new Utente($database->getConnection(), $username, $password, $email);
-            try {
-                $utente->register();
-                $database->closeConnection();
-                $_SESSION['username'] = $utente->getUsername();
-                header('Location: ./index.php');
-                exit;
-            }
-            catch(UserAlredyExistsException $e) {
-                $messaggi["generico"] .= makeMessageParagraph("Lo <span lang='en'>username</span> o la <span lang='en'>email</span> inserite sono già usate da un altro utente!");
-            }
-            catch(UserRegisterGenericException $e) {
-                $messaggi["generico"] .= makeMessageParagraph("È avvenuto un errore durante la registrazione, per favore riprova più tardi.");
-            }
-            catch(PrepareStatementException $e) {
-                header('Location: ./500.php');
-            }
-        }else{
-            header('Location: ./500.php');
-        }
-    }
+if(isset($_SESSION['user'])){
+    $username=$_SESSION['user'];
+    unset($_SESSION['user']);
+}
+if(isset($_SESSION['email'])){
+    $email=$_SESSION['email'];
+    unset($_SESSION['email']);
+}
+if(isset($_SESSION['password'])){
+    $password=$_SESSION['password'];
+    unset($_SESSION['password']);
+}
+if(isset($_SESSION['confimPassword'])){
+    $confirmPassword=$_SESSION['confimPassword'];
+    unset($_SESSION['confimPassword']);
+}
+if(isset($_SESSION['mexGenerico'])){
+    $messaggi["generico"]=$_SESSION['mexGenerico'];
+    unset($_SESSION['mexGenerico']);
+}
+if(isset($_SESSION['mexUsername'])){
+    $messaggi["username"]=$_SESSION['mexUsername'];
+    unset($_SESSION['mexUsername']);
+}
+if(isset($_SESSION['mexEmail'])){
+    $messaggi["email"]=$_SESSION['mexEmail'];
+    unset($_SESSION['mexEmail']);
+}
+if(isset($_SESSION['mexPassword'])){
+    $messaggi["password"]=$_SESSION['mexPassword'];
+    unset($_SESSION['mexPassword']);
 }
 
 $navbar = new Navbar("Registrati");

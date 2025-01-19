@@ -1,6 +1,6 @@
 <?php
 
-require_once "./php/exceptions.php";
+require_once "../../exceptions.php";
 
 class Utente {
     

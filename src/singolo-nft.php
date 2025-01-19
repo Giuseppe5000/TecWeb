@@ -35,7 +35,7 @@ function getRecensioni($recensioni, $pageNumber, $pageSize) {
                 $recensioni_html.='</div>';
                 $recensioni_html.='</form>';
 
-                $recensioni_html.='<form class="form_recensione" action="cancella-recensione.php" method="post">';
+                $recensioni_html.='<form class="form_recensione" action="php/post/recensione/cancella-recensione.php" method="post">';
                 $recensioni_html.='<div>';
                 $recensioni_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'?'.$_SERVER['QUERY_STRING'].'"/>';
                 $recensioni_html.='<input type="hidden" name="timestamp" value="'.$recensione["timestamp"].'"/>';
@@ -55,7 +55,7 @@ function mostraAggiungiRecensione(&$aggiungi_recensione_html, $id) {
     $aggiungi_recensione_html.='<nav aria-label="aiuti alla navigazione: recensioni" class="listHelp">
 	<a href="#recensioni" class="navigationHelp">Vai alle recensioni</a>
       </nav>';
-    $aggiungi_recensione_html.='<form id="agg-recensione" class="user-form" action="singolo-nft.php" method="post">';
+    $aggiungi_recensione_html.='<form id="agg-recensione" class="user-form" action="php/post/recensione/aggiungi-recensione.php" method="post">';
     $aggiungi_recensione_html.='<fieldset>';
     $aggiungi_recensione_html.='<legend>Aggiungi recensione</legend>';
     $aggiungi_recensione_html.= '<fieldset id="stelle-recensione">';
@@ -74,6 +74,7 @@ function mostraAggiungiRecensione(&$aggiungi_recensione_html, $id) {
     $aggiungi_recensione_html.='<label for="commento">Recensione:</label>';
     $aggiungi_recensione_html.='<textarea id="commento" name="recensione" required></textarea>';
     $aggiungi_recensione_html.='<input type="hidden" name="id" value="'.$id.'"/>';
+    $aggiungi_recensione_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'?'.$_SERVER['QUERY_STRING'].'"/>';
     $aggiungi_recensione_html.='<input type="submit" value="Aggiungi" class="button" name="aggiungi"></input>';
     $aggiungi_recensione_html.='</fieldset>';
     $aggiungi_recensione_html.='</form>';
@@ -104,53 +105,15 @@ if (!$connessioneOK) {
         $id=$_GET["id"];
     }
 
-    #Se aggiunge una recensione
-    if (isset($_POST['aggiungi']) && isset($_SESSION['username'])) {
-        $username=$_SESSION['username'];
-        $id=$_POST['id'];
-        $voto=$database->pulisciInput($_POST['voto']);
-        $recensione=$database->pulisciInput($_POST['recensione']);
-
-        $query = "INSERT INTO recensione (timestamp, utente, commento, opera, voto) VALUES (?, ?, ?, ?, ?)";
-        
-        $value = array(date("Y-m-d h:i:s"),$username, $recensione, $id, $voto);
-        $database->executeCRUDPreparedStatement($query,'sssii',$value);
-    }
-
     #Se acquista l'opera
-    if (isset($_POST['acquista']) && isset($_SESSION['username'])) {
-        
-        $username=$_SESSION['username'];
-        //recupera valori del form
-        $id=$_POST['id'];
-        $prezzo=(double)$_POST['prezzo'];
-
-        #controllo che possa acquistare l'opera tramite controllo del saldo
-        $query = "SELECT saldo FROM utente WHERE username = ?";
-        $value=array($username);
-        $saldo = $database->executeSelectPreparedStatement($query,'s',$value);
-        
-        if ($saldo[0]["saldo"]>=$prezzo){
-            $query = "INSERT INTO acquisto (utente, opera, prezzo, data) VALUES (?, ?, ?, ?)";
-            $value = array($username, $id, $prezzo, date("Y-m-d h:i:s"));
-            $database->executeCRUDPreparedStatement($query,'sids',$value);
-
-            #modifico il possessore dell'opera e il saldo dell'utente
-            $query = "UPDATE opera SET possessore = ? WHERE id = ?";
-            $value = array($username, $id);
-            $database->executeCRUDPreparedStatement($query,'si',$value);
-            
-            $query = "UPDATE utente SET saldo = ? WHERE username = ?";
-            $nuovo_saldo=$saldo[0]["saldo"]-$prezzo;
-            $value = array($nuovo_saldo,$username);
-            $database->executeCRUDPreparedStatement($query,'ds',$value);
-            
+    if(isset($_SESSION['acquistato'])){
+        if($_SESSION['acquistato']){
             $acquisto_res.='<p class="center">Opera acquistata con successo!</p>';
         }else{
             $acquisto_res.='<p class="center">Non hai abbastanza ETH per acquistare l\'opera!</p>';
         }
+        unset($_SESSION['risultato_acquisto']);
     }
-
     
     #QUERY
     $query='SELECT * FROM opera WHERE id='.$id;
@@ -183,9 +146,10 @@ if (!$connessioneOK) {
                     $opera_html.='<nav aria-label="aiuti alla navigazione: aggiungi recensioni" class="listHelp">
 	<a href="#recensione" class="navigationHelp">Vai ad aggiungi recensioni</a>
       </nav>';
-                    $opera_html.='<form id="acq-nft" action="singolo-nft.php" method="post">';
+                    $opera_html.='<form id="acq-nft" action="php/post/opera/acquisto.php" method="post">';
                     $opera_html.='<input type="hidden" name="id" value="'.$id.'"/>';
                     $opera_html.='<input type="hidden" name="prezzo" value="'.$prezzo.'"/>';
+                    $opera_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'?'.$_SERVER['QUERY_STRING'].'"/>';
                     $opera_html.='<input type="submit" value="Acquista" class="button" name="acquista">';
                     $opera_html.='</form>';
                 }else{
