@@ -145,7 +145,8 @@ Inoltre è utilizzato per vari controlli lato client in tutte le pagine che lo n
 
 \section{Progettazione}
 Per la progettazione del nostro sito web, abbiamo adottato la strategia \textit{Mobile First}. Questo approccio ci ha permesso di concentrarci sulla modalità di accesso più comune per la maggioranza degli utenti, ossia quella da dispositivi mobili. Abbiamo dato priorità alla semplicità, garantendo che l’esperienza utente fosse fluida e accessibile, riducendo al minimo il numero di tap o click necessari per navigare tra le varie sezioni del sito.\\
-Per il design del sito, abbiamo optato per un layout fluido, che ci ha permesso di adattare dinamicamente il layout del sito per diversi dispositivi e risoluzioni. Sebbene sia stato utilizzato un unico punto di rottura per ottimizzare l’esperienza su dispositivi mobili, il design si basa principalmente su proporzioni flessibili e sull’adattamento dei contenuti, garantendo una visualizzazione ottimale su schermi di diverse dimensioni.
+Per il design del sito, abbiamo optato per un layout fluido, che ci ha permesso di adattare dinamicamente il layout del sito per diversi dispositivi e risoluzioni. Sebbene sia stato utilizzato un unico punto di rottura per ottimizzare l’esperienza su dispositivi mobili, il design si basa principalmente su proporzioni flessibili e sull’adattamento dei contenuti, garantendo una visualizzazione ottimale su schermi di diverse dimensioni. \\
+La progettazione del sito da mobile è stata realizzata in Balsamiq ed è presente in un file apposito.
 
 \subsection{Struttura generale}
 Il sito presenta una struttura semplice e lineare, senza una profondità gerarchica eccessiva. Le principali sezioni includono:
@@ -162,12 +163,12 @@ Il sito presenta una struttura semplice e lineare, senza una profondità gerarch
 \subsection{Header e Navbar}
 L'header del sito include sempre il logo, che contribuisce a definire l’identità visiva del sito.\\
 La barra di navigazione è stata progettata con particolare attenzione all'accessibilità e alla semplicità, soprattutto per dispositivi mobili. Abbiamo deciso di limitare il numero di voci presenti nella navbar per eliminare la necessità di un menù ad hamburger. Questa scelta, coerente con l'approccio \textit{Mobile First}, permette agli utenti di accedere rapidamente alle informazioni desiderate senza dover compiere ulteriori tap, migliorando l’esperienza d’uso.\\
-Per evitare confusione, il link alla pagina corrente viene disattivato e reso visivamente distinguibile dagli altri. Questo accorgimento aiuta a orientarsi nella navigazione senza sovraccaricare l'utente con opzioni ridondanti.\\
+La pagina corrente viene distinta dagli elementi della navbar con un colore di background differente. Questo accorgimento aiuta a orientarsi nella navigazione senza sovraccaricare l'utente.\\
 
 Sono state implementate due versioni della navbar:
 \begin{itemize}
 \item Per utenti non autenticati: \textbf{Home}, \textbf{NFT}, \textbf{Chi Siamo}, \textbf{Registrati}, \textbf{Accedi};
-\item Per utenti autenticati: \textbf{Home}, \textbf{NFT}, \textbf{Chi Siamo}, \textbf{Profilo}, \textbf{Log out}.
+\item Per utenti autenticati: \textbf{Home}, \textbf{NFT}, \textbf{Chi Siamo}, \textbf{Disconnettiti}, \textbf{Profilo}.
 \end{itemize}
 
 \subsection{Breadcrumb}
@@ -178,19 +179,48 @@ La breadcrumb segue fedelmente l’organizzazione delle pagine, mostrando i pass
 
 \subsubsection{Descrizione delle pagine} Di seguito, una panoramica delle pagine del sito:
 
-\paragraph{Home} La home page accoglie l’utente con una breve introduzione al sito. I contenuti principali sono: \begin{itemize} \item Un carosello che mostra le 10 NFT più recenti caricate sulla piattaforma; \item Una sezione con le 3 NFT più popolari; \item Una tabella che elenca le categorie di NFT, ordinate per volume di vendite. \end{itemize} Questa struttura permette di offrire una visione sintetica e completa delle principali attività del sito.
+\paragraph{Home} La home page accoglie l’utente con una breve introduzione al sito. I contenuti principali sono:
+\begin{itemize}
+    \item Una sezione che mostra i 4 NFT più recenti caricati sulla piattaforma, con un link che porta alla pagina NFT in cui si possono visionare tutti;
+    \item Una sezione con i 3 NFT più popolari;
+    \item Una tabella che elenca le categorie di NFT, ordinate per volume di vendite.
+\end{itemize}
+Questa struttura permette di offrire una visione sintetica e completa delle principali attività del sito.
 
-\paragraph{Pagina NFT} Questa pagina consente agli utenti di esplorare tutte le opere disponibili sul sito. È divisa in due sezioni: \begin{itemize} \item Una form con opzioni di ricerca e filtri per affinare i risultati; \item Un elenco di NFT, organizzato in più pagine numerate (per non sovracaricare di informazioni l'utente e per rendere la pagina più veloce da caricare). \end{itemize}
+\paragraph{Pagina NFT} Questa pagina consente agli utenti di esplorare tutte le opere disponibili sul sito. È divisa in due sezioni:
+\begin{itemize}
+    \item Una form con opzioni di ricerca e filtri per affinare i risultati;
+    \item Un elenco di NFT, organizzato in più pagine numerate, per non sovracaricare di informazioni l'utente, rendere la pagina più veloce da caricare e per evitare lo scrolling infinito.
+\end{itemize}
 
 \paragraph{Chi Siamo} La pagina "Chi Siamo" presenta una breve descrizione del gruppo e un elenco di domande frequenti (FAQ) che chiariscono dubbi comuni degli utenti.
 
-\paragraph{Pagina di un singolo NFT} Questa pagina fornisce tutti i dettagli relativi a un singolo NFT. Gli elementi principali includono: \begin{itemize} \item L’immagine dell’NFT; \item Il prezzo e un pulsante per acquistarlo (visibile solo agli utenti loggati); \item Una descrizione dettagliata dell’opera; \item Una sezione per inserire una recensione (accessibile agli utenti loggati); \item L’elenco delle recensioni lasciate dagli altri utenti. \end{itemize}
+\paragraph{Pagina di un singolo NFT} Questa pagina fornisce tutti i dettagli relativi a un singolo NFT. Gli elementi principali includono:
+\begin{itemize}
+    \item L’immagine dell’NFT;
+    \item Il prezzo e un pulsante per acquistarlo, visibile solo se l'opera non è già stata acquistata e solo agli utenti loggati;
+    \item Una descrizione dettagliata dell’opera;
+    \item Una form per inserire una recensione, accessibile solo agli utenti loggati;
+    \item L’elenco delle recensioni lasciate dagli altri utenti.
+\end{itemize}
 
-\paragraph{Profilo} La pagina del profilo raccoglie le informazioni personali dell’utente. Include: \begin{itemize} \item Dati personali; \item L’elenco degli NFT acquistati dall’utente; \item Le recensioni scritte dall’utente; \item Per gli amministratori, un’opzione per aggiungere nuove NFT al sito. \end{itemize}
+\paragraph{Profilo} La pagina del profilo raccoglie le informazioni personali dell’utente. Include:
+\begin{itemize}
+    \item Il nome;
+    \item Il saldo;
+    \item Una form per caricare ulteriore saldo;
+    \item L’elenco degli NFT acquistati dall’utente;
+    \item Le recensioni scritte dall’utente;
+    \item Per gli amministratori, un form per aggiungere nuove NFT al sito.
+\end{itemize}
 
 \paragraph{Mie Recensioni}
 Questa pagina raccoglie tutte le recensioni scritte dall’utente, organizzandole in un elenco paginato per evitare problemi di scroll infinito. Ogni recensione include:
-\begin{itemize} \item L’opera a cui si riferisce, con un collegamento diretto alla relativa pagina; \item Il testo completo della recensione; \item La data in cui è stata scritta la recensione.
+\begin{itemize}
+    \item L’opera a cui si riferisce, con un collegamento diretto alla relativa pagina;
+    \item Il testo completo della recensione;
+    \item Il voto in stelle (da 1 a 5);
+    \item La data in cui è stata scritta la recensione.
 \end{itemize} 
 
 \paragraph{Miei NFT}
