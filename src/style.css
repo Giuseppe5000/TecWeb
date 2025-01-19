@@ -429,6 +429,16 @@ input[type="checkbox"]:last-of-type {
     align-items: center; 
 }
 
+#nft-price::after {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url('assets/ethLogo.webp');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
 /*
 ===========================
