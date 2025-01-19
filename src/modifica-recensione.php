@@ -44,8 +44,10 @@ function getRecensione($database, $utente, $timestamp,$prevPage) {
             $timestamp = $recensione["timestamp"];
 
             return getForm($voto, $commento, $timestamp,$prevPage);
+        }else{
+            header('Location: ./404.php');
+            exit;
         }
-        # THROW 404
 }
 
 $recensione_html = "";
@@ -69,6 +71,7 @@ if (isset($_POST['modifica']) && isset($_SESSION['username'])) {
         #$recensione_html .= getRecensione($database, $_SESSION["username"], $newTimestamp);
 
         header('Location: .'.$_POST['currentPage']);
+        exit;
     }
 }
 
