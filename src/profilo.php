@@ -16,23 +16,6 @@ $linkNft = "";
 $linkRecensioni = "";
 $skipButton = "";
 
-
-function isSaldoOverflow($database, $utente, $saldo) {
-    $query = "SELECT saldo FROM utente WHERE username = ?";
-    $value = array($utente);
-    $result = $database->executeSelectPreparedStatement($query,'s',$value);
-    if(count($result) == 1){
-        $saldoUtente = $result[0]["saldo"];
-        return $saldoUtente + $saldo > 99999.99999;
-    }
-    else {
-        // Non trovo l'utente o ne trovo più di uno,
-        // quindi assumo che ci sia qualche errore di inconsistenza nel db => errore 500
-        header('Location: ./500.php');
-    }
-}
-
-
 if(isset($_SESSION['username'])){
     $database = new Database();
     $connessioneOK = $database->openConnection();
@@ -44,20 +27,10 @@ if(isset($_SESSION['username'])){
             $avvisoCaricaNFT=$_SESSION['messaggioCaricaNFT'];
             unset($_SESSION['messaggioCaricaNFT']);
         }
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aggiungi-saldo'])){
-            $saldo = $database->pulisciInput($_POST['saldo']);
-            if (checkMoney($saldo, $avvisoSaldo)) {
-                if (!isSaldoOverflow($database, $username, $saldo)) {
-                    $query = "UPDATE utente SET saldo = saldo + ? WHERE username = ?";
-                    $values = [$saldo, $username];
-                    $avvisoSaldo .= $database->executeCRUDPreparedStatement($query, 'ds', $values);
-                }
-                else {
-                    $avvisoSaldo .= makeMessageParagraph("Questa aggiunta potrebbe sforare il tetto massimo del saldo possedibile, che sarebbe 99999.99999!");
-                }
-            }
+        if(isset($_SESSION['messaggioSaldo'])){
+            $avvisoSaldo=$_SESSION['messaggioSaldo'];
+            unset($_SESSION['messaggioSaldo']);
         }
-
 
         // Query per ottenere il username e il saldo dell'utente, se l'utente è amministratore compare il form di insermento di una nuova opera
         $query  = "SELECT saldo, isAdmin FROM utente WHERE username = ?";
