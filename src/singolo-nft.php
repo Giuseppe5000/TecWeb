@@ -112,7 +112,7 @@ if (!$connessioneOK) {
         }else{
             $acquisto_res.='<p class="center">Non hai abbastanza ETH per acquistare l\'opera!</p>';
         }
-        unset($_SESSION['risultato_acquisto']);
+        unset($_SESSION['acquistato']);
     }
     
     #QUERY
