@@ -69,13 +69,14 @@ Inoltre gli utenti registrati possono recensire le opere dando un voto da \textb
 
 \subsection{Analisi}
 \subsubsection{Analisi del Target}
-L'utenza principale sarà composta da persone appassionate di NFT o in generale opere d'arte digitali, interessata oltretutto alla loro compra-vendita. La maggioranza degli utenti non avrà un'idea precisa di ciò che vuole e per questo verrà aiutata nell'esplorazione.\\
+L'utenza principale sarà composta da persone appassionate di NFT o in generale opere d'arte digitali, interessata oltretutto al loro acquisto.
+La maggioranza degli utenti non avrà un'idea precisa di ciò che vuole e per questo verrà aiutata nell'esplorazione.\\
 Per impedire l'esclusione di alcune categorie si è pensato di fornire strumenti per aiutare nella ricerca degli NFT.\\
 Utilizzando la metafora della pesca:
 \begin{itemize}
     \item \textbf{Tiro perfetto:} L'utente sà già il nome dell'opera che vuole e potrà cercarla facilmente tramite una barra di ricerca;
-    \item \textbf{Trappola per aragoste:} Grazie alla suddivisione in categorie e poter applicare ulteriori filtri sulle opere l'utente può farsi un'idea degli NFT presenti nella piattaforma;
-    \item \textbf{Pesca con la rete:} La struttura del sito è semplice, quindi permette agli utenti di esplorare il sito senza sovraccarico;
+    \item \textbf{Trappola per aragoste:} Grazie alla suddivisione in categorie e alla possibilità di poter applicare ulteriori filtri sulle opere, l'utente può farsi un'idea degli NFT presenti nella piattaforma;
+    \item \textbf{Pesca con la rete:} La struttura del sito è semplice, quindi permette agli utenti di esplorare il sito senza sovraccarico cognitivo;
     \item \textbf{Boa di segnalazione:}
 \end{itemize}
 \subsubsection{Utenti}
@@ -181,7 +182,7 @@ La breadcrumb segue fedelmente l’organizzazione delle pagine, mostrando i pass
 
 \subsubsection{Descrizione delle pagine} Di seguito, una panoramica delle pagine del sito:
 
-\paragraph{Home} La home page accoglie l’utente con una breve introduzione al sito. I contenuti principali sono:
+\paragraph{Home} La pagina Home accoglie l’utente con una breve introduzione al sito. I contenuti principali sono:
 \begin{itemize}
     \item Una sezione che mostra i 4 NFT più recenti caricati sulla piattaforma, con un link che porta alla pagina NFT in cui si possono visionare tutti;
     \item Una sezione con i 3 NFT più popolari;
@@ -192,7 +193,12 @@ Questa struttura permette di offrire una visione sintetica e completa delle prin
 \paragraph{Pagina NFT} Questa pagina consente agli utenti di esplorare tutte le opere disponibili sul sito. È divisa in due sezioni:
 \begin{itemize}
     \item Una form con opzioni di ricerca e filtri per affinare i risultati;
-    \item Un elenco di NFT, organizzato in più pagine numerate, per non sovracaricare di informazioni l'utente, rendere la pagina più veloce da caricare e per evitare lo scrolling infinito.
+    \item Un elenco di NFT organizzato in più pagine numerate, in modo tale da:
+    \begin{itemize}
+      \item Non sovraccaricare di informazioni l'utente;
+      \item Rendere la pagina più veloce da caricare;
+      \item Evitare lo scrolling infinito.
+    \end{itemize}
 \end{itemize}
 
 \paragraph{Chi Siamo} La pagina "Chi Siamo" presenta una breve descrizione del gruppo e un elenco di domande frequenti (FAQ) che chiariscono dubbi comuni degli utenti.
@@ -200,7 +206,8 @@ Questa struttura permette di offrire una visione sintetica e completa delle prin
 \paragraph{Pagina di un singolo NFT} Questa pagina fornisce tutti i dettagli relativi a un singolo NFT. Gli elementi principali includono:
 \begin{itemize}
     \item L’immagine dell’NFT;
-    \item Il prezzo e un pulsante per acquistarlo, visibile solo se l'opera non è già stata acquistata e solo agli utenti loggati;
+    \item Il prezzo;
+    \item Il pulsante per acquistarlo, visibile solo se l'opera non è già stata acquistata e solo agli utenti loggati;
     \item Una descrizione dettagliata dell’opera;
     \item Una form per inserire una recensione, accessibile solo agli utenti loggati;
     \item L’elenco delle recensioni lasciate dagli altri utenti.
@@ -217,7 +224,7 @@ Questa struttura permette di offrire una visione sintetica e completa delle prin
 \end{itemize}
 
 \paragraph{Mie Recensioni}
-Questa pagina raccoglie tutte le recensioni scritte dall’utente, organizzandole in un elenco paginato per evitare problemi di scroll infinito. Ogni recensione include:
+Questa pagina raccoglie tutte le recensioni scritte dall’utente, organizzandole in un elenco suddiviso in pagine per evitare problemi di scroll infinito. Ogni recensione include:
 \begin{itemize}
     \item L’opera a cui si riferisce, con un collegamento diretto alla relativa pagina;
     \item Il testo completo della recensione;
