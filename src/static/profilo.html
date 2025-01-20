@@ -47,11 +47,12 @@
         {{SALDO}}
 	{{SKIP_BUTTON}}
         {{AVVISO_SALDO}}
-        <form id='add-saldo' class='user-form' action='profilo.php' method='post'>
+        <form id='add-saldo' class='user-form' action='php/post/saldo/aggiungi.php' method='post'>
           <fieldset>
             <legend>Carica <abbr title="Ethereum">ETH</abbr></legend>
             <label for='saldo'>Quantità:</label>
-            <input type='number' id='saldo' name='saldo' step='0.00001' min='0' max='99999.99999' required>
+            <input type='number' id='saldo' name='saldo' step='0.00001' min='0' max='99999.99999' required/>
+	    <input type="hidden" name="currentPage" value="profilo.php"/>
             <input type='submit' value='Carica' class='button' name='aggiungi-saldo'>
           </fieldset>
         </form>

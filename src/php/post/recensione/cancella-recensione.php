@@ -1,6 +1,6 @@
 <?php
 
-require_once "./php/Database.php";
+require_once "../../Database.php";
 session_start();
 #post che cancella la recensione
 function cancellaRecensione($username,$database){
@@ -12,7 +12,7 @@ function cancellaRecensione($username,$database){
         
         $value = array($username,$date);
         $database->executeCRUDPreparedStatement($query,'ss',$value);
-        header('Location: .'.$_POST['currentPage']);
+        header('Location: ../../..'.$_POST['currentPage']);
         exit;
     }
 }
@@ -25,10 +25,10 @@ if(isset($_SESSION['username'])){
     if(!$connessioneOK){
         cancellaRecensione($username,$database);
     }
-    header('Location: ./500.php');
+    header('Location: ../../../500.php');
     exit;
     
 }else{
-    header('Location: ./accedi.php');
+    header('Location: ../../../accedi.php');
     exit;
 }
