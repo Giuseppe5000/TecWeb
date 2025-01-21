@@ -70,7 +70,7 @@ function aggiungiOpera($username,$database){
             $prezzo = $database->pulisciInput($_POST['prezzo']);
 
             if (checkInput($nome, $descrizione, $prezzo, $avvisoCaricaNFT)) {
-                $target_dir = "../../../assets/";
+                $target_dir = "assets/";
                 $imageFileType = strtolower(pathinfo($_FILES["immagine"]["name"], PATHINFO_EXTENSION));
                 $target_file = $target_dir . generateUniqueFilename($imageFileType);
         
@@ -80,7 +80,7 @@ function aggiungiOpera($username,$database){
                     $avvisoCaricaNFT .= "<p>Sono permessi solo immagini in formato WebP.</p>";
                 } elseif (empty($nome) || empty($descrizione) || empty($prezzo)) {
                     $avvisoCaricaNFT .= "<p>Compila tutti i campi.</p>";
-                } elseif (!move_uploaded_file($_FILES["immagine"]["tmp_name"], $target_file)) {
+                } elseif (!move_uploaded_file($_FILES["immagine"]["tmp_name"], "../../../".$target_file)) {
                     $avvisoCaricaNFT .= "<p>Errore durante il caricamento dell'immagine.</p>";
                 } else {
                     $path = rtrim($target_file, '.webp');
