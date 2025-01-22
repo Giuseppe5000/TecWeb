@@ -1,5 +1,9 @@
-#breadcrumb, .menu-list, .listHelp, .prev, .next, #filtri {
+#breadcrumb, .menu-list, .listHelp, #filtri, .user-form, input[type="image"] {
     display: none;
+}
+
+#logout{
+    display:initial;
 }
 
 body, footer {
@@ -60,29 +64,34 @@ header h1 {
 
 /*==========
 IMMAGINI NFT 
-==========*/
+==========}*/
 
-#cards, .slideshow {
+#cards, .last-cards {
     display: flex;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
+    margin-top: 24px;
     justify-content: space-around;
-    gap: 10px;
+    row-gap: 20px;
 }
 
-.head-card {
+input{
+    border-radius: 5px;
+}
+
+.card img{
+    border-radius: 10px;
+}
+
+.card span{
+    font-size: 20px;
+    margin-top: 14px;
+}
+
+.head-card{
+    align-items: center;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    width: 100%;
-}
-
-.head-card span {
-    font-weight: bold;
-    margin: 5px 0;
-}
-
-.head-card h3 {
-    margin: 5px 0;
-    text-align: right;
 }
 
 /*=============== 
@@ -167,6 +176,10 @@ PAGINA SINGOLO NFT
     max-width: 300px;
 }
 
+p.center {
+    text-align: center;
+}
+
 .head-comment, .comment{
     border: 1px solid;
 }
@@ -192,6 +205,12 @@ PAGINA SINGOLO NFT
     width: 32px;
 }
 
+.comment-list .comment p {
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: justify; 
+}
+
 /*============
 PAGINA PROFILO
 ============*/
@@ -204,4 +223,17 @@ PAGINA PROFILO
 
 #profilo_utente_logo {
     width: 8em;
+}
+
+/*================
+PAGINA DISCONNETTI
+================*/
+
+.conferma-logout {
+    text-align: center;
+}
+
+fieldset  {
+    border-radius: 7px;
+    border: 2px solid;
 }
