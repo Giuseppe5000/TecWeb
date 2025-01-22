@@ -30,9 +30,9 @@ class Navbar {
         $link = '<li class="menu-item" id="currentLink">{{ABBR}}</li>';
 
         if (trim($abbr) != "")
-            $link = str_replace("{{ABBR}}", '<abbr id="' . $id . '"{{LANG}} title="' . $abbr . '">' . $title . '</abbr>', $link);
+            $link = str_replace("{{ABBR}}", '<abbr id="' . $id . '" {{LANG}} title="' . $abbr . '">' . $title . '</abbr>', $link);
         else
-            $link = str_replace("{{ABBR}}", '<span id="' . $id . '"{{LANG}}>' . $title . '</span>', $link);
+            $link = str_replace("{{ABBR}}", '<span id="' . $id . '" {{LANG}}>' . $title . '</span>', $link);
 
         if ($lang != "it")
             $link = str_replace("{{LANG}}", 'lang="' . $lang . '"', $link);
