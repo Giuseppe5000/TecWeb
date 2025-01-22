@@ -19,7 +19,7 @@ class Navbar {
             $link = str_replace("{{LANG}}", '', $link);
 
         if (trim($abbr) != "")
-            $link = str_replace("{{ABBR}}", '<abbr lang="en" title="' . $abbr . '">' . $title . '</abbr>', $link);
+            $link = str_replace("{{ABBR}}", '<abbr title="' . $abbr . '">' . $title . '</abbr>', $link);
         else
             $link = str_replace("{{ABBR}}", $title, $link);
 
