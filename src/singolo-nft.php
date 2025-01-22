@@ -75,7 +75,7 @@ function mostraAggiungiRecensione(&$aggiungi_recensione_html, $id) {
     $aggiungi_recensione_html.='<textarea id="commento" name="recensione" required></textarea>';
     $aggiungi_recensione_html.='<input type="hidden" name="id" value="'.$id.'"/>';
     $aggiungi_recensione_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'?'.$_SERVER['QUERY_STRING'].'"/>';
-    $aggiungi_recensione_html.='<input type="submit" value="Aggiungi" class="button" name="aggiungi"></input>';
+    $aggiungi_recensione_html.='<input type="submit" value="Aggiungi" class="button" name="aggiungi">';
     $aggiungi_recensione_html.='</fieldset>';
     $aggiungi_recensione_html.='</form>';
 }
