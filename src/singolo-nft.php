@@ -41,6 +41,7 @@ function getRecensioni($recensioni, $pageNumber, $pageSize) {
                 $recensioni_html.='<input type="hidden" name="timestamp" value="'.$recensione["timestamp"].'"/>';
                 $recensioni_html.='<input type="image" src="assets/delete_icon.svg" alt="cancella recensione ' . $i . '" name="cancella">';
                 $recensioni_html.='</div>';
+                $recensioni_html.='</form>';
                 $recensioni_html.='</div>';
             }
             $recensioni_html.='</div>';
