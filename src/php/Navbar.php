@@ -31,6 +31,8 @@ class Navbar {
 
         if (trim($abbr) != "")
             $link = str_replace("{{ABBR}}", '<abbr id="' . $id . '" title="' . $abbr . '">' . $title . '</abbr>', $link);
+        else
+            $link = str_replace("{{ABBR}}", $title, $link);
 
         if ($lang != "it")
             $link = str_replace("{{LANG}}", 'lang="' . $lang . '"', $link);
