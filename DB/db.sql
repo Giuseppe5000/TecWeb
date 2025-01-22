@@ -87,9 +87,9 @@ INSERT INTO opera(id, path, nome, descrizione, prezzo) VALUES
 (10, 'assets/nft10', 'Scimmia Stranita', 'Una espressione stranita e colori vivaci. Ricorda a tutti noi quanto sia affascinante e sorprendente il mondo che ci circonda. La scimmia, con la sua espressione curiosa, invita a esplorare.', 48.50),
 (11, 'assets/nft11', 'Scimmia Dubbiosa', 'Una scimmia dubbiosa, ma con uno stile unico.', 49.99),
 (12, 'assets/nft12', 'Scimmia Intrigata', 'Una scimmia che sembra approvare con entusiasmo.', 51.20),
-(13, 'assets/nft13', 'Broly', 'Un gattino pixelato dai colori verdi.', 35.00),
-(14, 'assets/nft14', 'Gatto Blu', 'Un gattino pixelato con tonalità di blu.', 36.00),
-(15, 'assets/nft15', 'Gatto Viola', 'Un gattino pixelato di colore viola.', 37.50),
+(13, 'assets/nft13', 'Broly', 'Un gattino pixelato dai colori verdi. Il suo pelo, di un verde brillante e vivace, sembra quasi brillare sotto la luce, creando un contrasto sorprendente con il mondo circostante.', 35.00),
+(14, 'assets/nft14', 'Gatto Blu', 'Un gattino pixelato con tonalità di blu. Questo gatto blu si muove con eleganza, le sue zampe agili e silenziose lo rendono un cacciatore esperto, anche se il suo aspetto incantevole lo fa sembrare più un esploratore che un predatore.', 36.00),
+(15, 'assets/nft15', 'Gatto Viola', 'Un gattino pixelato di colore viola. Simbolo di creatività e originalità, un invito a vedere la bellezza nella sua unicità. Questo felino straordinario porta con sé un senso di magia e meraviglia', 37.50),
 (16, 'assets/nft16', 'Gatto Rosa', 'Un gattino pixelato rosa e adorabile.', 38.00),
 (17, 'assets/nft17', 'Gatto Lilla', 'Un gattino pixelato con tonalità di lilla.', 39.50),
 (18, 'assets/nft18', 'Fenicottero Elegante', 'Un fenicottero rosa su uno sfondo turchese a pallini.', 60.00);
