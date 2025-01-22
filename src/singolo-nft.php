@@ -19,7 +19,7 @@ function getRecensioni($recensioni, $pageNumber, $pageSize) {
             $recensioni_html.='<div class="comment">';
             $recensioni_html.='<div class="head-comment">';
             $recensioni_html.='<div class="user-comment">';
-            $recensioni_html.='<img class="logo_utente" src="assets/user.svg" alt="Logo profilo utente"/>';
+            $recensioni_html.='<img class="logo_utente" src="assets/user.svg" alt="Logo profilo utente">';
             $recensioni_html.='<span>'.$utente.'</span>';
             $recensioni_html.='</div>';
             $recensioni_html .= '<div><span>' . $recensione["voto"] .' &#9733;</span></div>';
@@ -29,16 +29,16 @@ function getRecensioni($recensioni, $pageNumber, $pageSize) {
 
                 $recensioni_html.='<form class="form_recensione" action="modifica-recensione.php">';
                 $recensioni_html.='<div>';
-                $recensioni_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'?'.$_SERVER['QUERY_STRING'].'"/>';
-                $recensioni_html.='<input type="hidden" name="timestamp" value="'.$recensione["timestamp"].'"/>';
+                $recensioni_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'?'.$_SERVER['QUERY_STRING'].'">';
+                $recensioni_html.='<input type="hidden" name="timestamp" value="'.$recensione["timestamp"].'">';
                 $recensioni_html.='<input type="image" src="assets/edit_icon.svg" alt="modifica recensione ' . $i . '" name="modifica">';
                 $recensioni_html.='</div>';
                 $recensioni_html.='</form>';
 
                 $recensioni_html.='<form class="form_recensione" action="php/post/recensione/cancella-recensione.php" method="post">';
                 $recensioni_html.='<div>';
-                $recensioni_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'?'.$_SERVER['QUERY_STRING'].'"/>';
-                $recensioni_html.='<input type="hidden" name="timestamp" value="'.$recensione["timestamp"].'"/>';
+                $recensioni_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'?'.$_SERVER['QUERY_STRING'].'">';
+                $recensioni_html.='<input type="hidden" name="timestamp" value="'.$recensione["timestamp"].'">';
                 $recensioni_html.='<input type="image" src="assets/delete_icon.svg" alt="cancella recensione ' . $i . '" name="cancella">';
                 $recensioni_html.='</div>';
                 $recensioni_html.='</form>';
@@ -61,21 +61,21 @@ function mostraAggiungiRecensione(&$aggiungi_recensione_html, $id) {
     $aggiungi_recensione_html.='<legend>Aggiungi recensione</legend>';
     $aggiungi_recensione_html.= '<fieldset id="stelle-recensione">';
     $aggiungi_recensione_html.= '<legend>Dai un voto in stelle</legend>';
-    $aggiungi_recensione_html.= '<input type="radio" id="voto-1" name="voto" value="1" checked/>';
+    $aggiungi_recensione_html.= '<input type="radio" id="voto-1" name="voto" value="1" checked>';
     $aggiungi_recensione_html.= '<label class="star" for="voto-1">&#9733;</label>';
-    $aggiungi_recensione_html.= '<input type="radio" id="voto-2" name="voto" value="2"/>';
+    $aggiungi_recensione_html.= '<input type="radio" id="voto-2" name="voto" value="2">';
     $aggiungi_recensione_html.= '<label class="star" for="voto-2">&#9733;</label>';
-    $aggiungi_recensione_html.= '<input type="radio" id="voto-3" name="voto" value="3"/>';
+    $aggiungi_recensione_html.= '<input type="radio" id="voto-3" name="voto" value="3">';
     $aggiungi_recensione_html.= '<label class="star" for="voto-3">&#9733;</label>';
-    $aggiungi_recensione_html.= '<input type="radio" id="voto-4" name="voto" value="4"/>';
+    $aggiungi_recensione_html.= '<input type="radio" id="voto-4" name="voto" value="4">';
     $aggiungi_recensione_html.= '<label class="star" for="voto-4">&#9733;</label>';
-    $aggiungi_recensione_html.= '<input type="radio" id="voto-5" name="voto" value="5"/>';
+    $aggiungi_recensione_html.= '<input type="radio" id="voto-5" name="voto" value="5">';
     $aggiungi_recensione_html.= '<label class="star" for="voto-5">&#9733;</label>';
     $aggiungi_recensione_html.= '</fieldset>';
     $aggiungi_recensione_html.='<label for="commento">Recensione:</label>';
     $aggiungi_recensione_html.='<textarea id="commento" name="recensione" required></textarea>';
-    $aggiungi_recensione_html.='<input type="hidden" name="id" value="'.$id.'"/>';
-    $aggiungi_recensione_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'?'.$_SERVER['QUERY_STRING'].'"/>';
+    $aggiungi_recensione_html.='<input type="hidden" name="id" value="'.$id.'">';
+    $aggiungi_recensione_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'?'.$_SERVER['QUERY_STRING'].'">';
     $aggiungi_recensione_html.='<input type="submit" value="Aggiungi" class="button" name="aggiungi">';
     $aggiungi_recensione_html.='</fieldset>';
     $aggiungi_recensione_html.='</form>';
@@ -148,9 +148,9 @@ if (!$connessioneOK) {
 	<a href="#recensione" class="navigationHelp">Vai ad aggiungi recensioni</a>
       </nav>';
                     $opera_html.='<form id="acq-nft" action="php/post/opera/acquisto.php" method="post">';
-                    $opera_html.='<input type="hidden" name="id" value="'.$id.'"/>';
-                    $opera_html.='<input type="hidden" name="prezzo" value="'.$prezzo.'"/>';
-                    $opera_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'?'.$_SERVER['QUERY_STRING'].'"/>';
+                    $opera_html.='<input type="hidden" name="id" value="'.$id.'">';
+                    $opera_html.='<input type="hidden" name="prezzo" value="'.$prezzo.'">';
+                    $opera_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'?'.$_SERVER['QUERY_STRING'].'">';
                     $opera_html.='<input type="submit" value="Acquista" class="button" name="acquista">';
                     $opera_html.='</form>';
                 }else{
