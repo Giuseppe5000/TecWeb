@@ -123,4 +123,6 @@ INSERT INTO appartenenza VALUES
 
 -- Inserimento Recensioni
 INSERT INTO recensione VALUES
-('2024-03-22 12:50:05', 'user', 'Bello', 1, 4);
+('2024-03-22 12:50:05', 'user', 'Fanstastico!', 13, 5),
+('2024-03-23 12:50:05', 'user', 'Bello', 1, 4),
+('2024-03-24 12:50:05', 'user', 'Meh', 4, 2);
