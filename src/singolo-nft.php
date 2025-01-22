@@ -160,6 +160,9 @@ if (!$connessioneOK) {
                 $opera_html.='<p class="center">Se vuoi acquistare l\'opera <a href="accedi.php">Accedi</a> al tuo profilo</p>';
             }
         }
+    }else{
+        header('Location: ./404.php');
+        exit;
     }
 
     $query='SELECT * FROM recensione WHERE opera="' . $id . '" ORDER BY timestamp DESC';
