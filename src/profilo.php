@@ -79,53 +79,52 @@ if(isset($_SESSION['username'])){
             }
         }
 
+        $recensioni_html = "";
         if(count($recensioni) == 0){
             $recensioni_html = "<p>Non hai ancora fatto alcuna recensione</p>";
         }else{
             $count=0;
             while($count<5 && $count<count($recensioni)){
-                $recensione=$recensioni[$count];
-
+                $recensione = $recensioni[$count];
                 $date = strtotime($recensione["timestamp"]);
-                $date = date('d-m-Y',$date);
-                $utente = $recensione["utente"];
-                
-                $recensioni_html.='<div class="comment">';
-                $recensioni_html.='<div class="head-comment">';
-                $recensioni_html.='<div class="user-comment">';
-                $recensioni_html.= '<a href="singolo-nft.php?id=' . $recensione["opera"] . '">';
-                $recensioni_html.='<span>'.$recensione["nome"].'</span>';
-                $recensioni_html.= '</a>';
-                $recensioni_html.='</div>';
+                $date = date('d-m-Y', $date);
+        
+                $recensioni_html .= '<div class="comment">';
+                $recensioni_html .= '<div class="head-comment">';
+                $recensioni_html .= '<div class="user-comment">';
+                $recensioni_html .= '<a href="singolo-nft.php?id=' . $recensione["opera"] . '">';
+                $recensioni_html .= '<span>' . $recensione["nome"] . '</span>';
+                $recensioni_html .= '</a>';
+                $recensioni_html .= '</div>';
                 $recensioni_html .= '<div><span>' . $recensione["voto"] .' &#9733;</span></div>';
-                $recensioni_html.= "{$date}";
-                $recensioni_html.='<div class="user-comment">';
-
-                $recensioni_html.='<form class="form_recensione" action="modifica-recensione.php">';
-                $recensioni_html.='<div>';
-                $recensioni_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'"/>';
-                $recensioni_html.='<input type="hidden" name="timestamp" value="'.$recensione["timestamp"].'"/>';
-                $recensioni_html.='<input id="modifica" type="image" src="assets/edit_icon.svg" alt="modifica recensione" name="modifica">';
-                $recensioni_html.='</div>';
-                $recensioni_html.='</form>';
-
-                $recensioni_html.='<form class="form_recensione" action="php/post/recensione/cancella-recensione.php" method="post">';
-                $recensioni_html.='<div>';
-                $recensioni_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'"/>';
-                $recensioni_html.='<input type="hidden" name="timestamp" value="'.$recensione["timestamp"].'"/>';
-                $recensioni_html.='<input id="cancella" type="image" src="assets/delete_icon.svg" alt="cancella recensione" name="cancella">';
-                $recensioni_html.='</div>';
-                $recensioni_html.='</form>';
-
-                $recensioni_html.='</div>';
-                $recensioni_html.='</div>';
-                $recensioni_html.='<p>'.$recensione["commento"].'</p>';
-                $recensioni_html.='</div>';
-
+                $recensioni_html .= $date;
+                $recensioni_html .= '<div class="user-comment">';    
+                $recensioni_html .= '<form class="form_recensione" action="modifica-recensione.php">';
+                $recensioni_html .= '<div>';
+                $recensioni_html .= '<input type="hidden" name="currentPage" value="' . $_SERVER["PHP_SELF"] . '"/>';
+                $recensioni_html .= '<input type="hidden" name="timestamp" value="' . $recensione["timestamp"] . '"/>';
+                $recensioni_html .= '<input type="image" src="assets/edit_icon.svg" alt="modifica recensione ' . $count . '" name="modifica">';
+                $recensioni_html .= '</div>';
+                $recensioni_html .= '</form>';
+                
+                $recensioni_html .= '<form class="form_recensione" action="php/post/recensione/cancella-recensione.php" method="post">';
+                $recensioni_html .= '<div>';
+                $recensioni_html .= '<input type="hidden" name="currentPage" value="' . $_SERVER["PHP_SELF"] . '"/>';
+                $recensioni_html .= '<input type="hidden" name="timestamp" value="' . $recensione["timestamp"] . '"/>';
+                $recensioni_html .= '<input type="image" src="assets/delete_icon.svg" alt="cancella recensione ' . $count . '" name="cancella">';
+                $recensioni_html .= '</div>';
+                $recensioni_html .= '</form>';
+        
+                $recensioni_html .= '</div>';
+                $recensioni_html .= '</div>';
+                $recensioni_html .= '<p>' . $recensione["commento"] . '</p>';
+                $recensioni_html .= '</div>';
+        
                 $count++;
             }
-            if($count<count($recensioni)){
-                $linkRecensioni.='<p class="center"><a href="mie-recensioni.php">Visualizza le altre recensioni effettuate</a></p>';
+        
+            if($count < count($recensioni)){
+                $linkRecensioni .= '<p class="center"><a href="mie-recensioni.php">Visualizza le altre recensioni effettuate</a></p>';
             }
         }
     }
