@@ -94,10 +94,6 @@ INSERT INTO opera(id, path, nome, descrizione, prezzo) VALUES
 (17, 'assets/nft17', 'Gatto Lilla', 'Un gattino pixelato con tonalità di lilla.', 39.50),
 (18, 'assets/nft18', 'Fenicottero Elegante', 'Un fenicottero rosa su uno sfondo turchese a pallini.', 60.00);
 
--- Inserimento Acquisti
-INSERT INTO acquisto VALUES
-('admin', 1, 50.10, '2024-03-22 12:50:05');
-
 -- Inserimento Appartenenze
 INSERT INTO appartenenza VALUES
 ('Abstract', 1),
