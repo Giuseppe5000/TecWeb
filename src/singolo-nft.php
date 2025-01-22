@@ -170,6 +170,9 @@ if (!$connessioneOK) {
     $database->closeConnection();
     $recensioni_html = getRecensioni($recensioni, $pageNumber, $pageSize);
     $recensioniDaMostrare = count($recensioni) - $pageNumber*$pageSize - $pageSize;
+}else{
+    header('Location: ./500.php');
+    exit;
 }
 
 #SE LOGGATO
