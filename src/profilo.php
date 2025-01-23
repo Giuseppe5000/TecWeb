@@ -52,6 +52,9 @@ if(isset($_SESSION['username'])){
       </nav>';
                 }
             }
+        }else{
+            header('Location: ./404.php');
+            exit;
         }
 
         // Query per ottenere le opere e le recensioni dell'utente
