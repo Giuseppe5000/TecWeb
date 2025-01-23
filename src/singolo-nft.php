@@ -59,7 +59,7 @@ function mostraAggiungiRecensione(&$aggiungi_recensione_html, $id) {
     $aggiungi_recensione_html.='<form id="agg-recensione" class="user-form" action="php/post/recensione/aggiungi-recensione.php" method="post">';
     $aggiungi_recensione_html.='<fieldset>';
     $aggiungi_recensione_html.='<legend>Aggiungi recensione</legend>';
-    $aggiungi_recensione_html.= '<label for="stelle">Dai un voto in stelle:</label><br />';
+    $aggiungi_recensione_html.= '<label for="stelle">Dai un voto in stelle:</label>';
     $aggiungi_recensione_html.= '<input type="range" min="1" max="5" id="stelle" name="stelle" list="values" />';
     $aggiungi_recensione_html.= '<datalist id="values">';
     $aggiungi_recensione_html.= '<option value="1" label="1&#9733;"></option>';
