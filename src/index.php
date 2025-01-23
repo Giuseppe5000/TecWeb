@@ -95,8 +95,8 @@ if (!$connessioneOK) {
     }
 
 } else {
-    $ultimeUscite = '<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>';
-    $top3 = '<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>';
+    header('Location: ./500.php');
+    exit;
 }
 
 $navbar = new Navbar("Home");

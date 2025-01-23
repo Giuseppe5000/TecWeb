@@ -72,6 +72,9 @@ if (isset($_POST['modifica']) && isset($_SESSION['username'])) {
 
         header('Location: .'.$_POST['currentPage']);
         exit;
+    }else{
+        header('Location: ./500.php');
+        exit;
     }
 }
 
@@ -84,6 +87,9 @@ if (isset($_GET['modifica_x']) && isset($_SESSION['username'])) {
         $date = $_GET['timestamp'];
         $prevPage = $_GET['currentPage'];
         $recensione_html .= getRecensione($database, $username, $date,$prevPage);
+    }else{
+        header('Location: ./500.php');
+        exit;
     }
 }
 

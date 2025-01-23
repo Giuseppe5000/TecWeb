@@ -52,6 +52,9 @@ if(isset($_SESSION['username'])){
       </nav>';
                 }
             }
+        }else{
+            header('Location: ./404.php');
+            exit;
         }
 
         // Query per ottenere le opere e le recensioni dell'utente
@@ -128,10 +131,9 @@ if(isset($_SESSION['username'])){
             }
         }
     }
-    
     else{
-        $saldo = "<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>";
-        $nftPosseduti = "<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>";
+        header('Location: ./500.php');
+        exit;
     }
 }
 else{

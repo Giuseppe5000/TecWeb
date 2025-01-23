@@ -48,6 +48,9 @@ function accedi($database){
                 else{
                     $messaggi["generico"] .= makeMessageParagraph('<span lang="en">Username</span> o <span lang="en">password</span> errati');
                 }
+            }else{
+                header('Location: ./500.php');
+                exit;
             }
         }
         $_SESSION['user']=$username;

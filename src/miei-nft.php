@@ -160,7 +160,8 @@ if(isset($_SESSION['username'])){
         $stringaOpere = mostraOpere($opere, $pageNumber, $pageSize);
         $opereDaMostrare = count($opere) - $pageNumber*$pageSize - $pageSize;
     } else {
-        $stringaOpere = "<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>";
+        header('Location: ./500.php');
+        exit;
     }
     
     $linkPaginaPrecedente = "";
