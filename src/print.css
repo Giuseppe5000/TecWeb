@@ -2,7 +2,7 @@
     display: none;
 }
 
-#logout{
+#logout, #regist-form, #accesso-form{
     display:initial;
 }
 
