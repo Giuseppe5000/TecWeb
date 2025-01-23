@@ -72,6 +72,9 @@ if (isset($_POST['modifica']) && isset($_SESSION['username'])) {
 
         header('Location: .'.$_POST['currentPage']);
         exit;
+    }else{
+        header('Location: ./500.php');
+        exit;
     }
 }
 
