@@ -599,46 +599,6 @@ Commento
     resize:none;
 }
 
-#stelle-recensione {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-.user-form fieldset label.star {
-    font-size: 2em;
-    margin: 0;
-}
-
-#stelle-recensione input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-#stelle-recensione label {
-    cursor: pointer;
-    font-size: 3em;
-}
-
-#stelle-recensione input[type="radio"]:focus + label {
-    outline: 2px solid var(--visitedcolor);
-}
-
-
-.star {
-    color: var(--visitedcolor);
-}
-
-#stelle-recensione input[type="radio"]:checked ~ label {
-    color: var(--visitedcolor);
-}
-
-#stelle-recensione input[type="radio"]:checked ~ label ~ label {
-    color: var(--txtcolor); 
-}
-
 /*
 ===========================
 PAGINA CHI SIAMO
