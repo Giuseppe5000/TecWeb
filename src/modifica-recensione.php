@@ -9,8 +9,8 @@ function getForm($voto, $commento, $timestamp,$prevPage) {
     $form .= '<form id="mod-recensione" class="user-form" action="modifica-recensione.php" method="post">';
     $form .= '<fieldset>';
     $form .= '<legend>Modifica recensione</legend>';
-    $form .= '<label for="stelle">Dai un voto in stelle:</label>';
-    $form .= '<input type="range" min="1" max="5" id="stelle" name="stelle" list="values" />';
+    $form .= '<label for="voto">Dai un voto in stelle:</label>';
+    $form .= '<input type="range" min="1" max="5" id="voto" name="voto" list="values"  value="'.$voto.'">';
     $form .= '<datalist id="values">';
     $form .= '<option value="1" label="1&#9733;"></option>';
     $form .= '<option value="2" label="2&#9733;"></option>';
