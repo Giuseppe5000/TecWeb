@@ -40,7 +40,7 @@ class CardOpera {
         $nftCard = str_replace('{{CARD_ID}}', '', $nftCard);
         $nftCard = str_replace('{{CARD_HEADER}}', $this->getCardHeader(), $nftCard);
 
-        $spanPrice = '<span class="nft-price">'. $this->opera["prezzo"] . '<abbr lang="en" class="hide" title="Ethereum">ETH</abbr></span>';
+        $spanPrice = '<span class="nft-price">'. $this->opera["prezzo"] . ' <abbr lang="en" class="hide" title="Ethereum">ETH</abbr></span>';
         return str_replace('{{HEADER}}', $this->getCardNameHeading("h2") . $spanPrice, $nftCard);
     }
 
