@@ -111,7 +111,7 @@ if (!$connessioneOK) {
         if($_SESSION['acquistato']){
             $acquisto_res.='<p class="center">Opera acquistata con successo!</p>';
         }else{
-            $acquisto_res.='<p class="center">Non hai abbastanza ETH per acquistare l\'opera!</p>';
+            $acquisto_res.='<p class="center">Non hai abbastanza <abbr lang="en" title="Ethereum">ETH</abbr> per acquistare l\'opera!</p>';
         }
         unset($_SESSION['acquistato']);
     }
@@ -130,7 +130,7 @@ if (!$connessioneOK) {
         $opera_html.='<div>';
         $opera_html.='<img id="immagine-contenuto" src="./'.$opera[0]["path"].'.webp" alt="decr-img">';
         $opera_html.='</div>';
-        $opera_html.='<span class="nft-price">Prezzo: '.$prezzo.'</span>';
+        $opera_html.='<span class="nft-price">Prezzo: '.$prezzo.' <abbr lang="en" class="hide" title="Ethereum">ETH</abbr></span>';
         $descr_html.='<p id="descr">'.$opera[0]["descrizione"].'</p>';
 
         #se l'opera è acquista si vedrà da chi è stata acquistata, per essere acquistata il possessore deve essere DIVERSO da admin
