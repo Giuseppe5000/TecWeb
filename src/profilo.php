@@ -128,10 +128,9 @@ if(isset($_SESSION['username'])){
             }
         }
     }
-    
     else{
-        $saldo = "<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>";
-        $nftPosseduti = "<p>I sistemi sono momentaneamente fuori servizio, ci scusiamo per il disagio.</p>";
+        header('Location: ./500.php');
+        exit;
     }
 }
 else{
