@@ -1,5 +1,7 @@
 <?php
 
+require_once dirname(__FILE__)."/utils.php";
+
 class Database {
 
     private const HOST_DB = "mariadb";
@@ -73,9 +75,9 @@ class Database {
 
         $stmt->execute();
         if ($stmt->affected_rows > 0) {
-            $avviso = "<p>Operazione avvenuta con successo!</p>";
+            $avviso = makeMessageParagraph("Operazione avvenuta con successo!");
         } else {
-            $avviso = "<p>Errore durante la modifica di un elemento nel Database.</p>";
+            $avviso = makeMessageParagraph("Errore durante la modifica di un elemento nel Database.");
         }
         $stmt->close();
         return $avviso;
