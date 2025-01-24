@@ -121,6 +121,7 @@ $linkPaginaPrecedente ="";
 $linkPaginaSuccessiva ="";
 $pageSize = 6;
 $pageNumber = 0;
+$totalPages = 0;
 if (isset($_GET['page']))
     $pageNumber = intval($_GET['page']);
 $recensioniDaMostrare = 0;
@@ -140,7 +141,7 @@ if(isset($_SESSION['username'])){
         $database->closeConnection();
         $recensioni_html = printRecensioni($recensioni, $pageNumber, $pageSize);
         $recensioniDaMostrare = count($recensioni) - $pageNumber*$pageSize - $pageSize;
-        
+        $totalPages = ceil(count($recensioni) / $pageSize);        
         
         if ($pageNumber > 0) {
             $prevPageNumber = $pageNumber - 1;
@@ -157,7 +158,6 @@ if(isset($_SESSION['username'])){
         header('Location: ./500.php');
         exit;
     }
-
 }
 else{
     header('Location: ./accedi.php');
@@ -167,6 +167,7 @@ else{
 $navbar = new Navbar("");
 $paginaHTML = file_get_contents('./static/mie-recensioni.html');
 
+$displayPageNumber = $pageNumber + 1;
 $find=['{{NAVBAR}}','{{RECENSIONI}}','{{PAGINA_PRECEDENTE}}', '{{PAGINA_SUCCESSIVA}}', '{{PAGINA_CORRENTE}}', '{{OPERA}}','{{ORDINA}}'];
-$replacement=[$navbar->getNavbar(), $recensioni_html, $linkPaginaPrecedente, $linkPaginaSuccessiva, "<span class='page-number'>Pagina: {$pageNumber}</span>", $filtro_opera, $selectForm];
+$replacement=[$navbar->getNavbar(), $recensioni_html, $linkPaginaPrecedente, $linkPaginaSuccessiva, "<span class='page-number'>Pagina {$displayPageNumber} di {$totalPages}</span>", $filtro_opera, $selectForm];
 echo str_replace($find,$replacement,$paginaHTML);

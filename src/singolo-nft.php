@@ -91,6 +91,8 @@ $acquisto_res='';
 
 $pageSize = 4;
 $pageNumber = 0;
+$totalPages = 0;
+
 if (isset($_GET['page']))
     $pageNumber = intval($_GET['page']);
 $recensioniDaMostrare = 0;
@@ -166,6 +168,7 @@ if (!$connessioneOK) {
     $database->closeConnection();
     $recensioni_html = getRecensioni($recensioni, $pageNumber, $pageSize);
     $recensioniDaMostrare = count($recensioni) - $pageNumber*$pageSize - $pageSize;
+    $totalPages = ceil(count($recensioni) / $pageSize);
 }else{
     header('Location: ./500.php');
     exit;
@@ -200,6 +203,7 @@ if ($recensioniDaMostrare > 0) {
 
 $navbar = new Navbar("");
 
+$displayPageNumber = $pageNumber + 1;
 $find=['{{OPERA}}','{{DESCRIZIONE}}','{{RECENSIONI}}','{{AGGIUNGI_RECENSIONE}}','{{ACQUISTO_RES}}', '{{NAVBAR}}','{{NOME_NFT}}', '{{PAGINA_PRECEDENTE}}', '{{PAGINA_SUCCESSIVA}}', '{{PAGINA_CORRENTE}}'];
-$replacement=[$opera_html,$descr_html,$recensioni_html,$aggiungi_recensione_html,$acquisto_res, $navbar->getnavbar(),$nome_opera,$linkPaginaPrecedente, $linkPaginaSuccessiva,"<span class='page-number'>Pagina: {$pageNumber}</span>"];
+$replacement=[$opera_html,$descr_html,$recensioni_html,$aggiungi_recensione_html,$acquisto_res, $navbar->getnavbar(),$nome_opera,$linkPaginaPrecedente, $linkPaginaSuccessiva,"<span class='page-number'>Pagina {$displayPageNumber} di {$totalPages}</span>"];
 echo str_replace($find, $replacement, $paginaHTML);

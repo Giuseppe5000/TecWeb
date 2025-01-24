@@ -120,6 +120,7 @@ function getOrdinaSelect($selectedValue) {
 if(isset($_SESSION['username'])){
     $pageSize = 8;
     $pageNumber = 0;
+    $totalPages = 0;
     if (isset($_GET['page']))
         $pageNumber = intval($_GET['page']);
     
@@ -159,6 +160,7 @@ if(isset($_SESSION['username'])){
         $database->closeConnection();
         $stringaOpere = mostraOpere($opere, $pageNumber, $pageSize);
         $opereDaMostrare = count($opere) - $pageNumber*$pageSize - $pageSize;
+        $totalPages = ceil(count($opere) / $pageSize);
     } else {
         header('Location: ./500.php');
         exit;
@@ -184,9 +186,10 @@ else{
 }
 
 $navbar = new Navbar("");
+$paginaHTML = file_get_contents("./static/miei-nft.html");
 
-$paginaHTML = file_get_contents('./static/miei-nft.html');
+$displayPageNumber = $pageNumber + 1;
 $find=['{{OPERE}}', '{{PAGINA_PRECEDENTE}}', '{{PAGINA_SUCCESSIVA}}', '{{PAGINA_CORRENTE}}', '{{NAVBAR}}', '{{NOME_NFT}}', '{{PREZZO_MINIMO}}', '{{PREZZO_MASSIMO}}', '{{ORDINA}}', '{{ABSTRACT_CHECKED}}', '{{ANIMALS_CHECKED}}', '{{PIXELART_CHECKED}}', '{{BLACKANDWHITE_CHECKED}}', '{{PHOTO_CHECKED}}'];
-$replacement=[$stringaOpere, $linkPaginaPrecedente, $linkPaginaSuccessiva, "<span class='page-number'>Pagina: {$pageNumber}</span>", $navbar->getNavbar(),$nomeNft, $prezzoMin, $prezzoMax, $selectForm,$abstractCheckbox, $animalsCheckbox, $pixelArtCheckbox, $blackAndWhiteCheckbox, $photoCheckbox];
+$replacement=[$stringaOpere, $linkPaginaPrecedente, $linkPaginaSuccessiva, "<span class='page-number'>Pagina {$displayPageNumber} di {$totalPages}</span>", $navbar->getNavbar(),$nomeNft, $prezzoMin, $prezzoMax, $selectForm,$abstractCheckbox, $animalsCheckbox, $pixelArtCheckbox, $blackAndWhiteCheckbox, $photoCheckbox];
 
 echo str_replace($find, $replacement, $paginaHTML);
