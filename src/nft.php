@@ -127,6 +127,7 @@ $database = new Database();
 $connessioneOK = $database->openConnection();
 $stringaOpere = '';
 $opereDaMostrare = 0;
+$totalPages = 0;
 
 $nomeNft = "";
 $prezzoMin = 0;
@@ -155,6 +156,7 @@ $selectForm = getOrdinaSelect($ordinaPrezzo);
 
 if (!$connessioneOK) {
     $opere = getOrFilter($database);
+    $totalPages = floor(count($opere) / $pageSize) + 1;
     $database->closeConnection();
     $stringaOpere = mostraOpere($opere, $pageNumber, $pageSize);
     $opereDaMostrare = count($opere) - $pageNumber*$pageSize - $pageSize;
@@ -185,9 +187,9 @@ $find=['{{OPERE}}', '{{PAGINA_PRECEDENTE}}', '{{PAGINA_SUCCESSIVA}}', '{{PAGINA_
        '{{ABSTRACT_CHECKED}}', '{{ANIMALS_CHECKED}}', '{{PIXELART_CHECKED}}', '{{BLACKANDWHITE_CHECKED}}', '{{PHOTO_CHECKED}}'
 ];
 
-$totalPages = floor(count($opere) / $pageSize);
+$displayPageNumber = $pageNumber + 1;
 $replacement=[$stringaOpere, $linkPaginaPrecedente, $linkPaginaSuccessiva,
-              "<span class='page-number'>Pagina {$pageNumber} di {$totalPages}</span>", $navbar->getNavbar(),
+              "<span class='page-number'>Pagina {$displayPageNumber} di {$totalPages}</span>", $navbar->getNavbar(),
               $nomeNft, $prezzoMin, $prezzoMax, $selectForm,
               $abstractCheckbox, $animalsCheckbox, $pixelArtCheckbox, $blackAndWhiteCheckbox, $photoCheckbox];
 
