@@ -185,6 +185,7 @@ else{
 }
 
 $navbar = new Navbar("");
+$paginaHTML = file_get_contents("./static/miei-nft.html");
 
 $displayPageNumber = $pageNumber + 1;
 $find=['{{OPERE}}', '{{PAGINA_PRECEDENTE}}', '{{PAGINA_SUCCESSIVA}}', '{{PAGINA_CORRENTE}}', '{{NAVBAR}}', '{{NOME_NFT}}', '{{PREZZO_MINIMO}}', '{{PREZZO_MASSIMO}}', '{{ORDINA}}', '{{ABSTRACT_CHECKED}}', '{{ANIMALS_CHECKED}}', '{{PIXELART_CHECKED}}', '{{BLACKANDWHITE_CHECKED}}', '{{PHOTO_CHECKED}}'];
