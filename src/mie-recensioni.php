@@ -140,7 +140,7 @@ if(isset($_SESSION['username'])){
         $database->closeConnection();
         $recensioni_html = printRecensioni($recensioni, $pageNumber, $pageSize);
         $recensioniDaMostrare = count($recensioni) - $pageNumber*$pageSize - $pageSize;
-        
+        $totalPages = ceil(count($recensioni) / $pageSize);        
         
         if ($pageNumber > 0) {
             $prevPageNumber = $pageNumber - 1;
@@ -157,8 +157,6 @@ if(isset($_SESSION['username'])){
         header('Location: ./500.php');
         exit;
     }
-
-    $totalPages = ceil(count($recensioni) / $pageSize);
 }
 else{
     header('Location: ./accedi.php');

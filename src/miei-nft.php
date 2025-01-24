@@ -159,6 +159,7 @@ if(isset($_SESSION['username'])){
         $database->closeConnection();
         $stringaOpere = mostraOpere($opere, $pageNumber, $pageSize);
         $opereDaMostrare = count($opere) - $pageNumber*$pageSize - $pageSize;
+        $totalPages = ceil(count($opere) / $pageSize);
     } else {
         header('Location: ./500.php');
         exit;
@@ -177,8 +178,6 @@ if(isset($_SESSION['username'])){
         $queryString = generatePageNumber($nextPageNumber);
         $linkPaginaSuccessiva = "<a class='next-page' href=\"miei-nft.php?{$queryString}\">&#10095;</a>";
     }
-
-    $totalPages = ceil(count($opere) / $pageSize);
 }
 else{
     header('Location: ./accedi.php');
