@@ -204,6 +204,7 @@ if ($recensioniDaMostrare > 0) {
 
 $navbar = new Navbar("");
 
+$totalPages = floor(count($recensioni) / $pageSize);
 $find=['{{OPERA}}','{{DESCRIZIONE}}','{{RECENSIONI}}','{{AGGIUNGI_RECENSIONE}}','{{ACQUISTO_RES}}', '{{NAVBAR}}','{{NOME_NFT}}', '{{PAGINA_PRECEDENTE}}', '{{PAGINA_SUCCESSIVA}}', '{{PAGINA_CORRENTE}}'];
-$replacement=[$opera_html,$descr_html,$recensioni_html,$aggiungi_recensione_html,$acquisto_res, $navbar->getnavbar(),$nome_opera,$linkPaginaPrecedente, $linkPaginaSuccessiva,"<span class='page-number'>Pagina: {$pageNumber}</span>"];
+$replacement=[$opera_html,$descr_html,$recensioni_html,$aggiungi_recensione_html,$acquisto_res, $navbar->getnavbar(),$nome_opera,$linkPaginaPrecedente, $linkPaginaSuccessiva,"<span class='page-number'>Pagina {$pageNumber} di {$totalPages}</span>"];
 echo str_replace($find, $replacement, $paginaHTML);

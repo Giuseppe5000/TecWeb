@@ -167,6 +167,7 @@ else{
 $navbar = new Navbar("");
 $paginaHTML = file_get_contents('./static/mie-recensioni.html');
 
+$totalPages = floor(count($recensioni) / $pageSize);
 $find=['{{NAVBAR}}','{{RECENSIONI}}','{{PAGINA_PRECEDENTE}}', '{{PAGINA_SUCCESSIVA}}', '{{PAGINA_CORRENTE}}', '{{OPERA}}','{{ORDINA}}'];
-$replacement=[$navbar->getNavbar(), $recensioni_html, $linkPaginaPrecedente, $linkPaginaSuccessiva, "<span class='page-number'>Pagina: {$pageNumber}</span>", $filtro_opera, $selectForm];
+$replacement=[$navbar->getNavbar(), $recensioni_html, $linkPaginaPrecedente, $linkPaginaSuccessiva, "<span class='page-number'>Pagina {$pageNumber} di {$totalPages}</span>", $filtro_opera, $selectForm];
 echo str_replace($find,$replacement,$paginaHTML);

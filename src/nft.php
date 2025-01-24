@@ -184,8 +184,10 @@ $find=['{{OPERE}}', '{{PAGINA_PRECEDENTE}}', '{{PAGINA_SUCCESSIVA}}', '{{PAGINA_
        '{{NAVBAR}}', '{{NOME_NFT}}', '{{PREZZO_MINIMO}}', '{{PREZZO_MASSIMO}}', '{{ORDINA}}',
        '{{ABSTRACT_CHECKED}}', '{{ANIMALS_CHECKED}}', '{{PIXELART_CHECKED}}', '{{BLACKANDWHITE_CHECKED}}', '{{PHOTO_CHECKED}}'
 ];
+
+$totalPages = floor(count($opere) / $pageSize);
 $replacement=[$stringaOpere, $linkPaginaPrecedente, $linkPaginaSuccessiva,
-              "<span class='page-number'>Pagina: {$pageNumber}</span>", $navbar->getNavbar(),
+              "<span class='page-number'>Pagina {$pageNumber} di {$totalPages}</span>", $navbar->getNavbar(),
               $nomeNft, $prezzoMin, $prezzoMax, $selectForm,
               $abstractCheckbox, $animalsCheckbox, $pixelArtCheckbox, $blackAndWhiteCheckbox, $photoCheckbox];
 

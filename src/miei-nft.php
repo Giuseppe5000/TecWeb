@@ -185,8 +185,9 @@ else{
 
 $navbar = new Navbar("");
 
+$totalPages = floor(count($opere) / $pageSize);
 $paginaHTML = file_get_contents('./static/miei-nft.html');
 $find=['{{OPERE}}', '{{PAGINA_PRECEDENTE}}', '{{PAGINA_SUCCESSIVA}}', '{{PAGINA_CORRENTE}}', '{{NAVBAR}}', '{{NOME_NFT}}', '{{PREZZO_MINIMO}}', '{{PREZZO_MASSIMO}}', '{{ORDINA}}', '{{ABSTRACT_CHECKED}}', '{{ANIMALS_CHECKED}}', '{{PIXELART_CHECKED}}', '{{BLACKANDWHITE_CHECKED}}', '{{PHOTO_CHECKED}}'];
-$replacement=[$stringaOpere, $linkPaginaPrecedente, $linkPaginaSuccessiva, "<span class='page-number'>Pagina: {$pageNumber}</span>", $navbar->getNavbar(),$nomeNft, $prezzoMin, $prezzoMax, $selectForm,$abstractCheckbox, $animalsCheckbox, $pixelArtCheckbox, $blackAndWhiteCheckbox, $photoCheckbox];
+$replacement=[$stringaOpere, $linkPaginaPrecedente, $linkPaginaSuccessiva, "<span class='page-number'>Pagina {$pageNumber} di {$totalPages}</span>", $navbar->getNavbar(),$nomeNft, $prezzoMin, $prezzoMax, $selectForm,$abstractCheckbox, $animalsCheckbox, $pixelArtCheckbox, $blackAndWhiteCheckbox, $photoCheckbox];
 
 echo str_replace($find, $replacement, $paginaHTML);
