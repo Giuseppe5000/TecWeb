@@ -120,6 +120,7 @@ function getOrdinaSelect($selectedValue) {
 if(isset($_SESSION['username'])){
     $pageSize = 8;
     $pageNumber = 0;
+    $totalPages = 0;
     if (isset($_GET['page']))
         $pageNumber = intval($_GET['page']);
     
