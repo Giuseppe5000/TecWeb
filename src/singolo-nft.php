@@ -61,7 +61,7 @@ function mostraAggiungiRecensione(&$aggiungi_recensione_html, $id) {
     $aggiungi_recensione_html.='<legend>Aggiungi recensione</legend>';
     $aggiungi_recensione_html.= '<label for="voto">Dai un voto in stelle:</label>';
     $aggiungi_recensione_html.= '<input type="range" min="1" max="5" id="voto" name="voto" list="values" />';
-    $aggiungi_recensione_html.= '<datalist id="values">';
+    $aggiungi_recensione_html.= '<datalist aria-hidden="true" id="values">';
     $aggiungi_recensione_html.= '<option value="1" label="1&#9733;"></option>';
     $aggiungi_recensione_html.= '<option value="2" label="2&#9733;"></option>';
     $aggiungi_recensione_html.= '<option value="3" label="3&#9733;"></option>';

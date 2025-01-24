@@ -11,7 +11,7 @@ function getForm($voto, $commento, $timestamp,$prevPage) {
     $form .= '<legend>Modifica recensione</legend>';
     $form .= '<label for="voto">Dai un voto in stelle:</label>';
     $form .= '<input type="range" min="1" max="5" id="voto" name="voto" list="values"  value="'.$voto.'">';
-    $form .= '<datalist id="values">';
+    $form .= '<datalist aria-hidden="true" id="values">';
     $form .= '<option value="1" label="1&#9733;"></option>';
     $form .= '<option value="2" label="2&#9733;"></option>';
     $form .= '<option value="3" label="3&#9733;"></option>';
