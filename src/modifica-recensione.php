@@ -52,7 +52,7 @@ $avvisoRecensione = "";
 if (isset($_POST['modifica']) && isset($_SESSION['username'])) {
     $database = new Database();
     $connessioneOK = $database->openConnection();
-    if (!$connessioneOK) {
+    if ($connessioneOK) {
         $voto = $_POST["voto"];
         $commento = $_POST["commento"];
         $timestamp = $_POST["timestamp"];
@@ -78,7 +78,7 @@ if (isset($_GET['modifica_x']) && isset($_SESSION['username'])) {
     $database = new Database();
     $connessioneOK = $database->openConnection();
 
-    if (!$connessioneOK) {
+    if ($connessioneOK) {
         $username = $_SESSION['username'];
         $date = $_GET['timestamp'];
         $prevPage = $_GET['currentPage'];

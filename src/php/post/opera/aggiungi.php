@@ -112,7 +112,7 @@ if(isset($_SESSION['username'])){
     $database = new Database();
     $connessioneOK = $database->openConnection();
     $username = $_SESSION['username'];
-    if(!$connessioneOK){
+    if($connessioneOK){
         aggiungiOpera($username,$database);
     }
     header('Location: ../../../500.php');

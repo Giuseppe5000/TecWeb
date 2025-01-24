@@ -21,7 +21,7 @@ if(isset($_SESSION['username'])){
     $connessioneOK = $database->openConnection();
     $username = $_SESSION['username'];
 
-    if(!$connessioneOK){
+    if($connessioneOK){
 
         if(isset($_SESSION['messaggioCaricaNFT'])){
             $avvisoCaricaNFT=$_SESSION['messaggioCaricaNFT'];

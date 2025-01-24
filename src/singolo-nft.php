@@ -95,7 +95,7 @@ if (isset($_GET['page']))
     $pageNumber = intval($_GET['page']);
 $recensioniDaMostrare = 0;
 
-if (!$connessioneOK) {
+if ($connessioneOK) {
 
     #richiesta get e salvo il parametro di sessione
     if(isset($_GET['id'])) {

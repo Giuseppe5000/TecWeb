@@ -31,7 +31,7 @@ function getRequestCategoryName($categoria) {
     }
 }
 
-if (!$connessioneOK) {
+if ($connessioneOK) {
 
     #QUERY AL DB
     $query = "SELECT * FROM opera ORDER BY id DESC LIMIT 4";

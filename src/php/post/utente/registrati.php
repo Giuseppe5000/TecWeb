@@ -44,7 +44,7 @@ function registrati($database){
         if(checkInput($username, $email, $password, $confirmPassword, $messaggi)){
             $connessioneOK = $database->openConnection();
             
-            if(!$connessioneOK){
+            if($connessioneOK){
                 $utente = new Utente($database->getConnection(), $username, $password, $email);
                 try {
                     $utente->register();
@@ -84,7 +84,7 @@ function registrati($database){
 #main
 $database = new Database();
 $connessioneOK = $database->openConnection();
-if(!$connessioneOK){
+if($connessioneOK){
     registrati($database);
 }
 header('Location: ../../../500.php');
