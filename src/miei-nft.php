@@ -177,6 +177,8 @@ if(isset($_SESSION['username'])){
         $queryString = generatePageNumber($nextPageNumber);
         $linkPaginaSuccessiva = "<a class='next-page' href=\"miei-nft.php?{$queryString}\">&#10095;</a>";
     }
+
+    $totalPages = ceil(count($opere) / $pageSize);
 }
 else{
     header('Location: ./accedi.php');
@@ -185,9 +187,8 @@ else{
 
 $navbar = new Navbar("");
 
-$totalPages = floor(count($opere) / $pageSize);
-$paginaHTML = file_get_contents('./static/miei-nft.html');
+$displayPageNumber = $pageNumber + 1;
 $find=['{{OPERE}}', '{{PAGINA_PRECEDENTE}}', '{{PAGINA_SUCCESSIVA}}', '{{PAGINA_CORRENTE}}', '{{NAVBAR}}', '{{NOME_NFT}}', '{{PREZZO_MINIMO}}', '{{PREZZO_MASSIMO}}', '{{ORDINA}}', '{{ABSTRACT_CHECKED}}', '{{ANIMALS_CHECKED}}', '{{PIXELART_CHECKED}}', '{{BLACKANDWHITE_CHECKED}}', '{{PHOTO_CHECKED}}'];
-$replacement=[$stringaOpere, $linkPaginaPrecedente, $linkPaginaSuccessiva, "<span class='page-number'>Pagina {$pageNumber} di {$totalPages}</span>", $navbar->getNavbar(),$nomeNft, $prezzoMin, $prezzoMax, $selectForm,$abstractCheckbox, $animalsCheckbox, $pixelArtCheckbox, $blackAndWhiteCheckbox, $photoCheckbox];
+$replacement=[$stringaOpere, $linkPaginaPrecedente, $linkPaginaSuccessiva, "<span class='page-number'>Pagina {$displayPageNumber} di {$totalPages}</span>", $navbar->getNavbar(),$nomeNft, $prezzoMin, $prezzoMax, $selectForm,$abstractCheckbox, $animalsCheckbox, $pixelArtCheckbox, $blackAndWhiteCheckbox, $photoCheckbox];
 
 echo str_replace($find, $replacement, $paginaHTML);
