@@ -156,8 +156,7 @@ $selectForm = getOrdinaSelect($ordinaPrezzo);
 
 if (!$connessioneOK) {
     $opere = getOrFilter($database);
-    $totalPages = ceil(count($opere) / $pageSize);
-    $totalPages = $totalPages == 0 ? 1 : $totalPages;
+    $totalPages = floor(count($opere) / $pageSize)+1;
     $database->closeConnection();
     $stringaOpere = mostraOpere($opere, $pageNumber, $pageSize);
     $opereDaMostrare = count($opere) - $pageNumber*$pageSize - $pageSize;
