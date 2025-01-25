@@ -135,7 +135,7 @@ if(isset($_SESSION['username'])){
     setFormValues($filtro_opera,$ordina);
     $selectForm = getOrdinaSelect($ordina);
 
-    if(!$connessioneOK){
+    if($connessioneOK){
 
         $recensioni = getOrFilter($database);
         $database->closeConnection();

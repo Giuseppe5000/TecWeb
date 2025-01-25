@@ -35,7 +35,7 @@ function accedi($database){
         if(checkInput($username, $password, $messaggi)){
             $connessioneOK = $database->openConnection();
             
-            if(!$connessioneOK){
+            if($connessioneOK){
                 $utente = new Utente($database->getConnection(), $username, $password, "");
                 $loginSuccessfull = $utente->login();
                 $database->closeConnection();
@@ -66,7 +66,7 @@ function accedi($database){
 #main
 $database = new Database();
 $connessioneOK = $database->openConnection();
-if(!$connessioneOK){
+if($connessioneOK){
     accedi($database);
 }
 header('Location: ../../../500.php');

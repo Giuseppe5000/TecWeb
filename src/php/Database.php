@@ -13,15 +13,15 @@ class Database {
 
     public function openConnection() {
 
-        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+        //mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-        $this->connection = mysqli_connect(Database::HOST_DB, Database::USERNAME, Database::PASSWORD, Database::DATABASE_NAME);
+        $this->connection = new mysqli(Database::HOST_DB, Database::USERNAME, Database::PASSWORD, Database::DATABASE_NAME);
 
         // Debug
-        return mysqli_connect_error();
+        //return mysqli_connect_error();
 
         // Prod
-        //return $this->connection->connect_errno() ? false : true;
+        return $this->connection->connect_error ? false : true;
 
     }
 

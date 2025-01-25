@@ -155,7 +155,7 @@ if(isset($_SESSION['username'])){
     setFormValues($nomeNft, $prezzoMin, $prezzoMax, $ordinaPrezzo);
     $selectForm = getOrdinaSelect($ordinaPrezzo);
 
-    if (!$connessioneOK) {
+    if ($connessioneOK) {
         $opere = getOrFilter($database);
         $database->closeConnection();
         $stringaOpere = mostraOpere($opere, $pageNumber, $pageSize);
