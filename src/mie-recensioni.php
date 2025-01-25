@@ -143,7 +143,7 @@ if(isset($_SESSION['username'])){
         $recensioniDaMostrare = count($recensioni) - $pageNumber*$pageSize - $pageSize;
         $totalPages = floor(count($recensioni) / $pageSize);
         if (count($recensioni) % $pageSize != 0) $totalPages++;
-        if (count($opere) == 0) $totalPages = 1;      
+        if (count($recensioni) == 0) $totalPages = 1;      
         
         if ($pageNumber > 0) {
             $prevPageNumber = $pageNumber - 1;
