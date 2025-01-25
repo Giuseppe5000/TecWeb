@@ -29,7 +29,7 @@ function getRecensioni($recensioni, $pageNumber, $pageSize) {
 
                 $recensioni_html.='<form class="form_recensione" action="modifica-recensione.php">';
                 $recensioni_html.='<div>';
-                $recensioni_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'?'.$_SERVER['QUERY_STRING'].'">';
+                $recensioni_html.='<input type="hidden" name="currentPage" value="/'.basename(__FILE__).'?'.$_SERVER['QUERY_STRING'].'">';
                 $recensioni_html.='<input type="hidden" name="timestamp" value="'.$recensione["timestamp"].'">';
                 $recensioni_html.='<input type="image" src="assets/edit_icon.svg" alt="modifica recensione ' . $i . '" name="modifica">';
                 $recensioni_html.='</div>';
@@ -37,7 +37,7 @@ function getRecensioni($recensioni, $pageNumber, $pageSize) {
 
                 $recensioni_html.='<form class="form_recensione" action="php/post/recensione/cancella-recensione.php" method="post">';
                 $recensioni_html.='<div>';
-                $recensioni_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'?'.$_SERVER['QUERY_STRING'].'">';
+                $recensioni_html.='<input type="hidden" name="currentPage" value="/'.basename(__FILE__).'?'.$_SERVER['QUERY_STRING'].'">';
                 $recensioni_html.='<input type="hidden" name="timestamp" value="'.$recensione["timestamp"].'">';
                 $recensioni_html.='<input type="image" src="assets/delete_icon.svg" alt="cancella recensione ' . $i . '" name="cancella">';
                 $recensioni_html.='</div>';
@@ -71,7 +71,7 @@ function mostraAggiungiRecensione(&$aggiungi_recensione_html, $id) {
     $aggiungi_recensione_html.='<label for="commento">Recensione:</label>';
     $aggiungi_recensione_html.='<textarea id="commento" name="recensione" required></textarea>';
     $aggiungi_recensione_html.='<input type="hidden" name="id" value="'.$id.'">';
-    $aggiungi_recensione_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'?'.$_SERVER['QUERY_STRING'].'">';
+    $aggiungi_recensione_html.='<input type="hidden" name="currentPage" value="/'.basename(__FILE__).'?'.$_SERVER['QUERY_STRING'].'">';
     $aggiungi_recensione_html.='<input type="submit" value="Aggiungi" class="button" name="aggiungi">';
     $aggiungi_recensione_html.='</fieldset>';
     $aggiungi_recensione_html.='</form>';
@@ -148,7 +148,7 @@ if ($connessioneOK) {
                     $opera_html.='<form id="acq-nft" action="php/post/opera/acquisto.php" method="post">';
                     $opera_html.='<input type="hidden" name="id" value="'.$id.'">';
                     $opera_html.='<input type="hidden" name="prezzo" value="'.$prezzo.'">';
-                    $opera_html.='<input type="hidden" name="currentPage" value="'.$_SERVER["PHP_SELF"].'?'.$_SERVER['QUERY_STRING'].'">';
+                    $opera_html.='<input type="hidden" name="currentPage" value="/'.basename(__FILE__).'?'.$_SERVER['QUERY_STRING'].'">';
                     $opera_html.='<input type="submit" value="Acquista" class="button" name="acquista">';
                     $opera_html.='</form>';
                 }else{
