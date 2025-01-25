@@ -160,7 +160,9 @@ if(isset($_SESSION['username'])){
         $database->closeConnection();
         $stringaOpere = mostraOpere($opere, $pageNumber, $pageSize);
         $opereDaMostrare = count($opere) - $pageNumber*$pageSize - $pageSize;
-        $totalPages = ceil(count($opere) / $pageSize);
+        $totalPages = floor(count($opere) / $pageSize);
+        if (count($opere) % $pageSize != 0) $totalPages++;
+        if (count($opere) == 0) $totalPages = 1;
     } else {
         header('Location: ./500.php');
         exit;

@@ -141,7 +141,9 @@ if(isset($_SESSION['username'])){
         $database->closeConnection();
         $recensioni_html = printRecensioni($recensioni, $pageNumber, $pageSize);
         $recensioniDaMostrare = count($recensioni) - $pageNumber*$pageSize - $pageSize;
-        $totalPages = ceil(count($recensioni) / $pageSize);        
+        $totalPages = floor(count($recensioni) / $pageSize);
+        if (count($recensioni) % $pageSize != 0) $totalPages++;
+        if (count($recensioni) == 0) $totalPages = 1;      
         
         if ($pageNumber > 0) {
             $prevPageNumber = $pageNumber - 1;
