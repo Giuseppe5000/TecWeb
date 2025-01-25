@@ -270,6 +270,37 @@ Il database \`e stato progettato utilizzando MariaDB, con una struttura relazion
 
 Per garantire una maggiore sicurezza, sono stati implementati controlli lato server degli input per prevenire vulnerabilit\`a come SQL injection e per assicurarsi che l'utente inserisca dei dati validi. Inoltre, sono state utilizzate sessioni PHP per gestire lo stato degli utenti autenticati e proteggere le operazioni sensibili.
 
+\section{Validazione e test}
+Per garantire un sito accessibile, conforme agli standard e user-friendly, sono stati effettuati diversi test, utilizzando strumenti dedicati e analizzando in dettaglio ogni pagina. Di seguito riportiamo i principali risultati.
+
+\subsection{Test con W3b1fy}
+Abbiamo utilizzato l’estensione W3b1y per Chrome per validare l’accessibilità delle immagini. Sono emerse alcune criticità: nella pagina Home e nella sezione NFT mancavano gli attributi alt per le immagini delle card NFT, mentre nella pagina "Chi siamo" mancavano gli attributi alt per le immagini profilo dei componenti del gruppo. Questi dettagli sono stati corretti per migliorare l'accessibilità del sito e garantire una migliore esperienza per gli utenti con disabilità visive.
+
+\subsection{Analisi semantica e strutturale con Total Validator}
+L’uso di Total Validator ha permesso di identificare diverse problematiche di semantica e struttura. Tra queste, la mancanza della caption nella tabella delle categorie nella pagina "Home", che è stata prontamente aggiunta per migliorare la comprensione del contenuto tabellare da parte degli screen reader.
+Nelle card e nella navbar, il validatore segnala la presenza di link adiacenti con contenuti simili: nelle card i link differiscono solo per la query string, mentre nella navbar il logo e il link "Home" puntano alla stessa destinazione. Entrambe le scelte sono intenzionali e non rappresentano problemi effettivi, in quanto non influiscono né sull’usabilità né sull’esperienza utente.
+
+\subsection{Validazione CSS con il validatore W3C}
+Il validatore CSS del W3C ha rilevato alcuni warning durante la verifica dei file mini.css, print.css e style.css:
+\begin{itemize}
+\item Un warning segnalava che le variabili CSS dinamiche (--var-name) non possono essere verificate staticamente. Questo è un limite del validatore stesso e non rappresenta un problema concreto, pertanto non richiede interventi.
+\item La proprietà -webkit-print-color-adjust, presente nel file print.css, è stata indicata come una vendor extension. Sebbene usare solo print-color-adjust non porta warning, fecendo dei test si è notato che la rimozione di -webkit-print-color-adjust impedisce la corretta visualizzazione del logo durante la stampa su browser Chromium-based, come Google Chrome (su Firefox, il logo è correttamente visibile anche senza questa proprietà). Di conseguenza, si è scelto di mantenere anche -webkit-print-color-adjust per garantire la corretta visualizzazione del logo in stampa su un’ampia gamma di browser.
+\item Il file style.css ha generato un warning relativo agli stylesheet importati, che non vengono verificati dal validatore in modalità diretta. Anche in questo caso, si tratta di una limitazione tecnica del tool che non richiede modifiche al codice.
+\end{itemize}
+
+\subsection{Validazione HTML con il validatore W3C}
+Il validatore HTML del W3C ha permesso di correggere diversi errori di sintassi e conformità agli standard. Alcuni problemi riguardavano la mancanza di spazi tra attributi (es. id="home-bg"lang="en") e l’uso di chiusure non necessarie per tag vuoti come <input>. Questi errori sono stati corretti per evitare incompatibilità con i browser moderni.
+Un warning frequente riguardava la presenza di più titoli <h1> nelle pagine. Nonostante il warning, questa scelta è stata mantenuta in quanto funzionale alla struttura del sito. Il primo <h1>, presente nella navbar (e sostituito graficamente dal logo), serve a fornire un’identità uniforme a tutte le pagine, mentre il secondo <h1> è riservato al contenuto principale della pagina. Questa struttura migliora la chiarezza visiva e la navigazione, senza compromettere l’accessibilità.
+
+\subsection{Verifica dell’accessibilità con WAVE}
+Con il tool WAVE, sono emerse ulteriori criticità legate al contrasto dei colori e all’uso degli attributi ARIA. In particolare, nelle pagine foglia, il link visitato alla pagina padre nella breadcrumb (es Profilo nella breadcrumb della pagina Miei NFT: Profilo>>Miei NFT) presentava un contrasto insufficiente con il colore dello sfondo. Il problema è stato risolto cambiando il colore di sfondo della breadcrumb con lo stesso di tutto il resto del sito (\#000408), ma aggiungendo un bordo per separarlo visivamente. Inoltre, il test aveva segnalato che l’attributo aria-describedby della tabella in "Home" era errato ed è stato corretto.
+
+\subsection{Analisi della leggibilità con indice Gulpease}
+Per garantire testi comprensibili a un pubblico ampio, abbiamo calcolato l’indice Gulpease dei contenuti del sito, con l’obiettivo di ottenere un punteggio minimo di 60, corrispondente alla licenza media. Alcuni testi, come la descrizione nella pagina "Home" e le risposte alle domande frequenti nella pagina "Chi siamo", inizialmente avevano punteggi inferiori. Questi contenuti sono stati riscritti utilizzando frasi più brevi e un lessico semplificato, migliorandone la leggibilità senza comprometterne il significato. Ora tutti i testi del sito rispettano o superano il punteggio minimo richiesto.
+
+\subsection{Verifica del contrasto con WCAG Color Contrast Checker}
+Per concludere, abbiamo rifatto i test di contrasto cromatico utilizzando l’estensione WCAG Color Contrast Checker. Il sito soddisfa pienamente i requisiti di contrasto per i testi piccoli (rapporto minimo 4.5:1) e grandi (3:1). L’unico falso positivo riguardava le icone di eliminazione e modifica dei commenti, che l'estensione indica con un contrasto di 1.02 mentre il controllo a mano indica 17.07.
+
 \section{Organizzazione del lavoro}
 \subsection{Gusella Manuel}
 \subsection{Marcon Giulia}
