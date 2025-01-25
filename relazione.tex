@@ -244,7 +244,7 @@ Il sito è navigabile senza obbligo di registrazione. Gli utenti non autenticati
 
 \subsection{Scelta della palette colori}
 La definizione della palette colori è stata un processo evolutivo, durante il quale abbiamo cambiato la palette diverse volte per garantire il contrasto minimo (4.5:1) e tenendo in considerazione che il colore di bandiera era il rosa. Inizialmente, non riuscivamo a trovare una combinazione di colori per i link che rispettasse il contrasto tra link visitati, non visitati e lo sfondo. Per risolvere il problema, abbiamo apportato leggere modifiche al colore del testo normale (da \#FFFFE8 a \#FFFEF4) e allo sfondo (da \#191919 a \#000408), in modo da aumentare il contrasto tra questi e permettere l’introduzione di un terzo colore (\#C0469D).\\
-Abbiamo deciso di tenere il colore dei link non visitati identico a quello del testo normale, distinguendoli solo tramite la sottolineatura (in linea con le convenzioni esterne comunemente adottate a cui gli utenti sono abituati). Per verificare i contrasti, abbiamo utilizzato lo strumento \textit{Coolors Contrast Checker} (\url{https://coolors.co/contrast-checker/112a46-6f95bd}), ottenendo i valori richiesti.
+Abbiamo deciso di tenere il colore dei link non visitati identico a quello del testo normale, distinguendoli solo tramite la sottolineatura (in linea con le convenzioni esterne comunemente adottate a cui gli utenti sono abituati). Per verificare i contrasti, abbiamo utilizzato lo strumento \underline{\href{https://coolors.co/contrast-checker/112a46-6f95bd}{Coolors Contrast Checker}}, ottenendo i valori richiesti.
 
 \subsection{Accessibilità}
 Per garantire un'esperienza utente ottimale, sono state adottate convenzioni che favoriscono l'usabilità e l'accessibilità del sito:
@@ -269,6 +269,39 @@ Il back-end \`e stato sviluppato utilizzando PHP per gestire la logica server-si
 Il database \`e stato progettato utilizzando MariaDB, con una struttura relazionale che garantisce l'integrit\`a referenziale e la coerenza dei dati. Le query SQL vengono eseguite attraverso gli script PHP per recuperare, inserire e aggiornare i dati in base alle azioni dell'utente.
 
 Per garantire una maggiore sicurezza, sono stati implementati controlli lato server degli input per prevenire vulnerabilit\`a come SQL injection e per assicurarsi che l'utente inserisca dei dati validi. Inoltre, sono state utilizzate sessioni PHP per gestire lo stato degli utenti autenticati e proteggere le operazioni sensibili.
+
+\section{Validazione e test}
+Per garantire un sito accessibile, conforme agli standard e user-friendly, sono stati effettuati diversi test, utilizzando strumenti dedicati e analizzando in dettaglio ogni pagina. Di seguito riportiamo i principali risultati.
+
+\subsection{Test con W3b1fy}
+Abbiamo utilizzato l’estensione W3b1y per Chrome per validare l’accessibilità delle immagini. Sono emerse alcune criticità: nella pagina Home e nella sezione NFT mancavano gli attributi alt per le immagini delle card NFT, mentre nella pagina "Chi siamo" mancavano gli attributi alt per le immagini profilo dei componenti del gruppo. Questi dettagli sono stati corretti per migliorare l'accessibilità del sito e garantire una migliore esperienza per gli utenti con disabilità visive.
+
+\subsection{Analisi semantica e strutturale con Total Validator}
+L’uso di Total Validator ha permesso di identificare diverse problematiche di semantica e struttura. Una di queste era relativa alla tabella delle categorie nella pagina "Home". Sebbene la tabella non avesse una caption, il titolo della sezione (un elemento h2) svolge il ruolo di contesto per il contenuto della tabella. Per garantire una maggiore accessibilità e migliorare la comprensione da parte degli screen reader, è stato aggiunto un attributo aria-label alla tabella, che riprende il titolo presente nell'h2.
+Nella navbar, il validatore segnala un warning riguardo ai link del logo e del link "Home", che puntano entrambi alla stessa destinazione. Questa scelta è intenzionale e non rappresenta un problema effettivo, in quanto non influisce né sull’usabilità né sull’esperienza utente.
+Per quanto riguarda le card, il validatore ha segnalato un warning sui link che, pur essendo diversi, hanno lo stesso nome visualizzato. Questo accade in alcuni casi a causa dell’utilizzo della funzione trim, che, riducendo il testo mostrato nel nome degli NFT, quando degli NFT hanno l'inizio del nome simile, risultano uguali. Anche in questo caso, si tratta di un comportamento previsto e non critico, poiché gli NFT hanno anche l'immagine (e l'alt) che li distingue fra loro.
+
+\subsection{Validazione CSS con il validatore W3C}
+Il validatore CSS del W3C ha rilevato alcuni warning durante la verifica dei file mini.css, print.css e style.css:
+\begin{itemize}
+\item Un warning segnalava che le variabili CSS dinamiche (--var-name) non possono essere verificate staticamente. Questo è un limite del validatore stesso e non rappresenta un problema concreto, pertanto non richiede interventi.
+\item La proprietà -webkit-print-color-adjust, presente nel file print.css, è stata indicata come una vendor extension. Sebbene usare solo print-color-adjust non porta warning, fecendo dei test si è notato che la rimozione di -webkit-print-color-adjust impedisce la corretta visualizzazione del logo durante la stampa su browser Chromium-based, come Google Chrome (su Firefox, il logo è correttamente visibile anche senza questa proprietà). Di conseguenza, si è scelto di mantenere anche -webkit-print-color-adjust per garantire la corretta visualizzazione del logo in stampa su un’ampia gamma di browser.
+\item Il file style.css ha generato un warning relativo agli stylesheet importati, che non vengono verificati dal validatore in modalità diretta. Anche in questo caso, si tratta di una limitazione tecnica del tool che non richiede modifiche al codice.
+\end{itemize}
+
+\subsection{Validazione HTML con il validatore W3C}
+Il validatore HTML del W3C ha permesso di correggere diversi errori di sintassi e conformità agli standard. Alcuni problemi riguardavano la mancanza di spazi tra attributi (es. id="home-bg"lang="en") e l’uso di chiusure non necessarie per tag vuoti come <input>. Questi errori sono stati corretti per evitare incompatibilità con i browser moderni.
+Un warning frequente riguardava la presenza di più titoli <h1> nelle pagine. Nonostante il warning, questa scelta è stata mantenuta in quanto funzionale alla struttura del sito. Il primo <h1>, presente nella navbar (e sostituito graficamente dal logo), serve a fornire un’identità uniforme a tutte le pagine, mentre il secondo <h1> è riservato al contenuto principale della pagina. Questa struttura migliora la chiarezza visiva e la navigazione, senza compromettere l’accessibilità.
+
+\subsection{Verifica dell’accessibilità con WAVE}
+Con il tool WAVE, sono emerse ulteriori criticità legate al contrasto dei colori e all’uso degli attributi ARIA. In particolare, nelle pagine foglia, il link visitato alla pagina padre nella breadcrumb (es Profilo nella breadcrumb della pagina Miei NFT: Profilo>>Miei NFT) presentava un contrasto insufficiente con il colore dello sfondo. Il problema è stato risolto cambiando il colore di sfondo della breadcrumb con lo sfondo di contenuto del sito (\#000408), ma aggiungendo un bordo per separarlo visivamente. Inoltre, il test aveva segnalato che l’attributo aria-describedby della tabella in "Home" era errato ed è stato corretto.
+
+\subsection{Analisi della leggibilità con indice Gulpease}
+Per garantire testi comprensibili a un pubblico ampio, abbiamo calcolato l’indice \underline{\href{https://farfalla-project.org/readability_static/}{Gulpease}} dei contenuti del sito, con l’obiettivo di ottenere un punteggio minimo di 60, corrispondente alla licenza media. Alcuni testi, come la descrizione nella pagina "Home" e le risposte alle domande frequenti nella pagina "Chi siamo", inizialmente avevano punteggi inferiori. Questi contenuti sono stati riscritti utilizzando frasi più brevi e un lessico semplificato, migliorandone la leggibilità senza comprometterne il significato. Ora tutti i testi del sito rispettano o superano il punteggio minimo richiesto.
+
+\subsection{Verifica del contrasto con WCAG Color Contrast Checker}
+Per concludere, dopo aver corretto i colori utilizzati nella breadcrumb, abbiamo rifatto i test di contrasto cromatico utilizzando l’estensione WCAG Color Contrast Checker. Il sito soddisfa pienamente i requisiti di contrasto previsti dalle WCAG, garantendo un rapporto minimo di 4.5:1 per tutti i colori, sia dei testi piccoli ma anche per i testi grandi.
+L’unico falso positivo segnalato riguarda le icone di eliminazione e modifica dei commenti, per le quali l’estensione indicava un contrasto di 1.02. Tuttavia, una verifica manuale ha confermato che il contrasto reale è di 17.07, ampiamente conforme agli standard.
 
 \section{Organizzazione del lavoro}
 \subsection{Gusella Manuel}
