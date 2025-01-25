@@ -46,7 +46,8 @@ function getOpereFiltered($database, $name, $prezzoMin, $prezzoMax, $ordina, $ca
                 AND prezzo >= ?
                 AND prezzo <= ? ";
         $placeholders = implode(',', array_fill(0, count($categorie), '?'));
-        $query .= "AND categoria IN ($placeholders)" . getOrderBy($ordina);
+        $query .= "AND categoria IN ($placeholders) ";
+        $query .= "GROUP BY opera.id ". getOrderBy($ordina);
 
         $value = array($name, $prezzoMin, $prezzoMax, ...$categorie);
         return $database->executeSelectPreparedStatement($query,'sii'. str_repeat('s', count($categorie)),$value);
