@@ -158,6 +158,7 @@ if (!$connessioneOK) {
     $opere = getOrFilter($database);
     $totalPages = floor(count($opere) / $pageSize);
     if (count($opere) % $pageSize != 0) $totalPages++;
+    if (count($opere) == 0) $totalPages = 1;
     $database->closeConnection();
     $stringaOpere = mostraOpere($opere, $pageNumber, $pageSize);
     $opereDaMostrare = count($opere) - $pageNumber*$pageSize - $pageSize;

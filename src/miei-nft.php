@@ -162,6 +162,7 @@ if(isset($_SESSION['username'])){
         $opereDaMostrare = count($opere) - $pageNumber*$pageSize - $pageSize;
         $totalPages = floor(count($opere) / $pageSize);
         if (count($opere) % $pageSize != 0) $totalPages++;
+        if (count($opere) == 0) $totalPages = 1;
     } else {
         header('Location: ./500.php');
         exit;
