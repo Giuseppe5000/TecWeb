@@ -168,7 +168,8 @@ if (!$connessioneOK) {
     $database->closeConnection();
     $recensioni_html = getRecensioni($recensioni, $pageNumber, $pageSize);
     $recensioniDaMostrare = count($recensioni) - $pageNumber*$pageSize - $pageSize;
-    $totalPages = count($recensioni) == $pageSize ? count($recensioni) / $pageSize : floor(count($recensioni) / $pageSize)+1;
+    $totalPages = floor(count($recensioni) / $pageSize);
+    if (count($recensioni) % $pageSize > 0) $totalPages++;
 }else{
     header('Location: ./500.php');
     exit;
