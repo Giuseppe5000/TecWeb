@@ -31,7 +31,7 @@ class CardOpera {
         $homeTopCard = str_replace('{{CARD_ID}}', "id={$idTopPosition}", $homeTopCard);
         $homeTopCard = str_replace('{{CARD_HEADER}}', $this->getCardHeader(), $homeTopCard);
 
-        $spanPosition = "<span>{$topPosition}°</span>";
+        $spanPosition = "<span>{$topPosition}º</span>";
         return str_replace('{{HEADER}}', $spanPosition . $this->getCardNameHeading("h3"), $homeTopCard);
     }
 
