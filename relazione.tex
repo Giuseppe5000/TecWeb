@@ -292,8 +292,8 @@ Per garantire una maggiore sicurezza, sono stati implementati controlli lato ser
 \section{Validazione e test}
 Per garantire un sito accessibile, conforme agli standard e user-friendly, sono stati effettuati diversi test, utilizzando strumenti dedicati e analizzando in dettaglio ogni pagina. Di seguito riportiamo i principali risultati.
 
-\subsection{Test con W3b1fy}
-Abbiamo utilizzato l’estensione W3b1y per Chrome per validare l’accessibilità delle immagini. Sono emerse alcune criticità: nella pagina Home e nella sezione NFT mancavano gli attributi alt per le immagini delle card NFT, mentre nella pagina "Chi siamo" mancavano gli attributi alt per le immagini profilo dei componenti del gruppo. Questi dettagli sono stati corretti per migliorare l'accessibilità del sito e garantire una migliore esperienza per gli utenti con disabilità visive.
+\subsection{Test con W3ba11y}
+Abbiamo utilizzato l’estensione W3ba11y per Chrome per validare l’accessibilità delle immagini. Sono emerse alcune criticità: nella pagina Home e nella sezione NFT mancavano gli attributi alt per le immagini delle card NFT, mentre nella pagina "Chi siamo" mancavano gli attributi alt per le immagini profilo dei componenti del gruppo. Questi dettagli sono stati corretti per migliorare l'accessibilità del sito e garantire una migliore esperienza per gli utenti con disabilità visive.
 
 \subsection{Analisi semantica e strutturale con Total Validator}
 L’uso di Total Validator ha permesso di identificare diverse problematiche di semantica e struttura. Una di queste era relativa alla tabella delle categorie nella pagina "Home". Sebbene la tabella non avesse una caption, il titolo della sezione (un elemento h2) svolge il ruolo di contesto per il contenuto della tabella. Per garantire una maggiore accessibilità e migliorare la comprensione da parte degli screen reader, è stato aggiunto un attributo aria-label alla tabella, che riprende il titolo presente nell'h2.
