@@ -3,7 +3,7 @@
 :root {
     --bgcolor-help: #ffbdcf;
     --txtcolor: #FFFEF4;
-    --contenttxtcolor: #000408;
+    --helptxtcolor: #000408;
     --contentbgcolor: #000408;
     --linkcolor: #FFFEF4;
     --visitedcolor: #C0469D;
@@ -134,7 +134,7 @@ AIUTI ALLA NAVIGAZIONE
 }
 
 .listHelp a{
-    color: var(--contenttxtcolor);
+    color: var(--helptxtcolor);
 }
 
 .navigationHelp:focus{
