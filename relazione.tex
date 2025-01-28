@@ -277,8 +277,11 @@ Per garantire un'esperienza utente ottimale, sono state adottate convenzioni che
 \item Il sito è navigabile tramite tastiera, garantendo l'accesso a utenti con disabilità motorie;
 \item Le immagini di contenuto sono accompagnate da testi alternativi descrittivi (quando necessari), per permettere la comprensione dei contenuti da parte di utenti non vedenti o con disabilità visive;
 \item Sono stati utilizzati font leggibili, con contrasto e dimensioni adeguate, per garantire la fruibilità al maggior numero di utenti possibile;
-\item I contenuti interattivi sono facilmente identificabili e accessibili, con un chiaro feedback visivo per l’interazione.
+\item I contenuti interattivi sono facilmente identificabili e accessibili, con un chiaro feedback visivo per l’interazione;
+\item In tutte le pagine del sito sono stati implementati degli aiuti alla navigazione, oltre alla breadcrumb, mediante skip buttons.
 \end{itemize}
+\subsubsection{Skip buttons}
+Gli skip buttons sono stati implementati tramite link che diventano visibili quando ottengono il focus tramite tab. L'utilizzo degli skip buttons è stato scelto per agevolare gli utenti che sono abituati a navigare tramite tab e per chi utilizza screenreaders. Ad ogni skip button è stato assegnato un'aria-label univoca per aiutare a distinguerli e non creare confunsione all'utente. 
 
 \section{Implementazione}
 \subsection{Front-End}
@@ -301,8 +304,9 @@ Abbiamo utilizzato l’estensione w3ba11y per Chrome per validare l’accessibil
 
 \subsection{Analisi semantica e strutturale con Total Validator}
 L’uso di Total Validator ha permesso di identificare diverse problematiche di semantica e struttura. Una di queste era relativa alla tabella delle categorie nella pagina "Home". Sebbene la tabella non avesse una caption, il titolo della sezione (un elemento h2) svolge il ruolo di contesto per il contenuto della tabella. Per garantire una maggiore accessibilità e migliorare la comprensione da parte degli screen reader, è stato aggiunto un attributo aria-label alla tabella, che riprende il titolo presente nell'h2.
-Nella navbar, il validatore segnala un warning riguardo ai link del logo e del link "Home", che puntano entrambi alla stessa destinazione. Questa scelta è intenzionale e non rappresenta un problema effettivo, in quanto non influisce né sull’usabilità né sull’esperienza utente.
-Per quanto riguarda le card, il validatore ha segnalato un warning sui link che, pur essendo diversi, hanno lo stesso nome visualizzato. Questo accade in alcuni casi a causa dell’utilizzo della funzione trim, che, riducendo il testo mostrato nel nome degli NFT, quando degli NFT hanno l'inizio del nome simile, risultano uguali. Anche in questo caso, si tratta di un comportamento previsto e non critico, poiché gli NFT hanno anche l'immagine (e l'alt) che li distingue fra loro.
+Nella navbar, il validatore segnala un warning riguardo ai link del logo e del link "Home", che puntano entrambi alla stessa destinazione. Questa scelta è intenzionale e non rappresenta un problema effettivo, in quanto non influisce né sull’usabilità né sull’esperienza utente.\\
+Per quanto riguarda le card, il validatore ha segnalato un warning sui link che, pur essendo diversi, hanno lo stesso nome visualizzato. Questo accade in alcuni casi a causa dell’utilizzo della funzione trim, che, riducendo il testo mostrato nel nome degli NFT, quando degli NFT hanno l'inizio del nome simile, risultano uguali. Anche in questo caso, si tratta di un comportamento previsto e non critico, poiché gli NFT hanno anche l'immagine (e l'alt) che li distingue fra loro.\\
+Il validatore ha segnalato dei warning per gli attributi aria-label che erano identici per gli skip-buttons presenti nelle pagine. Si è optato per aggiungere successivamente alla label principale ``aiuti alla navigazione'' a quale sezione si riferisce lo skip button, per esempio ``aiuti alla navigazione: contenuto'' per lo skip button principale che dalla navbar porta al contenuto della pagina.
 
 \subsection{Validazione CSS con il validatore W3C}
 Il validatore CSS del W3C ha rilevato alcuni warning durante la verifica dei file mini.css, print.css e style.css:
