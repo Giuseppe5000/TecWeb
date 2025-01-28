@@ -15,30 +15,6 @@
     --logocolor: #Fc8eac;
 }
 
-/*  colori precedenti
-    --bgcolor: rgba(0, 0, 0, 0.650);
-    --bgcolor-help: pink;
-    --txtcolor: #FFF;
-    --breadcolor: gray;
-    --contenttxtcolor: #000;
-    --contentbgcolor: #191919;
-    --linkcolor: #FFF;
-    --visitedcolor: pink;
-    --footerbgcolor: pink;
-    --footercolor: black;
-
-    --bgcolor: #785D9B;
-    --bgcolor-help: pink;
-    --txtcolor: #FFFFE8;
-    --breadcolor: #BB87FF;
-    --contenttxtcolor: #000;
-    --contentbgcolor: #0D1321;
-    --linkcolor: #FFD8D8;
-    --visitedcolor: #A454FF;
-    --footerbgcolor: #Fc8eac;
-    --footercolor: #0D1321;
-*/
-
 * {
     font-family: "Montserrat", serif;
     padding: 0em;
