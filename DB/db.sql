@@ -51,7 +51,7 @@ CREATE TABLE appartenenza (
 CREATE TABLE recensione (
        timestamp TIMESTAMP,
        utente VARCHAR(30),
-       commento VARCHAR(200),
+       commento VARCHAR(200) NOT NULL,
        opera INT UNSIGNED NOT NULL,
        voto TINYINT UNSIGNED NOT NULL CHECK (voto>0 AND voto<=5),
 
