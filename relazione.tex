@@ -74,7 +74,7 @@ La maggioranza degli utenti non avrà un'idea precisa di ciò che vuole e per qu
 Per impedire l'esclusione di alcune categorie si è pensato di fornire strumenti per aiutare nella ricerca degli NFT.\\
 Utilizzando la metafora della pesca:
 \begin{itemize}
-    \item \textbf{Tiro perfetto:} L'utente sà già il nome dell'opera che vuole e potrà cercarla facilmente tramite una barra di ricerca;
+    \item \textbf{Tiro perfetto:} L'utente sà già il nome dell'opera che vuole e potrà cercarla facilmente tramite una barra di ricerca presente nella pagina degli NFT;
     \item \textbf{Trappola per aragoste:} Grazie alla suddivisione in categorie e alla possibilità di poter applicare ulteriori filtri sulle opere, l'utente può farsi un'idea degli NFT presenti nella piattaforma;
     \item \textbf{Pesca con la rete:} La struttura del sito è semplice, quindi permette agli utenti di visionare facilmente tutte le opere in modo esaustivo;
     \item \textbf{Boa di segnalazione:} L'utente può distinguere le opere già visionate in passato da quelle non visionate, grazie al fatto che i nomi delle opere sono dei link che cambiano colore quando visitati.
@@ -114,9 +114,8 @@ Esistono 3 tipologie di utenti:
     \item \textbf{opera} (\underline{id}, path, nome, descrizione, prezzo, \textit{possessore})
     \item \textbf{acquisto} (\underline{\textit{utente}, \textit{opera}}, prezzo, data)
     \item \textbf{appartenenza} (\underline{\textit{categoria}, \textit{opera}})
-    \item \textbf{recensione} (\underline{timestamp, \textit{utente}}, commento*, \textit{opera}, voto)
+    \item \textbf{recensione} (\underline{timestamp, \textit{utente}}, commento, \textit{opera}, voto)
 \end{itemize}
-Il simbolo * indica che l'attributo può essere nullo.
 
 \subsection{Vincoli di integrità referenziale }
 \begin{itemize}
@@ -178,7 +177,7 @@ Sono state implementate due versioni della navbar:
 Ogni pagina del sito include una breadcrumb che informa l'utente sulla posizione corrente all'interno della struttura del sito. Questo elemento facilita la navigazione, riducendo il rischio di disorientamento.\\
 La breadcrumb segue fedelmente l’organizzazione delle pagine, mostrando i passaggi che portano alla pagina attuale. Per evitare confusione, la voce corrispondente alla pagina corrente è disattivata, eliminando il rischio di link circolari.
 
-\subsection{Contenuto} Nella progettazione delle pagine del sito ci siamo concentrati su tre domande chiave per garantire un’esperienza utente ottimale: \begin{itemize} \item \textbf{Dove sono?} Ogni pagina presenta un chiaro titolo e, dove necessario, un breadcrumb che aiuta l’utente a comprendere la propria posizione all’interno della struttura del sito. \item \textbf{Di cosa si tratta?} Gli elementi principali di ogni pagina sono immediatamente visibili e ben distinti, con descrizioni chiare e organizzazione logica dei contenuti. \item \textbf{Dove posso andare?} I collegamenti principali sono sempre presenti nella navbar, mentre le call-to-action nelle singole pagine guidano l’utente verso le azioni principali come la ricerca, l’acquisto, o la registrazione. \end{itemize}
+\subsection{Contenuto} Nella progettazione delle pagine del sito ci siamo concentrati su tre domande chiave per garantire un’esperienza utente ottimale: \begin{itemize} \item \textbf{Dove sono?} Ogni pagina presenta un chiaro titolo e, dove necessario, una breadcrumb che aiuta l’utente a comprendere la propria posizione all’interno della struttura del sito. \item \textbf{Di cosa si tratta?} Gli elementi principali di ogni pagina sono immediatamente visibili e ben distinti, con descrizioni chiare e organizzazione logica dei contenuti. \item \textbf{Dove posso andare?} I collegamenti principali sono sempre presenti nella navbar, mentre le call-to-action nelle singole pagine guidano l’utente verso le azioni principali come la ricerca, l’acquisto, o la registrazione. \end{itemize}
 
 \subsubsection{Descrizione delle pagine} Di seguito, una panoramica delle pagine del sito:
 
@@ -287,7 +286,7 @@ Gli skip buttons sono stati implementati tramite link che diventano visibili qua
 \subsection{Front-End}
 Il front-end del progetto \textit{Doflamingo} \`e stato sviluppato con l'obiettivo di fornire un'interfaccia utente intuitiva, accessibile e responsive. Per la struttura delle pagine sono stati utilizzati gli standard HTML5, mentre la presentazione grafica \`e stata curata mediante fogli di stile CSS esterni, garantendo la separazione tra contenuto e presentazione.
 
-Le pagine includono funzionalit\`a interattive implementate attraverso JavaScript. Ad esempio, la gestione dinamica dei filtri nella ricerca degli NFT e un carosello per visualizzare le ultime opere caricate. Il design \`e stato ottimizzato per la compatibilit\`a con i principali browser moderni, offrendo un'esperienza fluida anche su dispositivi mobili.
+Le pagine includono funzionalit\`a interattive implementate attraverso JavaScript. Ad esempio, la gestione dinamica dei filtri nella ricerca degli NFT e i controlli lato client degli input inseribili tramite form. Il design \`e stato ottimizzato per la compatibilit\`a con i principali browser moderni, offrendo un'esperienza fluida anche su dispositivi mobili.
 
 \subsection{Back-End}
 Il back-end \`e stato sviluppato utilizzando PHP per gestire la logica server-side e interagire con il database. Gli script PHP permettono di effettuare operazioni come l'autenticazione degli utenti, la gestione delle transazioni di acquisto delle opere, e la visualizzazione delle informazioni relative agli NFT e alle recensioni.
@@ -317,11 +316,11 @@ Il validatore CSS del W3C ha rilevato alcuni warning durante la verifica dei fil
 \end{itemize}
 
 \subsection{Validazione HTML con il validatore W3C}
-Il validatore HTML del W3C ha permesso di correggere diversi errori di sintassi e conformità agli standard. Alcuni problemi riguardavano la mancanza di spazi tra attributi (es. id="home-bg"lang="en") e l’uso di chiusure non necessarie per tag vuoti come <input>. Questi errori sono stati corretti per evitare incompatibilità con i browser moderni.
-Un warning frequente riguardava la presenza di più titoli <h1> nelle pagine. Nonostante il warning, questa scelta è stata mantenuta in quanto funzionale alla struttura del sito. Il primo <h1>, presente nella navbar (e sostituito graficamente dal logo), serve a fornire un’identità uniforme a tutte le pagine, mentre il secondo <h1> è riservato al contenuto principale della pagina. Questa struttura migliora la chiarezza visiva e la navigazione, senza compromettere l’accessibilità.
+Il validatore HTML del W3C ha permesso di correggere diversi errori di sintassi e conformità agli standard. Alcuni problemi riguardavano la mancanza di spazi tra attributi (es. id="home-bg"lang="en") e l’uso di chiusure non necessarie per tag vuoti come $<$input$>$. Questi errori sono stati corretti per evitare incompatibilità con i browser moderni.
+Un warning frequente riguardava la presenza di più titoli $<$h1$>$ nelle pagine. Nonostante il warning, questa scelta è stata mantenuta in quanto funzionale alla struttura del sito. Il primo $<$h1$>$, presente nella navbar (e sostituito graficamente dal logo), serve a fornire un’identità uniforme a tutte le pagine, mentre il secondo $<$h1$>$ è riservato al contenuto principale della pagina. Questa struttura migliora la chiarezza visiva e la navigazione, senza compromettere l’accessibilità.
 
 \subsection{Verifica dell’accessibilità con WAVE}
-Con il tool WAVE, sono emerse ulteriori criticità legate al contrasto dei colori e all’uso degli attributi ARIA. In particolare, nelle pagine foglia, il link visitato alla pagina padre nella breadcrumb (es Profilo nella breadcrumb della pagina Miei NFT: Profilo>>Miei NFT) presentava un contrasto insufficiente con il colore dello sfondo. Il problema è stato risolto cambiando il colore di sfondo della breadcrumb con lo sfondo di contenuto del sito (\#000408), ma aggiungendo un bordo per separarlo visivamente. Inoltre, il test aveva segnalato che l’attributo aria-describedby della tabella in "Home" era errato ed è stato corretto.
+Con il tool WAVE, sono emerse ulteriori criticità legate al contrasto dei colori e all’uso degli attributi ARIA. In particolare, nelle pagine foglia, il link visitato alla pagina padre nella breadcrumb (es Profilo nella breadcrumb della pagina Miei NFT: Profilo$>>$Miei NFT) presentava un contrasto insufficiente con il colore dello sfondo. Il problema è stato risolto cambiando il colore di sfondo della breadcrumb con lo sfondo di contenuto del sito (\#000408), ma aggiungendo un bordo per separarlo visivamente. Inoltre, il test aveva segnalato che l’attributo aria-describedby della tabella in "Home" era errato ed è stato corretto.
 
 \subsection{Analisi della leggibilità con indice Gulpease}
 Per garantire testi comprensibili a un pubblico ampio, abbiamo calcolato l’indice \underline{\href{https://farfalla-project.org/readability_static/}{Gulpease}} dei contenuti del sito, con l’obiettivo di ottenere un punteggio minimo di 60, corrispondente alla licenza media. Alcuni testi, come la descrizione nella pagina "Home" e le risposte alle domande frequenti nella pagina "Chi siamo", inizialmente avevano punteggi inferiori. Questi contenuti sono stati riscritti utilizzando frasi più brevi e un lessico semplificato, migliorandone la leggibilità senza comprometterne il significato. Ora tutti i testi del sito rispettano o superano il punteggio minimo richiesto.
