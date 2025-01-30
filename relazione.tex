@@ -60,7 +60,7 @@
 
 \section{Introduzione}
 \subsection{Abstract}
-"Doflamingo" è un marketplace digitale che contiene delle opere uniche sotto forma di NFT.
+Doflamingo è un marketplace digitale che contiene delle opere uniche sotto forma di NFT.
 Un Non-fungible token (NFT) rappresenta l'atto di proprietà e certificato di autenticità di un bene unico, in questo caso un'opera digitale. \\
 Tutti i visitatori hanno la possibilità di visionare le opere e creare il proprio account digitale.\\
 Gli utenti registrati possono comprare le opere, se non già possedute da qualcun'altro, attraverso una valuta digitale chiamata Ethereum (ETH). \\
@@ -69,12 +69,12 @@ Inoltre gli utenti registrati possono recensire le opere dando un voto da \textb
 
 \subsection{Analisi}
 \subsubsection{Analisi del Target}
-L'utenza principale sarà composta da persone appassionate di NFT o in generale opere d'arte digitali, interessata oltretutto al loro acquisto.
+L'utenza principale sarà composta da persone appassionate di NFT (o in generale opere d'arte digitali) e interessata oltretutto al loro acquisto.
 La maggioranza degli utenti non avrà un'idea precisa di ciò che vuole e per questo verrà aiutata nell'esplorazione.\\
-Per impedire l'esclusione di alcune categorie si è pensato di fornire strumenti per aiutare nella ricerca degli NFT.\\
+Per impedire l'esclusione di alcune categorie di utenti si è pensato di fornire strumenti per aiutare nella ricerca degli NFT.\\
 Utilizzando la metafora della pesca:
 \begin{itemize}
-    \item \textbf{Tiro perfetto:} L'utente sà già il nome dell'opera che vuole e potrà cercarla facilmente tramite una barra di ricerca presente nella pagina degli NFT;
+    \item \textbf{Tiro perfetto:} L'utente sà già il nome dell'opera che vuole e potrà cercarla facilmente tramite una barra di ricerca presente nella pagina NFT;
     \item \textbf{Trappola per aragoste:} Grazie alla suddivisione in categorie e alla possibilità di poter applicare ulteriori filtri sulle opere, l'utente può farsi un'idea degli NFT presenti nella piattaforma;
     \item \textbf{Pesca con la rete:} La struttura del sito è semplice, quindi permette agli utenti di visionare facilmente tutte le opere in modo esaustivo;
     \item \textbf{Boa di segnalazione:} L'utente può distinguere le opere già visionate in passato da quelle non visionate, grazie al fatto che i nomi delle opere sono dei link che cambiano colore quando visitati.
@@ -90,7 +90,7 @@ Esistono 3 tipologie di utenti:
         \item Ricerca delle opere;
         \item Visualizzare i dettagli di un'opera con le relative recensioni.
     \end{itemize}
-    \item Utente registrato, che può eseguire le seguenti azioni:
+    \item Utente registrato, che può eseguire le seguenti azioni aggiuntive:
     \begin{itemize}
         \item Comprare le opere;
         \item Recensire le opere;
@@ -98,14 +98,15 @@ Esistono 3 tipologie di utenti:
         \item Visualizzare le proprie recensioni;
         \item Modificare le proprie recensioni;
         \item Cancellare le proprie recensioni;
+        \item Ricaricare il proprio saldo.
     \end{itemize}
-    \item Amministratore, che può eseguire le seguenti azioni:
+    \item Amministratore, che può eseguire le seguenti azioni aggiuntive:
     \begin{itemize}
         \item Aggiungere opere.
     \end{itemize}
 \end{itemize}
 
-\section{Progettazione logica del database}
+\section{Progettazione del database}
 
 \subsection{Descrizione schema relazionale}
 \begin{itemize}
@@ -115,6 +116,11 @@ Esistono 3 tipologie di utenti:
     \item \textbf{acquisto} (\underline{\textit{utente}, \textit{opera}}, prezzo, data)
     \item \textbf{appartenenza} (\underline{\textit{categoria}, \textit{opera}})
     \item \textbf{recensione} (\underline{timestamp, \textit{utente}}, commento, \textit{opera}, voto)
+\end{itemize}
+\paragraph{Legenda:}
+\begin{itemize}
+    \item[-] Gli elementi \underline{sottolineati} sono chiavi primarie.
+    \item[-] Gli elementi in \textit{corsivo} sono chiavi esterne.
 \end{itemize}
 
 \subsection{Vincoli di integrità referenziale }
@@ -134,21 +140,21 @@ Esistono 3 tipologie di utenti:
 
 \section{Linguaggi}
 \subsection{HTML}
-Le pagine sono state create seguendo gli standard HTML5, dato che si presuppone che l'utente visiterà la pagina tramite browser più aggiornati.
+Le pagine sono state create seguendo lo standard HTML5, dato che si presuppone che l'utente visiterà la pagina tramite un browser abbastanza recente.
 \subsection{CSS}
-Per rispettare la separazione tra struttura e presentazione si è deciso di utilizzare fogli di stile esterni.
-\subsection{SQL}
-Il sito web utilizza un database relazionale per salvare le informazioni degli utenti, delle opere, delle recensioni, degli acquisti e delle categorie.
-\subsection{PHP} 
-PHP è utilizzato per gestire le richieste di acquisto, visualizzazione, inserimento delle recensioni dei vari NFT (interfacciandosi con il database) e per implementare l'autenticazione utente.
+Per rispettare la separazione tra struttura e presentazione si è deciso di utilizzare fogli di stile esterni. In questo modo andiamo a ottimizzare la velocità di caricamento del sito e il posizionamento nelle SERP.
 \subsection{JavaScript}
-JavaScript è stato utilizzato per gestire la visualizzazione dinamica dei filtri del form di ricerca delle pagine "NFT", "Mie recensioni", "Miei NFT".
-Inoltre è utilizzato per vari controlli lato client in tutte le pagine che lo necessitano.
+JavaScript è utilizzato per gestire la visualizzazione dinamica dei filtri del form di ricerca delle pagine "NFT", "Mie recensioni", "Miei NFT".
+Inoltre è utilizzato per la validazione dell'input nei form lato client in tutte le pagine che lo necessitano.
+\subsection{PHP} 
+PHP è utilizzato per gestire le richieste di acquisto, visualizzazione, inserimento delle recensioni dei vari NFT e per implementare l'autenticazione utente, interfacciandosi con il database.
+\subsection{SQL}
+Il sito web utilizza un database relazionale per salvare le informazioni degli utenti, delle opere, delle recensioni e degli acquisti.
 
 \section{Progettazione}
 Per la progettazione del nostro sito web, abbiamo adottato la strategia \textit{Mobile First}. Questo approccio ci ha permesso di concentrarci sulla modalità di accesso più comune per la maggioranza degli utenti, ossia quella da dispositivi mobili. Abbiamo dato priorità alla semplicità, garantendo che l’esperienza utente fosse fluida e accessibile, riducendo al minimo il numero di tap o click necessari per navigare tra le varie sezioni del sito.\\
 Per il design del sito, abbiamo optato per un layout fluido, che ci ha permesso di adattare dinamicamente il layout del sito per diversi dispositivi e risoluzioni. Sebbene sia stato utilizzato un unico punto di rottura per ottimizzare l’esperienza su dispositivi mobili, il design si basa principalmente su proporzioni flessibili e sull’adattamento dei contenuti, garantendo una visualizzazione ottimale su schermi di diverse dimensioni. \\
-La progettazione del sito da mobile è stata realizzata in Balsamiq ed è presente in un file apposito.
+La progettazione del sito da mobile è stata realizzata in Balsamiq ed è presente in un file apposito (\textit{design-balsamiq-mobile.pdf}).
 
 \subsection{Struttura generale}
 Il sito presenta una struttura semplice e lineare, senza una profondità gerarchica eccessiva. Le principali sezioni includono:
@@ -164,8 +170,8 @@ Il sito presenta una struttura semplice e lineare, senza una profondità gerarch
 
 \subsection{Header e Navbar}
 L'header del sito include sempre il logo, che contribuisce a definire l’identità visiva del sito.\\
-La barra di navigazione è stata progettata con particolare attenzione all'accessibilità e alla semplicità, soprattutto per dispositivi mobili. Abbiamo deciso di limitare il numero di voci presenti nella navbar per eliminare la necessità di un menù ad hamburger. Questa scelta, coerente con l'approccio \textit{Mobile First}, permette agli utenti di accedere rapidamente alle informazioni desiderate senza dover compiere ulteriori tap, migliorando l’esperienza d’uso.\\
-La pagina corrente viene distinta dagli elementi della navbar con un colore di background differente. Questo accorgimento aiuta a orientarsi nella navigazione senza sovraccaricare l'utente.\\
+La navbar è stata progettata con particolare attenzione all'accessibilità e alla semplicità, soprattutto per dispositivi mobili. Abbiamo deciso di limitare il numero di voci presenti nella navbar per eliminare la necessità di un menù ad hamburger da mobile. Questa scelta, coerente con l'approccio \textit{Mobile First}, permette agli utenti di accedere rapidamente alle informazioni desiderate senza dover compiere ulteriori tap, migliorando l’esperienza d’uso.\\
+Nella navbar la pagina corrente viene distinta dagli altri elementi con un colore di background differente. Questo accorgimento aiuta a orientarsi nella navigazione senza sovraccaricare l'utente.\\
 
 Sono state implementate due versioni della navbar:
 \begin{itemize}
@@ -177,14 +183,14 @@ Sono state implementate due versioni della navbar:
 Ogni pagina del sito include una breadcrumb che informa l'utente sulla posizione corrente all'interno della struttura del sito. Questo elemento facilita la navigazione, riducendo il rischio di disorientamento.\\
 La breadcrumb segue fedelmente l’organizzazione delle pagine, mostrando i passaggi che portano alla pagina attuale. Per evitare confusione, la voce corrispondente alla pagina corrente è disattivata, eliminando il rischio di link circolari.
 
-\subsection{Contenuto} Nella progettazione delle pagine del sito ci siamo concentrati su tre domande chiave per garantire un’esperienza utente ottimale: \begin{itemize} \item \textbf{Dove sono?} Ogni pagina presenta un chiaro titolo e, dove necessario, una breadcrumb che aiuta l’utente a comprendere la propria posizione all’interno della struttura del sito. \item \textbf{Di cosa si tratta?} Gli elementi principali di ogni pagina sono immediatamente visibili e ben distinti, con descrizioni chiare e organizzazione logica dei contenuti. \item \textbf{Dove posso andare?} I collegamenti principali sono sempre presenti nella navbar, mentre le call-to-action nelle singole pagine guidano l’utente verso le azioni principali come la ricerca, l’acquisto, o la registrazione. \end{itemize}
+\subsection{Contenuto} Nella progettazione delle pagine del sito ci siamo concentrati su tre domande chiave per garantire un’esperienza utente ottimale: \begin{itemize} \item \textbf{Dove sono?} Ogni pagina presenta un chiaro titolo e una breadcrumb che aiuta l’utente a comprendere la propria posizione all’interno della struttura del sito. \item \textbf{Di cosa si tratta?} Gli elementi principali di ogni pagina sono immediatamente visibili e ben distinti, con descrizioni chiare e organizzazione logica dei contenuti. \item \textbf{Dove posso andare?} I collegamenti principali sono sempre presenti nella navbar, mentre le call-to-action nelle singole pagine guidano l’utente verso le azioni principali come la ricerca, l’acquisto o la registrazione. \end{itemize}
 
 \subsubsection{Descrizione delle pagine} Di seguito, una panoramica delle pagine del sito:
 
 \paragraph{Home} La pagina Home accoglie l’utente con una breve introduzione al sito. I contenuti principali sono:
 \begin{itemize}
     \item Una sezione che mostra i 4 NFT più recenti caricati sulla piattaforma, con un link che porta alla pagina NFT in cui si possono visionare tutti;
-    \item Una sezione con i 3 NFT più popolari;
+    \item Una sezione con i 3 NFT più apprezzate;
     \item Una tabella che elenca le categorie di NFT, ordinate per volume di vendite.
 \end{itemize}
 Questa struttura permette di offrire una visione sintetica e completa delle principali attività del sito.
@@ -200,7 +206,7 @@ Questa struttura permette di offrire una visione sintetica e completa delle prin
     \end{itemize}
 \end{itemize}
 
-\paragraph{Chi Siamo} La pagina "Chi Siamo" presenta una breve descrizione del gruppo e un elenco di domande frequenti (FAQ) che chiariscono dubbi comuni degli utenti.
+\paragraph{Chi Siamo} La pagina Chi Siamo presenta una breve descrizione del gruppo e un elenco di domande frequenti (FAQ) che chiariscono dubbi comuni degli utenti.
 
 \paragraph{Pagina di un singolo NFT} Questa pagina fornisce tutti i dettagli relativi a un singolo NFT. Gli elementi principali includono:
 \begin{itemize}
@@ -209,7 +215,7 @@ Questa struttura permette di offrire una visione sintetica e completa delle prin
     \item Il pulsante per acquistarlo, visibile solo se l'opera non è già stata acquistata e solo agli utenti loggati;
     \item Una descrizione dettagliata dell’opera;
     \item Una form per inserire una recensione, accessibile solo agli utenti loggati;
-    \item L’elenco delle recensioni lasciate dagli altri utenti.
+    \item L’elenco delle recensioni lasciate dagli altri utenti, organizzato per pagine numerate.
 \end{itemize}
 
 \paragraph{Profilo} La pagina del profilo raccoglie le informazioni personali dell’utente. Include:
@@ -219,7 +225,7 @@ Questa struttura permette di offrire una visione sintetica e completa delle prin
     \item Una form per caricare ulteriore saldo;
     \item L’elenco degli NFT acquistati dall’utente;
     \item Le recensioni scritte dall’utente;
-    \item Per gli amministratori, un form per aggiungere nuove NFT al sito.
+    \item Per gli amministratori, un form per aggiungere nuovi NFT al sito.
 \end{itemize}
 
 \paragraph{Mie Recensioni}
@@ -262,7 +268,7 @@ Il sito è navigabile senza obbligo di registrazione. Gli utenti non autenticati
 
 \subsection{Scelta della palette colori}
 La definizione della palette colori è stata un processo evolutivo, durante il quale abbiamo cambiato la palette diverse volte per garantire il contrasto minimo (4.5:1) e tenendo in considerazione che il colore di bandiera era il rosa. Inizialmente, non riuscivamo a trovare una combinazione di colori per i link che rispettasse il contrasto tra link visitati, non visitati e lo sfondo. Per risolvere il problema, abbiamo apportato leggere modifiche al colore del testo normale (da \#FFFFE8 a \#FFFEF4) e allo sfondo (da \#191919 a \#000408), in modo da aumentare il contrasto tra questi e permettere l’introduzione di un terzo colore (\#C0469D).\\
-Abbiamo deciso di tenere il colore dei link non visitati identico a quello del testo normale, distinguendoli solo tramite la sottolineatura (in linea con le convenzioni esterne comunemente adottate a cui gli utenti sono abituati). Per verificare i contrasti, abbiamo utilizzato lo strumento \underline{\href{https://coolors.co/contrast-checker/112a46-6f95bd}{Coolors Contrast Checker}}, ottenendo i valori richiesti.
+Abbiamo deciso di tenere il colore dei link non visitati identico a quello del testo normale, distinguendoli solo tramite la sottolineatura (in linea con le convenzioni esterne comunemente adottate a cui gli utenti sono abituati). Per verificare i contrasti, abbiamo utilizzato lo strumento \underline{\href{https://coolors.co/contrast-checker/112a46-6f95bd}{Color Contrast Checker}}, ottenendo i valori richiesti.
 
 \begin{center}
     \includegraphics[width=0.7\linewidth]{palette_sito.png}
@@ -276,30 +282,30 @@ Per garantire un'esperienza utente ottimale, sono state adottate convenzioni che
 \item Il sito è navigabile tramite tastiera, garantendo l'accesso a utenti con disabilità motorie;
 \item Le immagini di contenuto sono accompagnate da testi alternativi descrittivi (quando necessari), per permettere la comprensione dei contenuti da parte di utenti non vedenti o con disabilità visive;
 \item Sono stati utilizzati font leggibili, con contrasto e dimensioni adeguate, per garantire la fruibilità al maggior numero di utenti possibile;
-\item I contenuti interattivi sono facilmente identificabili e accessibili, con un chiaro feedback visivo per l’interazione;
-\item In tutte le pagine del sito sono stati implementati degli aiuti alla navigazione, oltre alla breadcrumb, mediante skip buttons.
+\item I form sono sempre separati da un bordo con il titolo (fieldset) in modo da essere sempre riconoscibili.
+\item In tutte le pagine del sito sono stati implementati degli aiuti alla navigazione, oltre alla breadcrumb, mediante skip button.
 \end{itemize}
-\subsubsection{Skip buttons}
-Gli skip buttons sono stati implementati tramite link che diventano visibili quando ottengono il focus tramite tab. L'utilizzo degli skip buttons è stato scelto per agevolare gli utenti che sono abituati a navigare tramite tab e per chi utilizza screenreaders. Ad ogni skip button è stato assegnato un'aria-label univoca per aiutare a distinguerli e non creare confunsione all'utente. 
+\subsubsection{Skip button}
+Gli skip button sono stati implementati tramite link che diventano visibili quando ottengono il focus tramite tab. L'utilizzo degli skip button è stato scelto per agevolare gli utenti che sono abituati a navigare tramite tab e per chi utilizza screenreader. Ad ogni skip button è stato assegnato un'aria-label univoca per aiutare a distinguerli e non creare confunsione all'utente. 
 
 \section{Implementazione}
 \subsection{Front-End}
-Il front-end del progetto \textit{Doflamingo} \`e stato sviluppato con l'obiettivo di fornire un'interfaccia utente intuitiva, accessibile e responsive. Per la struttura delle pagine sono stati utilizzati gli standard HTML5, mentre la presentazione grafica \`e stata curata mediante fogli di stile CSS esterni, garantendo la separazione tra contenuto e presentazione.
+Il front-end del progetto Doflamingo è stato sviluppato con l'obiettivo di fornire un'interfaccia utente intuitiva, accessibile e responsive. Per la struttura delle pagine sono stati utilizzati gli standard HTML5, mentre la presentazione grafica è stata curata mediante fogli di stile CSS esterni, garantendo la separazione tra contenuto e presentazione.
 
-Le pagine includono funzionalit\`a interattive implementate attraverso JavaScript. Ad esempio, la gestione dinamica dei filtri nella ricerca degli NFT e i controlli lato client degli input inseribili tramite form. Il design \`e stato ottimizzato per la compatibilit\`a con i principali browser moderni, offrendo un'esperienza fluida anche su dispositivi mobili.
+JavaScript è utilizzato per la visualizzazione del pannello dei filtri aggiuntivi nella ricerca degli NFT e i controlli lato client degli input inseribili tramite form. Il design è stato ottimizzato per la compatibilità con i principali browser moderni, offrendo un'esperienza fluida anche su dispositivi mobili.
 
 \subsection{Back-End}
-Il back-end \`e stato sviluppato utilizzando PHP per gestire la logica server-side e interagire con il database. Gli script PHP permettono di effettuare operazioni come l'autenticazione degli utenti, la gestione delle transazioni di acquisto delle opere, e la visualizzazione delle informazioni relative agli NFT e alle recensioni.
+Il back-end è stato sviluppato utilizzando PHP per gestire la logica server-side e interagire con il database. Gli script PHP permettono di effettuare operazioni come l'autenticazione degli utenti, la gestione delle transazioni di acquisto delle opere, e la visualizzazione delle informazioni relative agli NFT e alle recensioni.
 
-Il database \`e stato progettato utilizzando MariaDB, con una struttura relazionale che garantisce l'integrit\`a referenziale e la coerenza dei dati. Le query SQL vengono eseguite attraverso gli script PHP per recuperare, inserire e aggiornare i dati in base alle azioni dell'utente.
+Il database è stato progettato utilizzando MariaDB, con una struttura relazionale che garantisce l'integrità referenziale e la coerenza dei dati. Le query SQL vengono eseguite attraverso gli script PHP per recuperare, inserire e aggiornare i dati in base alle azioni dell'utente.
 
-Per garantire una maggiore sicurezza, sono stati implementati controlli lato server degli input per prevenire vulnerabilit\`a come SQL injection e per assicurarsi che l'utente inserisca dei dati validi. Inoltre, sono state utilizzate sessioni PHP per gestire lo stato degli utenti autenticati e proteggere le operazioni sensibili.
+Per garantire una maggiore sicurezza, sono stati implementati controlli lato server degli input per prevenire vulnerabilità come SQL injection e per assicurarsi che l'utente inserisca dei dati validi. Inoltre, sono state utilizzate sessioni PHP per gestire lo stato degli utenti autenticati e proteggere le operazioni sensibili.
 
 \section{Validazione e test}
 Per garantire un sito accessibile, conforme agli standard e user-friendly, sono stati effettuati diversi test, utilizzando strumenti dedicati e analizzando in dettaglio ogni pagina. Di seguito riportiamo i principali risultati.
 
 \subsection{Test con w3ba11y}
-Abbiamo utilizzato l’estensione w3ba11y per Chrome per validare l’accessibilità delle immagini. Sono emerse alcune criticità: nella pagina Home e nella sezione NFT mancavano gli attributi alt per le immagini delle card NFT, mentre nella pagina "Chi siamo" mancavano gli attributi alt per le immagini profilo dei componenti del gruppo. Questi dettagli sono stati corretti per migliorare l'accessibilità del sito e garantire una migliore esperienza per gli utenti con disabilità visive.
+Abbiamo utilizzato l’estensione w3ba11y per Chrome per validare l’accessibilità delle immagini e delle intestazioni. Sono emerse alcune criticità: nella pagina Home e nella sezione NFT mancavano gli attributi alt per le immagini delle card NFT, mentre nella pagina "Chi siamo" mancavano gli attributi alt per le immagini profilo dei componenti del gruppo. Questi dettagli sono stati corretti per migliorare l'accessibilità del sito e garantire una migliore esperienza per tutte le categorie di utenti.
 
 \subsection{Analisi semantica e strutturale con Total Validator}
 L’uso di Total Validator ha permesso di identificare diverse problematiche di semantica e struttura. Una di queste era relativa alla tabella delle categorie nella pagina "Home". Sebbene la tabella non avesse una caption, il titolo della sezione (un elemento h2) svolge il ruolo di contesto per il contenuto della tabella. Per garantire una maggiore accessibilità e migliorare la comprensione da parte degli screen reader, è stato aggiunto un attributo aria-label alla tabella, che riprende il titolo presente nell'h2.
@@ -327,7 +333,7 @@ Per garantire testi comprensibili a un pubblico ampio, abbiamo calcolato l’ind
 
 \subsection{Verifica del contrasto con WCAG Color Contrast Checker}
 Per concludere, dopo aver corretto i colori utilizzati nella breadcrumb, abbiamo rifatto i test di contrasto cromatico utilizzando l’estensione WCAG Color Contrast Checker. Il sito soddisfa pienamente i requisiti di contrasto previsti dalle WCAG, garantendo un rapporto minimo di 4.5:1 per tutti i colori, sia dei testi piccoli ma anche per i testi grandi.
-L’unico falso positivo segnalato riguarda le icone di eliminazione e modifica dei commenti, per le quali l’estensione indicava un contrasto di 1.02. Tuttavia, una verifica manuale ha confermato che il contrasto reale è di 17.07, ampiamente conforme agli standard.
+L’unico falso positivo segnalato riguarda le icone di eliminazione e modifica delle recensioni, per le quali l’estensione indicava un contrasto di 1.02. Tuttavia, una verifica manuale ha confermato che il contrasto reale è di 17.07, ampiamente conforme agli standard.
 
 \section{Organizzazione del lavoro}
 \subsection{Gusella Manuel}
